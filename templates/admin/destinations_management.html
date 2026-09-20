@@ -1,0 +1,1271 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<meta content="width=device-width, initial-scale=1.0" name="viewport" />
+		<style>
+			@layer base {
+				html,
+				body {
+					margin: 0;
+					padding: 0;
+				}
+				body {
+					overscroll-behavior: none;
+				}
+				main > :first-child {
+					margin-top: 0 !important;
+				}
+				main > :last-child {
+					margin-bottom: 0 !important;
+				}
+			}
+			::-webkit-scrollbar {
+				display: none;
+			}
+		</style>
+		<script src="https://cdn.tailwindcss.com"></script>
+		<script id="tailwind-config">
+			tailwind.config = {
+				darkMode: 'class',
+				theme: {
+					extend: {
+						colors: {
+							'on-error': '#ffffff',
+							'tertiary-fixed': '#d9e3f9',
+							'surface-container-low': '#f1f4f6',
+							'primary-container': '#002045',
+							'secondary-fixed-dim': '#ffb86c',
+							'surface-container-high': '#e6e8eb',
+							'tertiary-container': '#172131',
+							'on-primary-fixed': '#001b3c',
+							'inverse-primary': '#aec7f5',
+							'inverse-on-surface': '#eef1f4',
+							'outline-variant': '#c4c6cf',
+							'on-tertiary': '#ffffff',
+							surface: '#f7fafc',
+							'surface-dim': '#d7dadd',
+							'on-primary-fixed-variant': '#2e476e',
+							'surface-container': '#ebeef1',
+							'on-secondary': '#ffffff',
+							primary: '#00091b',
+							'surface-container-highest': '#e0e3e5',
+							'on-tertiary-fixed': '#121c2c',
+							'primary-fixed-dim': '#aec7f5',
+							'surface-tint': '#465f87',
+							'error-container': '#ffdad6',
+							secondary: '#895100',
+							'tertiary-fixed-dim': '#bdc7dc',
+							'on-primary': '#ffffff',
+							'on-tertiary-fixed-variant': '#3d4759',
+							'on-primary-container': '#7089b3',
+							'on-background': '#181c1e',
+							'inverse-surface': '#2d3133',
+							'primary-fixed': '#d6e3ff',
+							outline: '#74777f',
+							'on-surface': '#181c1e',
+							'on-secondary-container': '#663b00',
+							background: '#f7fafc',
+							tertiary: '#020919',
+							'on-tertiary-container': '#7e889c',
+							'on-surface-variant': '#44474e',
+							'on-secondary-fixed-variant': '#683d00',
+							'surface-variant': '#e0e3e5',
+							'on-secondary-fixed': '#2c1700',
+							'secondary-container': '#fd9d1a',
+							'secondary-fixed': '#ffdcbc',
+							'on-error-container': '#93000a',
+							error: '#ba1a1a',
+							'surface-bright': '#f7fafc',
+							'surface-container-lowest': '#ffffff',
+						},
+						borderRadius: {
+							DEFAULT: '0.125rem',
+							lg: '0.25rem',
+							xl: '0.5rem',
+							full: '0.75rem',
+						},
+						spacing: {
+							md: '16px',
+							xl: '32px',
+							base: '8px',
+							'3xl': '64px',
+							lg: '24px',
+							xs: '4px',
+							'2xl': '48px',
+							sm: '8px',
+						},
+						fontFamily: {
+							'body-md': ['Inter'],
+							'label-md': ['Inter'],
+							caption: ['Inter'],
+							'headline-md': ['Montserrat'],
+							'headline-lg': ['Montserrat'],
+							'body-lg': ['Inter'],
+							'display-lg': ['Montserrat'],
+						},
+						fontSize: {
+							'body-md': [
+								'16px',
+								{ lineHeight: '1.5', fontWeight: '400' },
+							],
+							'label-md': [
+								'14px',
+								{
+									lineHeight: '1.2',
+									letterSpacing: '0.01em',
+									fontWeight: '600',
+								},
+							],
+							caption: [
+								'12px',
+								{ lineHeight: '1.4', fontWeight: '400' },
+							],
+							'headline-md': [
+								'24px',
+								{ lineHeight: '1.4', fontWeight: '600' },
+							],
+							'headline-lg': [
+								'32px',
+								{ lineHeight: '1.3', fontWeight: '700' },
+							],
+							'body-lg': [
+								'18px',
+								{ lineHeight: '1.6', fontWeight: '400' },
+							],
+							'display-lg': [
+								'48px',
+								{
+									lineHeight: '1.2',
+									letterSpacing: '-0.02em',
+									fontWeight: '700',
+								},
+							],
+						},
+					},
+				},
+			};
+		</script>
+		<link
+			href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+			rel="stylesheet"
+		/>
+		<link
+			href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&amp;family=Montserrat:wght@100..900&amp;display=swap"
+			rel="stylesheet"
+		/>
+	</head>
+	<body class="bg-surface font-body-md text-on-surface">
+		<aside
+			class="fixed left-0 top-0 h-full w-72 bg-surface-container-low z-50 flex flex-col pt-6 pb-8 shadow-[0_1px_8px_rgba(0,0,0,0.04)]"
+		>
+			<div
+				class="px-xl mb-xl text-headline-md font-headline-md text-primary"
+			>
+				DaNang Travel
+			</div>
+			<nav
+				class="flex-1 px-4 space-y-xs overflow-y-auto"
+				data-active-classes="bg-primary-container text-on-primary-container font-bold rounded-xl"
+			>
+				<a
+					class="flex items-center px-4 py-3 rounded-xl text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-all"
+					data-path="dashboard"
+					href="#"
+					><span class="material-symbols-outlined mr-3"
+						>dashboard</span
+					>Bảng điều khiển</a
+				><a
+					class="flex items-center px-4 py-3 rounded-xl text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-all"
+					data-path="users"
+					href="#"
+					><span class="material-symbols-outlined mr-3">group</span
+					>Quản lý người dùng</a
+				><a
+					class="flex items-center px-4 py-3 rounded-xl text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-all"
+					data-path="hosts"
+					href="#"
+					><span class="material-symbols-outlined mr-3">badge</span
+					>Quản lý chủ cơ sở</a
+				><a
+					aria-current="page"
+					class="flex items-center px-4 py-3 transition-all bg-primary-container text-on-primary-container font-bold rounded-xl"
+					data-path="locations"
+					href="#"
+					><span class="material-symbols-outlined mr-3"
+						>location_on</span
+					>Quản lý địa điểm</a
+				><a
+					class="flex items-center px-4 py-3 rounded-xl text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-all"
+					data-path="accommodations"
+					href="#"
+					><span class="material-symbols-outlined mr-3">hotel</span
+					>Quản lý cơ sở lưu trú</a
+				><a
+					class="flex items-center px-4 py-3 rounded-xl text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-all"
+					data-path="reviews"
+					href="#"
+					><span class="material-symbols-outlined mr-3"
+						>rate_review</span
+					>Quản lý đánh giá</a
+				><a
+					class="flex items-center px-4 py-3 rounded-xl text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-all"
+					data-path="statistics"
+					href="#"
+					><span class="material-symbols-outlined mr-3"
+						>bar_chart</span
+					>Thống kê &amp; Báo cáo</a
+				><a
+					class="flex items-center px-4 py-3 rounded-xl text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-all"
+					data-path="notifications"
+					href="#"
+					><span class="material-symbols-outlined mr-3"
+						>notifications</span
+					>Thông báo</a
+				><a
+					class="flex items-center px-4 py-3 rounded-xl text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-all"
+					data-path="account"
+					href="#"
+					><span class="material-symbols-outlined mr-3"
+						>manage_accounts</span
+					>Tài khoản cá nhân</a
+				>
+			</nav>
+		</aside>
+		<div class="pl-72">
+			<header
+				class="fixed top-0 left-72 right-0 h-20 bg-surface/80 backdrop-blur-xl shadow-[0_1px_8px_rgba(0,0,0,0.04)] z-40 flex items-center justify-between px-xl"
+			>
+				<div class="flex items-center gap-md">
+					<span class="material-symbols-outlined text-outline"
+						>bolt</span
+					><span class="text-caption text-on-surface-variant"
+						>Trạng thái:
+						<strong class="text-on-surface"
+							>Hoạt động ổn định</strong
+						></span
+					>
+				</div>
+				<div class="flex items-center gap-md">
+					<div
+						class="w-8 h-8 rounded-full bg-primary flex items-center justify-center"
+					>
+						<span
+							class="material-symbols-outlined text-on-primary text-[18px]"
+							>person</span
+						>
+					</div>
+				</div>
+			</header>
+			<main class="relative pt-20 bg-surface min-h-screen p-xl">
+				<div class="flex flex-col w-full">
+					<!-- Header / Breadcrumb and Quick Stats -->
+					<div
+						class="flex flex-col md:flex-row md:items-center justify-between gap-md mb-xl"
+					>
+						<div>
+							<span
+								class="text-caption text-on-surface-variant uppercase tracking-wider font-label-md"
+								>Quản lý hệ thống</span
+							>
+							<h1
+								class="text-headline-lg font-headline-lg text-primary mt-xs"
+							>
+								Quản lý địa điểm du lịch
+							</h1>
+							<p
+								class="text-body-md text-on-surface-variant mt-xs"
+							>
+								Danh sách các danh lam thắng cảnh, điểm tham
+								quan và khu giải trí tại Đà Nẵng.
+							</p>
+						</div>
+						<div class="flex items-center gap-md">
+							<button
+								class="flex items-center gap-2 bg-primary text-on-primary px-lg py-3 rounded-full hover:bg-primary-container transition-all shadow-sm font-label-md"
+								onclick="openAddModal()"
+							>
+								<span
+									class="material-symbols-outlined text-[18px]"
+									>add</span
+								>
+								Thêm địa điểm mới
+							</button>
+						</div>
+					</div>
+					<!-- Metric / Summary Cards -->
+					<div class="grid grid-cols-1 md:grid-cols-4 gap-md mb-xl">
+						<div
+							class="bg-surface-container-lowest p-lg rounded-xl shadow-sm flex items-center justify-between"
+						>
+							<div>
+								<span
+									class="text-caption text-on-surface-variant"
+									>Tổng số địa điểm</span
+								>
+								<h3
+									class="text-headline-md font-headline-md text-primary mt-1"
+								>
+									28
+								</h3>
+							</div>
+							<div
+								class="w-12 h-12 rounded-full bg-primary-fixed flex items-center justify-center text-primary"
+							>
+								<span class="material-symbols-outlined"
+									>location_on</span
+								>
+							</div>
+						</div>
+						<div
+							class="bg-surface-container-lowest p-lg rounded-xl shadow-sm flex items-center justify-between"
+						>
+							<div>
+								<span
+									class="text-caption text-on-surface-variant"
+									>Thiên nhiên</span
+								>
+								<h3
+									class="text-headline-md font-headline-md text-primary mt-1"
+								>
+									10
+								</h3>
+							</div>
+							<div
+								class="w-12 h-12 rounded-full bg-tertiary-fixed flex items-center justify-center text-on-tertiary-fixed"
+							>
+								<span class="material-symbols-outlined"
+									>landscape</span
+								>
+							</div>
+						</div>
+						<div
+							class="bg-surface-container-lowest p-lg rounded-xl shadow-sm flex items-center justify-between"
+						>
+							<div>
+								<span
+									class="text-caption text-on-surface-variant"
+									>Văn hóa &amp; Lịch sử</span
+								>
+								<h3
+									class="text-headline-md font-headline-md text-primary mt-1"
+								>
+									8
+								</h3>
+							</div>
+							<div
+								class="w-12 h-12 rounded-full bg-secondary-fixed flex items-center justify-center text-secondary"
+							>
+								<span class="material-symbols-outlined"
+									>temple_buddhist</span
+								>
+							</div>
+						</div>
+						<div
+							class="bg-surface-container-lowest p-lg rounded-xl shadow-sm flex items-center justify-between"
+						>
+							<div>
+								<span
+									class="text-caption text-on-surface-variant"
+									>Giải trí &amp; Bãi biển</span
+								>
+								<h3
+									class="text-headline-md font-headline-md text-primary mt-1"
+								>
+									10
+								</h3>
+							</div>
+							<div
+								class="w-12 h-12 rounded-full bg-surface-container-high flex items-center justify-center text-on-surface"
+							>
+								<span class="material-symbols-outlined"
+									>beach_access</span
+								>
+							</div>
+						</div>
+					</div>
+					<!-- Filter & Search Bar -->
+					<div
+						class="bg-surface-container-lowest p-lg rounded-xl shadow-sm mb-xl flex flex-col md:flex-row items-center justify-between gap-md"
+					>
+						<div
+							class="flex items-center gap-md w-full md:w-auto flex-1"
+						>
+							<div class="relative w-full md:w-96">
+								<span
+									class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-outline text-[20px]"
+									>search</span
+								>
+								<input
+									class="w-full bg-surface-container-lowest text-on-surface pl-10 pr-4 py-3 rounded-xl outline outline-1 outline-outline focus:outline-2 focus:outline-primary text-body-md transition-all"
+									id="searchInput"
+									placeholder="Tìm kiếm theo tên địa điểm, địa chỉ..."
+									type="text"
+								/>
+							</div>
+							<div
+								class="flex items-center gap-xs overflow-x-auto pb-2 md:pb-0"
+							>
+								<button
+									class="px-4 py-2 rounded-full bg-primary text-on-primary text-label-md transition-all whitespace-nowrap"
+								>
+									Tất cả
+								</button>
+								<button
+									class="px-4 py-2 rounded-full bg-surface-container hover:bg-surface-container-high text-on-surface text-label-md transition-all whitespace-nowrap"
+								>
+									Thiên nhiên
+								</button>
+								<button
+									class="px-4 py-2 rounded-full bg-surface-container hover:bg-surface-container-high text-on-surface text-label-md transition-all whitespace-nowrap"
+								>
+									Văn hóa
+								</button>
+								<button
+									class="px-4 py-2 rounded-full bg-surface-container hover:bg-surface-container-high text-on-surface text-label-md transition-all whitespace-nowrap"
+								>
+									Giải trí
+								</button>
+							</div>
+						</div>
+						<div
+							class="flex items-center gap-md w-full md:w-auto justify-end"
+						>
+							<button
+								class="flex items-center gap-2 px-4 py-2.5 rounded-xl outline outline-1 outline-outline text-on-surface-variant hover:bg-surface-container transition-all text-label-md"
+							>
+								<span
+									class="material-symbols-outlined text-[18px]"
+									>filter_list</span
+								>
+								Bộ lọc nâng cao
+							</button>
+						</div>
+					</div>
+					<!-- Data Table Card -->
+					<div
+						class="bg-surface-container-lowest rounded-xl shadow-sm overflow-hidden mb-3xl"
+					>
+						<div class="overflow-x-auto">
+							<table class="w-full text-left border-collapse">
+								<thead>
+									<tr
+										class="bg-surface-container text-on-surface-variant text-label-md"
+									>
+										<th class="py-4 px-6 font-semibold">
+											ID
+										</th>
+										<th class="py-4 px-6 font-semibold">
+											Tên địa điểm
+										</th>
+										<th class="py-4 px-6 font-semibold">
+											Danh mục
+										</th>
+										<th class="py-4 px-6 font-semibold">
+											Địa chỉ
+										</th>
+										<th class="py-4 px-6 font-semibold">
+											Trạng thái hoạt động
+										</th>
+										<th
+											class="py-4 px-6 font-semibold text-right"
+										>
+											Thao tác
+										</th>
+									</tr>
+								</thead>
+								<tbody
+									class="divide-y divide-surface-container"
+								>
+									<!-- Row 1 -->
+									<tr
+										class="hover:bg-surface-container-low transition-colors group"
+									>
+										<td
+											class="py-4 px-6 text-body-md font-medium text-on-surface"
+										>
+											#LOC-001
+										</td>
+										<td class="py-4 px-6">
+											<div
+												class="flex items-center gap-3"
+											>
+												<div
+													class="w-10 h-10 rounded-lg bg-cover bg-center shrink-0"
+													data-alt="Sun World Ba Na Hills resort with golden bridge and French village architecture nestled in lush green mountains under clear blue sky."
+													style="
+														background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDAWcIkRR9dhlM7L4c5Fav5aoLOIIg3yAotM_6XiDiXRt0xWSqYrwXNqXQJziPStDR8CE0voXPPC5YMGmOV_WK1MG_-IYunJlpgsjcBXlrwMbT7SlTp7gZ0fW66pT7jjqtclTlN0rTqwju21sdEa-_THE_j8Tl4J_w5PzlIaS66_aFEPdU5hNOp8x5M0olKqGxEOqxVBREvo4ZNKEy8ixj1xyUZjvnQH-s9rlC-hk7kVM62NTkvsJ64');
+													"
+												></div>
+												<div>
+													<div
+														class="font-medium text-on-surface"
+													>
+														Bà Nà Hills
+													</div>
+													<div
+														class="text-caption text-on-surface-variant"
+													>
+														Khu du lịch phức hợp
+													</div>
+												</div>
+											</div>
+										</td>
+										<td class="py-4 px-6">
+											<span
+												class="inline-flex items-center px-3 py-1 rounded-full text-caption bg-tertiary-fixed text-on-tertiary-fixed font-medium"
+												>Giải trí</span
+											>
+										</td>
+										<td
+											class="py-4 px-6 text-body-md text-on-surface-variant max-w-xs truncate"
+										>
+											Hòa Ninh, Hòa Vang, Đà Nẵng
+										</td>
+										<td class="py-4 px-6">
+											<span
+												class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-caption bg-emerald-100 text-emerald-800 font-medium"
+											>
+												<span
+													class="w-1.5 h-1.5 rounded-full bg-emerald-600"
+												></span>
+												Đang mở cửa
+											</span>
+										</td>
+										<td class="py-4 px-6 text-right">
+											<div
+												class="flex items-center justify-end gap-2"
+											>
+												<button
+													class="p-2 rounded-xl text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-all"
+													onclick="
+														openEditModal(
+															'Bà Nà Hills',
+														)
+													"
+													title="Chỉnh sửa"
+												>
+													<span
+														class="material-symbols-outlined text-[20px]"
+														>edit</span
+													>
+												</button>
+												<button
+													class="p-2 rounded-xl text-error hover:bg-error-container transition-all"
+													onclick="
+														openDeleteModal(
+															'Bà Nà Hills',
+														)
+													"
+													title="Xóa"
+												>
+													<span
+														class="material-symbols-outlined text-[20px]"
+														>delete</span
+													>
+												</button>
+											</div>
+										</td>
+									</tr>
+									<!-- Row 2 -->
+									<tr
+										class="hover:bg-surface-container-low transition-colors group"
+									>
+										<td
+											class="py-4 px-6 text-body-md font-medium text-on-surface"
+										>
+											#LOC-002
+										</td>
+										<td class="py-4 px-6">
+											<div
+												class="flex items-center gap-3"
+											>
+												<div
+													class="w-10 h-10 rounded-lg bg-cover bg-center shrink-0"
+													data-alt="Marble Mountains (Ngũ Hành Sơn) with limestone peaks, ancient pagodas, and lush vegetation under bright sunlight in Da Nang."
+													style="
+														background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuBGyXV1k6t3kGWx6DihQktxpNvoIRb3VG_iw9Y2o_t_ckSWgTmaLDLPN1oPn4OHPbEktv6nQci2gjKQ09nT6gRUdfjHSRIoBzCXrfJsz0Xk880cB4_9yveVl8BiYHubCa1lHeJiIBZ7N2tsIDW1n3XjS7ZQiAp_eme7bx66pzAG6UbVWFr1fgfuutqIH7e5kmIv_tNLclXoy6O4fqYW71n_3W3j6ttOXynPvl-WVw7X0d7IylaWTF1_');
+													"
+												></div>
+												<div>
+													<div
+														class="font-medium text-on-surface"
+													>
+														Ngũ Hành Sơn
+													</div>
+													<div
+														class="text-caption text-on-surface-variant"
+													>
+														Cụm 5 ngọn núi đá vôi
+													</div>
+												</div>
+											</div>
+										</td>
+										<td class="py-4 px-6">
+											<span
+												class="inline-flex items-center px-3 py-1 rounded-full text-caption bg-secondary-fixed text-secondary font-medium"
+												>Văn hóa</span
+											>
+										</td>
+										<td
+											class="py-4 px-6 text-body-md text-on-surface-variant max-w-xs truncate"
+										>
+											81 Huyền Trân Công Chúa, Ngũ Hành
+											Sơn, Đà Nẵng
+										</td>
+										<td class="py-4 px-6">
+											<span
+												class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-caption bg-emerald-100 text-emerald-800 font-medium"
+											>
+												<span
+													class="w-1.5 h-1.5 rounded-full bg-emerald-600"
+												></span>
+												Đang mở cửa
+											</span>
+										</td>
+										<td class="py-4 px-6 text-right">
+											<div
+												class="flex items-center justify-end gap-2"
+											>
+												<button
+													class="p-2 rounded-xl text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-all"
+													onclick="
+														openEditModal(
+															'Ngũ Hành Sơn',
+														)
+													"
+													title="Chỉnh sửa"
+												>
+													<span
+														class="material-symbols-outlined text-[20px]"
+														>edit</span
+													>
+												</button>
+												<button
+													class="p-2 rounded-xl text-error hover:bg-error-container transition-all"
+													onclick="
+														openDeleteModal(
+															'Ngũ Hành Sơn',
+														)
+													"
+													title="Xóa"
+												>
+													<span
+														class="material-symbols-outlined text-[20px]"
+														>delete</span
+													>
+												</button>
+											</div>
+										</td>
+									</tr>
+									<!-- Row 3 -->
+									<tr
+										class="hover:bg-surface-container-low transition-colors group"
+									>
+										<td
+											class="py-4 px-6 text-body-md font-medium text-on-surface"
+										>
+											#LOC-003
+										</td>
+										<td class="py-4 px-6">
+											<div
+												class="flex items-center gap-3"
+											>
+												<div
+													class="w-10 h-10 rounded-lg bg-cover bg-center shrink-0"
+													data-alt="Dragon Bridge (Cầu Rồng) glowing with vibrant LED lights stretching across Han River during twilight in Da Nang."
+													style="
+														background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuCn-FZGoE4xxk-d4ZwE8VZLG0zivWLDFZqu-G-3m53Rpelbio6KvvVBB_a0Imp7OqSaSEf1nip37YsdHqfg-Ew9mbUVVU0DYGTriYchK-Om22hmIbT6LxkiVwQ4Wzd2Gw40GsicCqpkzbwLPRhzvjFetI3IdQs08mhHtv5pgwo7nkAA9Ew5jIZOMODqXr_GbgB-KYeDux67Ow2O12RpO2yy-4qUIine9YRk00ozCeYxbrwwRoDCJaRg');
+													"
+												></div>
+												<div>
+													<div
+														class="font-medium text-on-surface"
+													>
+														Cầu Rồng
+													</div>
+													<div
+														class="text-caption text-on-surface-variant"
+													>
+														Biểu tượng kiến trúc
+														thành phố
+													</div>
+												</div>
+											</div>
+										</td>
+										<td class="py-4 px-6">
+											<span
+												class="inline-flex items-center px-3 py-1 rounded-full text-caption bg-surface-container-high text-on-surface font-medium"
+												>Giải trí</span
+											>
+										</td>
+										<td
+											class="py-4 px-6 text-body-md text-on-surface-variant max-w-xs truncate"
+										>
+											Đường Nguyễn Văn Linh, Phước Ninh,
+											Hải Châu, Đà Nẵng
+										</td>
+										<td class="py-4 px-6">
+											<span
+												class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-caption bg-emerald-100 text-emerald-800 font-medium"
+											>
+												<span
+													class="w-1.5 h-1.5 rounded-full bg-emerald-600"
+												></span>
+												Đang mở cửa
+											</span>
+										</td>
+										<td class="py-4 px-6 text-right">
+											<div
+												class="flex items-center justify-end gap-2"
+											>
+												<button
+													class="p-2 rounded-xl text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-all"
+													onclick="
+														openEditModal(
+															'Cầu Rồng',
+														)
+													"
+													title="Chỉnh sửa"
+												>
+													<span
+														class="material-symbols-outlined text-[20px]"
+														>edit</span
+													>
+												</button>
+												<button
+													class="p-2 rounded-xl text-error hover:bg-error-container transition-all"
+													onclick="
+														openDeleteModal(
+															'Cầu Rồng',
+														)
+													"
+													title="Xóa"
+												>
+													<span
+														class="material-symbols-outlined text-[20px]"
+														>delete</span
+													>
+												</button>
+											</div>
+										</td>
+									</tr>
+									<!-- Row 4 -->
+									<tr
+										class="hover:bg-surface-container-low transition-colors group"
+									>
+										<td
+											class="py-4 px-6 text-body-md font-medium text-on-surface"
+										>
+											#LOC-004
+										</td>
+										<td class="py-4 px-6">
+											<div
+												class="flex items-center gap-3"
+											>
+												<div
+													class="w-10 h-10 rounded-lg bg-cover bg-center shrink-0"
+													data-alt="My Khe Beach with white sand, gentle blue waves, and rows of green coconut palms along the coastline of Da Nang."
+													style="
+														background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuAVE0jKQZNyS8NxF8GsdiY-1BTRogkxEOict_rYndYbHCdq7TNJxRM8YUkv_Der0qlBuhtst643yUK8R5qSSDy8oFnJ8JSQjIPG0Px--8D4-MmA013YVl_WAv_ouh3fBYB2mLpfZtnWzl4n2BLm-hun2uyANsJlPDatEBRief_q1_ryGjSsX8aevQ0MPeGvsDUoiGKQVst_38nqRZHMJZb7QSeS8-f0sVQR8ra3MsPapPE1LymxCDFF');
+													"
+												></div>
+												<div>
+													<div
+														class="font-medium text-on-surface"
+													>
+														Bãi biển Mỹ Khê
+													</div>
+													<div
+														class="text-caption text-on-surface-variant"
+													>
+														Bãi biển nghỉ mát đẹp
+														nhất hành tinh
+													</div>
+												</div>
+											</div>
+										</td>
+										<td class="py-4 px-6">
+											<span
+												class="inline-flex items-center px-3 py-1 rounded-full text-caption bg-tertiary-fixed text-on-tertiary-fixed font-medium"
+												>Thiên nhiên</span
+											>
+										</td>
+										<td
+											class="py-4 px-6 text-body-md text-on-surface-variant max-w-xs truncate"
+										>
+											Đường Võ Nguyên Giáp, Phước Mỹ, Sơn
+											Trà, Đà Nẵng
+										</td>
+										<td class="py-4 px-6">
+											<span
+												class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-caption bg-emerald-100 text-emerald-800 font-medium"
+											>
+												<span
+													class="w-1.5 h-1.5 rounded-full bg-emerald-600"
+												></span>
+												Đang mở cửa
+											</span>
+										</td>
+										<td class="py-4 px-6 text-right">
+											<div
+												class="flex items-center justify-end gap-2"
+											>
+												<button
+													class="p-2 rounded-xl text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-all"
+													onclick="
+														openEditModal(
+															'Bãi biển Mỹ Khê',
+														)
+													"
+													title="Chỉnh sửa"
+												>
+													<span
+														class="material-symbols-outlined text-[20px]"
+														>edit</span
+													>
+												</button>
+												<button
+													class="p-2 rounded-xl text-error hover:bg-error-container transition-all"
+													onclick="
+														openDeleteModal(
+															'Bãi biển Mỹ Khê',
+														)
+													"
+													title="Xóa"
+												>
+													<span
+														class="material-symbols-outlined text-[20px]"
+														>delete</span
+													>
+												</button>
+											</div>
+										</td>
+									</tr>
+									<!-- Row 5 -->
+									<tr
+										class="hover:bg-surface-container-low transition-colors group"
+									>
+										<td
+											class="py-4 px-6 text-body-md font-medium text-on-surface"
+										>
+											#LOC-005
+										</td>
+										<td class="py-4 px-6">
+											<div
+												class="flex items-center gap-3"
+											>
+												<div
+													class="w-10 h-10 rounded-lg bg-cover bg-center shrink-0"
+													data-alt="Son Tra Peninsula (Sơn Trà) with lush green tropical forests and misty mountain ridges facing the ocean."
+													style="
+														background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuCn1Z0M__eU7LGWErFjV45Xa8nJhTUjY1x_IrTdtlcBtNtyACeq138GUeCVM2KxdLo5t9bX6Jkn5B-arpWOTuM1irJz5AlNeLJlUQLiMwl9NN9FUlUTB2zAvX6_gM1JqGhlH0Ccnf0OuNFGKtZwl-_PneWhuZv8Lv9f4NpMXpa1wF03kQh912DgT6_u20w3aBqeGagnP6vISi7muar-IJs7cZYqPwOlz2RfJNT9HR9bx2Rc9k8Vr5vN');
+													"
+												></div>
+												<div>
+													<div
+														class="font-medium text-on-surface"
+													>
+														Bán đảo Sơn Trà
+													</div>
+													<div
+														class="text-caption text-on-surface-variant"
+													>
+														Khu bảo tồn thiên nhiên
+														quốc gia
+													</div>
+												</div>
+											</div>
+										</td>
+										<td class="py-4 px-6">
+											<span
+												class="inline-flex items-center px-3 py-1 rounded-full text-caption bg-tertiary-fixed text-on-tertiary-fixed font-medium"
+												>Thiên nhiên</span
+											>
+										</td>
+										<td
+											class="py-4 px-6 text-body-md text-on-surface-variant max-w-xs truncate"
+										>
+											Thọ Quang, Sơn Trà, Đà Nẵng
+										</td>
+										<td class="py-4 px-6">
+											<span
+												class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-caption bg-amber-100 text-amber-800 font-medium"
+											>
+												<span
+													class="w-1.5 h-1.5 rounded-full bg-amber-600"
+												></span>
+												Bảo trì hạn chế
+											</span>
+										</td>
+										<td class="py-4 px-6 text-right">
+											<div
+												class="flex items-center justify-end gap-2"
+											>
+												<button
+													class="p-2 rounded-xl text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-all"
+													onclick="
+														openEditModal(
+															'Bán đảo Sơn Trà',
+														)
+													"
+													title="Chỉnh sửa"
+												>
+													<span
+														class="material-symbols-outlined text-[20px]"
+														>edit</span
+													>
+												</button>
+												<button
+													class="p-2 rounded-xl text-error hover:bg-error-container transition-all"
+													onclick="
+														openDeleteModal(
+															'Bán đảo Sơn Trà',
+														)
+													"
+													title="Xóa"
+												>
+													<span
+														class="material-symbols-outlined text-[20px]"
+														>delete</span
+													>
+												</button>
+											</div>
+										</td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+						<!-- Pagination Footer -->
+						<div
+							class="p-lg bg-surface-container-low flex flex-col md:flex-row items-center justify-between gap-md"
+						>
+							<div class="text-body-md text-on-surface-variant">
+								Hiển thị
+								<span class="font-semibold text-on-surface"
+									>1-5</span
+								>
+								trong tổng số
+								<span class="font-semibold text-on-surface"
+									>28</span
+								>
+								địa điểm
+							</div>
+							<div class="flex items-center gap-2">
+								<button
+									class="p-2 rounded-xl bg-surface-container text-on-surface-variant hover:bg-surface-container-high transition-all disabled:opacity-50"
+									disabled=""
+								>
+									<span
+										class="material-symbols-outlined text-[20px]"
+										>chevron_left</span
+									>
+								</button>
+								<button
+									class="w-10 h-10 rounded-xl bg-primary text-on-primary font-label-md"
+								>
+									1
+								</button>
+								<button
+									class="w-10 h-10 rounded-xl hover:bg-surface-container text-on-surface-variant font-label-md"
+								>
+									2
+								</button>
+								<button
+									class="w-10 h-10 rounded-xl hover:bg-surface-container text-on-surface-variant font-label-md"
+								>
+									3
+								</button>
+								<button
+									class="w-10 h-10 rounded-xl hover:bg-surface-container text-on-surface-variant font-label-md"
+								>
+									4
+								</button>
+								<button
+									class="p-2 rounded-xl bg-surface-container text-on-surface hover:bg-surface-container-high transition-all"
+								>
+									<span
+										class="material-symbols-outlined text-[20px]"
+										>chevron_right</span
+									>
+								</button>
+							</div>
+						</div>
+					</div>
+					<!-- Modal Backdrop & Add/Edit Form Overlay (Hidden by default) -->
+					<div
+						class="fixed inset-0 bg-primary/40 backdrop-blur-sm z-50 flex items-center justify-center opacity-0 pointer-events-none transition-opacity duration-300"
+						id="locationModal"
+					>
+						<div
+							class="bg-surface-container-lowest w-full max-w-lg rounded-2xl shadow-xl p-xl transform scale-95 transition-transform duration-300"
+							id="modalContainer"
+						>
+							<div
+								class="flex items-center justify-between mb-lg"
+							>
+								<h3
+									class="text-headline-md font-headline-md text-primary"
+									id="modalTitle"
+								>
+									Thêm địa điểm mới
+								</h3>
+								<button
+									class="p-2 rounded-full hover:bg-surface-container text-on-surface-variant transition-all"
+									onclick="closeModal()"
+								>
+									<span
+										class="material-symbols-outlined text-[20px]"
+										>close</span
+									>
+								</button>
+							</div>
+							<form
+								class="space-y-lg"
+								onsubmit="handleFormSubmit(event)"
+							>
+								<div>
+									<label
+										class="block text-label-md text-on-surface mb-xs"
+										>Tên địa điểm</label
+									>
+									<input
+										class="w-full bg-surface-container-lowest text-on-surface px-4 py-3 rounded-xl outline outline-1 outline-outline focus:outline-2 focus:outline-primary text-body-md transition-all"
+										placeholder="Nhập tên danh lam thắng cảnh..."
+										required=""
+										type="text"
+									/>
+								</div>
+								<div>
+									<label
+										class="block text-label-md text-on-surface mb-xs"
+										>Danh mục</label
+									>
+									<select
+										class="w-full bg-surface-container-lowest text-on-surface px-4 py-3 rounded-xl outline outline-1 outline-outline focus:outline-2 focus:outline-primary text-body-md transition-all"
+									>
+										<option>Thiên nhiên</option>
+										<option>Văn hóa</option>
+										<option>Giải trí</option>
+									</select>
+								</div>
+								<div>
+									<label
+										class="block text-label-md text-on-surface mb-xs"
+										>Địa chỉ chi tiết</label
+									>
+									<input
+										class="w-full bg-surface-container-lowest text-on-surface px-4 py-3 rounded-xl outline outline-1 outline-outline focus:outline-2 focus:outline-primary text-body-md transition-all"
+										placeholder="Nhập địa chỉ, quận/huyện..."
+										required=""
+										type="text"
+									/>
+								</div>
+								<div>
+									<label
+										class="block text-label-md text-on-surface mb-xs"
+										>Trạng thái hoạt động</label
+									>
+									<select
+										class="w-full bg-surface-container-lowest text-on-surface px-4 py-3 rounded-xl outline outline-1 outline-outline focus:outline-2 focus:outline-primary text-body-md transition-all"
+									>
+										<option>Đang mở cửa</option>
+										<option>Bảo trì hạn chế</option>
+										<option>Tạm đóng cửa</option>
+									</select>
+								</div>
+								<div
+									class="flex items-center justify-end gap-md pt-md"
+								>
+									<button
+										class="px-lg py-3 rounded-xl outline outline-1 outline-outline text-on-surface-variant hover:bg-surface-container transition-all text-label-md"
+										onclick="closeModal()"
+										type="button"
+									>
+										Hủy
+									</button>
+									<button
+										class="px-lg py-3 rounded-xl bg-primary text-on-primary hover:bg-primary-container transition-all text-label-md"
+										type="submit"
+									>
+										Lưu địa điểm
+									</button>
+								</div>
+							</form>
+						</div>
+					</div>
+					<!-- Delete Confirmation Modal -->
+					<div
+						class="fixed inset-0 bg-primary/40 backdrop-blur-sm z-50 flex items-center justify-center opacity-0 pointer-events-none transition-opacity duration-300"
+						id="deleteModal"
+					>
+						<div
+							class="bg-surface-container-lowest w-full max-w-md rounded-2xl shadow-xl p-xl transform scale-95 transition-transform duration-300"
+							id="deleteModalContainer"
+						>
+							<div
+								class="flex items-center gap-3 mb-md text-error"
+							>
+								<span
+									class="material-symbols-outlined text-[32px]"
+									>warning</span
+								>
+								<h3
+									class="text-headline-md font-headline-md text-on-surface"
+								>
+									Xác nhận xóa
+								</h3>
+							</div>
+							<p
+								class="text-body-md text-on-surface-variant mb-xl"
+							>
+								Bạn có chắc chắn muốn xóa địa điểm
+								<strong
+									class="text-on-surface"
+									id="deleteTargetName"
+								></strong>
+								khỏi hệ thống không? Hành động này không thể
+								hoàn tác.
+							</p>
+							<div class="flex items-center justify-end gap-md">
+								<button
+									class="px-lg py-3 rounded-xl outline outline-1 outline-outline text-on-surface-variant hover:bg-surface-container transition-all text-label-md"
+									onclick="closeDeleteModal()"
+								>
+									Hủy
+								</button>
+								<button
+									class="px-lg py-3 rounded-xl bg-error text-on-error hover:bg-error/90 transition-all text-label-md"
+									onclick="confirmDelete()"
+								>
+									Xóa địa điểm
+								</button>
+							</div>
+						</div>
+					</div>
+					<!-- Toast Notification Container -->
+					<div
+						class="fixed bottom-6 right-6 bg-primary-container text-on-primary-container px-lg py-4 rounded-xl shadow-xl transform translate-y-20 opacity-0 transition-all duration-300 flex items-center gap-3 z-50"
+						id="toast"
+					>
+						<span
+							class="material-symbols-outlined text-[20px]"
+							id="toastIcon"
+							>check_circle</span
+						>
+						<span class="text-body-md font-medium" id="toastMessage"
+							>Thao tác thành công!</span
+						>
+					</div>
+					<script>
+						function openAddModal() {
+							const modal =
+								document.getElementById('locationModal');
+							const container =
+								document.getElementById('modalContainer');
+							document.getElementById('modalTitle').innerText =
+								'Thêm địa điểm mới';
+							modal.classList.remove(
+								'opacity-0',
+								'pointer-events-none',
+							);
+							container.classList.remove('scale-95');
+							container.classList.add('scale-100');
+						}
+
+						function openEditModal(name) {
+							const modal =
+								document.getElementById('locationModal');
+							const container =
+								document.getElementById('modalContainer');
+							document.getElementById('modalTitle').innerText =
+								'Chỉnh sửa: ' + name;
+							modal.classList.remove(
+								'opacity-0',
+								'pointer-events-none',
+							);
+							container.classList.remove('scale-95');
+							container.classList.add('scale-100');
+						}
+
+						function closeModal() {
+							const modal =
+								document.getElementById('locationModal');
+							const container =
+								document.getElementById('modalContainer');
+							modal.classList.add(
+								'opacity-0',
+								'pointer-events-none',
+							);
+							container.classList.remove('scale-100');
+							container.classList.add('scale-95');
+						}
+
+						let currentDeleteName = '';
+						function openDeleteModal(name) {
+							currentDeleteName = name;
+							document.getElementById(
+								'deleteTargetName',
+							).innerText = name;
+							const modal =
+								document.getElementById('deleteModal');
+							const container = document.getElementById(
+								'deleteModalContainer',
+							);
+							modal.classList.remove(
+								'opacity-0',
+								'pointer-events-none',
+							);
+							container.classList.remove('scale-95');
+							container.classList.add('scale-100');
+						}
+
+						function closeDeleteModal() {
+							const modal =
+								document.getElementById('deleteModal');
+							const container = document.getElementById(
+								'deleteModalContainer',
+							);
+							modal.classList.add(
+								'opacity-0',
+								'pointer-events-none',
+							);
+							container.classList.remove('scale-100');
+							container.classList.add('scale-95');
+						}
+
+						function confirmDelete() {
+							closeDeleteModal();
+							showToast(
+								'Đã xóa thành công địa điểm ' +
+									currentDeleteName,
+							);
+						}
+
+						function handleFormSubmit(event) {
+							event.preventDefault();
+							closeModal();
+							showToast('Lưu thông tin địa điểm thành công!');
+						}
+
+						function showToast(message) {
+							const toast = document.getElementById('toast');
+							document.getElementById('toastMessage').innerText =
+								message;
+							toast.classList.remove(
+								'translate-y-20',
+								'opacity-0',
+							);
+							setTimeout(() => {
+								toast.classList.add(
+									'translate-y-20',
+									'opacity-0',
+								);
+							}, 3000);
+						}
+					</script>
+				</div>
+			</main>
+		</div>
+	</body>
+</html>

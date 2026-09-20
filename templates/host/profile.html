@@ -1,0 +1,643 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<meta content="width=device-width, initial-scale=1.0" name="viewport" />
+		<style>
+			@layer base {
+				html,
+				body {
+					margin: 0;
+					padding: 0;
+				}
+				body {
+					overscroll-behavior: none;
+				}
+				main > :first-child {
+					margin-top: 0 !important;
+				}
+				main > :last-child {
+					margin-bottom: 0 !important;
+				}
+			}
+			::-webkit-scrollbar {
+				display: none;
+			}
+		</style>
+		<link
+			href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&amp;family=Montserrat:wght@600;700&amp;display=swap"
+			rel="stylesheet"
+		/>
+		<link
+			href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0"
+			rel="stylesheet"
+		/>
+		<link
+			href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+			rel="stylesheet"
+		/>
+		<script src="https://cdn.tailwindcss.com"></script>
+		<script id="tailwind-config">
+			tailwind.config = {
+				darkMode: 'class',
+				theme: {
+					extend: {
+						colors: {
+							'surface-container-high': '#e6e8eb',
+							'tertiary-fixed': '#d9e3f9',
+							surface: '#f7fafc',
+							'on-primary-fixed': '#001b3c',
+							'surface-tint': '#465f87',
+							'on-secondary-container': '#663b00',
+							'on-error-container': '#93000a',
+							'surface-variant': '#e0e3e5',
+							'inverse-primary': '#aec7f5',
+							'surface-container': '#ebeef1',
+							'on-primary': '#ffffff',
+							'primary-fixed-dim': '#aec7f5',
+							'on-tertiary-fixed-variant': '#3d4759',
+							'primary-container': '#002045',
+							'error-container': '#ffdad6',
+							'surface-container-low': '#f1f4f6',
+							tertiary: '#020919',
+							'secondary-fixed': '#ffdcbc',
+							'inverse-surface': '#2d3133',
+							'on-tertiary-fixed': '#121c2c',
+							'on-secondary': '#ffffff',
+							'surface-container-lowest': '#ffffff',
+							background: '#f7fafc',
+							'on-surface': '#181c1e',
+							'surface-container-highest': '#e0e3e5',
+							'surface-dim': '#d7dadd',
+							'on-tertiary-container': '#7e889c',
+							'on-tertiary': '#ffffff',
+							'on-secondary-fixed-variant': '#683d00',
+							'on-background': '#181c1e',
+							secondary: '#895100',
+							'on-error': '#ffffff',
+							'tertiary-container': '#172131',
+							error: '#ba1a1a',
+							'outline-variant': '#c4c6cf',
+							'secondary-container': '#fd9d1a',
+							'on-secondary-fixed': '#2c1700',
+							'surface-bright': '#f7fafc',
+							'tertiary-fixed-dim': '#bdc7dc',
+							'on-primary-fixed-variant': '#2e476e',
+							'inverse-on-surface': '#eef1f4',
+							'primary-fixed': '#d6e3ff',
+							'on-primary-container': '#7089b3',
+							'on-surface-variant': '#44474e',
+							'secondary-fixed-dim': '#ffb86c',
+							outline: '#74777f',
+							primary: '#00091b',
+						},
+						borderRadius: {
+							DEFAULT: '0.125rem',
+							lg: '0.25rem',
+							xl: '0.5rem',
+							full: '0.75rem',
+						},
+						spacing: {
+							xl: '32px',
+							lg: '24px',
+							'2xl': '48px',
+							xs: '4px',
+							'3xl': '64px',
+							sm: '8px',
+							md: '16px',
+							base: '8px',
+						},
+						fontFamily: {
+							'headline-lg': ['Montserrat'],
+							'body-md': ['Inter'],
+							'body-lg': ['Inter'],
+							caption: ['Inter'],
+							'display-lg': ['Montserrat'],
+							'label-md': ['Inter'],
+							'headline-md': ['Montserrat'],
+						},
+						fontSize: {
+							'headline-lg': [
+								'32px',
+								{ lineHeight: '1.3', fontWeight: '700' },
+							],
+							'body-md': [
+								'16px',
+								{ lineHeight: '1.5', fontWeight: '400' },
+							],
+							'body-lg': [
+								'18px',
+								{ lineHeight: '1.6', fontWeight: '400' },
+							],
+							caption: [
+								'12px',
+								{ lineHeight: '1.4', fontWeight: '400' },
+							],
+							'display-lg': [
+								'48px',
+								{
+									lineHeight: '1.2',
+									letterSpacing: '-0.02em',
+									fontWeight: '700',
+								},
+							],
+							'label-md': [
+								'14px',
+								{
+									lineHeight: '1.2',
+									letterSpacing: '0.01em',
+									fontWeight: '600',
+								},
+							],
+							'headline-md': [
+								'24px',
+								{ lineHeight: '1.4', fontWeight: '600' },
+							],
+						},
+					},
+				},
+			};
+		</script>
+	</head>
+	<body class="bg-surface font-body-md text-on-surface">
+		<aside
+			class="fixed left-0 top-0 h-full w-64 bg-surface-container-low z-50 flex flex-col pt-lg pb-lg"
+		>
+			<div
+				class="px-lg mb-xl text-headline-md font-headline-md text-primary flex items-center gap-sm"
+			>
+				<span class="material-symbols-outlined text-[28px]"
+					>travel_explore</span
+				><span>DaNang Travel</span>
+			</div>
+			<nav
+				class="flex-1 px-md flex flex-col gap-xs"
+				data-active-classes="bg-primary-container text-on-primary-container font-semibold"
+			>
+				<a
+					class="flex items-center px-md py-sm rounded-xl text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-all"
+					data-path="bang-dieu-khien"
+					href="#"
+					><span class="material-symbols-outlined mr-md"
+						>dashboard</span
+					>Bảng điều khiển</a
+				><a
+					class="flex items-center px-md py-sm rounded-xl text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-all"
+					data-path="thong-tin-co-so"
+					href="#"
+					><span class="material-symbols-outlined mr-md"
+						>apartment</span
+					>Thông tin cơ sở</a
+				><a
+					class="flex items-center px-md py-sm rounded-xl text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-all"
+					data-path="quan-ly-phong"
+					href="#"
+					><span class="material-symbols-outlined mr-md"
+						>meeting_room</span
+					>Quản lý phòng</a
+				><a
+					class="flex items-center px-md py-sm rounded-xl text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-all"
+					data-path="don-dat-phong"
+					href="#"
+					><span class="material-symbols-outlined mr-md"
+						>book_online</span
+					>Đơn đặt phòng</a
+				><a
+					class="flex items-center px-md py-sm rounded-xl text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-all"
+					data-path="danh-gia"
+					href="#"
+					><span class="material-symbols-outlined mr-md">star</span
+					>Đánh giá</a
+				><a
+					class="flex items-center px-md py-sm rounded-xl text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-all"
+					data-path="thong-ke-bao-cao"
+					href="#"
+					><span class="material-symbols-outlined mr-md"
+						>bar_chart</span
+					>Thống kê &amp; Báo cáo</a
+				><a
+					class="flex items-center px-md py-sm rounded-xl text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-all"
+					data-path="thong-bao"
+					href="#"
+					><span class="material-symbols-outlined mr-md"
+						>notifications</span
+					>Thông báo</a
+				><a
+					class="flex items-center px-md py-sm rounded-xl text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-all"
+					data-path="tai-khoan-ca-nhan"
+					href="#"
+					><span class="material-symbols-outlined mr-md"
+						>account_circle</span
+					>Tài khoản cá nhân</a
+				>
+			</nav>
+		</aside>
+		<div class="pl-64">
+			<header
+				class="fixed top-0 left-64 right-0 h-20 bg-surface/80 backdrop-blur-xl shadow-[0_1px_8px_rgba(0,0,0,0.04)] z-40 flex items-center justify-between px-xl"
+			>
+				<div class="flex items-center gap-md text-on-surface-variant">
+					<span class="material-symbols-outlined">search</span
+					><input
+						class="bg-transparent border-none outline-none text-on-surface placeholder:text-outline text-body-md w-64"
+						placeholder="Tìm kiếm nhanh..."
+						type="text"
+					/>
+				</div>
+				<div class="flex items-center gap-md">
+					<div
+						class="w-8 h-8 rounded-full bg-primary flex items-center justify-center"
+					>
+						<span
+							class="material-symbols-outlined text-on-primary text-[18px]"
+							>person</span
+						>
+					</div>
+				</div>
+			</header>
+			<main class="relative pt-20 bg-surface min-h-screen p-xl">
+				<div
+					class="flex flex-col w-full max-w-6xl mx-auto gap-xl pb-3xl"
+				>
+					<!-- Top Section / Greeting Banner -->
+					<div
+						class="flex flex-col md:flex-row md:items-center justify-between gap-md bg-surface-container-lowest p-lg rounded-xl shadow-sm"
+					>
+						<div class="flex items-center gap-lg">
+							<div
+								class="w-20 h-20 rounded-full bg-primary-container text-on-primary-container flex items-center justify-center text-headline-lg font-headline-lg shadow-inner"
+							>
+								NA
+							</div>
+							<div class="flex flex-col">
+								<h1
+									class="text-headline-lg font-headline-lg text-on-surface"
+								>
+									Nguyễn Văn An
+								</h1>
+								<p
+									class="text-body-md text-on-surface-variant flex items-center gap-xs mt-xs"
+								>
+									<span
+										class="material-symbols-outlined text-[18px]"
+										>verified</span
+									>
+									Chủ cơ sở lưu trú cao cấp • Đã xác thực
+								</p>
+							</div>
+						</div>
+						<div class="flex items-center gap-md">
+							<div class="flex flex-col items-end">
+								<span class="text-caption text-outline"
+									>Trạng thái tài khoản</span
+								>
+								<span
+									class="text-label-md text-secondary font-semibold"
+									>Hoạt động tốt</span
+								>
+							</div>
+							<div
+								class="w-10 h-10 rounded-full bg-surface-container flex items-center justify-center text-primary"
+							>
+								<span class="material-symbols-outlined"
+									>security</span
+								>
+							</div>
+						</div>
+					</div>
+					<!-- Main Grid: Personal Info & Password Change -->
+					<div class="grid grid-cols-1 lg:grid-cols-3 gap-xl">
+						<!-- Left 2 Cols: Personal Info Form -->
+						<div
+							class="lg:col-span-2 bg-surface-container-lowest p-lg rounded-xl shadow-sm flex flex-col justify-between"
+						>
+							<div>
+								<div
+									class="flex items-center justify-between mb-lg"
+								>
+									<h2
+										class="text-headline-md font-headline-md text-on-surface flex items-center gap-sm"
+									>
+										<span
+											class="material-symbols-outlined text-primary"
+											>badge</span
+										>
+										Thông tin cá nhân
+									</h2>
+									<span
+										class="text-caption text-on-surface-variant"
+										>Cập nhật lần cuối: Hôm nay</span
+									>
+								</div>
+								<form
+									class="flex flex-col gap-lg"
+									id="profile-form"
+								>
+									<div
+										class="grid grid-cols-1 md:grid-cols-2 gap-lg"
+									>
+										<div class="flex flex-col gap-xs">
+											<label
+												class="text-label-md text-on-surface font-semibold"
+												>Họ và tên chủ cơ sở</label
+											>
+											<div
+												class="relative flex items-center"
+											>
+												<span
+													class="absolute left-md material-symbols-outlined text-outline"
+													>person</span
+												>
+												<input
+													class="w-full bg-surface-container-lowest border border-outline rounded-xl py-md pl-12 pr-md text-body-md text-on-surface focus:border-primary outline-none transition-all"
+													required=""
+													type="text"
+													value="Nguyễn Văn An"
+												/>
+											</div>
+										</div>
+										<div class="flex flex-col gap-xs">
+											<label
+												class="text-label-md text-on-surface font-semibold"
+												>Địa chỉ Email</label
+											>
+											<div
+												class="relative flex items-center"
+											>
+												<span
+													class="absolute left-md material-symbols-outlined text-outline"
+													>mail</span
+												>
+												<input
+													class="w-full bg-surface-container-lowest border border-outline rounded-xl py-md pl-12 pr-md text-body-md text-on-surface focus:border-primary outline-none transition-all"
+													required=""
+													type="email"
+													value="nguyenvanan.host@travel.vn"
+												/>
+											</div>
+										</div>
+									</div>
+									<div
+										class="grid grid-cols-1 md:grid-cols-2 gap-lg"
+									>
+										<div class="flex flex-col gap-xs">
+											<label
+												class="text-label-md text-on-surface font-semibold"
+												>Số điện thoại liên hệ</label
+											>
+											<div
+												class="relative flex items-center"
+											>
+												<span
+													class="absolute left-md material-symbols-outlined text-outline"
+													>call</span
+												>
+												<input
+													class="w-full bg-surface-container-lowest border border-outline rounded-xl py-md pl-12 pr-md text-body-md text-on-surface focus:border-primary outline-none transition-all"
+													required=""
+													type="tel"
+													value="0912 345 678"
+												/>
+											</div>
+										</div>
+										<div class="flex flex-col gap-xs">
+											<label
+												class="text-label-md text-on-surface font-semibold"
+												>Vai trò hệ thống</label
+											>
+											<div
+												class="relative flex items-center"
+											>
+												<span
+													class="absolute left-md material-symbols-outlined text-outline"
+													>admin_panel_settings</span
+												>
+												<input
+													class="w-full bg-surface-container border border-outline-variant rounded-xl py-md pl-12 pr-md text-body-md text-outline cursor-not-allowed"
+													disabled=""
+													type="text"
+													value="Chủ cơ sở (Quản trị viên)"
+												/>
+											</div>
+										</div>
+									</div>
+									<div class="flex flex-col gap-xs">
+										<label
+											class="text-label-md text-on-surface font-semibold"
+											>Địa chỉ cơ sở chính</label
+										>
+										<div class="relative flex items-center">
+											<span
+												class="absolute left-md material-symbols-outlined text-outline"
+												>location_on</span
+											>
+											<input
+												class="w-full bg-surface-container-lowest border border-outline rounded-xl py-md pl-12 pr-md text-body-md text-on-surface focus:border-primary outline-none transition-all"
+												type="text"
+												value="123 Nguyễn Huệ, Phường Bến Nghé, Quận 1, TP. Hồ Chí Minh"
+											/>
+										</div>
+									</div>
+								</form>
+							</div>
+							<div
+								class="flex items-center justify-end gap-md mt-xl pt-lg border-t border-surface-container"
+							>
+								<button
+									class="px-lg py-sm rounded-xl border border-outline text-on-surface-variant hover:bg-surface-container transition-all text-label-md"
+									type="button"
+								>
+									Hủy bỏ
+								</button>
+								<button
+									class="px-xl py-sm rounded-full bg-primary text-on-primary hover:opacity-90 transition-all text-label-md shadow-sm"
+									form="profile-form"
+									type="submit"
+								>
+									Lưu thay đổi
+								</button>
+							</div>
+						</div>
+						<!-- Right 1 Col: Security / Password Change -->
+						<div
+							class="bg-surface-container-lowest p-lg rounded-xl shadow-sm flex flex-col justify-between"
+						>
+							<div>
+								<div
+									class="flex items-center justify-between mb-lg"
+								>
+									<h2
+										class="text-headline-md font-headline-md text-on-surface flex items-center gap-sm"
+									>
+										<span
+											class="material-symbols-outlined text-secondary"
+											>lock</span
+										>
+										Mật khẩu
+									</h2>
+								</div>
+								<p
+									class="text-caption text-on-surface-variant mb-lg"
+								>
+									Đảm bảo tài khoản của bạn đang sử dụng mật
+									khẩu mạnh để bảo vệ dữ liệu đặt phòng.
+								</p>
+								<form
+									class="flex flex-col gap-lg"
+									id="password-form"
+								>
+									<div class="flex flex-col gap-xs">
+										<label
+											class="text-label-md text-on-surface font-semibold"
+											>Mật khẩu hiện tại</label
+										>
+										<div class="relative flex items-center">
+											<span
+												class="absolute left-md material-symbols-outlined text-outline"
+												>key</span
+											>
+											<input
+												class="w-full bg-surface-container-lowest border border-outline rounded-xl py-md pl-12 pr-md text-body-md text-on-surface focus:border-primary outline-none transition-all"
+												placeholder="••••••••"
+												required=""
+												type="password"
+											/>
+										</div>
+									</div>
+									<div class="flex flex-col gap-xs">
+										<label
+											class="text-label-md text-on-surface font-semibold"
+											>Mật khẩu mới</label
+										>
+										<div class="relative flex items-center">
+											<span
+												class="absolute left-md material-symbols-outlined text-outline"
+												>lock_reset</span
+											>
+											<input
+												class="w-full bg-surface-container-lowest border border-outline rounded-xl py-md pl-12 pr-md text-body-md text-on-surface focus:border-primary outline-none transition-all"
+												placeholder="••••••••"
+												required=""
+												type="password"
+											/>
+										</div>
+									</div>
+									<div class="flex flex-col gap-xs">
+										<label
+											class="text-label-md text-on-surface font-semibold"
+											>Xác nhận mật khẩu mới</label
+										>
+										<div class="relative flex items-center">
+											<span
+												class="absolute left-md material-symbols-outlined text-outline"
+												>verified_user</span
+											>
+											<input
+												class="w-full bg-surface-container-lowest border border-outline rounded-xl py-md pl-12 pr-md text-body-md text-on-surface focus:border-primary outline-none transition-all"
+												placeholder="••••••••"
+												required=""
+												type="password"
+											/>
+										</div>
+									</div>
+								</form>
+							</div>
+							<div
+								class="flex items-center justify-end mt-xl pt-lg border-t border-surface-container"
+							>
+								<button
+									class="w-full py-sm rounded-full bg-secondary text-on-secondary hover:opacity-90 transition-all text-label-md shadow-sm text-center"
+									form="password-form"
+									type="submit"
+								>
+									Đổi mật khẩu
+								</button>
+							</div>
+						</div>
+					</div>
+					<!-- Bottom Notification / Activity Log Preview -->
+					<div
+						class="bg-surface-container-lowest p-lg rounded-xl shadow-sm flex flex-col gap-md"
+					>
+						<div class="flex items-center justify-between">
+							<h3
+								class="text-headline-md font-headline-md text-on-surface flex items-center gap-sm"
+							>
+								<span
+									class="material-symbols-outlined text-primary"
+									>history</span
+								>
+								Hoạt động đăng nhập gần đây
+							</h3>
+							<span
+								class="text-caption text-primary cursor-pointer hover:underline"
+								>Xem toàn bộ nhật ký</span
+							>
+						</div>
+						<div
+							class="grid grid-cols-1 md:grid-cols-3 gap-md mt-sm"
+						>
+							<div
+								class="p-md bg-surface-container rounded-xl flex items-center gap-md"
+							>
+								<div
+									class="w-10 h-10 rounded-full bg-surface-container-highest flex items-center justify-center text-primary"
+								>
+									<span class="material-symbols-outlined"
+										>laptop</span
+									>
+								</div>
+								<div class="flex flex-col">
+									<span class="text-label-md text-on-surface"
+										>Chrome trên Windows</span
+									>
+									<span class="text-caption text-outline"
+										>TP. Hồ Chí Minh • 2 giờ trước</span
+									>
+								</div>
+							</div>
+							<div
+								class="p-md bg-surface-container rounded-xl flex items-center gap-md"
+							>
+								<div
+									class="w-10 h-10 rounded-full bg-surface-container-highest flex items-center justify-center text-primary"
+								>
+									<span class="material-symbols-outlined"
+										>smartphone</span
+									>
+								</div>
+								<div class="flex flex-col">
+									<span class="text-label-md text-on-surface"
+										>Ứng dụng di động iOS</span
+									>
+									<span class="text-caption text-outline"
+										>TP. Hồ Chí Minh • Hôm qua</span
+									>
+								</div>
+							</div>
+							<div
+								class="p-md bg-surface-container rounded-xl flex items-center gap-md"
+							>
+								<div
+									class="w-10 h-10 rounded-full bg-surface-container-highest flex items-center justify-center text-primary"
+								>
+									<span class="material-symbols-outlined"
+										>devices</span
+									>
+								</div>
+								<div class="flex flex-col">
+									<span class="text-label-md text-on-surface"
+										>Safari trên MacOS</span
+									>
+									<span class="text-caption text-outline"
+										>Hà Nội • 3 ngày trước</span
+									>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</main>
+		</div>
+	</body>
+</html>

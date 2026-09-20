@@ -1,0 +1,1156 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<meta content="width=device-width, initial-scale=1.0" name="viewport" />
+		<style>
+			@layer base {
+				html,
+				body {
+					margin: 0;
+					padding: 0;
+				}
+				body {
+					overscroll-behavior: none;
+				}
+				main > :first-child {
+					margin-top: 0 !important;
+				}
+				main > :last-child {
+					margin-bottom: 0 !important;
+				}
+			}
+			::-webkit-scrollbar {
+				display: none;
+			}
+		</style>
+		<script src="https://cdn.tailwindcss.com"></script>
+		<script id="tailwind-config">
+			tailwind.config = {
+				darkMode: 'class',
+				theme: {
+					extend: {
+						colors: {
+							'on-error': '#ffffff',
+							'tertiary-fixed': '#d9e3f9',
+							'surface-container-low': '#f1f4f6',
+							'primary-container': '#002045',
+							'secondary-fixed-dim': '#ffb86c',
+							'surface-container-high': '#e6e8eb',
+							'tertiary-container': '#172131',
+							'on-primary-fixed': '#001b3c',
+							'inverse-primary': '#aec7f5',
+							'inverse-on-surface': '#eef1f4',
+							'outline-variant': '#c4c6cf',
+							'on-tertiary': '#ffffff',
+							surface: '#f7fafc',
+							'surface-dim': '#d7dadd',
+							'on-primary-fixed-variant': '#2e476e',
+							'surface-container': '#ebeef1',
+							'on-secondary': '#ffffff',
+							primary: '#00091b',
+							'surface-container-highest': '#e0e3e5',
+							'on-tertiary-fixed': '#121c2c',
+							'primary-fixed-dim': '#aec7f5',
+							'surface-tint': '#465f87',
+							'error-container': '#ffdad6',
+							secondary: '#895100',
+							'tertiary-fixed-dim': '#bdc7dc',
+							'on-primary': '#ffffff',
+							'on-tertiary-fixed-variant': '#3d4759',
+							'on-primary-container': '#7089b3',
+							'on-background': '#181c1e',
+							'inverse-surface': '#2d3133',
+							'primary-fixed': '#d6e3ff',
+							outline: '#74777f',
+							'on-surface': '#181c1e',
+							'on-secondary-container': '#663b00',
+							background: '#f7fafc',
+							tertiary: '#020919',
+							'on-tertiary-container': '#7e889c',
+							'on-surface-variant': '#44474e',
+							'on-secondary-fixed-variant': '#683d00',
+							'surface-variant': '#e0e3e5',
+							'on-secondary-fixed': '#2c1700',
+							'secondary-container': '#fd9d1a',
+							'secondary-fixed': '#ffdcbc',
+							'on-error-container': '#93000a',
+							error: '#ba1a1a',
+							'surface-bright': '#f7fafc',
+							'surface-container-lowest': '#ffffff',
+						},
+						borderRadius: {
+							DEFAULT: '0.125rem',
+							lg: '0.25rem',
+							xl: '0.5rem',
+							full: '0.75rem',
+						},
+						spacing: {
+							md: '16px',
+							xl: '32px',
+							base: '8px',
+							'3xl': '64px',
+							lg: '24px',
+							xs: '4px',
+							'2xl': '48px',
+							sm: '8px',
+						},
+						fontFamily: {
+							'body-md': ['Inter'],
+							'label-md': ['Inter'],
+							caption: ['Inter'],
+							'headline-md': ['Montserrat'],
+							'headline-lg': ['Montserrat'],
+							'body-lg': ['Inter'],
+							'display-lg': ['Montserrat'],
+						},
+						fontSize: {
+							'body-md': [
+								'16px',
+								{ lineHeight: '1.5', fontWeight: '400' },
+							],
+							'label-md': [
+								'14px',
+								{
+									lineHeight: '1.2',
+									letterSpacing: '0.01em',
+									fontWeight: '600',
+								},
+							],
+							caption: [
+								'12px',
+								{ lineHeight: '1.4', fontWeight: '400' },
+							],
+							'headline-md': [
+								'24px',
+								{ lineHeight: '1.4', fontWeight: '600' },
+							],
+							'headline-lg': [
+								'32px',
+								{ lineHeight: '1.3', fontWeight: '700' },
+							],
+							'body-lg': [
+								'18px',
+								{ lineHeight: '1.6', fontWeight: '400' },
+							],
+							'display-lg': [
+								'48px',
+								{
+									lineHeight: '1.2',
+									letterSpacing: '-0.02em',
+									fontWeight: '700',
+								},
+							],
+						},
+					},
+				},
+			};
+		</script>
+		<link
+			href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+			rel="stylesheet"
+		/>
+		<link
+			href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&amp;family=Montserrat:wght@100..900&amp;display=swap"
+			rel="stylesheet"
+		/>
+	</head>
+	<body class="bg-surface font-body-md text-on-surface">
+		<aside
+			class="fixed left-0 top-0 h-full w-72 bg-surface-container-low z-50 flex flex-col pt-6 pb-8 shadow-[0_1px_8px_rgba(0,0,0,0.04)]"
+		>
+			<div
+				class="px-xl mb-xl text-headline-md font-headline-md text-primary"
+			>
+				DaNang Travel
+			</div>
+			<nav
+				class="flex-1 px-4 space-y-xs overflow-y-auto"
+				data-active-classes="bg-primary-container text-on-primary-container font-bold rounded-xl"
+			>
+				<a
+					class="flex items-center px-4 py-3 rounded-xl text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-all"
+					data-path="dashboard"
+					href="#"
+					><span class="material-symbols-outlined mr-3"
+						>dashboard</span
+					>Bảng điều khiển</a
+				><a
+					aria-current="page"
+					class="flex items-center px-4 py-3 transition-all bg-primary-container text-on-primary-container font-bold rounded-xl"
+					data-path="users"
+					href="#"
+					><span class="material-symbols-outlined mr-3">group</span
+					>Quản lý người dùng</a
+				><a
+					class="flex items-center px-4 py-3 rounded-xl text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-all"
+					data-path="hosts"
+					href="#"
+					><span class="material-symbols-outlined mr-3">badge</span
+					>Quản lý chủ cơ sở</a
+				><a
+					class="flex items-center px-4 py-3 rounded-xl text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-all"
+					data-path="locations"
+					href="#"
+					><span class="material-symbols-outlined mr-3"
+						>location_on</span
+					>Quản lý địa điểm</a
+				><a
+					class="flex items-center px-4 py-3 rounded-xl text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-all"
+					data-path="accommodations"
+					href="#"
+					><span class="material-symbols-outlined mr-3">hotel</span
+					>Quản lý cơ sở lưu trú</a
+				><a
+					class="flex items-center px-4 py-3 rounded-xl text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-all"
+					data-path="reviews"
+					href="#"
+					><span class="material-symbols-outlined mr-3"
+						>rate_review</span
+					>Quản lý đánh giá</a
+				><a
+					class="flex items-center px-4 py-3 rounded-xl text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-all"
+					data-path="statistics"
+					href="#"
+					><span class="material-symbols-outlined mr-3"
+						>bar_chart</span
+					>Thống kê &amp; Báo cáo</a
+				><a
+					class="flex items-center px-4 py-3 rounded-xl text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-all"
+					data-path="notifications"
+					href="#"
+					><span class="material-symbols-outlined mr-3"
+						>notifications</span
+					>Thông báo</a
+				><a
+					class="flex items-center px-4 py-3 rounded-xl text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-all"
+					data-path="account"
+					href="#"
+					><span class="material-symbols-outlined mr-3"
+						>manage_accounts</span
+					>Tài khoản cá nhân</a
+				>
+			</nav>
+		</aside>
+		<div class="pl-72">
+			<header
+				class="fixed top-0 left-72 right-0 h-20 bg-surface/80 backdrop-blur-xl shadow-[0_1px_8px_rgba(0,0,0,0.04)] z-40 flex items-center justify-between px-xl"
+			>
+				<div class="flex items-center gap-md">
+					<span class="material-symbols-outlined text-outline"
+						>bolt</span
+					><span class="text-caption text-on-surface-variant"
+						>Trạng thái:
+						<strong class="text-on-surface"
+							>Hoạt động ổn định</strong
+						></span
+					>
+				</div>
+				<div class="flex items-center gap-md">
+					<div
+						class="w-8 h-8 rounded-full bg-primary flex items-center justify-center"
+					>
+						<span
+							class="material-symbols-outlined text-on-primary text-[18px]"
+							>person</span
+						>
+					</div>
+				</div>
+			</header>
+			<main class="relative pt-20 bg-surface min-h-screen p-xl">
+				<div class="flex flex-col w-full">
+					<!-- Top header / stats summary -->
+					<div
+						class="flex flex-wrap items-center justify-between gap-xl mb-xl"
+					>
+						<div>
+							<h1
+								class="font-headline-lg text-headline-lg text-primary tracking-tight"
+							>
+								Quản lý người dùng
+							</h1>
+							<p
+								class="text-body-md text-on-surface-variant mt-1"
+							>
+								Quản lý tài khoản khách hàng, trạng thái hoạt
+								động và phân quyền hệ thống.
+							</p>
+						</div>
+						<div class="flex items-center gap-md">
+							<button
+								class="flex items-center gap-md bg-primary text-on-primary px-lg py-3 rounded-full font-label-md hover:bg-primary-container transition-all shadow-sm"
+								onclick="openAddModal()"
+							>
+								<span
+									class="material-symbols-outlined text-[20px]"
+									>person_add</span
+								>
+								Thêm tài khoản
+							</button>
+						</div>
+					</div>
+					<!-- Quick metrics bento strip -->
+					<div class="grid grid-cols-1 md:grid-cols-4 gap-md mb-xl">
+						<div
+							class="bg-surface-container-lowest p-lg rounded-xl shadow-sm flex items-center gap-lg"
+						>
+							<div
+								class="w-12 h-12 rounded-xl bg-primary-fixed flex items-center justify-center text-on-primary-fixed"
+							>
+								<span
+									class="material-symbols-outlined text-[24px]"
+									>group</span
+								>
+							</div>
+							<div>
+								<div
+									class="text-caption text-on-surface-variant uppercase tracking-wider"
+								>
+									Tổng tài khoản
+								</div>
+								<div
+									class="text-headline-md font-headline-md text-primary mt-1"
+								>
+									2,845
+								</div>
+							</div>
+						</div>
+						<div
+							class="bg-surface-container-lowest p-lg rounded-xl shadow-sm flex items-center gap-lg"
+						>
+							<div
+								class="w-12 h-12 rounded-xl bg-tertiary-fixed flex items-center justify-center text-on-tertiary-fixed"
+							>
+								<span
+									class="material-symbols-outlined text-[24px]"
+									>verified_user</span
+								>
+							</div>
+							<div>
+								<div
+									class="text-caption text-on-surface-variant uppercase tracking-wider"
+								>
+									Đang hoạt động
+								</div>
+								<div
+									class="text-headline-md font-headline-md text-primary mt-1"
+								>
+									2,650
+								</div>
+							</div>
+						</div>
+						<div
+							class="bg-surface-container-lowest p-lg rounded-xl shadow-sm flex items-center gap-lg"
+						>
+							<div
+								class="w-12 h-12 rounded-xl bg-error-container flex items-center justify-center text-on-error-container"
+							>
+								<span
+									class="material-symbols-outlined text-[24px]"
+									>lock</span
+								>
+							</div>
+							<div>
+								<div
+									class="text-caption text-on-surface-variant uppercase tracking-wider"
+								>
+									Đã khóa
+								</div>
+								<div
+									class="text-headline-md font-headline-md text-primary mt-1"
+								>
+									195
+								</div>
+							</div>
+						</div>
+						<div
+							class="bg-surface-container-lowest p-lg rounded-xl shadow-sm flex items-center gap-lg"
+						>
+							<div
+								class="w-12 h-12 rounded-xl bg-secondary-fixed flex items-center justify-center text-on-secondary-fixed"
+							>
+								<span
+									class="material-symbols-outlined text-[24px]"
+									>trending_up</span
+								>
+							</div>
+							<div>
+								<div
+									class="text-caption text-on-surface-variant uppercase tracking-wider"
+								>
+									Mới trong tháng
+								</div>
+								<div
+									class="text-headline-md font-headline-md text-primary mt-1"
+								>
+									+148
+								</div>
+							</div>
+						</div>
+					</div>
+					<!-- Main table card -->
+					<div
+						class="bg-surface-container-lowest rounded-xl shadow-sm overflow-hidden mb-3xl"
+					>
+						<!-- Toolbar -->
+						<div
+							class="p-lg flex flex-wrap items-center justify-between gap-md bg-surface-container-low/50"
+						>
+							<div
+								class="flex items-center gap-md flex-1 max-w-md"
+							>
+								<div class="relative w-full">
+									<span
+										class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-outline text-[20px]"
+										>search</span
+									>
+									<input
+										class="w-full pl-10 pr-4 py-3 bg-surface-container-lowest rounded-xl text-body-md text-on-surface outline-none border border-outline/30 focus:border-primary transition-all"
+										id="searchInput"
+										placeholder="Tìm kiếm theo tên, email, số điện thoại..."
+										type="text"
+									/>
+								</div>
+							</div>
+							<div class="flex items-center gap-md">
+								<div
+									class="flex items-center gap-xs bg-surface-container-lowest px-3 py-2 rounded-xl border border-outline/30"
+								>
+									<span
+										class="material-symbols-outlined text-outline text-[18px]"
+										>filter_list</span
+									>
+									<select
+										class="bg-transparent text-body-md text-on-surface outline-none cursor-pointer"
+										id="statusFilter"
+									>
+										<option value="all">
+											Tất cả trạng thái
+										</option>
+										<option value="active">
+											Hoạt động
+										</option>
+										<option value="locked">Đã khóa</option>
+									</select>
+								</div>
+							</div>
+						</div>
+						<!-- Table -->
+						<div class="overflow-x-auto">
+							<table class="w-full text-left border-collapse">
+								<thead>
+									<tr
+										class="bg-surface-container-low text-caption uppercase text-on-surface-variant tracking-wider font-label-md"
+									>
+										<th class="py-4 px-6">ID</th>
+										<th class="py-4 px-6">Họ tên</th>
+										<th class="py-4 px-6">Email</th>
+										<th class="py-4 px-6">Số điện thoại</th>
+										<th class="py-4 px-6">Ngày đăng ký</th>
+										<th class="py-4 px-6">Trạng thái</th>
+										<th class="py-4 px-6 text-right">
+											Thao tác
+										</th>
+									</tr>
+								</thead>
+								<tbody
+									class="divide-y divide-surface-container"
+									id="userTableBody"
+								>
+									<tr
+										class="hover:bg-surface-container-low/40 transition-colors"
+									>
+										<td
+											class="py-4 px-6 font-mono text-caption text-on-surface-variant"
+										>
+											#USR-8021
+										</td>
+										<td class="py-4 px-6">
+											<div
+												class="flex items-center gap-md"
+											>
+												<div
+													class="w-9 h-9 rounded-full bg-primary-fixed text-on-primary-fixed font-label-md flex items-center justify-center"
+												>
+													NV
+												</div>
+												<div>
+													<div
+														class="font-label-md text-on-surface"
+													>
+														Nguyễn Văn A
+													</div>
+													<div
+														class="text-caption text-on-surface-variant"
+													>
+														Khách hàng VIP
+													</div>
+												</div>
+											</div>
+										</td>
+										<td
+											class="py-4 px-6 text-body-md text-on-surface-variant"
+										>
+											nguyen.vana@example.com
+										</td>
+										<td
+											class="py-4 px-6 text-body-md text-on-surface-variant"
+										>
+											+84 901 234 567
+										</td>
+										<td
+											class="py-4 px-6 text-body-md text-on-surface-variant"
+										>
+											12/10/2023
+										</td>
+										<td class="py-4 px-6">
+											<span
+												class="inline-flex items-center gap-xs px-3 py-1 rounded-full text-caption font-label-md bg-tertiary-fixed text-on-tertiary-fixed"
+											>
+												<span
+													class="w-1.5 h-1.5 rounded-full bg-emerald-600"
+												></span>
+												Hoạt động
+											</span>
+										</td>
+										<td class="py-4 px-6 text-right">
+											<div
+												class="flex items-center justify-end gap-xs"
+											>
+												<button
+													class="p-2 rounded-lg hover:bg-surface-container text-on-surface-variant hover:text-primary transition-all"
+													onclick="
+														viewUser(
+															'Nguyễn Văn A',
+															'nguyen.vana@example.com',
+															'+84 901 234 567',
+															'12/10/2023',
+															'Hoạt động',
+														)
+													"
+													title="Xem chi tiết"
+												>
+													<span
+														class="material-symbols-outlined text-[20px]"
+														>visibility</span
+													>
+												</button>
+												<button
+													class="p-2 rounded-lg hover:bg-surface-container text-on-surface-variant hover:text-primary transition-all"
+													onclick="
+														editUser(
+															'Nguyễn Văn A',
+															'nguyen.vana@example.com',
+															'+84 901 234 567',
+														)
+													"
+													title="Chỉnh sửa"
+												>
+													<span
+														class="material-symbols-outlined text-[20px]"
+														>edit</span
+													>
+												</button>
+												<button
+													class="p-2 rounded-lg hover:bg-surface-container text-on-surface-variant hover:text-error transition-all"
+													onclick="toggleLock(this)"
+													title="Khóa tài khoản"
+												>
+													<span
+														class="material-symbols-outlined text-[20px]"
+														>lock</span
+													>
+												</button>
+											</div>
+										</td>
+									</tr>
+									<tr
+										class="hover:bg-surface-container-low/40 transition-colors"
+									>
+										<td
+											class="py-4 px-6 font-mono text-caption text-on-surface-variant"
+										>
+											#USR-8022
+										</td>
+										<td class="py-4 px-6">
+											<div
+												class="flex items-center gap-md"
+											>
+												<div
+													class="w-9 h-9 rounded-full bg-secondary-fixed text-on-secondary-fixed font-label-md flex items-center justify-center"
+												>
+													TT
+												</div>
+												<div>
+													<div
+														class="font-label-md text-on-surface"
+													>
+														Trần Thị B
+													</div>
+													<div
+														class="text-caption text-on-surface-variant"
+													>
+														Khách hàng thường
+													</div>
+												</div>
+											</div>
+										</td>
+										<td
+											class="py-4 px-6 text-body-md text-on-surface-variant"
+										>
+											tranthib@example.com
+										</td>
+										<td
+											class="py-4 px-6 text-body-md text-on-surface-variant"
+										>
+											+84 912 345 678
+										</td>
+										<td
+											class="py-4 px-6 text-body-md text-on-surface-variant"
+										>
+											15/11/2023
+										</td>
+										<td class="py-4 px-6">
+											<span
+												class="inline-flex items-center gap-xs px-3 py-1 rounded-full text-caption font-label-md bg-tertiary-fixed text-on-tertiary-fixed"
+											>
+												<span
+													class="w-1.5 h-1.5 rounded-full bg-emerald-600"
+												></span>
+												Hoạt động
+											</span>
+										</td>
+										<td class="py-4 px-6 text-right">
+											<div
+												class="flex items-center justify-end gap-xs"
+											>
+												<button
+													class="p-2 rounded-lg hover:bg-surface-container text-on-surface-variant hover:text-primary transition-all"
+													onclick="
+														viewUser(
+															'Trần Thị B',
+															'tranthib@example.com',
+															'+84 912 345 678',
+															'15/11/2023',
+															'Hoạt động',
+														)
+													"
+													title="Xem chi tiết"
+												>
+													<span
+														class="material-symbols-outlined text-[20px]"
+														>visibility</span
+													>
+												</button>
+												<button
+													class="p-2 rounded-lg hover:bg-surface-container text-on-surface-variant hover:text-primary transition-all"
+													onclick="
+														editUser(
+															'Trần Thị B',
+															'tranthib@example.com',
+															'+84 912 345 678',
+														)
+													"
+													title="Chỉnh sửa"
+												>
+													<span
+														class="material-symbols-outlined text-[20px]"
+														>edit</span
+													>
+												</button>
+												<button
+													class="p-2 rounded-lg hover:bg-surface-container text-on-surface-variant hover:text-error transition-all"
+													onclick="toggleLock(this)"
+													title="Khóa tài khoản"
+												>
+													<span
+														class="material-symbols-outlined text-[20px]"
+														>lock</span
+													>
+												</button>
+											</div>
+										</td>
+									</tr>
+									<tr
+										class="hover:bg-surface-container-low/40 transition-colors"
+									>
+										<td
+											class="py-4 px-6 font-mono text-caption text-on-surface-variant"
+										>
+											#USR-8023
+										</td>
+										<td class="py-4 px-6">
+											<div
+												class="flex items-center gap-md"
+											>
+												<div
+													class="w-9 h-9 rounded-full bg-surface-container-high text-on-surface-variant font-label-md flex items-center justify-center"
+												>
+													LV
+												</div>
+												<div>
+													<div
+														class="font-label-md text-on-surface"
+													>
+														Lê Văn C
+													</div>
+													<div
+														class="text-caption text-on-surface-variant"
+													>
+														Khách hàng thường
+													</div>
+												</div>
+											</div>
+										</td>
+										<td
+											class="py-4 px-6 text-body-md text-on-surface-variant"
+										>
+											levanc@example.com
+										</td>
+										<td
+											class="py-4 px-6 text-body-md text-on-surface-variant"
+										>
+											+84 988 765 432
+										</td>
+										<td
+											class="py-4 px-6 text-body-md text-on-surface-variant"
+										>
+											05/01/2024
+										</td>
+										<td class="py-4 px-6">
+											<span
+												class="inline-flex items-center gap-xs px-3 py-1 rounded-full text-caption font-label-md bg-error-container text-on-error-container"
+											>
+												<span
+													class="w-1.5 h-1.5 rounded-full bg-error"
+												></span>
+												Đã khóa
+											</span>
+										</td>
+										<td class="py-4 px-6 text-right">
+											<div
+												class="flex items-center justify-end gap-xs"
+											>
+												<button
+													class="p-2 rounded-lg hover:bg-surface-container text-on-surface-variant hover:text-primary transition-all"
+													onclick="
+														viewUser(
+															'Lê Văn C',
+															'levanc@example.com',
+															'+84 988 765 432',
+															'05/01/2024',
+															'Đã khóa',
+														)
+													"
+													title="Xem chi tiết"
+												>
+													<span
+														class="material-symbols-outlined text-[20px]"
+														>visibility</span
+													>
+												</button>
+												<button
+													class="p-2 rounded-lg hover:bg-surface-container text-on-surface-variant hover:text-primary transition-all"
+													onclick="
+														editUser(
+															'Lê Văn C',
+															'levanc@example.com',
+															'+84 988 765 432',
+														)
+													"
+													title="Chỉnh sửa"
+												>
+													<span
+														class="material-symbols-outlined text-[20px]"
+														>edit</span
+													>
+												</button>
+												<button
+													class="p-2 rounded-lg hover:bg-surface-container text-on-surface-variant hover:text-emerald-600 transition-all"
+													onclick="toggleLock(this)"
+													title="Mở khóa tài khoản"
+												>
+													<span
+														class="material-symbols-outlined text-[20px]"
+														>lock_open</span
+													>
+												</button>
+											</div>
+										</td>
+									</tr>
+									<tr
+										class="hover:bg-surface-container-low/40 transition-colors"
+									>
+										<td
+											class="py-4 px-6 font-mono text-caption text-on-surface-variant"
+										>
+											#USR-8024
+										</td>
+										<td class="py-4 px-6">
+											<div
+												class="flex items-center gap-md"
+											>
+												<div
+													class="w-9 h-9 rounded-full bg-primary-fixed text-on-primary-fixed font-label-md flex items-center justify-center"
+												>
+													PH
+												</div>
+												<div>
+													<div
+														class="font-label-md text-on-surface"
+													>
+														Phạm Thị D
+													</div>
+													<div
+														class="text-caption text-on-surface-variant"
+													>
+														Khách hàng VIP
+													</div>
+												</div>
+											</div>
+										</td>
+										<td
+											class="py-4 px-6 text-body-md text-on-surface-variant"
+										>
+											phamthid@example.com
+										</td>
+										<td
+											class="py-4 px-6 text-body-md text-on-surface-variant"
+										>
+											+84 905 111 222
+										</td>
+										<td
+											class="py-4 px-6 text-body-md text-on-surface-variant"
+										>
+											20/02/2024
+										</td>
+										<td class="py-4 px-6">
+											<span
+												class="inline-flex items-center gap-xs px-3 py-1 rounded-full text-caption font-label-md bg-tertiary-fixed text-on-tertiary-fixed"
+											>
+												<span
+													class="w-1.5 h-1.5 rounded-full bg-emerald-600"
+												></span>
+												Hoạt động
+											</span>
+										</td>
+										<td class="py-4 px-6 text-right">
+											<div
+												class="flex items-center justify-end gap-xs"
+											>
+												<button
+													class="p-2 rounded-lg hover:bg-surface-container text-on-surface-variant hover:text-primary transition-all"
+													onclick="
+														viewUser(
+															'Phạm Thị D',
+															'phamthid@example.com',
+															'+84 905 111 222',
+															'20/02/2024',
+															'Hoạt động',
+														)
+													"
+													title="Xem chi tiết"
+												>
+													<span
+														class="material-symbols-outlined text-[20px]"
+														>visibility</span
+													>
+												</button>
+												<button
+													class="p-2 rounded-lg hover:bg-surface-container text-on-surface-variant hover:text-primary transition-all"
+													onclick="
+														editUser(
+															'Phạm Thị D',
+															'phamthid@example.com',
+															'+84 905 111 222',
+														)
+													"
+													title="Chỉnh sửa"
+												>
+													<span
+														class="material-symbols-outlined text-[20px]"
+														>edit</span
+													>
+												</button>
+												<button
+													class="p-2 rounded-lg hover:bg-surface-container text-on-surface-variant hover:text-error transition-all"
+													onclick="toggleLock(this)"
+													title="Khóa tài khoản"
+												>
+													<span
+														class="material-symbols-outlined text-[20px]"
+														>lock</span
+													>
+												</button>
+											</div>
+										</td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+						<!-- Pagination footer -->
+						<div
+							class="p-lg flex flex-wrap items-center justify-between gap-md border-t border-surface-container"
+						>
+							<div class="text-caption text-on-surface-variant">
+								Hiển thị 1-4 trong tổng số 2,845 tài khoản
+							</div>
+							<div class="flex items-center gap-sm">
+								<button
+									class="px-4 py-2 rounded-lg bg-surface-container text-on-surface-variant font-label-md opacity-50 cursor-not-allowed"
+								>
+									Trước
+								</button>
+								<button
+									class="px-4 py-2 rounded-lg bg-primary text-on-primary font-label-md"
+								>
+									1
+								</button>
+								<button
+									class="px-4 py-2 rounded-lg hover:bg-surface-container text-on-surface font-label-md"
+								>
+									2
+								</button>
+								<button
+									class="px-4 py-2 rounded-lg hover:bg-surface-container text-on-surface font-label-md"
+								>
+									3
+								</button>
+								<span class="text-on-surface-variant px-2"
+									>...</span
+								>
+								<button
+									class="px-4 py-2 rounded-lg hover:bg-surface-container text-on-surface font-label-md"
+								>
+									712
+								</button>
+								<button
+									class="px-4 py-2 rounded-lg bg-surface-container text-on-surface font-label-md hover:bg-surface-container-high"
+								>
+									Tiếp
+								</button>
+							</div>
+						</div>
+					</div>
+					<!-- Modal Backdrop & Containers (Hidden by default) -->
+					<div
+						class="fixed inset-0 bg-primary/20 backdrop-blur-sm z-50 hidden flex items-center justify-center p-md"
+						id="modalBackdrop"
+					>
+						<!-- View/Edit/Add Modal Content Container -->
+						<div
+							class="bg-surface-container-lowest w-full max-w-lg rounded-xl shadow-xl overflow-hidden p-xl scale-95 opacity-0 transition-all duration-300"
+							id="modalContent"
+						>
+							<!-- Injected dynamically via JS -->
+						</div>
+					</div>
+					<!-- JavaScript for interactivity -->
+					<script>
+						function closeModal() {
+							const backdrop =
+								document.getElementById('modalBackdrop');
+							const content =
+								document.getElementById('modalContent');
+							content.classList.remove(
+								'scale-100',
+								'opacity-100',
+							);
+							content.classList.add('scale-95', 'opacity-0');
+							setTimeout(() => {
+								backdrop.classList.add('hidden');
+							}, 200);
+						}
+
+						function openModalHtml(html) {
+							const backdrop =
+								document.getElementById('modalBackdrop');
+							const content =
+								document.getElementById('modalContent');
+							content.innerHTML = html;
+							backdrop.classList.remove('hidden');
+							setTimeout(() => {
+								content.classList.remove(
+									'scale-95',
+									'opacity-0',
+								);
+								content.classList.add(
+									'scale-100',
+									'opacity-100',
+								);
+							}, 10);
+						}
+
+						function viewUser(name, email, phone, date, status) {
+							const html = `
+        <div class="flex items-center justify-between mb-lg">
+          <h3 class="font-headline-md text-primary">Chi tiết tài khoản</h3>
+          <button onclick="closeModal()" class="text-on-surface-variant hover:text-on-surface"><span class="material-symbols-outlined">close</span></button>
+        </div>
+        <div class="space-y-md mb-xl">
+          <div class="flex items-center gap-lg p-lg bg-surface-container-low rounded-xl">
+            <div class="w-16 h-16 rounded-full bg-primary text-on-primary flex items-center justify-center text-headline-md font-headline-md">${name.charAt(0)}</div>
+            <div>
+              <div class="text-headline-md font-headline-md text-primary">${name}</div>
+              <div class="text-caption text-on-surface-variant mt-1">Trạng thái: <strong class="${status === 'Hoạt động' ? 'text-emerald-600' : 'text-error'}">${status}</strong></div>
+            </div>
+          </div>
+          <div class="grid grid-cols-2 gap-md">
+            <div class="p-md bg-surface-container-low rounded-xl">
+              <div class="text-caption text-on-surface-variant">Email</div>
+              <div class="font-label-md text-on-surface mt-1">${email}</div>
+            </div>
+            <div class="p-md bg-surface-container-low rounded-xl">
+              <div class="text-caption text-on-surface-variant">Số điện thoại</div>
+              <div class="font-label-md text-on-surface mt-1">${phone}</div>
+            </div>
+          </div>
+          <div class="p-md bg-surface-container-low rounded-xl">
+            <div class="text-caption text-on-surface-variant">Ngày đăng ký</div>
+            <div class="font-label-md text-on-surface mt-1">${date}</div>
+          </div>
+        </div>
+        <div class="flex justify-end gap-md">
+          <button onclick="closeModal()" class="px-lg py-2.5 rounded-full bg-surface-container text-on-surface font-label-md hover:bg-surface-container-high transition-all">Đóng</button>
+        </div>
+      `;
+							openModalHtml(html);
+						}
+
+						function editUser(name, email, phone) {
+							const html = `
+        <div class="flex items-center justify-between mb-lg">
+          <h3 class="font-headline-md text-primary">Chỉnh sửa tài khoản</h3>
+          <button onclick="closeModal()" class="text-on-surface-variant hover:text-on-surface"><span class="material-symbols-outlined">close</span></button>
+        </div>
+        <div class="space-y-md mb-xl">
+          <div>
+            <label class="block text-label-md text-on-surface-variant mb-1">Họ tên</label>
+            <input type="text" value="${name}" class="w-full px-4 py-3 bg-surface-container-lowest rounded-xl text-body-md text-on-surface outline-none border border-outline/30 focus:border-primary transition-all">
+          </div>
+          <div>
+            <label class="block text-label-md text-on-surface-variant mb-1">Email</label>
+            <input type="email" value="${email}" class="w-full px-4 py-3 bg-surface-container-lowest rounded-xl text-body-md text-on-surface outline-none border border-outline/30 focus:border-primary transition-all">
+          </div>
+          <div>
+            <label class="block text-label-md text-on-surface-variant mb-1">Số điện thoại</label>
+            <input type="text" value="${phone}" class="w-full px-4 py-3 bg-surface-container-lowest rounded-xl text-body-md text-on-surface outline-none border border-outline/30 focus:border-primary transition-all">
+          </div>
+        </div>
+        <div class="flex justify-end gap-md">
+          <button onclick="closeModal()" class="px-lg py-2.5 rounded-full bg-surface-container text-on-surface font-label-md hover:bg-surface-container-high transition-all">Hủy</button>
+          <button onclick="alert('Đã lưu thay đổi thành công!'); closeModal();" class="px-lg py-2.5 rounded-full bg-primary text-on-primary font-label-md hover:bg-primary-container transition-all">Lưu thay đổi</button>
+        </div>
+      `;
+							openModalHtml(html);
+						}
+
+						function openAddModal() {
+							const html = `
+        <div class="flex items-center justify-between mb-lg">
+          <h3 class="font-headline-md text-primary">Thêm tài khoản mới</h3>
+          <button onclick="closeModal()" class="text-on-surface-variant hover:text-on-surface"><span class="material-symbols-outlined">close</span></button>
+        </div>
+        <div class="space-y-md mb-xl">
+          <div>
+            <label class="block text-label-md text-on-surface-variant mb-1">Họ tên khách hàng</label>
+            <input type="text" placeholder="Nhập họ và tên..." class="w-full px-4 py-3 bg-surface-container-lowest rounded-xl text-body-md text-on-surface outline-none border border-outline/30 focus:border-primary transition-all">
+          </div>
+          <div>
+            <label class="block text-label-md text-on-surface-variant mb-1">Địa chỉ Email</label>
+            <input type="email" placeholder="example@domain.com" class="w-full px-4 py-3 bg-surface-container-lowest rounded-xl text-body-md text-on-surface outline-none border border-outline/30 focus:border-primary transition-all">
+          </div>
+          <div>
+            <label class="block text-label-md text-on-surface-variant mb-1">Số điện thoại</label>
+            <input type="text" placeholder="+84 ..." class="w-full px-4 py-3 bg-surface-container-lowest rounded-xl text-body-md text-on-surface outline-none border border-outline/30 focus:border-primary transition-all">
+          </div>
+        </div>
+        <div class="flex justify-end gap-md">
+          <button onclick="closeModal()" class="px-lg py-2.5 rounded-full bg-surface-container text-on-surface font-label-md hover:bg-surface-container-high transition-all">Hủy</button>
+          <button onclick="alert('Đã thêm tài khoản mới thành công!'); closeModal();" class="px-lg py-2.5 rounded-full bg-primary text-on-primary font-label-md hover:bg-primary-container transition-all">Tạo tài khoản</button>
+        </div>
+      `;
+							openModalHtml(html);
+						}
+
+						function toggleLock(btn) {
+							const row = btn.closest('tr');
+							const statusSpan = row.querySelector(
+								'td:nth-child(6) span',
+							);
+							const isLocked =
+								statusSpan.textContent.includes('Đã khóa');
+							if (isLocked) {
+								statusSpan.className =
+									'inline-flex items-center gap-xs px-3 py-1 rounded-full text-caption font-label-md bg-tertiary-fixed text-on-tertiary-fixed';
+								statusSpan.innerHTML =
+									'<span class="w-1.5 h-1.5 rounded-full bg-emerald-600"></span> Hoạt động';
+								btn.innerHTML =
+									'<span class="material-symbols-outlined text-[20px]">lock</span>';
+								btn.title = 'Khóa tài khoản';
+								btn.className =
+									'p-2 rounded-lg hover:bg-surface-container text-on-surface-variant hover:text-error transition-all';
+							} else {
+								statusSpan.className =
+									'inline-flex items-center gap-xs px-3 py-1 rounded-full text-caption font-label-md bg-error-container text-on-error-container';
+								statusSpan.innerHTML =
+									'<span class="w-1.5 h-1.5 rounded-full bg-error"></span> Đã khóa';
+								btn.innerHTML =
+									'<span class="material-symbols-outlined text-[20px]">lock_open</span>';
+								btn.title = 'Mở khóa tài khoản';
+								btn.className =
+									'p-2 rounded-lg hover:bg-surface-container text-on-surface-variant hover:text-emerald-600 transition-all';
+							}
+						}
+
+						// Quick search simulation
+						document
+							.getElementById('searchInput')
+							.addEventListener('input', function (e) {
+								const term = e.target.value.toLowerCase();
+								const rows =
+									document.querySelectorAll(
+										'#userTableBody tr',
+									);
+								rows.forEach((row) => {
+									const text = row.textContent.toLowerCase();
+									row.style.display = text.includes(term)
+										? ''
+										: 'none';
+								});
+							});
+
+						// Status filter simulation
+						document
+							.getElementById('statusFilter')
+							.addEventListener('change', function (e) {
+								const val = e.target.value;
+								const rows =
+									document.querySelectorAll(
+										'#userTableBody tr',
+									);
+								rows.forEach((row) => {
+									const statusSpan = row.querySelector(
+										'td:nth-child(6) span',
+									);
+									const isLocked =
+										statusSpan.textContent.includes(
+											'Đã khóa',
+										);
+									if (val === 'all') {
+										row.style.display = '';
+									} else if (val === 'active' && !isLocked) {
+										row.style.display = '';
+									} else if (val === 'locked' && isLocked) {
+										row.style.display = '';
+									} else {
+										row.style.display = 'none';
+									}
+								});
+							});
+					</script>
+				</div>
+			</main>
+		</div>
+	</body>
+</html>

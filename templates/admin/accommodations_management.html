@@ -1,0 +1,987 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<meta content="width=device-width, initial-scale=1.0" name="viewport" />
+		<style>
+			@layer base {
+				html,
+				body {
+					margin: 0;
+					padding: 0;
+				}
+				body {
+					overscroll-behavior: none;
+				}
+				main > :first-child {
+					margin-top: 0 !important;
+				}
+				main > :last-child {
+					margin-bottom: 0 !important;
+				}
+			}
+			::-webkit-scrollbar {
+				display: none;
+			}
+		</style>
+		<script src="https://cdn.tailwindcss.com"></script>
+		<script id="tailwind-config">
+			tailwind.config = {
+				darkMode: 'class',
+				theme: {
+					extend: {
+						colors: {
+							'on-error': '#ffffff',
+							'tertiary-fixed': '#d9e3f9',
+							'surface-container-low': '#f1f4f6',
+							'primary-container': '#002045',
+							'secondary-fixed-dim': '#ffb86c',
+							'surface-container-high': '#e6e8eb',
+							'tertiary-container': '#172131',
+							'on-primary-fixed': '#001b3c',
+							'inverse-primary': '#aec7f5',
+							'inverse-on-surface': '#eef1f4',
+							'outline-variant': '#c4c6cf',
+							'on-tertiary': '#ffffff',
+							surface: '#f7fafc',
+							'surface-dim': '#d7dadd',
+							'on-primary-fixed-variant': '#2e476e',
+							'surface-container': '#ebeef1',
+							'on-secondary': '#ffffff',
+							primary: '#00091b',
+							'surface-container-highest': '#e0e3e5',
+							'on-tertiary-fixed': '#121c2c',
+							'primary-fixed-dim': '#aec7f5',
+							'surface-tint': '#465f87',
+							'error-container': '#ffdad6',
+							secondary: '#895100',
+							'tertiary-fixed-dim': '#bdc7dc',
+							'on-primary': '#ffffff',
+							'on-tertiary-fixed-variant': '#3d4759',
+							'on-primary-container': '#7089b3',
+							'on-background': '#181c1e',
+							'inverse-surface': '#2d3133',
+							'primary-fixed': '#d6e3ff',
+							outline: '#74777f',
+							'on-surface': '#181c1e',
+							'on-secondary-container': '#663b00',
+							background: '#f7fafc',
+							tertiary: '#020919',
+							'on-tertiary-container': '#7e889c',
+							'on-surface-variant': '#44474e',
+							'on-secondary-fixed-variant': '#683d00',
+							'surface-variant': '#e0e3e5',
+							'on-secondary-fixed': '#2c1700',
+							'secondary-container': '#fd9d1a',
+							'secondary-fixed': '#ffdcbc',
+							'on-error-container': '#93000a',
+							error: '#ba1a1a',
+							'surface-bright': '#f7fafc',
+							'surface-container-lowest': '#ffffff',
+						},
+						borderRadius: {
+							DEFAULT: '0.125rem',
+							lg: '0.25rem',
+							xl: '0.5rem',
+							full: '0.75rem',
+						},
+						spacing: {
+							md: '16px',
+							xl: '32px',
+							base: '8px',
+							'3xl': '64px',
+							lg: '24px',
+							xs: '4px',
+							'2xl': '48px',
+							sm: '8px',
+						},
+						fontFamily: {
+							'body-md': ['Inter'],
+							'label-md': ['Inter'],
+							caption: ['Inter'],
+							'headline-md': ['Montserrat'],
+							'headline-lg': ['Montserrat'],
+							'body-lg': ['Inter'],
+							'display-lg': ['Montserrat'],
+						},
+						fontSize: {
+							'body-md': [
+								'16px',
+								{ lineHeight: '1.5', fontWeight: '400' },
+							],
+							'label-md': [
+								'14px',
+								{
+									lineHeight: '1.2',
+									letterSpacing: '0.01em',
+									fontWeight: '600',
+								},
+							],
+							caption: [
+								'12px',
+								{ lineHeight: '1.4', fontWeight: '400' },
+							],
+							'headline-md': [
+								'24px',
+								{ lineHeight: '1.4', fontWeight: '600' },
+							],
+							'headline-lg': [
+								'32px',
+								{ lineHeight: '1.3', fontWeight: '700' },
+							],
+							'body-lg': [
+								'18px',
+								{ lineHeight: '1.6', fontWeight: '400' },
+							],
+							'display-lg': [
+								'48px',
+								{
+									lineHeight: '1.2',
+									letterSpacing: '-0.02em',
+									fontWeight: '700',
+								},
+							],
+						},
+					},
+				},
+			};
+		</script>
+		<link
+			href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+			rel="stylesheet"
+		/>
+		<link
+			href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&amp;family=Montserrat:wght@100..900&amp;display=swap"
+			rel="stylesheet"
+		/>
+	</head>
+	<body class="bg-surface font-body-md text-on-surface">
+		<aside
+			class="fixed left-0 top-0 h-full w-72 bg-surface-container-low z-50 flex flex-col pt-6 pb-8 shadow-[0_1px_8px_rgba(0,0,0,0.04)]"
+		>
+			<div
+				class="px-xl mb-xl text-headline-md font-headline-md text-primary"
+			>
+				DaNang Travel
+			</div>
+			<nav
+				class="flex-1 px-4 space-y-xs overflow-y-auto"
+				data-active-classes="bg-primary-container text-on-primary-container font-bold rounded-xl"
+			>
+				<a
+					class="flex items-center px-4 py-3 rounded-xl text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-all"
+					data-path="dashboard"
+					href="#"
+					><span class="material-symbols-outlined mr-3"
+						>dashboard</span
+					>Bảng điều khiển</a
+				><a
+					class="flex items-center px-4 py-3 rounded-xl text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-all"
+					data-path="users"
+					href="#"
+					><span class="material-symbols-outlined mr-3">group</span
+					>Quản lý người dùng</a
+				><a
+					class="flex items-center px-4 py-3 rounded-xl text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-all"
+					data-path="hosts"
+					href="#"
+					><span class="material-symbols-outlined mr-3">badge</span
+					>Quản lý chủ cơ sở</a
+				><a
+					class="flex items-center px-4 py-3 rounded-xl text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-all"
+					data-path="locations"
+					href="#"
+					><span class="material-symbols-outlined mr-3"
+						>location_on</span
+					>Quản lý địa điểm</a
+				><a
+					aria-current="page"
+					class="flex items-center px-4 py-3 transition-all bg-primary-container text-on-primary-container font-bold rounded-xl"
+					data-path="accommodations"
+					href="#"
+					><span class="material-symbols-outlined mr-3">hotel</span
+					>Quản lý cơ sở lưu trú</a
+				><a
+					class="flex items-center px-4 py-3 rounded-xl text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-all"
+					data-path="reviews"
+					href="#"
+					><span class="material-symbols-outlined mr-3"
+						>rate_review</span
+					>Quản lý đánh giá</a
+				><a
+					class="flex items-center px-4 py-3 rounded-xl text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-all"
+					data-path="statistics"
+					href="#"
+					><span class="material-symbols-outlined mr-3"
+						>bar_chart</span
+					>Thống kê &amp; Báo cáo</a
+				><a
+					class="flex items-center px-4 py-3 rounded-xl text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-all"
+					data-path="notifications"
+					href="#"
+					><span class="material-symbols-outlined mr-3"
+						>notifications</span
+					>Thông báo</a
+				><a
+					class="flex items-center px-4 py-3 rounded-xl text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-all"
+					data-path="account"
+					href="#"
+					><span class="material-symbols-outlined mr-3"
+						>manage_accounts</span
+					>Tài khoản cá nhân</a
+				>
+			</nav>
+		</aside>
+		<div class="pl-72">
+			<header
+				class="fixed top-0 left-72 right-0 h-20 bg-surface/80 backdrop-blur-xl shadow-[0_1px_8px_rgba(0,0,0,0.04)] z-40 flex items-center justify-between px-xl"
+			>
+				<div class="flex items-center gap-md">
+					<span class="material-symbols-outlined text-outline"
+						>bolt</span
+					><span class="text-caption text-on-surface-variant"
+						>Trạng thái:
+						<strong class="text-on-surface"
+							>Hoạt động ổn định</strong
+						></span
+					>
+				</div>
+				<div class="flex items-center gap-md">
+					<div
+						class="w-8 h-8 rounded-full bg-primary flex items-center justify-center"
+					>
+						<span
+							class="material-symbols-outlined text-on-primary text-[18px]"
+							>person</span
+						>
+					</div>
+				</div>
+			</header>
+			<main class="relative pt-20 bg-surface min-h-screen p-xl">
+				<div class="flex flex-col w-full">
+					<!-- Top Stats Row -->
+					<div class="grid grid-cols-1 md:grid-cols-4 gap-lg mb-xl">
+						<div
+							class="bg-surface-container-lowest p-lg rounded-xl shadow-[0_4px_20px_rgba(26,54,93,0.05)] flex items-center justify-between"
+						>
+							<div>
+								<p
+									class="text-caption text-on-surface-variant uppercase tracking-wider mb-xs"
+								>
+									Tổng cơ sở
+								</p>
+								<h3
+									class="text-headline-md font-headline-md text-primary"
+								>
+									142
+								</h3>
+							</div>
+							<div
+								class="w-12 h-12 rounded-xl bg-primary-fixed flex items-center justify-center text-primary"
+							>
+								<span class="material-symbols-outlined"
+									>hotel</span
+								>
+							</div>
+						</div>
+						<div
+							class="bg-surface-container-lowest p-lg rounded-xl shadow-[0_4px_20px_rgba(26,54,93,0.05)] flex items-center justify-between"
+						>
+							<div>
+								<p
+									class="text-caption text-on-surface-variant uppercase tracking-wider mb-xs"
+								>
+									Đang hoạt động
+								</p>
+								<h3
+									class="text-headline-md font-headline-md text-secondary"
+								>
+									118
+								</h3>
+							</div>
+							<div
+								class="w-12 h-12 rounded-xl bg-secondary-fixed flex items-center justify-center text-secondary"
+							>
+								<span
+									class="material-symbols-outlined"
+									style="font-variation-settings: 'FILL' 1"
+									>check_circle</span
+								>
+							</div>
+						</div>
+						<div
+							class="bg-surface-container-lowest p-lg rounded-xl shadow-[0_4px_20px_rgba(26,54,93,0.05)] flex items-center justify-between"
+						>
+							<div>
+								<p
+									class="text-caption text-on-surface-variant uppercase tracking-wider mb-xs"
+								>
+									Chờ kiểm duyệt
+								</p>
+								<h3
+									class="text-headline-md font-headline-md text-primary-container"
+								>
+									16
+								</h3>
+							</div>
+							<div
+								class="w-12 h-12 rounded-xl bg-tertiary-fixed flex items-center justify-center text-on-tertiary-fixed"
+							>
+								<span class="material-symbols-outlined"
+									>pending_actions</span
+								>
+							</div>
+						</div>
+						<div
+							class="bg-surface-container-lowest p-lg rounded-xl shadow-[0_4px_20px_rgba(26,54,93,0.05)] flex items-center justify-between"
+						>
+							<div>
+								<p
+									class="text-caption text-on-surface-variant uppercase tracking-wider mb-xs"
+								>
+									Tạm ngưng
+								</p>
+								<h3
+									class="text-headline-md font-headline-md text-error"
+								>
+									8
+								</h3>
+							</div>
+							<div
+								class="w-12 h-12 rounded-xl bg-error-container flex items-center justify-center text-error"
+							>
+								<span class="material-symbols-outlined"
+									>block</span
+								>
+							</div>
+						</div>
+					</div>
+					<!-- Main Content Card -->
+					<div
+						class="bg-surface-container-lowest rounded-xl shadow-[0_4px_20px_rgba(26,54,93,0.05)] overflow-hidden"
+					>
+						<!-- Filter & Action Bar -->
+						<div
+							class="p-lg flex flex-col md:flex-row items-center justify-between gap-md bg-surface-container-low/50"
+						>
+							<div
+								class="flex items-center gap-md w-full md:w-auto flex-wrap"
+							>
+								<div class="relative min-w-[280px]">
+									<span
+										class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-outline text-[20px]"
+										>search</span
+									>
+									<input
+										class="w-full pl-10 pr-4 py-2 bg-surface-container-lowest rounded-xl border border-outline/30 focus:outline-none focus:border-primary text-body-md text-on-surface"
+										placeholder="Tìm kiếm cơ sở, chủ sở hữu..."
+										type="text"
+									/>
+								</div>
+								<select
+									class="px-4 py-2 bg-surface-container-lowest rounded-xl border border-outline/30 focus:outline-none focus:border-primary text-body-md text-on-surface"
+								>
+									<option>Tất cả loại hình</option>
+									<option>Khách sạn</option>
+									<option>Resort</option>
+									<option>Homestay</option>
+								</select>
+								<select
+									class="px-4 py-2 bg-surface-container-lowest rounded-xl border border-outline/30 focus:outline-none focus:border-primary text-body-md text-on-surface"
+								>
+									<option>Tất cả khu vực</option>
+									<option>Sơn Trà</option>
+									<option>Hải Châu</option>
+									<option>Ngũ Hành Sơn</option>
+									<option>Thanh Khê</option>
+								</select>
+								<select
+									class="px-4 py-2 bg-surface-container-lowest rounded-xl border border-outline/30 focus:outline-none focus:border-primary text-body-md text-on-surface"
+								>
+									<option>Tất cả trạng thái</option>
+									<option>Hoạt động</option>
+									<option>Tạm ngưng</option>
+									<option>Chờ duyệt</option>
+								</select>
+							</div>
+							<div
+								class="flex items-center gap-md w-full md:w-auto justify-end"
+							>
+								<button
+									class="px-4 py-2 bg-primary text-on-primary rounded-full label-md flex items-center gap-2 hover:bg-primary-container transition-all"
+								>
+									<span
+										class="material-symbols-outlined text-[18px]"
+										>add</span
+									>
+									Thêm cơ sở mới
+								</button>
+							</div>
+						</div>
+						<!-- Table -->
+						<div class="overflow-x-auto">
+							<table class="w-full text-left border-collapse">
+								<thead>
+									<tr
+										class="bg-surface-container-low text-caption uppercase tracking-wider text-on-surface-variant"
+									>
+										<th class="py-4 px-lg font-semibold">
+											ID
+										</th>
+										<th class="py-4 px-lg font-semibold">
+											Tên cơ sở
+										</th>
+										<th class="py-4 px-lg font-semibold">
+											Chủ sở hữu
+										</th>
+										<th class="py-4 px-lg font-semibold">
+											Loại hình
+										</th>
+										<th class="py-4 px-lg font-semibold">
+											Khu vực
+										</th>
+										<th class="py-4 px-lg font-semibold">
+											Trạng thái
+										</th>
+										<th
+											class="py-4 px-lg font-semibold text-right"
+										>
+											Thao tác
+										</th>
+									</tr>
+								</thead>
+								<tbody
+									class="divide-y divide-surface-container"
+								>
+									<!-- Row 1 -->
+									<tr
+										class="hover:bg-surface-container-low/50 transition-colors"
+									>
+										<td
+											class="py-4 px-lg text-caption font-mono text-on-surface-variant"
+										>
+											#ACC-0892
+										</td>
+										<td class="py-4 px-lg">
+											<div
+												class="flex items-center gap-3"
+											>
+												<div
+													class="w-10 h-10 rounded-lg bg-cover bg-center shrink-0"
+													data-alt="A modern luxury resort exterior with infinity pool overlooking the ocean in Da Nang Vietnam during sunset."
+													style="
+														background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDtNho_ZGO7WggYgNaiEvggeeRNpsoCt4_y-Th34Ka-K1P-uyUcY2VM-5kSgLxIJNkJjMXVayKot4uw4QFQjY4gKYj15mmmEGBEmVjEj6MleHYRRBxX5dCGELigbnxS0itDncYD2ggOxOBRGnAVkjrb_NmIhK4m8Cn0E-n0q7RPqRYYbPTfwlyaKCqhzEmesZgP34p10AokXMOsn2sXQApKg2tsQZV00_uArjhEMeqxU7pMvvorI_gn');
+													"
+												></div>
+												<div>
+													<div
+														class="font-semibold text-on-surface"
+													>
+														InterContinental Danang
+													</div>
+													<div
+														class="text-caption text-on-surface-variant"
+													>
+														Bãi Bắc, Thọ Quang
+													</div>
+												</div>
+											</div>
+										</td>
+										<td
+											class="py-4 px-lg text-body-md text-on-surface"
+										>
+											Nguyễn Văn An
+										</td>
+										<td class="py-4 px-lg">
+											<span
+												class="px-2.5 py-1 rounded-full text-caption bg-tertiary-fixed text-on-tertiary-fixed font-medium"
+												>Resort</span
+											>
+										</td>
+										<td
+											class="py-4 px-lg text-body-md text-on-surface-variant"
+										>
+											Sơn Trà
+										</td>
+										<td class="py-4 px-lg">
+											<span
+												class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-caption bg-secondary-fixed text-secondary font-medium"
+											>
+												<span
+													class="w-1.5 h-1.5 rounded-full bg-secondary"
+												></span>
+												Hoạt động
+											</span>
+										</td>
+										<td class="py-4 px-lg text-right">
+											<div
+												class="flex items-center justify-end gap-2"
+											>
+												<button
+													class="w-8 h-8 rounded-lg hover:bg-surface-container flex items-center justify-center text-on-surface-variant hover:text-primary transition-all"
+													title="Kiểm duyệt"
+												>
+													<span
+														class="material-symbols-outlined text-[18px]"
+														>verified</span
+													>
+												</button>
+												<button
+													class="w-8 h-8 rounded-lg hover:bg-surface-container flex items-center justify-center text-on-surface-variant hover:text-primary transition-all"
+													title="Chỉnh sửa"
+												>
+													<span
+														class="material-symbols-outlined text-[18px]"
+														>edit</span
+													>
+												</button>
+												<button
+													class="w-8 h-8 rounded-lg hover:bg-surface-container flex items-center justify-center text-on-surface-variant hover:text-error transition-all"
+													title="Tạm ngưng"
+												>
+													<span
+														class="material-symbols-outlined text-[18px]"
+														>block</span
+													>
+												</button>
+											</div>
+										</td>
+									</tr>
+									<!-- Row 2 -->
+									<tr
+										class="hover:bg-surface-container-low/50 transition-colors"
+									>
+										<td
+											class="py-4 px-lg text-caption font-mono text-on-surface-variant"
+										>
+											#ACC-0893
+										</td>
+										<td class="py-4 px-lg">
+											<div
+												class="flex items-center gap-3"
+											>
+												<div
+													class="w-10 h-10 rounded-lg bg-cover bg-center shrink-0"
+													data-alt="A boutique hotel facade with warm lighting and minimalist architecture located in downtown Da Nang."
+													style="
+														background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuAjNY5A46dMaakSbzrC9yIWv67n3hmqsO8qiU3ROj-hgZl1A5LFLkDeXlKYBRVFHDJ3KanGE1w8WSdiSSS1QhbzaQuwVFFNQeGzvITPLEEPZ8MA7E9YBem5Uk9esBw8m16_osGngV0Gw_UFm-IDKPKAdQpc5JN8SeHaEt_eWqQeZdmkQ4IUhFUDTyzew06aOJUOhbPzxm_yWYrfZYe4EviH3x3ixRPV6AAahIPr9YeJk6aYU3_7mWIZ');
+													"
+												></div>
+												<div>
+													<div
+														class="font-semibold text-on-surface"
+													>
+														Brilliant Hotel Danang
+													</div>
+													<div
+														class="text-caption text-on-surface-variant"
+													>
+														Bạch Đằng, Hải Châu 1
+													</div>
+												</div>
+											</div>
+										</td>
+										<td
+											class="py-4 px-lg text-body-md text-on-surface"
+										>
+											Trần Thị Mai
+										</td>
+										<td class="py-4 px-lg">
+											<span
+												class="px-2.5 py-1 rounded-full text-caption bg-primary-fixed text-on-primary-fixed font-medium"
+												>Khách sạn</span
+											>
+										</td>
+										<td
+											class="py-4 px-lg text-body-md text-on-surface-variant"
+										>
+											Hải Châu
+										</td>
+										<td class="py-4 px-lg">
+											<span
+												class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-caption bg-secondary-fixed text-secondary font-medium"
+											>
+												<span
+													class="w-1.5 h-1.5 rounded-full bg-secondary"
+												></span>
+												Hoạt động
+											</span>
+										</td>
+										<td class="py-4 px-lg text-right">
+											<div
+												class="flex items-center justify-end gap-2"
+											>
+												<button
+													class="w-8 h-8 rounded-lg hover:bg-surface-container flex items-center justify-center text-on-surface-variant hover:text-primary transition-all"
+													title="Kiểm duyệt"
+												>
+													<span
+														class="material-symbols-outlined text-[18px]"
+														>verified</span
+													>
+												</button>
+												<button
+													class="w-8 h-8 rounded-lg hover:bg-surface-container flex items-center justify-center text-on-surface-variant hover:text-primary transition-all"
+													title="Chỉnh sửa"
+												>
+													<span
+														class="material-symbols-outlined text-[18px]"
+														>edit</span
+													>
+												</button>
+												<button
+													class="w-8 h-8 rounded-lg hover:bg-surface-container flex items-center justify-center text-on-surface-variant hover:text-error transition-all"
+													title="Tạm ngưng"
+												>
+													<span
+														class="material-symbols-outlined text-[18px]"
+														>block</span
+													>
+												</button>
+											</div>
+										</td>
+									</tr>
+									<!-- Row 3 -->
+									<tr
+										class="hover:bg-surface-container-low/50 transition-colors"
+									>
+										<td
+											class="py-4 px-lg text-caption font-mono text-on-surface-variant"
+										>
+											#ACC-0894
+										</td>
+										<td class="py-4 px-lg">
+											<div
+												class="flex items-center gap-3"
+											>
+												<div
+													class="w-10 h-10 rounded-lg bg-cover bg-center shrink-0"
+													data-alt="A cozy wooden homestay with green plants and warm ambient lighting near My Khe beach Da Nang."
+													style="
+														background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuADdxsk0416sQ1SBXG8zwexqMG46kz36-9vhwxnF_JTIF1uaV2kgaYr2T8Y1LO_vyrXex2-_wXxZT0BKGA-e0QJjQlxjI_AKi3odtGT5aCpZwqJtYNdeKGfRygMHkIWJpBxNnfard3cxig6psj41n3-gllEeOSjHftO_-ll6S8vIpN5v2zQN5wWCHl75bCwxHyN14on-spLmUhsPrxP2ZBryd_UQW7kI-aaqJ8f0VmLoAZmS13nS8bN');
+													"
+												></div>
+												<div>
+													<div
+														class="font-semibold text-on-surface"
+													>
+														Han's House Homestay
+													</div>
+													<div
+														class="text-caption text-on-surface-variant"
+													>
+														An Thượng 4, Mỹ An
+													</div>
+												</div>
+											</div>
+										</td>
+										<td
+											class="py-4 px-lg text-body-md text-on-surface"
+										>
+											Lê Hoàng Nam
+										</td>
+										<td class="py-4 px-lg">
+											<span
+												class="px-2.5 py-1 rounded-full text-caption bg-surface-container-high text-on-surface font-medium"
+												>Homestay</span
+											>
+										</td>
+										<td
+											class="py-4 px-lg text-body-md text-on-surface-variant"
+										>
+											Ngũ Hành Sơn
+										</td>
+										<td class="py-4 px-lg">
+											<span
+												class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-caption bg-tertiary-fixed text-on-tertiary-fixed font-medium"
+											>
+												<span
+													class="w-1.5 h-1.5 rounded-full bg-primary-container"
+												></span>
+												Chờ duyệt
+											</span>
+										</td>
+										<td class="py-4 px-lg text-right">
+											<div
+												class="flex items-center justify-end gap-2"
+											>
+												<button
+													class="w-8 h-8 rounded-lg hover:bg-surface-container flex items-center justify-center text-on-surface-variant hover:text-primary transition-all"
+													title="Kiểm duyệt"
+												>
+													<span
+														class="material-symbols-outlined text-[18px]"
+														>verified</span
+													>
+												</button>
+												<button
+													class="w-8 h-8 rounded-lg hover:bg-surface-container flex items-center justify-center text-on-surface-variant hover:text-primary transition-all"
+													title="Chỉnh sửa"
+												>
+													<span
+														class="material-symbols-outlined text-[18px]"
+														>edit</span
+													>
+												</button>
+												<button
+													class="w-8 h-8 rounded-lg hover:bg-surface-container flex items-center justify-center text-on-surface-variant hover:text-error transition-all"
+													title="Tạm ngưng"
+												>
+													<span
+														class="material-symbols-outlined text-[18px]"
+														>block</span
+													>
+												</button>
+											</div>
+										</td>
+									</tr>
+									<!-- Row 4 -->
+									<tr
+										class="hover:bg-surface-container-low/50 transition-colors"
+									>
+										<td
+											class="py-4 px-lg text-caption font-mono text-on-surface-variant"
+										>
+											#ACC-0895
+										</td>
+										<td class="py-4 px-lg">
+											<div
+												class="flex items-center gap-3"
+											>
+												<div
+													class="w-10 h-10 rounded-lg bg-cover bg-center shrink-0"
+													data-alt="A beachfront luxury resort with private villas and palm trees under bright sunlight in Da Nang."
+													style="
+														background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuCcE1YwwwDA1mLttxfXZA9WPX4y2CJexljUzpMGOR60F3hW_yuFru1YenNBDdYKPDbtRMgVAvr58T9UErVaHTb5vHduKN4qaYPx-25C31mOWmuI4Y5TRCc0O-fsTXW7fjmjwqlu1TDLKmm8fkBkBCWu-LeMjHDmBhlMVQPViyOmPGXRjQCM3UJh-fiBgJ5zFJeZeYtJ1AgXhbqM4jcovLiAGAkCy0HFD6OSCSVNQpv3gDcXv6MY2X8r');
+													"
+												></div>
+												<div>
+													<div
+														class="font-semibold text-on-surface"
+													>
+														Fusion Maia Resort
+													</div>
+													<div
+														class="text-caption text-on-surface-variant"
+													>
+														Võ Nguyên Giáp, Khuê Mỹ
+													</div>
+												</div>
+											</div>
+										</td>
+										<td
+											class="py-4 px-lg text-body-md text-on-surface"
+										>
+											Phạm Minh Tuấn
+										</td>
+										<td class="py-4 px-lg">
+											<span
+												class="px-2.5 py-1 rounded-full text-caption bg-tertiary-fixed text-on-tertiary-fixed font-medium"
+												>Resort</span
+											>
+										</td>
+										<td
+											class="py-4 px-lg text-body-md text-on-surface-variant"
+										>
+											Ngũ Hành Sơn
+										</td>
+										<td class="py-4 px-lg">
+											<span
+												class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-caption bg-error-container text-error font-medium"
+											>
+												<span
+													class="w-1.5 h-1.5 rounded-full bg-error"
+												></span>
+												Tạm ngưng
+											</span>
+										</td>
+										<td class="py-4 px-lg text-right">
+											<div
+												class="flex items-center justify-end gap-2"
+											>
+												<button
+													class="w-8 h-8 rounded-lg hover:bg-surface-container flex items-center justify-center text-on-surface-variant hover:text-primary transition-all"
+													title="Kiểm duyệt"
+												>
+													<span
+														class="material-symbols-outlined text-[18px]"
+														>verified</span
+													>
+												</button>
+												<button
+													class="w-8 h-8 rounded-lg hover:bg-surface-container flex items-center justify-center text-on-surface-variant hover:text-primary transition-all"
+													title="Chỉnh sửa"
+												>
+													<span
+														class="material-symbols-outlined text-[18px]"
+														>edit</span
+													>
+												</button>
+												<button
+													class="w-8 h-8 rounded-lg hover:bg-surface-container flex items-center justify-center text-on-surface-variant hover:text-secondary transition-all"
+													title="Kích hoạt lại"
+												>
+													<span
+														class="material-symbols-outlined text-[18px]"
+														>check_circle</span
+													>
+												</button>
+											</div>
+										</td>
+									</tr>
+									<!-- Row 5 -->
+									<tr
+										class="hover:bg-surface-container-low/50 transition-colors"
+									>
+										<td
+											class="py-4 px-lg text-caption font-mono text-on-surface-variant"
+										>
+											#ACC-0896
+										</td>
+										<td class="py-4 px-lg">
+											<div
+												class="flex items-center gap-3"
+											>
+												<div
+													class="w-10 h-10 rounded-lg bg-cover bg-center shrink-0"
+													data-alt="A modern urban hotel building with glass windows near Dragon Bridge Da Nang at twilight."
+													style="
+														background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuCiqucbzocAoQHhIfOAV4S_Me6p3IckFz-7L41tXGRQirRdmYjyb8zsht5O607DzjdRmPYS18Kk9HREBzEPDTAf3Yrt_uLL2HVP3jrUi6JQri4_72HAgQ9lmjQtAlqxjjgiRz2QIsl0X2TYjuDZlA1dcQ0Y-uUrqcQijvQglT5HwtEhoozmR8WIlBrhRMm16d58MMLipsRe949QeCxkMsvCzPhx_8dsSAxmDx_t_qIuPN1YrWIN-xqj');
+													"
+												></div>
+												<div>
+													<div
+														class="font-semibold text-on-surface"
+													>
+														Novotel Danang Premier
+													</div>
+													<div
+														class="text-caption text-on-surface-variant"
+													>
+														Bạch Đằng, Thạch Thang
+													</div>
+												</div>
+											</div>
+										</td>
+										<td
+											class="py-4 px-lg text-body-md text-on-surface"
+										>
+											Hoàng Thu Hảo
+										</td>
+										<td class="py-4 px-lg">
+											<span
+												class="px-2.5 py-1 rounded-full text-caption bg-primary-fixed text-on-primary-fixed font-medium"
+												>Khách sạn</span
+											>
+										</td>
+										<td
+											class="py-4 px-lg text-body-md text-on-surface-variant"
+										>
+											Hải Châu
+										</td>
+										<td class="py-4 px-lg">
+											<span
+												class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-caption bg-secondary-fixed text-secondary font-medium"
+											>
+												<span
+													class="w-1.5 h-1.5 rounded-full bg-secondary"
+												></span>
+												Hoạt động
+											</span>
+										</td>
+										<td class="py-4 px-lg text-right">
+											<div
+												class="flex items-center justify-end gap-2"
+											>
+												<button
+													class="w-8 h-8 rounded-lg hover:bg-surface-container flex items-center justify-center text-on-surface-variant hover:text-primary transition-all"
+													title="Kiểm duyệt"
+												>
+													<span
+														class="material-symbols-outlined text-[18px]"
+														>verified</span
+													>
+												</button>
+												<button
+													class="w-8 h-8 rounded-lg hover:bg-surface-container flex items-center justify-center text-on-surface-variant hover:text-primary transition-all"
+													title="Chỉnh sửa"
+												>
+													<span
+														class="material-symbols-outlined text-[18px]"
+														>edit</span
+													>
+												</button>
+												<button
+													class="w-8 h-8 rounded-lg hover:bg-surface-container flex items-center justify-center text-on-surface-variant hover:text-error transition-all"
+													title="Tạm ngưng"
+												>
+													<span
+														class="material-symbols-outlined text-[18px]"
+														>block</span
+													>
+												</button>
+											</div>
+										</td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+						<!-- Pagination -->
+						<div
+							class="p-lg flex items-center justify-between border-t border-surface-container bg-surface-container-low/30"
+						>
+							<div class="text-caption text-on-surface-variant">
+								Hiển thị
+								<span class="font-semibold text-on-surface"
+									>1-5</span
+								>
+								trên tổng số
+								<span class="font-semibold text-on-surface"
+									>142</span
+								>
+								cơ sở lưu trú
+							</div>
+							<div class="flex items-center gap-2">
+								<button
+									class="px-3 py-1.5 rounded-lg bg-surface-container text-on-surface-variant opacity-50 cursor-not-allowed text-caption font-medium"
+									disabled=""
+								>
+									Trang trước
+								</button>
+								<button
+									class="px-3 py-1.5 rounded-lg bg-primary text-on-primary text-caption font-medium"
+								>
+									1
+								</button>
+								<button
+									class="px-3 py-1.5 rounded-lg bg-surface-container text-on-surface hover:bg-surface-container-high text-caption font-medium transition-colors"
+								>
+									2
+								</button>
+								<button
+									class="px-3 py-1.5 rounded-lg bg-surface-container text-on-surface hover:bg-surface-container-high text-caption font-medium transition-colors"
+								>
+									3
+								</button>
+								<span
+									class="text-caption text-on-surface-variant px-1"
+									>...</span
+								>
+								<button
+									class="px-3 py-1.5 rounded-lg bg-surface-container text-on-surface hover:bg-surface-container-high text-caption font-medium transition-colors"
+								>
+									29
+								</button>
+								<button
+									class="px-3 py-1.5 rounded-lg bg-surface-container text-on-surface hover:bg-surface-container-high text-caption font-medium transition-colors"
+								>
+									Trang sau
+								</button>
+							</div>
+						</div>
+					</div>
+				</div>
+			</main>
+		</div>
+	</body>
+</html>

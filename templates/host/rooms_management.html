@@ -1,0 +1,1088 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<meta content="width=device-width, initial-scale=1.0" name="viewport" />
+		<style>
+			@layer base {
+				html,
+				body {
+					margin: 0;
+					padding: 0;
+				}
+				body {
+					overscroll-behavior: none;
+				}
+				main > :first-child {
+					margin-top: 0 !important;
+				}
+				main > :last-child {
+					margin-bottom: 0 !important;
+				}
+			}
+			::-webkit-scrollbar {
+				display: none;
+			}
+		</style>
+		<link
+			href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&amp;family=Montserrat:wght@600;700&amp;display=swap"
+			rel="stylesheet"
+		/>
+		<link
+			href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0"
+			rel="stylesheet"
+		/>
+		<link
+			href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+			rel="stylesheet"
+		/>
+		<script src="https://cdn.tailwindcss.com"></script>
+		<script id="tailwind-config">
+			tailwind.config = {
+				darkMode: 'class',
+				theme: {
+					extend: {
+						colors: {
+							'surface-container-high': '#e6e8eb',
+							'tertiary-fixed': '#d9e3f9',
+							surface: '#f7fafc',
+							'on-primary-fixed': '#001b3c',
+							'surface-tint': '#465f87',
+							'on-secondary-container': '#663b00',
+							'on-error-container': '#93000a',
+							'surface-variant': '#e0e3e5',
+							'inverse-primary': '#aec7f5',
+							'surface-container': '#ebeef1',
+							'on-primary': '#ffffff',
+							'primary-fixed-dim': '#aec7f5',
+							'on-tertiary-fixed-variant': '#3d4759',
+							'primary-container': '#002045',
+							'error-container': '#ffdad6',
+							'surface-container-low': '#f1f4f6',
+							tertiary: '#020919',
+							'secondary-fixed': '#ffdcbc',
+							'inverse-surface': '#2d3133',
+							'on-tertiary-fixed': '#121c2c',
+							'on-secondary': '#ffffff',
+							'surface-container-lowest': '#ffffff',
+							background: '#f7fafc',
+							'on-surface': '#181c1e',
+							'surface-container-highest': '#e0e3e5',
+							'surface-dim': '#d7dadd',
+							'on-tertiary-container': '#7e889c',
+							'on-tertiary': '#ffffff',
+							'on-secondary-fixed-variant': '#683d00',
+							'on-background': '#181c1e',
+							secondary: '#895100',
+							'on-error': '#ffffff',
+							'tertiary-container': '#172131',
+							error: '#ba1a1a',
+							'outline-variant': '#c4c6cf',
+							'secondary-container': '#fd9d1a',
+							'on-secondary-fixed': '#2c1700',
+							'surface-bright': '#f7fafc',
+							'tertiary-fixed-dim': '#bdc7dc',
+							'on-primary-fixed-variant': '#2e476e',
+							'inverse-on-surface': '#eef1f4',
+							'primary-fixed': '#d6e3ff',
+							'on-primary-container': '#7089b3',
+							'on-surface-variant': '#44474e',
+							'secondary-fixed-dim': '#ffb86c',
+							outline: '#74777f',
+							primary: '#00091b',
+						},
+						borderRadius: {
+							DEFAULT: '0.125rem',
+							lg: '0.25rem',
+							xl: '0.5rem',
+							full: '0.75rem',
+						},
+						spacing: {
+							xl: '32px',
+							lg: '24px',
+							'2xl': '48px',
+							xs: '4px',
+							'3xl': '64px',
+							sm: '8px',
+							md: '16px',
+							base: '8px',
+						},
+						fontFamily: {
+							'headline-lg': ['Montserrat'],
+							'body-md': ['Inter'],
+							'body-lg': ['Inter'],
+							caption: ['Inter'],
+							'display-lg': ['Montserrat'],
+							'label-md': ['Inter'],
+							'headline-md': ['Montserrat'],
+						},
+						fontSize: {
+							'headline-lg': [
+								'32px',
+								{ lineHeight: '1.3', fontWeight: '700' },
+							],
+							'body-md': [
+								'16px',
+								{ lineHeight: '1.5', fontWeight: '400' },
+							],
+							'body-lg': [
+								'18px',
+								{ lineHeight: '1.6', fontWeight: '400' },
+							],
+							caption: [
+								'12px',
+								{ lineHeight: '1.4', fontWeight: '400' },
+							],
+							'display-lg': [
+								'48px',
+								{
+									lineHeight: '1.2',
+									letterSpacing: '-0.02em',
+									fontWeight: '700',
+								},
+							],
+							'label-md': [
+								'14px',
+								{
+									lineHeight: '1.2',
+									letterSpacing: '0.01em',
+									fontWeight: '600',
+								},
+							],
+							'headline-md': [
+								'24px',
+								{ lineHeight: '1.4', fontWeight: '600' },
+							],
+						},
+					},
+				},
+			};
+		</script>
+	</head>
+	<body class="bg-surface font-body-md text-on-surface">
+		<aside
+			class="fixed left-0 top-0 h-full w-64 bg-surface-container-low z-50 flex flex-col pt-lg pb-lg"
+		>
+			<div
+				class="px-lg mb-xl text-headline-md font-headline-md text-primary flex items-center gap-sm"
+			>
+				<span class="material-symbols-outlined text-[28px]"
+					>travel_explore</span
+				><span>DaNang Travel</span>
+			</div>
+			<nav
+				class="flex-1 px-md flex flex-col gap-xs"
+				data-active-classes="bg-primary-container text-on-primary-container font-semibold"
+			>
+				<a
+					class="flex items-center px-md py-sm rounded-xl text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-all"
+					data-path="bang-dieu-khien"
+					href="#"
+					><span class="material-symbols-outlined mr-md"
+						>dashboard</span
+					>Bảng điều khiển</a
+				><a
+					class="flex items-center px-md py-sm rounded-xl text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-all"
+					data-path="thong-tin-co-so"
+					href="#"
+					><span class="material-symbols-outlined mr-md"
+						>apartment</span
+					>Thông tin cơ sở</a
+				><a
+					class="flex items-center px-md py-sm rounded-xl text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-all"
+					data-path="quan-ly-phong"
+					href="#"
+					><span class="material-symbols-outlined mr-md"
+						>meeting_room</span
+					>Quản lý phòng</a
+				><a
+					class="flex items-center px-md py-sm rounded-xl text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-all"
+					data-path="don-dat-phong"
+					href="#"
+					><span class="material-symbols-outlined mr-md"
+						>book_online</span
+					>Đơn đặt phòng</a
+				><a
+					class="flex items-center px-md py-sm rounded-xl text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-all"
+					data-path="danh-gia"
+					href="#"
+					><span class="material-symbols-outlined mr-md">star</span
+					>Đánh giá</a
+				><a
+					class="flex items-center px-md py-sm rounded-xl text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-all"
+					data-path="thong-ke-bao-cao"
+					href="#"
+					><span class="material-symbols-outlined mr-md"
+						>bar_chart</span
+					>Thống kê &amp; Báo cáo</a
+				><a
+					class="flex items-center px-md py-sm rounded-xl text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-all"
+					data-path="thong-bao"
+					href="#"
+					><span class="material-symbols-outlined mr-md"
+						>notifications</span
+					>Thông báo</a
+				><a
+					class="flex items-center px-md py-sm rounded-xl text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-all"
+					data-path="tai-khoan-ca-nhan"
+					href="#"
+					><span class="material-symbols-outlined mr-md"
+						>account_circle</span
+					>Tài khoản cá nhân</a
+				>
+			</nav>
+		</aside>
+		<div class="pl-64">
+			<header
+				class="fixed top-0 left-64 right-0 h-20 bg-surface/80 backdrop-blur-xl shadow-[0_1px_8px_rgba(0,0,0,0.04)] z-40 flex items-center justify-between px-xl"
+			>
+				<div class="flex items-center gap-md text-on-surface-variant">
+					<span class="material-symbols-outlined">search</span
+					><input
+						class="bg-transparent border-none outline-none text-on-surface placeholder:text-outline text-body-md w-64"
+						placeholder="Tìm kiếm nhanh..."
+						type="text"
+					/>
+				</div>
+				<div class="flex items-center gap-md">
+					<div
+						class="w-8 h-8 rounded-full bg-primary flex items-center justify-center"
+					>
+						<span
+							class="material-symbols-outlined text-on-primary text-[18px]"
+							>person</span
+						>
+					</div>
+				</div>
+			</header>
+			<main class="relative pt-20 bg-surface min-h-screen p-xl">
+				<div class="flex flex-col w-full gap-xl pb-2xl">
+					<!-- Top Header & Actions -->
+					<div
+						class="flex flex-col md:flex-row md:items-center md:justify-between gap-md"
+					>
+						<div>
+							<h1
+								class="font-headline-lg text-headline-lg text-on-surface"
+							>
+								Quản Lý Phòng &amp; Loại Phòng
+							</h1>
+							<p
+								class="font-body-md text-on-surface-variant mt-xs"
+							>
+								Theo dõi trạng thái phòng, điều chỉnh giá linh
+								hoạt và thêm mới không gian lưu trú.
+							</p>
+						</div>
+						<div class="flex items-center gap-md">
+							<button
+								class="flex items-center gap-sm bg-primary text-on-primary font-label-md px-lg py-md rounded-full shadow-sm hover:bg-primary-container transition-all"
+								onclick="openAddRoomModal()"
+							>
+								<span
+									class="material-symbols-outlined text-[20px]"
+									>add</span
+								>
+								<span>Thêm phòng mới</span>
+							</button>
+						</div>
+					</div>
+					<!-- Stats Overview Cards -->
+					<div
+						class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-lg"
+					>
+						<!-- Total Rooms -->
+						<div
+							class="bg-surface-container-lowest rounded-xl p-lg shadow-[0_4px_20px_rgba(0,0,0,0.03)] flex flex-col justify-between"
+						>
+							<div class="flex items-center justify-between">
+								<span
+									class="font-label-md text-on-surface-variant uppercase tracking-wider"
+									>Tổng số phòng</span
+								>
+								<div
+									class="w-10 h-10 rounded-full bg-surface-container flex items-center justify-center text-primary"
+								>
+									<span class="material-symbols-outlined"
+										>apartment</span
+									>
+								</div>
+							</div>
+							<div class="mt-lg">
+								<span
+									class="font-headline-lg text-headline-lg text-on-surface"
+									>32</span
+								>
+								<span
+									class="font-caption text-on-surface-variant ml-sm"
+									>Phòng khả dụng</span
+								>
+							</div>
+						</div>
+						<!-- Available -->
+						<div
+							class="bg-surface-container-lowest rounded-xl p-lg shadow-[0_4px_20px_rgba(0,0,0,0.03)] flex flex-col justify-between"
+						>
+							<div class="flex items-center justify-between">
+								<span
+									class="font-label-md text-on-surface-variant uppercase tracking-wider"
+									>Trống</span
+								>
+								<div
+									class="w-10 h-10 rounded-full bg-emerald-50 flex items-center justify-center text-emerald-600"
+								>
+									<span
+										class="material-symbols-outlined"
+										style="
+											font-variation-settings: 'FILL' 1;
+										"
+										>check_circle</span
+									>
+								</div>
+							</div>
+							<div class="mt-lg">
+								<span
+									class="font-headline-lg text-headline-lg text-emerald-700"
+									>14</span
+								>
+								<span
+									class="font-caption text-emerald-600 ml-sm"
+									>Sẵn sàng đón khách</span
+								>
+							</div>
+						</div>
+						<!-- Occupied -->
+						<div
+							class="bg-surface-container-lowest rounded-xl p-lg shadow-[0_4px_20px_rgba(0,0,0,0.03)] flex flex-col justify-between"
+						>
+							<div class="flex items-center justify-between">
+								<span
+									class="font-label-md text-on-surface-variant uppercase tracking-wider"
+									>Đang ở</span
+								>
+								<div
+									class="w-10 h-10 rounded-full bg-secondary-fixed flex items-center justify-center text-secondary"
+								>
+									<span
+										class="material-symbols-outlined"
+										style="
+											font-variation-settings: 'FILL' 1;
+										"
+										>hotel</span
+									>
+								</div>
+							</div>
+							<div class="mt-lg">
+								<span
+									class="font-headline-lg text-headline-lg text-secondary"
+									>15</span
+								>
+								<span
+									class="font-caption text-on-surface-variant ml-sm"
+									>Đang có khách lưu trú</span
+								>
+							</div>
+						</div>
+						<!-- Maintenance -->
+						<div
+							class="bg-surface-container-lowest rounded-xl p-lg shadow-[0_4px_20px_rgba(0,0,0,0.03)] flex flex-col justify-between"
+						>
+							<div class="flex items-center justify-between">
+								<span
+									class="font-label-md text-on-surface-variant uppercase tracking-wider"
+									>Bảo trì</span
+								>
+								<div
+									class="w-10 h-10 rounded-full bg-error-container flex items-center justify-center text-error"
+								>
+									<span
+										class="material-symbols-outlined"
+										style="
+											font-variation-settings: 'FILL' 1;
+										"
+										>build</span
+									>
+								</div>
+							</div>
+							<div class="mt-lg">
+								<span
+									class="font-headline-lg text-headline-lg text-error"
+									>3</span
+								>
+								<span
+									class="font-caption text-on-surface-variant ml-sm"
+									>Đang sửa chữa</span
+								>
+							</div>
+						</div>
+					</div>
+					<!-- Filter & Search Bar -->
+					<div
+						class="bg-surface-container-lowest rounded-xl p-md shadow-[0_4px_20px_rgba(0,0,0,0.03)] flex flex-col md:flex-row items-center justify-between gap-md"
+					>
+						<div
+							class="flex items-center gap-sm w-full md:w-auto overflow-x-auto pb-2 md:pb-0"
+						>
+							<button
+								class="room-filter-btn px-md py-sm rounded-full bg-primary text-on-primary font-label-md transition-all whitespace-nowrap"
+								onclick="filterRooms('all')"
+							>
+								Tất cả
+							</button>
+							<button
+								class="room-filter-btn px-md py-sm rounded-full bg-surface-container text-on-surface-variant font-label-md hover:bg-surface-container-high transition-all whitespace-nowrap"
+								onclick="filterRooms('Deluxe Ocean View')"
+							>
+								Deluxe Ocean View
+							</button>
+							<button
+								class="room-filter-btn px-md py-sm rounded-full bg-surface-container text-on-surface-variant font-label-md hover:bg-surface-container-high transition-all whitespace-nowrap"
+								onclick="filterRooms('Suite Hoàng Gia')"
+							>
+								Suite Hoàng Gia
+							</button>
+							<button
+								class="room-filter-btn px-md py-sm rounded-full bg-surface-container text-on-surface-variant font-label-md hover:bg-surface-container-high transition-all whitespace-nowrap"
+								onclick="filterRooms('Standard Twin')"
+							>
+								Standard Twin
+							</button>
+							<button
+								class="room-filter-btn px-md py-sm rounded-full bg-surface-container text-on-surface-variant font-label-md hover:bg-surface-container-high transition-all whitespace-nowrap"
+								onclick="filterRooms('Premier Family')"
+							>
+								Premier Family
+							</button>
+						</div>
+						<div
+							class="flex items-center gap-sm bg-surface-container-low px-md py-sm rounded-xl w-full md:w-72"
+						>
+							<span class="material-symbols-outlined text-outline"
+								>search</span
+							>
+							<input
+								class="bg-transparent border-none outline-none text-on-surface text-body-md w-full"
+								id="roomSearchInput"
+								onkeyup="searchRooms()"
+								placeholder="Tìm kiếm theo số phòng..."
+								type="text"
+							/>
+						</div>
+					</div>
+					<!-- Rooms Table Card -->
+					<div
+						class="bg-surface-container-lowest rounded-xl shadow-[0_4px_20px_rgba(0,0,0,0.03)] overflow-hidden"
+					>
+						<div class="overflow-x-auto">
+							<table class="w-full text-left border-collapse">
+								<thead>
+									<tr
+										class="bg-surface-container-low text-on-surface-variant font-label-md"
+									>
+										<th class="py-md px-lg">Số phòng</th>
+										<th class="py-md px-lg">Loại phòng</th>
+										<th class="py-md px-lg">Giá mỗi đêm</th>
+										<th class="py-md px-lg">Trạng thái</th>
+										<th class="py-md px-lg">
+											Tiện nghi chính
+										</th>
+										<th class="py-md px-lg text-right">
+											Hành động
+										</th>
+									</tr>
+								</thead>
+								<tbody
+									class="divide-y divide-surface-container-high text-body-md text-on-surface"
+									id="roomsTableBody"
+								>
+									<!-- Row 1 -->
+									<tr
+										class="hover:bg-surface-container transition-all"
+										data-category="Deluxe Ocean View"
+									>
+										<td
+											class="py-lg px-lg font-semibold flex items-center gap-md"
+										>
+											<div
+												class="w-12 h-12 rounded-lg bg-cover bg-center overflow-hidden flex-shrink-0"
+												data-alt="A modern luxury hotel room with king bed and floor-to-ceiling windows overlooking a turquoise ocean view under bright daylight."
+												style="
+													background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuAqgoRFzHpk2RLAXc0kbVu1EPCA_dczpTe18X0GPaVeXDt5bGd0RI6cTRrcSES4B15V4_ODIBiTvYNyQLkbVELj0NxKbFCs4XmPmxHm0JIaENXoVrwT0dy2_FtODsHnYcuO7Wipa1xoekkCbapfyulYxLrs6Q9Qv-dRE8wsO6EaPRQimR00Q-t-VfZbpfyeTmAS1PInMgJlgS0w602bUQwrXMAjNRhAUwniLCnPm7FRY9CdFvVCxi8D');
+												"
+											></div>
+											<div>
+												<div>Phòng 101</div>
+												<span
+													class="font-caption text-on-surface-variant"
+													>Tầng 1, Hướng Biển</span
+												>
+											</div>
+										</td>
+										<td class="py-lg px-lg">
+											Deluxe Ocean View
+										</td>
+										<td
+											class="py-lg px-lg font-semibold text-primary"
+										>
+											2.500.000 đ
+										</td>
+										<td class="py-lg px-lg">
+											<span
+												class="inline-flex items-center gap-xs px-md py-xs rounded-full text-caption bg-emerald-50 text-emerald-700 font-semibold"
+											>
+												<span
+													class="w-2 h-2 rounded-full bg-emerald-500"
+												></span>
+												Trống
+											</span>
+										</td>
+										<td
+											class="py-lg px-lg text-on-surface-variant text-caption"
+										>
+											Ban công, Bồn tắm, King Bed
+										</td>
+										<td class="py-lg px-lg text-right">
+											<div
+												class="flex items-center justify-end gap-sm"
+											>
+												<button
+													class="p-sm rounded-lg hover:bg-surface-container-high text-on-surface-variant hover:text-primary transition-all"
+													onclick="
+														openEditModal(
+															'Phòng 101',
+															'Deluxe Ocean View',
+															'2500000',
+															'Trống',
+														)
+													"
+													title="Chỉnh sửa"
+												>
+													<span
+														class="material-symbols-outlined text-[20px]"
+														>edit</span
+													>
+												</button>
+												<button
+													class="p-sm rounded-lg hover:bg-error-container text-on-surface-variant hover:text-error transition-all"
+													onclick="
+														deleteRoom('Phòng 101')
+													"
+													title="Xóa phòng"
+												>
+													<span
+														class="material-symbols-outlined text-[20px]"
+														>delete</span
+													>
+												</button>
+											</div>
+										</td>
+									</tr>
+									<!-- Row 2 -->
+									<tr
+										class="hover:bg-surface-container transition-all"
+										data-category="Suite Hoàng Gia"
+									>
+										<td
+											class="py-lg px-lg font-semibold flex items-center gap-md"
+										>
+											<div
+												class="w-12 h-12 rounded-lg bg-cover bg-center overflow-hidden flex-shrink-0"
+												data-alt="An opulent royal suite featuring grand chandeliers, custom velvet sofas, polished marble flooring, and panoramic vistas of the coastline."
+												style="
+													background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuBoAbmiLJN8ZllDvNvQWxxGu8HudyPTBG9pIw2dzaKajPpc9d4YeGOP2zJMGEurpuHpVC7CxzsEYaV-awYOV1-fbv60QxeNYhwC8Ya_Ln8JNIm7LtCFcx1_FRqpzPlf88-wQGyrM00Qm_6q6qTb2xcVrkdtwaM4Bxag5PnRbmJgXgYQI3h1jkema-xAye2SfUsz2sNU_7l5jyO9uCboQ7UjNpagAEzw5M33WAJrZvOYwmQ5tXDlabMD');
+												"
+											></div>
+											<div>
+												<div>Phòng 502</div>
+												<span
+													class="font-caption text-on-surface-variant"
+													>Tầng 5, Penthouse</span
+												>
+											</div>
+										</td>
+										<td class="py-lg px-lg">
+											Suite Hoàng Gia
+										</td>
+										<td
+											class="py-lg px-lg font-semibold text-primary"
+										>
+											6.800.000 đ
+										</td>
+										<td class="py-lg px-lg">
+											<span
+												class="inline-flex items-center gap-xs px-md py-xs rounded-full text-caption bg-secondary-fixed/30 text-secondary font-semibold"
+											>
+												<span
+													class="w-2 h-2 rounded-full bg-secondary"
+												></span>
+												Đang ở
+											</span>
+										</td>
+										<td
+											class="py-lg px-lg text-on-surface-variant text-caption"
+										>
+											Phòng khách riêng, Jacuzzi, Quầy bar
+										</td>
+										<td class="py-lg px-lg text-right">
+											<div
+												class="flex items-center justify-end gap-sm"
+											>
+												<button
+													class="p-sm rounded-lg hover:bg-surface-container-high text-on-surface-variant hover:text-primary transition-all"
+													onclick="
+														openEditModal(
+															'Phòng 502',
+															'Suite Hoàng Gia',
+															'6800000',
+															'Đang ở',
+														)
+													"
+													title="Chỉnh sửa"
+												>
+													<span
+														class="material-symbols-outlined text-[20px]"
+														>edit</span
+													>
+												</button>
+												<button
+													class="p-sm rounded-lg hover:bg-error-container text-on-surface-variant hover:text-error transition-all"
+													onclick="
+														deleteRoom('Phòng 502')
+													"
+													title="Xóa phòng"
+												>
+													<span
+														class="material-symbols-outlined text-[20px]"
+														>delete</span
+													>
+												</button>
+											</div>
+										</td>
+									</tr>
+									<!-- Row 3 -->
+									<tr
+										class="hover:bg-surface-container transition-all"
+										data-category="Standard Twin"
+									>
+										<td
+											class="py-lg px-lg font-semibold flex items-center gap-md"
+										>
+											<div
+												class="w-12 h-12 rounded-lg bg-cover bg-center overflow-hidden flex-shrink-0"
+												data-alt="A clean and cozy standard twin hotel bedroom with twin beds, neat neutral linens, and soft warm reading lights."
+												style="
+													background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuAWvq3hxWiKY6VLYvd9XEr73vy1VPx7iYYQR-uhqP4ZFlsmQ9liGVVkY2R_laG7caTw_0a8RIHa-0GYRIN9HDn1DrV8wuaoUvb6WeHcgUUWNM5fG49cvxBbrLRhgCcpLhO_jIS9TH-t7colgAtvxOS_BxfZ3msXD3EFbu1sNG-NQqsIu4XA9Da0BfhJzOGD45a6z7f7cQTxGLhztimU8lbWeT25gWRUgV8TN298namamiy3IwRCFocT');
+												"
+											></div>
+											<div>
+												<div>Phòng 204</div>
+												<span
+													class="font-caption text-on-surface-variant"
+													>Tầng 2, Hướng Phố</span
+												>
+											</div>
+										</td>
+										<td class="py-lg px-lg">
+											Standard Twin
+										</td>
+										<td
+											class="py-lg px-lg font-semibold text-primary"
+										>
+											1.200.000 đ
+										</td>
+										<td class="py-lg px-lg">
+											<span
+												class="inline-flex items-center gap-xs px-md py-xs rounded-full text-caption bg-emerald-50 text-emerald-700 font-semibold"
+											>
+												<span
+													class="w-2 h-2 rounded-full bg-emerald-500"
+												></span>
+												Trống
+											</span>
+										</td>
+										<td
+											class="py-lg px-lg text-on-surface-variant text-caption"
+										>
+											2 Giường Đơn, Bàn làm việc, Smart TV
+										</td>
+										<td class="py-lg px-lg text-right">
+											<div
+												class="flex items-center justify-end gap-sm"
+											>
+												<button
+													class="p-sm rounded-lg hover:bg-surface-container-high text-on-surface-variant hover:text-primary transition-all"
+													onclick="
+														openEditModal(
+															'Phòng 204',
+															'Standard Twin',
+															'1200000',
+															'Trống',
+														)
+													"
+													title="Chỉnh sửa"
+												>
+													<span
+														class="material-symbols-outlined text-[20px]"
+														>edit</span
+													>
+												</button>
+												<button
+													class="p-sm rounded-lg hover:bg-error-container text-on-surface-variant hover:text-error transition-all"
+													onclick="
+														deleteRoom('Phòng 204')
+													"
+													title="Xóa phòng"
+												>
+													<span
+														class="material-symbols-outlined text-[20px]"
+														>delete</span
+													>
+												</button>
+											</div>
+										</td>
+									</tr>
+									<!-- Row 4 -->
+									<tr
+										class="hover:bg-surface-container transition-all"
+										data-category="Premier Family"
+									>
+										<td
+											class="py-lg px-lg font-semibold flex items-center gap-md"
+										>
+											<div
+												class="w-12 h-12 rounded-lg bg-cover bg-center overflow-hidden flex-shrink-0"
+												data-alt="A spacious family hotel room equipped with one king bed and bunk beds, warm family-friendly interior design, and large windows."
+												style="
+													background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuBzCoMIQHY8IzoohPNOgHO-FjLLhSrsN1RC6fP3PlGkUpp2Kv7Ougy5tfJo95LzPGGqXKJ_vv40A_GQAtlqR3xJBMyX41-QzPsr_PrUVCxMdr7xcNFRDG-8NRR3rBrEz1kxQJn6r8TFPdFmfvuO13qcry8DsMQ67urF1Oa-ZkQB9P8OCkrnm5wsW3ZYdFBhtypHIa2QWHFncpa8i1TopHt5YTKpRwbbPVAK9NILCDo6pFWx1RZuUOhg');
+												"
+											></div>
+											<div>
+												<div>Phòng 308</div>
+												<span
+													class="font-caption text-on-surface-variant"
+													>Tầng 3, Hướng Vườn</span
+												>
+											</div>
+										</td>
+										<td class="py-lg px-lg">
+											Premier Family
+										</td>
+										<td
+											class="py-lg px-lg font-semibold text-primary"
+										>
+											3.400.000 đ
+										</td>
+										<td class="py-lg px-lg">
+											<span
+												class="inline-flex items-center gap-xs px-md py-xs rounded-full text-caption bg-error-container text-error font-semibold"
+											>
+												<span
+													class="w-2 h-2 rounded-full bg-error"
+												></span>
+												Bảo trì
+											</span>
+										</td>
+										<td
+											class="py-lg px-lg text-on-surface-variant text-caption"
+										>
+											1 Giường King + 2 Giường Đơn, Ghế
+											Sofa lớn
+										</td>
+										<td class="py-lg px-lg text-right">
+											<div
+												class="flex items-center justify-end gap-sm"
+											>
+												<button
+													class="p-sm rounded-lg hover:bg-surface-container-high text-on-surface-variant hover:text-primary transition-all"
+													onclick="
+														openEditModal(
+															'Phòng 308',
+															'Premier Family',
+															'3400000',
+															'Bảo trì',
+														)
+													"
+													title="Chỉnh sửa"
+												>
+													<span
+														class="material-symbols-outlined text-[20px]"
+														>edit</span
+													>
+												</button>
+												<button
+													class="p-sm rounded-lg hover:bg-error-container text-on-surface-variant hover:text-error transition-all"
+													onclick="
+														deleteRoom('Phòng 308')
+													"
+													title="Xóa phòng"
+												>
+													<span
+														class="material-symbols-outlined text-[20px]"
+														>delete</span
+													>
+												</button>
+											</div>
+										</td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+						<!-- Pagination Footer -->
+						<div
+							class="flex items-center justify-between p-lg bg-surface-container-low border-t border-surface-container-high text-on-surface-variant text-caption"
+						>
+							<span>Hiển thị 1-4 trong tổng số 32 phòng</span>
+							<div class="flex items-center gap-xs">
+								<button
+									class="px-md py-sm rounded-lg bg-surface-container-lowest text-on-surface disabled:opacity-50"
+								>
+									Trước
+								</button>
+								<button
+									class="px-md py-sm rounded-lg bg-primary text-on-primary"
+								>
+									1
+								</button>
+								<button
+									class="px-md py-sm rounded-lg bg-surface-container-lowest text-on-surface hover:bg-surface-container"
+								>
+									2
+								</button>
+								<button
+									class="px-md py-sm rounded-lg bg-surface-container-lowest text-on-surface hover:bg-surface-container"
+								>
+									3
+								</button>
+								<button
+									class="px-md py-sm rounded-lg bg-surface-container-lowest text-on-surface hover:bg-surface-container"
+								>
+									Tiếp
+								</button>
+							</div>
+						</div>
+					</div>
+					<!-- Modal Add/Edit Room (Hidden by default) -->
+					<div
+						class="fixed inset-0 z-50 bg-inverse-surface/40 backdrop-blur-sm hidden flex items-center justify-center p-md"
+						id="roomModal"
+					>
+						<div
+							class="bg-surface-container-lowest rounded-xl shadow-2xl w-full max-w-lg p-xl relative"
+						>
+							<div
+								class="flex items-center justify-between mb-lg"
+							>
+								<h3
+									class="font-headline-md text-headline-md text-on-surface"
+									id="modalTitle"
+								>
+									Thêm Phòng Mới
+								</h3>
+								<button
+									class="p-sm rounded-lg hover:bg-surface-container text-on-surface-variant"
+									onclick="closeRoomModal()"
+								>
+									<span class="material-symbols-outlined"
+										>close</span
+									>
+								</button>
+							</div>
+							<form
+								class="flex flex-col gap-md"
+								id="roomForm"
+								onsubmit="handleRoomSubmit(event)"
+							>
+								<div>
+									<label
+										class="block font-label-md text-on-surface mb-xs"
+										>Số phòng / Tên phòng</label
+									>
+									<input
+										class="w-full bg-surface-container-lowest border border-outline rounded-xl px-md py-md text-on-surface focus:border-primary outline-none"
+										id="inputRoomNumber"
+										placeholder="VD: Phòng 402"
+										required=""
+										type="text"
+									/>
+								</div>
+								<div>
+									<label
+										class="block font-label-md text-on-surface mb-xs"
+										>Loại phòng</label
+									>
+									<select
+										class="w-full bg-surface-container-lowest border border-outline rounded-xl px-md py-md text-on-surface focus:border-primary outline-none"
+										id="inputRoomType"
+									>
+										<option value="Deluxe Ocean View">
+											Deluxe Ocean View
+										</option>
+										<option value="Suite Hoàng Gia">
+											Suite Hoàng Gia
+										</option>
+										<option value="Standard Twin">
+											Standard Twin
+										</option>
+										<option value="Premier Family">
+											Premier Family
+										</option>
+									</select>
+								</div>
+								<div>
+									<label
+										class="block font-label-md text-on-surface mb-xs"
+										>Giá phòng mỗi đêm (VNĐ)</label
+									>
+									<input
+										class="w-full bg-surface-container-lowest border border-outline rounded-xl px-md py-md text-on-surface focus:border-primary outline-none"
+										id="inputRoomPrice"
+										placeholder="VD: 2500000"
+										required=""
+										type="number"
+									/>
+								</div>
+								<div>
+									<label
+										class="block font-label-md text-on-surface mb-xs"
+										>Trạng thái</label
+									>
+									<select
+										class="w-full bg-surface-container-lowest border border-outline rounded-xl px-md py-md text-on-surface focus:border-primary outline-none"
+										id="inputRoomStatus"
+									>
+										<option value="Trống">Trống</option>
+										<option value="Đang ở">Đang ở</option>
+										<option value="Bảo trì">Bảo trì</option>
+									</select>
+								</div>
+								<div
+									class="flex items-center justify-end gap-md mt-lg"
+								>
+									<button
+										class="px-lg py-md rounded-full bg-surface-container text-on-surface-variant font-label-md hover:bg-surface-container-high transition-all"
+										onclick="closeRoomModal()"
+										type="button"
+									>
+										Hủy
+									</button>
+									<button
+										class="px-lg py-md rounded-full bg-primary text-on-primary font-label-md hover:bg-primary-container transition-all"
+										type="submit"
+									>
+										Lưu thay đổi
+									</button>
+								</div>
+							</form>
+						</div>
+					</div>
+					<script>
+						function filterRooms(category) {
+							const buttons =
+								document.querySelectorAll('.room-filter-btn');
+							buttons.forEach((btn) => {
+								btn.classList.remove(
+									'bg-primary',
+									'text-on-primary',
+								);
+								btn.classList.add(
+									'bg-surface-container',
+									'text-on-surface-variant',
+								);
+								if (
+									btn.textContent.trim() === category ||
+									(category === 'all' &&
+										btn.textContent.trim() === 'Tất cả')
+								) {
+									btn.classList.remove(
+										'bg-surface-container',
+										'text-on-surface-variant',
+									);
+									btn.classList.add(
+										'bg-primary',
+										'text-on-primary',
+									);
+								}
+							});
+
+							const rows =
+								document.querySelectorAll('#roomsTableBody tr');
+							rows.forEach((row) => {
+								const cat = row.getAttribute('data-category');
+								if (category === 'all' || cat === category) {
+									row.style.display = '';
+								} else {
+									row.style.display = 'none';
+								}
+							});
+						}
+
+						function searchRooms() {
+							const input = document
+								.getElementById('roomSearchInput')
+								.value.toLowerCase();
+							const rows =
+								document.querySelectorAll('#roomsTableBody tr');
+							rows.forEach((row) => {
+								const text = row.textContent.toLowerCase();
+								if (text.includes(input)) {
+									row.style.display = '';
+								} else {
+									row.style.display = 'none';
+								}
+							});
+						}
+
+						function openAddRoomModal() {
+							document.getElementById('modalTitle').textContent =
+								'Thêm Phòng Mới';
+							document.getElementById('roomForm').reset();
+							document
+								.getElementById('roomModal')
+								.classList.remove('hidden');
+						}
+
+						function openEditModal(roomNo, type, price, status) {
+							document.getElementById('modalTitle').textContent =
+								'Chỉnh Sửa Thông Tin Phòng';
+							document.getElementById('inputRoomNumber').value =
+								roomNo;
+							document.getElementById('inputRoomType').value =
+								type;
+							document.getElementById('inputRoomPrice').value =
+								price;
+							document.getElementById('inputRoomStatus').value =
+								status;
+							document
+								.getElementById('roomModal')
+								.classList.remove('hidden');
+						}
+
+						function closeRoomModal() {
+							document
+								.getElementById('roomModal')
+								.classList.add('hidden');
+						}
+
+						function deleteRoom(roomNo) {
+							if (
+								confirm(
+									'Bạn có chắc chắn muốn xóa ' +
+										roomNo +
+										' khỏi danh sách quản lý?',
+								)
+							) {
+								alert('Đã xóa thành công ' + roomNo);
+							}
+						}
+
+						function handleRoomSubmit(event) {
+							event.preventDefault();
+							alert('Đã lưu thông tin phòng thành công!');
+							closeRoomModal();
+						}
+					</script>
+				</div>
+			</main>
+		</div>
+	</body>
+</html>

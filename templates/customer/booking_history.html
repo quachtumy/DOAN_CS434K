@@ -1,0 +1,963 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<meta content="width=device-width, initial-scale=1.0" name="viewport" />
+		<style>
+			@layer base {
+				html,
+				body {
+					margin: 0;
+					padding: 0;
+				}
+				body {
+					overscroll-behavior: none;
+				}
+				main > :first-child {
+					margin-top: 0 !important;
+				}
+				main > :last-child {
+					margin-bottom: 0 !important;
+				}
+			}
+			::-webkit-scrollbar {
+				display: none;
+			}
+		</style>
+		<script src="https://cdn.tailwindcss.com"></script>
+		<script id="tailwind-config">
+			tailwind.config = {
+				darkMode: 'class',
+				theme: {
+					extend: {
+						colors: {
+							'on-surface-variant': '#44474e',
+							'secondary-fixed-dim': '#ffb86c',
+							surface: '#f7fafc',
+							'inverse-primary': '#aec7f5',
+							background: '#f7fafc',
+							'inverse-surface': '#2d3133',
+							'tertiary-container': '#172131',
+							'primary-fixed-dim': '#aec7f5',
+							'outline-variant': '#c4c6cf',
+							'on-primary': '#ffffff',
+							'on-tertiary-fixed-variant': '#3d4759',
+							outline: '#74777f',
+							'primary-fixed': '#d6e3ff',
+							'surface-container-high': '#e6e8eb',
+							'error-container': '#ffdad6',
+							'on-tertiary-fixed': '#121c2c',
+							'on-secondary': '#ffffff',
+							'tertiary-fixed': '#d9e3f9',
+							'surface-tint': '#465f87',
+							'surface-variant': '#e0e3e5',
+							'surface-bright': '#f7fafc',
+							'on-error': '#ffffff',
+							'secondary-fixed': '#ffdcbc',
+							'on-error-container': '#93000a',
+							secondary: '#895100',
+							'surface-container-low': '#f1f4f6',
+							error: '#ba1a1a',
+							'inverse-on-surface': '#eef1f4',
+							'on-surface': '#181c1e',
+							'surface-container': '#ebeef1',
+							'tertiary-fixed-dim': '#bdc7dc',
+							'on-tertiary-container': '#7e889c',
+							'surface-container-lowest': '#ffffff',
+							'on-primary-fixed': '#001b3c',
+							'on-secondary-container': '#663b00',
+							'on-secondary-fixed': '#2c1700',
+							'surface-dim': '#d7dadd',
+							'on-primary-fixed-variant': '#2e476e',
+							tertiary: '#020919',
+							'on-tertiary': '#ffffff',
+							'on-background': '#181c1e',
+							'secondary-container': '#fd9d1a',
+							'primary-container': '#002045',
+							'on-secondary-fixed-variant': '#683d00',
+							'on-primary-container': '#7089b3',
+							primary: '#00091b',
+							'surface-container-highest': '#e0e3e5',
+						},
+						borderRadius: {
+							DEFAULT: '0.125rem',
+							lg: '0.25rem',
+							xl: '0.5rem',
+							full: '0.75rem',
+						},
+						spacing: {
+							'3xl': '64px',
+							sm: '8px',
+							xs: '4px',
+							md: '16px',
+							xl: '32px',
+							base: '8px',
+							'2xl': '48px',
+							lg: '24px',
+						},
+						fontFamily: {
+							'body-lg': ['Inter'],
+							'display-lg': ['Montserrat'],
+							'body-md': ['Inter'],
+							'headline-md': ['Montserrat'],
+							'label-md': ['Inter'],
+							'headline-lg': ['Montserrat'],
+							caption: ['Inter'],
+						},
+						fontSize: {
+							'body-lg': [
+								'18px',
+								{ lineHeight: '1.6', fontWeight: '400' },
+							],
+							'display-lg': [
+								'48px',
+								{
+									lineHeight: '1.2',
+									letterSpacing: '-0.02em',
+									fontWeight: '700',
+								},
+							],
+							'body-md': [
+								'16px',
+								{ lineHeight: '1.5', fontWeight: '400' },
+							],
+							'headline-md': [
+								'24px',
+								{ lineHeight: '1.4', fontWeight: '600' },
+							],
+							'label-md': [
+								'14px',
+								{
+									lineHeight: '1.2',
+									letterSpacing: '0.01em',
+									fontWeight: '600',
+								},
+							],
+							'headline-lg': [
+								'32px',
+								{ lineHeight: '1.3', fontWeight: '700' },
+							],
+							caption: [
+								'12px',
+								{ lineHeight: '1.4', fontWeight: '400' },
+							],
+						},
+					},
+				},
+			};
+		</script>
+		<link
+			href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+			rel="stylesheet"
+		/>
+		<link
+			href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&amp;family=Montserrat:wght@100..900&amp;display=swap"
+			rel="stylesheet"
+		/>
+	</head>
+	<body class="bg-surface font-body-md text-on-surface">
+		<header
+			class="fixed top-0 w-full z-50 bg-surface/80 backdrop-blur-xl shadow-[0_1px_8px_rgba(0,0,0,0.04)]"
+		>
+			<div
+				class="h-16 max-w-7xl mx-auto px-6 lg:px-12 flex items-center justify-between"
+			>
+				<div class="flex items-center gap-xl">
+					<span class="text-headline-md text-primary font-bold"
+						>DaNang Travel</span
+					>
+					<nav
+						class="hidden md:flex items-center gap-lg"
+						data-active-classes="bg-primary-container text-on-primary-container font-bold rounded-lg px-3 py-1.5"
+					>
+						<a
+							class="text-label-md text-on-surface-variant hover:text-on-surface transition-colors"
+							data-path="trang-chu"
+							href="#"
+							>Trang chủ</a
+						><a
+							class="text-label-md text-on-surface-variant hover:text-on-surface transition-colors"
+							data-path="kham-pha-va-tim-kiem"
+							href="#"
+							>Khám phá &amp; Tìm kiếm</a
+						><a
+							class="text-label-md text-on-surface-variant hover:text-on-surface transition-colors"
+							data-path="danh-sach-yeu-thich"
+							href="#"
+							>Danh sách yêu thích</a
+						><a
+							class="text-label-md text-on-surface-variant hover:text-on-surface transition-colors"
+							data-path="don-dat-phong"
+							href="#"
+							>Đơn đặt phòng</a
+						><a
+							class="text-label-md text-on-surface-variant hover:text-on-surface transition-colors"
+							data-path="thong-bao"
+							href="#"
+							>Thông báo</a
+						>
+					</nav>
+				</div>
+				<div class="flex items-center gap-md">
+					<div
+						class="w-8 h-8 rounded-full bg-primary flex items-center justify-center"
+					>
+						<span
+							class="material-symbols-outlined text-on-primary text-[18px]"
+							>person</span
+						>
+					</div>
+				</div>
+			</div>
+		</header>
+		<main class="w-full pt-16 bg-surface">
+			<div
+				class="flex flex-col w-full max-w-7xl mx-auto px-6 lg:px-12 py-12"
+			>
+				<!-- Top Section: Header & Quick Stats -->
+				<div
+					class="flex flex-col md:flex-row md:items-end justify-between gap-xl mb-12"
+				>
+					<div>
+						<div
+							class="text-caption text-secondary uppercase tracking-wider mb-2"
+						>
+							Quản lý tài khoản
+						</div>
+						<h1
+							class="font-headline-lg text-headline-lg text-on-surface"
+						>
+							Lịch sử đặt phòng &amp; Hủy phòng
+						</h1>
+						<p class="text-body-md text-on-surface-variant mt-1">
+							Theo dõi toàn bộ lịch trình lưu trú của bạn tại Đà
+							Nẵng, quản lý yêu cầu hủy và xem lại hóa đơn.
+						</p>
+					</div>
+					<div class="flex items-center gap-md">
+						<div
+							class="bg-surface-container-lowest p-4 rounded-xl shadow-sm flex items-center gap-md"
+						>
+							<div
+								class="w-10 h-10 rounded-full bg-primary-fixed flex items-center justify-center text-on-primary-fixed"
+							>
+								<span class="material-symbols-outlined"
+									>hotel</span
+								>
+							</div>
+							<div>
+								<div
+									class="text-caption text-on-surface-variant"
+								>
+									Tổng số chuyến
+								</div>
+								<div
+									class="text-headline-md text-on-surface font-bold"
+								>
+									8
+								</div>
+							</div>
+						</div>
+						<div
+							class="bg-surface-container-lowest p-4 rounded-xl shadow-sm flex items-center gap-md"
+						>
+							<div
+								class="w-10 h-10 rounded-full bg-secondary-fixed flex items-center justify-center text-on-secondary-fixed"
+							>
+								<span class="material-symbols-outlined"
+									>payments</span
+								>
+							</div>
+							<div>
+								<div
+									class="text-caption text-on-surface-variant"
+								>
+									Đã chi tiêu
+								</div>
+								<div
+									class="text-headline-md text-on-surface font-bold"
+								>
+									18.5M đ
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<!-- Filter & Search Toolbar -->
+				<div
+					class="bg-surface-container-lowest p-6 rounded-xl shadow-sm mb-8 flex flex-col lg:flex-row items-center justify-between gap-md"
+				>
+					<div
+						class="flex flex-wrap items-center gap-sm w-full lg:w-auto"
+					>
+						<button
+							class="px-4 py-2 rounded-full bg-primary text-on-primary text-label-md transition-all"
+						>
+							Tất cả đơn (8)
+						</button>
+						<button
+							class="px-4 py-2 rounded-full bg-surface-container text-on-surface-variant hover:text-on-surface text-label-md transition-all"
+						>
+							Đã xác nhận (2)
+						</button>
+						<button
+							class="px-4 py-2 rounded-full bg-surface-container text-on-surface-variant hover:text-on-surface text-label-md transition-all"
+						>
+							Đã hoàn thành (5)
+						</button>
+						<button
+							class="px-4 py-2 rounded-full bg-surface-container text-on-surface-variant hover:text-on-surface text-label-md transition-all"
+						>
+							Đã hủy (1)
+						</button>
+					</div>
+					<div class="relative w-full lg:w-80">
+						<span
+							class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-outline"
+							>search</span
+						>
+						<input
+							class="w-full pl-10 pr-4 py-2.5 bg-surface-container-lowest border border-outline rounded-lg text-body-md text-on-surface focus:outline-none focus:border-primary transition-colors"
+							placeholder="Tìm theo mã đặt phòng, tên khách sạn..."
+							type="text"
+						/>
+					</div>
+				</div>
+				<!-- Booking List Grid / Stack -->
+				<div class="flex flex-col gap-lg">
+					<!-- Item 1: Confirmed -->
+					<div
+						class="bg-surface-container-lowest rounded-xl shadow-sm p-6 lg:p-8 flex flex-col lg:flex-row items-start lg:items-center justify-between gap-xl transition-all hover:shadow-md"
+					>
+						<div
+							class="flex flex-col sm:flex-row items-start sm:items-center gap-lg w-full lg:w-auto"
+						>
+							<div
+								class="w-24 h-24 rounded-xl bg-cover bg-center shrink-0"
+								data-alt="Luxurious beachfront resort hotel in Da Nang with modern architecture, glowing warm lights at twilight, pristine white sand beach, and crystal clear ocean waves."
+								style="
+									background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuB5U5WnxvJdQsiJWaLj32V_6yPE5Nh8JUE38398desj7jnInZdEdTc54DnISQdnehlf6q6RfFpUD6pzPPZgXuzt19CHq2BrXkmHMXF-J5XzPMNRHxojBdBcQMKtl4Nv9NIuF3NfQqSriX_Ti2l-egVILX79Os1cq-j6mibBHay-7mVlAKvI2UB0vpdVz9ECk69pU67M2N_NHqThA2sY4iFVJSfSGHm9L_0CBAXqn4ma3xSWaFZYnihk');
+								"
+							></div>
+							<div>
+								<div class="flex items-center gap-md mb-1">
+									<span
+										class="text-caption font-mono text-outline"
+										>#DNS-98421</span
+									>
+									<span
+										class="px-2.5 py-0.5 rounded-full text-caption font-bold bg-primary-fixed text-on-primary-fixed"
+										>Đã xác nhận</span
+									>
+								</div>
+								<h3
+									class="font-headline-md text-headline-md text-on-surface mb-2"
+								>
+									InterContinental Danang Sun Peninsula Resort
+								</h3>
+								<div
+									class="flex flex-wrap items-center gap-md text-body-md text-on-surface-variant"
+								>
+									<span class="flex items-center gap-xs"
+										><span
+											class="material-symbols-outlined text-[18px]"
+											>calendar_today</span
+										>
+										12/10/2024 - 15/10/2024</span
+									>
+									<span class="flex items-center gap-xs"
+										><span
+											class="material-symbols-outlined text-[18px]"
+											>room_service</span
+										>
+										1 Phòng King • 3 Đêm</span
+									>
+								</div>
+							</div>
+						</div>
+						<div
+							class="flex flex-col sm:flex-row items-stretch sm:items-center gap-md w-full lg:w-auto justify-between lg:justify-end border-t lg:border-t-0 pt-4 lg:pt-0 border-surface-container"
+						>
+							<div class="text-left lg:text-right">
+								<div
+									class="text-caption text-on-surface-variant"
+								>
+									Tổng thanh toán
+								</div>
+								<div
+									class="text-headline-md text-primary font-bold"
+								>
+									8.450.000 đ
+								</div>
+							</div>
+							<div class="flex items-center gap-sm">
+								<button
+									class="px-4 py-2.5 rounded-lg border border-outline text-on-surface text-label-md hover:bg-surface-container transition-colors"
+									onclick="openDetailModal('#DNS-98421')"
+								>
+									Chi tiết
+								</button>
+								<button
+									class="px-4 py-2.5 rounded-lg bg-error-container text-on-error-container text-label-md hover:opacity-90 transition-opacity"
+									onclick="openCancelModal('#DNS-98421')"
+								>
+									Yêu cầu hủy phòng
+								</button>
+							</div>
+						</div>
+					</div>
+					<!-- Item 2: Confirmed -->
+					<div
+						class="bg-surface-container-lowest rounded-xl shadow-sm p-6 lg:p-8 flex flex-col lg:flex-row items-start lg:items-center justify-between gap-xl transition-all hover:shadow-md"
+					>
+						<div
+							class="flex flex-col sm:flex-row items-start sm:items-center gap-lg w-full lg:w-auto"
+						>
+							<div
+								class="w-24 h-24 rounded-xl bg-cover bg-center shrink-0"
+								data-alt="Boutique urban hotel in Da Nang city center with stylish minimalist facade, lush green vertical garden, and glowing inviting lobby entrance."
+								style="
+									background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuCYv6rr6OuWSPb-vGPb4hZM7NqchNTpNLo_aB-UDwxdZSnnEPjaEAPIMQuMnG1zYVvfOgRoxyeAohJ3RkE4m4Ae-1OJakPchSPIAyIGVZWsrg6YhgB4Qk-004hybaIOLXFWuWsqMKMq8tQIDszxopmB9mSsbrbJIXHHDQG5THCcTSnOh58lCLwGlrBt0hQDBANNtjEeORab96EN15BYGxe6SibcJvwYxLi8ILOcUhKz6qQ2nSQDKKbJ');
+								"
+							></div>
+							<div>
+								<div class="flex items-center gap-md mb-1">
+									<span
+										class="text-caption font-mono text-outline"
+										>#DNS-98104</span
+									>
+									<span
+										class="px-2.5 py-0.5 rounded-full text-caption font-bold bg-primary-fixed text-on-primary-fixed"
+										>Đã xác nhận</span
+									>
+								</div>
+								<h3
+									class="font-headline-md text-headline-md text-on-surface mb-2"
+								>
+									A La Carte Da Nang Beach
+								</h3>
+								<div
+									class="flex flex-wrap items-center gap-md text-body-md text-on-surface-variant"
+								>
+									<span class="flex items-center gap-xs"
+										><span
+											class="material-symbols-outlined text-[18px]"
+											>calendar_today</span
+										>
+										20/11/2024 - 22/11/2024</span
+									>
+									<span class="flex items-center gap-xs"
+										><span
+											class="material-symbols-outlined text-[18px]"
+											>room_service</span
+										>
+										1 Phòng Deluxe • 2 Đêm</span
+									>
+								</div>
+							</div>
+						</div>
+						<div
+							class="flex flex-col sm:flex-row items-stretch sm:items-center gap-md w-full lg:w-auto justify-between lg:justify-end border-t lg:border-t-0 pt-4 lg:pt-0 border-surface-container"
+						>
+							<div class="text-left lg:text-right">
+								<div
+									class="text-caption text-on-surface-variant"
+								>
+									Tổng thanh toán
+								</div>
+								<div
+									class="text-headline-md text-primary font-bold"
+								>
+									3.200.000 đ
+								</div>
+							</div>
+							<div class="flex items-center gap-sm">
+								<button
+									class="px-4 py-2.5 rounded-lg border border-outline text-on-surface text-label-md hover:bg-surface-container transition-colors"
+									onclick="openDetailModal('#DNS-98104')"
+								>
+									Chi tiết
+								</button>
+								<button
+									class="px-4 py-2.5 rounded-lg bg-error-container text-on-error-container text-label-md hover:opacity-90 transition-opacity"
+									onclick="openCancelModal('#DNS-98104')"
+								>
+									Yêu cầu hủy phòng
+								</button>
+							</div>
+						</div>
+					</div>
+					<!-- Item 3: Completed -->
+					<div
+						class="bg-surface-container-lowest rounded-xl shadow-sm p-6 lg:p-8 flex flex-col lg:flex-row items-start lg:items-center justify-between gap-xl transition-all hover:shadow-md opacity-90"
+					>
+						<div
+							class="flex flex-col sm:flex-row items-start sm:items-center gap-lg w-full lg:w-auto"
+						>
+							<div
+								class="w-24 h-24 rounded-xl bg-cover bg-center shrink-0"
+								data-alt="Modern luxury hotel overlooking Da Nang Dragon Bridge at night, with brilliant colorful lighting reflections on the Han River."
+								style="
+									background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDbj98mAlewcElAqVVV0bMQUn7tgsPZKfMZbQ6a10r22MHYkBZBjL3oiaRFyCtXe4ZH0vtjGmIRTUBNQBPFflxueZ0qpDuDxbe8LTmG-khYuzAs12rCQAZ8qp2VNqoIScJra0IlHWL8AK9AAJH89rLGqzWuU7jgB5TKjNgV40j0ii4C01ZJcqyQTf1YL_C_6_iF15A0gIkkvFcGQO9hLKWAMpeFcpTqMVSSSZ4VsDurRvtZ6cu1om2B');
+								"
+							></div>
+							<div>
+								<div class="flex items-center gap-md mb-1">
+									<span
+										class="text-caption font-mono text-outline"
+										>#DNS-97552</span
+									>
+									<span
+										class="px-2.5 py-0.5 rounded-full text-caption font-bold bg-surface-container-high text-on-surface-variant"
+										>Đã hoàn thành</span
+									>
+								</div>
+								<h3
+									class="font-headline-md text-headline-md text-on-surface mb-2"
+								>
+									Novotel Danang Premier Han River
+								</h3>
+								<div
+									class="flex flex-wrap items-center gap-md text-body-md text-on-surface-variant"
+								>
+									<span class="flex items-center gap-xs"
+										><span
+											class="material-symbols-outlined text-[18px]"
+											>calendar_today</span
+										>
+										10/08/2024 - 13/08/2024</span
+									>
+									<span class="flex items-center gap-xs"
+										><span
+											class="material-symbols-outlined text-[18px]"
+											>room_service</span
+										>
+										1 Phòng Executive • 3 Đêm</span
+									>
+								</div>
+							</div>
+						</div>
+						<div
+							class="flex flex-col sm:flex-row items-stretch sm:items-center gap-md w-full lg:w-auto justify-between lg:justify-end border-t lg:border-t-0 pt-4 lg:pt-0 border-surface-container"
+						>
+							<div class="text-left lg:text-right">
+								<div
+									class="text-caption text-on-surface-variant"
+								>
+									Tổng thanh toán
+								</div>
+								<div
+									class="text-headline-md text-on-surface font-bold"
+								>
+									5.800.000 đ
+								</div>
+							</div>
+							<div class="flex items-center gap-sm">
+								<button
+									class="px-4 py-2.5 rounded-lg border border-outline text-on-surface text-label-md hover:bg-surface-container transition-colors"
+									onclick="openDetailModal('#DNS-97552')"
+								>
+									Chi tiết
+								</button>
+								<button
+									class="px-4 py-2.5 rounded-lg bg-surface-container text-on-surface text-label-md hover:bg-surface-container-high transition-colors"
+								>
+									Đánh giá
+								</button>
+							</div>
+						</div>
+					</div>
+					<!-- Item 4: Cancelled -->
+					<div
+						class="bg-surface-container-lowest rounded-xl shadow-sm p-6 lg:p-8 flex flex-col lg:flex-row items-start lg:items-center justify-between gap-xl transition-all hover:shadow-md opacity-75"
+					>
+						<div
+							class="flex flex-col sm:flex-row items-start sm:items-center gap-lg w-full lg:w-auto"
+						>
+							<div
+								class="w-24 h-24 rounded-xl bg-cover bg-center shrink-0 grayscale"
+								data-alt="Traditional resort setting near Da Nang marble mountains surrounded by tranquil tropical foliage and stone pathways."
+								style="
+									background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuBfmIvTEBIq-tW5ZRgcV-PpbTgURg8TTKUwEZG8fvQEF-mKm3PnUyNJQ6SMP9F3I2PuNbR0hjlwYmF86L4YbcfCpMt1I_LrHJN5vJZDaXpYWQS-e8SSFyY9IRnvAzutiFqZatvqXxMyul7vVP97rX2IaAvQ11c2mOYKfd7Iob9J4R2DoSt3hJ9V0-oJgjjjfL9z4q3Oz-Xqlnui81qggpUuTYPNEZ6Kftr7UHA7ca5GXZ47Yv9JiKQg');
+								"
+							></div>
+							<div>
+								<div class="flex items-center gap-md mb-1">
+									<span
+										class="text-caption font-mono text-outline"
+										>#DNS-95112</span
+									>
+									<span
+										class="px-2.5 py-0.5 rounded-full text-caption font-bold bg-error-container text-on-error-container"
+										>Đã hủy</span
+									>
+								</div>
+								<h3
+									class="font-headline-md text-headline-md text-on-surface mb-2"
+								>
+									Hyatt Regency Danang Resort and Spa
+								</h3>
+								<div
+									class="flex flex-wrap items-center gap-md text-body-md text-on-surface-variant"
+								>
+									<span class="flex items-center gap-xs"
+										><span
+											class="material-symbols-outlined text-[18px]"
+											>calendar_today</span
+										>
+										01/07/2024 - 04/07/2024</span
+									>
+									<span class="flex items-center gap-xs"
+										><span
+											class="material-symbols-outlined text-[18px]"
+											>room_service</span
+										>
+										1 Phòng Ocean View • 3 Đêm</span
+									>
+								</div>
+							</div>
+						</div>
+						<div
+							class="flex flex-col sm:flex-row items-stretch sm:items-center gap-md w-full lg:w-auto justify-between lg:justify-end border-t lg:border-t-0 pt-4 lg:pt-0 border-surface-container"
+						>
+							<div class="text-left lg:text-right">
+								<div
+									class="text-caption text-on-surface-variant"
+								>
+									Hoàn tiền
+								</div>
+								<div
+									class="text-headline-md text-on-surface-variant font-bold"
+								>
+									Đã hoàn 100%
+								</div>
+							</div>
+							<div class="flex items-center gap-sm">
+								<button
+									class="px-4 py-2.5 rounded-lg border border-outline text-on-surface text-label-md hover:bg-surface-container transition-colors"
+									onclick="openDetailModal('#DNS-95112')"
+								>
+									Chi tiết
+								</button>
+							</div>
+						</div>
+					</div>
+				</div>
+				<!-- Pagination -->
+				<div
+					class="flex items-center justify-between mt-12 pt-6 border-t border-surface-container-high"
+				>
+					<div class="text-caption text-on-surface-variant">
+						Hiển thị 1-4 trên tổng số 8 đơn đặt phòng
+					</div>
+					<div class="flex items-center gap-sm">
+						<button
+							class="w-10 h-10 rounded-lg bg-surface-container flex items-center justify-center text-on-surface-variant hover:bg-surface-container-high transition-colors"
+						>
+							<span class="material-symbols-outlined"
+								>chevron_left</span
+							>
+						</button>
+						<button
+							class="w-10 h-10 rounded-lg bg-primary text-on-primary font-bold text-label-md flex items-center justify-center"
+						>
+							1
+						</button>
+						<button
+							class="w-10 h-10 rounded-lg bg-surface-container text-on-surface-variant hover:bg-surface-container-high text-label-md flex items-center justify-center"
+						>
+							2
+						</button>
+						<button
+							class="w-10 h-10 rounded-lg bg-surface-container flex items-center justify-center text-on-surface-variant hover:bg-surface-container-high transition-colors"
+						>
+							<span class="material-symbols-outlined"
+								>chevron_right</span
+							>
+						</button>
+					</div>
+				</div>
+				<!-- Cancellation Modal Template (Hidden by default) -->
+				<div
+					class="fixed inset-0 z-50 bg-inverse-surface/40 backdrop-blur-sm hidden items-center justify-center p-4"
+					id="cancelModal"
+				>
+					<div
+						class="bg-surface-container-lowest w-full max-w-lg rounded-2xl shadow-xl p-8 transform transition-transform"
+					>
+						<div class="flex items-center justify-between mb-6">
+							<h3
+								class="font-headline-md text-headline-md text-on-surface"
+							>
+								Yêu cầu hủy phòng
+							</h3>
+							<button
+								class="w-8 h-8 rounded-full bg-surface-container flex items-center justify-center text-on-surface hover:bg-surface-container-high"
+								onclick="closeCancelModal()"
+							>
+								<span
+									class="material-symbols-outlined text-[18px]"
+									>close</span
+								>
+							</button>
+						</div>
+						<p class="text-body-md text-on-surface-variant mb-6">
+							Bạn đang yêu cầu hủy đơn đặt phòng
+							<span
+								class="font-mono font-bold text-on-surface"
+								id="modalBookingCode"
+								>#DNS-98421</span
+							>. Vui lòng cho chúng tôi biết lý do hủy để được hỗ
+							trợ hoàn tiền theo chính sách.
+						</p>
+						<div class="flex flex-col gap-md mb-6">
+							<label
+								class="flex items-center gap-md p-3 rounded-lg border border-outline/50 cursor-pointer hover:bg-surface-container"
+							>
+								<input
+									checked=""
+									class="accent-primary"
+									name="cancelReason"
+									type="radio"
+								/>
+								<span class="text-body-md text-on-surface"
+									>Thay đổi lịch trình chuyến đi</span
+								>
+							</label>
+							<label
+								class="flex items-center gap-md p-3 rounded-lg border border-outline/50 cursor-pointer hover:bg-surface-container"
+							>
+								<input
+									class="accent-primary"
+									name="cancelReason"
+									type="radio"
+								/>
+								<span class="text-body-md text-on-surface"
+									>Tìm được khách sạn khác phù hợp hơn</span
+								>
+							</label>
+							<label
+								class="flex items-center gap-md p-3 rounded-lg border border-outline/50 cursor-pointer hover:bg-surface-container"
+							>
+								<input
+									class="accent-primary"
+									name="cancelReason"
+									type="radio"
+								/>
+								<span class="text-body-md text-on-surface"
+									>Lý do cá nhân / Sức khỏe</span
+								>
+							</label>
+						</div>
+						<div class="flex items-center justify-end gap-md">
+							<button
+								class="px-5 py-2.5 rounded-lg border border-outline text-on-surface text-label-md hover:bg-surface-container"
+								onclick="closeCancelModal()"
+							>
+								Đóng
+							</button>
+							<button
+								class="px-5 py-2.5 rounded-lg bg-error text-on-error text-label-md hover:opacity-90"
+								onclick="submitCancellation()"
+							>
+								Xác nhận hủy phòng
+							</button>
+						</div>
+					</div>
+				</div>
+				<!-- Detail Modal Template (Hidden by default) -->
+				<div
+					class="fixed inset-0 z-50 bg-inverse-surface/40 backdrop-blur-sm hidden items-center justify-center p-4"
+					id="detailModal"
+				>
+					<div
+						class="bg-surface-container-lowest w-full max-w-2xl rounded-2xl shadow-xl p-8 transform transition-transform max-h-[921px] overflow-y-auto"
+					>
+						<div class="flex items-center justify-between mb-6">
+							<div>
+								<span
+									class="text-caption font-mono text-outline"
+									id="detailCode"
+									>#DNS-98421</span
+								>
+								<h3
+									class="font-headline-md text-headline-md text-on-surface"
+								>
+									Chi tiết đơn đặt phòng
+								</h3>
+							</div>
+							<button
+								class="w-8 h-8 rounded-full bg-surface-container flex items-center justify-center text-on-surface hover:bg-surface-container-high"
+								onclick="closeDetailModal()"
+							>
+								<span
+									class="material-symbols-outlined text-[18px]"
+									>close</span
+								>
+							</button>
+						</div>
+						<div class="flex flex-col gap-lg">
+							<div
+								class="p-4 bg-surface-container rounded-xl flex items-center justify-between"
+							>
+								<div>
+									<div
+										class="text-caption text-on-surface-variant"
+									>
+										Trạng thái đơn
+									</div>
+									<div
+										class="text-headline-md text-primary font-bold"
+									>
+										Đã xác nhận thanh toán
+									</div>
+								</div>
+								<span
+									class="material-symbols-outlined text-primary text-[32px]"
+									>verified</span
+								>
+							</div>
+							<div>
+								<div
+									class="text-label-md text-on-surface-variant mb-2 uppercase tracking-wider"
+								>
+									Thông tin khách sạn
+								</div>
+								<div
+									class="text-body-lg text-on-surface font-bold"
+								>
+									InterContinental Danang Sun Peninsula Resort
+								</div>
+								<div
+									class="text-body-md text-on-surface-variant"
+								>
+									Bãi Bắc, Thọ Quang, Sơn Trà, Đà Nẵng
+								</div>
+							</div>
+							<div class="grid grid-cols-2 gap-md">
+								<div
+									class="p-4 bg-surface-container-low rounded-xl"
+								>
+									<div
+										class="text-caption text-on-surface-variant"
+									>
+										Nhận phòng
+									</div>
+									<div
+										class="text-body-md font-bold text-on-surface"
+									>
+										12/10/2024 (Từ 14:00)
+									</div>
+								</div>
+								<div
+									class="p-4 bg-surface-container-low rounded-xl"
+								>
+									<div
+										class="text-caption text-on-surface-variant"
+									>
+										Trả phòng
+									</div>
+									<div
+										class="text-body-md font-bold text-on-surface"
+									>
+										15/10/2024 (Trước 12:00)
+									</div>
+								</div>
+							</div>
+							<div>
+								<div
+									class="text-label-md text-on-surface-variant mb-2 uppercase tracking-wider"
+								>
+									Chi tiết thanh toán
+								</div>
+								<div
+									class="flex justify-between py-2 border-b border-surface-container"
+								>
+									<span
+										class="text-body-md text-on-surface-variant"
+										>Giá phòng (3 đêm)</span
+									>
+									<span class="text-body-md text-on-surface"
+										>7.500.000 đ</span
+									>
+								</div>
+								<div
+									class="flex justify-between py-2 border-b border-surface-container"
+								>
+									<span
+										class="text-body-md text-on-surface-variant"
+										>Thuế &amp; Phí dịch vụ (10%)</span
+									>
+									<span class="text-body-md text-on-surface"
+										>950.000 đ</span
+									>
+								</div>
+								<div class="flex justify-between py-3">
+									<span class="text-label-md text-on-surface"
+										>Tổng cộng</span
+									>
+									<span
+										class="text-headline-md text-primary font-bold"
+										>8.450.000 đ</span
+									>
+								</div>
+							</div>
+						</div>
+						<div
+							class="flex items-center justify-end gap-md mt-8 pt-4 border-t border-surface-container"
+						>
+							<button
+								class="px-6 py-2.5 rounded-lg bg-primary text-on-primary text-label-md"
+								onclick="closeDetailModal()"
+							>
+								Đóng
+							</button>
+						</div>
+					</div>
+				</div>
+				<script>
+					function openCancelModal(code) {
+						document.getElementById('modalBookingCode').innerText =
+							code;
+						const modal = document.getElementById('cancelModal');
+						modal.classList.remove('hidden');
+						modal.classList.add('flex');
+					}
+
+					function closeCancelModal() {
+						const modal = document.getElementById('cancelModal');
+						modal.classList.remove('flex');
+						modal.classList.add('hidden');
+					}
+
+					function submitCancellation() {
+						alert(
+							'Yêu cầu hủy phòng đã được gửi thành công. Chúng tôi sẽ xử lý và hoàn tiền trong 3-5 ngày làm việc.',
+						);
+						closeCancelModal();
+					}
+
+					function openDetailModal(code) {
+						document.getElementById('detailCode').innerText = code;
+						const modal = document.getElementById('detailModal');
+						modal.classList.remove('hidden');
+						modal.classList.add('flex');
+					}
+
+					function closeDetailModal() {
+						const modal = document.getElementById('detailModal');
+						modal.classList.remove('flex');
+						modal.classList.add('hidden');
+					}
+				</script>
+			</div>
+		</main>
+		<footer class="w-full bg-surface-container-low py-12">
+			<div
+				class="max-w-7xl mx-auto px-6 lg:px-12 text-center text-on-surface-variant text-caption"
+			>
+				© 2026 DaNang Travel. All rights reserved.
+			</div>
+		</footer>
+	</body>
+</html>

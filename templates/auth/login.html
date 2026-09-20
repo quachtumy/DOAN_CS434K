@@ -1,0 +1,409 @@
+<!doctype html>
+<html lang="en" style="">
+	<head>
+		<meta charset="utf-8" />
+		<meta content="width=device-width, initial-scale=1.0" name="viewport" />
+		<style>
+			@layer base {
+				html,
+				body {
+					margin: 0;
+					padding: 0;
+				}
+				body {
+					overscroll-behavior: none;
+				}
+				main > :first-child {
+					margin-top: 0 !important;
+				}
+				main > :last-child {
+					margin-bottom: 0 !important;
+				}
+			}
+			::-webkit-scrollbar {
+				display: none;
+			}
+		</style>
+		<script src="https://cdn.tailwindcss.com"></script>
+		<script id="tailwind-config">
+			tailwind.config = {
+				darkMode: 'class',
+				theme: {
+					extend: {
+						colors: {
+							'tertiary-fixed': '#d9e3f9',
+							'inverse-surface': '#2d3133',
+							'on-secondary-container': '#663b00',
+							'surface-container-high': '#e6e8eb',
+							'secondary-container': '#fd9d1a',
+							'tertiary-container': '#172131',
+							'inverse-on-surface': '#eef1f4',
+							'surface-bright': '#f7fafc',
+							'on-secondary-fixed-variant': '#683d00',
+							'on-tertiary-container': '#7e889c',
+							'surface-container': '#ebeef1',
+							tertiary: '#020919',
+							error: '#ba1a1a',
+							'surface-container-lowest': '#ffffff',
+							'primary-container': '#002045',
+							'on-primary-fixed-variant': '#2e476e',
+							secondary: '#895100',
+							'surface-container-highest': '#e0e3e5',
+							'error-container': '#ffdad6',
+							'on-secondary-fixed': '#2c1700',
+							'on-tertiary-fixed-variant': '#3d4759',
+							'surface-tint': '#465f87',
+							'on-surface-variant': '#44474e',
+							'on-tertiary': '#ffffff',
+							surface: '#f7fafc',
+							'on-secondary': '#ffffff',
+							'primary-fixed-dim': '#aec7f5',
+							'inverse-primary': '#aec7f5',
+							'on-primary-container': '#7089b3',
+							outline: '#74777f',
+							'surface-variant': '#e0e3e5',
+							background: '#f7fafc',
+							'tertiary-fixed-dim': '#bdc7dc',
+							'primary-fixed': '#d6e3ff',
+							'on-error-container': '#93000a',
+							primary: '#00091b',
+							'on-surface': '#181c1e',
+							'on-tertiary-fixed': '#121c2c',
+							'on-primary': '#ffffff',
+							'on-primary-fixed': '#001b3c',
+							'secondary-fixed-dim': '#ffb86c',
+							'outline-variant': '#c4c6cf',
+							'surface-container-low': '#f1f4f6',
+							'secondary-fixed': '#ffdcbc',
+							'on-background': '#181c1e',
+							'on-error': '#ffffff',
+							'surface-dim': '#d7dadd',
+						},
+						borderRadius: {
+							DEFAULT: '0.125rem',
+							lg: '0.25rem',
+							xl: '0.5rem',
+							full: '0.75rem',
+						},
+						spacing: {
+							md: '16px',
+							'2xl': '48px',
+							xl: '32px',
+							'3xl': '64px',
+							sm: '8px',
+							lg: '24px',
+							xs: '4px',
+							base: '8px',
+						},
+						fontFamily: {
+							'label-md': ['Inter'],
+							'display-lg': ['Montserrat'],
+							'body-md': ['Inter'],
+							'headline-md': ['Montserrat'],
+							caption: ['Inter'],
+							'body-lg': ['Inter'],
+							'headline-lg': ['Montserrat'],
+						},
+						fontSize: {
+							'label-md': [
+								'14px',
+								{
+									lineHeight: '1.2',
+									letterSpacing: '0.01em',
+									fontWeight: '600',
+								},
+							],
+							'display-lg': [
+								'48px',
+								{
+									lineHeight: '1.2',
+									letterSpacing: '-0.02em',
+									fontWeight: '700',
+								},
+							],
+							'body-md': [
+								'16px',
+								{ lineHeight: '1.5', fontWeight: '400' },
+							],
+							'headline-md': [
+								'24px',
+								{ lineHeight: '1.4', fontWeight: '600' },
+							],
+							caption: [
+								'12px',
+								{ lineHeight: '1.4', fontWeight: '400' },
+							],
+							'body-lg': [
+								'18px',
+								{ lineHeight: '1.6', fontWeight: '400' },
+							],
+							'headline-lg': [
+								'32px',
+								{ lineHeight: '1.3', fontWeight: '700' },
+							],
+						},
+					},
+				},
+			};
+		</script>
+		<link
+			href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&amp;family=Montserrat:wght@600;700&amp;display=swap"
+			rel="stylesheet"
+		/>
+		<link
+			href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0"
+			rel="stylesheet"
+		/>
+		<link
+			href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+			rel="stylesheet"
+		/>
+	</head>
+	<body class="bg-surface font-body-md text-on-surface">
+		<header
+			class="fixed top-0 w-full z-50 bg-surface/80 backdrop-blur-xl shadow-[0_1px_8px_rgba(0,0,0,0.04)]"
+		>
+			<div
+				class="h-20 max-w-7xl mx-auto px-lg flex items-center justify-between"
+			>
+				<a
+					class="font-headline-md text-headline-md text-primary font-bold"
+					data-path="trang-chu"
+					href="#"
+					>DaNang Travel</a
+				>
+				<nav
+					class="hidden md:flex items-center gap-xl"
+					data-active-classes="bg-primary-container text-on-primary-container font-semibold rounded-lg"
+				>
+					<a
+						class="text-body-md text-on-surface-variant hover:text-on-surface transition-colors"
+						data-path="trang-chu"
+						href="#"
+						>Trang chủ</a
+					><a
+						class="text-body-md text-on-surface-variant hover:text-on-surface transition-colors"
+						data-path="kham-pha-dia-diem"
+						href="#"
+						>Khám phá địa điểm</a
+					><a
+						class="text-body-md text-on-surface-variant hover:text-on-surface transition-colors"
+						data-path="tim-kiem-phong"
+						href="#"
+						>Tìm kiếm phòng</a
+					>
+				</nav>
+				<div class="flex items-center gap-md">
+					<a
+						class="px-lg py-sm rounded-full border border-outline text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-all text-label-md"
+						data-path="dang-nhap"
+						href="#"
+						>Đăng nhập</a
+					><a
+						class="px-lg py-sm rounded-full bg-primary text-on-primary hover:bg-primary-container hover:text-on-primary-container transition-all text-label-md"
+						data-path="dang-ky"
+						href="#"
+						>Đăng ký</a
+					>
+				</div>
+			</div>
+		</header>
+		<main class="w-full pt-20 bg-surface min-h-[819px]">
+			<div
+				class="flex flex-col w-full items-center justify-center min-h-[768px] py-3xl px-lg"
+			>
+				<div
+					class="w-full max-w-md bg-surface-container-lowest rounded-xl shadow-[0_4px_20px_rgba(26,54,93,0.05)] p-2xl transition-all"
+				>
+					<div class="flex flex-col items-center mb-xl">
+						<div
+							class="w-16 h-16 rounded-full bg-primary-container flex items-center justify-center text-on-primary-container mb-md shadow-sm"
+						>
+							<span
+								class="material-symbols-outlined text-[32px]"
+								style="font-variation-settings: 'FILL' 1"
+								>lock</span
+							>
+						</div>
+						<h1
+							class="font-headline-lg text-headline-lg text-on-surface text-center mb-xs"
+						>
+							Đăng nhập hệ thống
+						</h1>
+						<p
+							class="font-body-md text-body-md text-on-surface-variant text-center"
+						>
+							Truy cập vào không gian lưu trú và quản lý hành
+							trình DaNang Travel của bạn
+						</p>
+					</div>
+					<form
+						class="flex flex-col gap-lg"
+						onsubmit="event.preventDefault()"
+					>
+						<div class="flex flex-col gap-sm">
+							<label
+								class="font-label-md text-on-surface"
+								for="emailOrPhone"
+								>Email hoặc số điện thoại</label
+							>
+							<input
+								class="w-full h-12 px-lg rounded-lg bg-surface-container-lowest text-on-surface border border-outline focus:border-primary focus:outline-none transition-colors font-body-md"
+								id="emailOrPhone"
+								placeholder="Ví dụ: name@example.com"
+								required=""
+								type="text"
+							/>
+						</div>
+						<div class="flex flex-col gap-sm">
+							<div class="flex items-center justify-between">
+								<label
+									class="font-label-md text-on-surface"
+									for="password"
+									>Mật khẩu</label
+								>
+								<a
+									class="font-caption text-primary hover:underline"
+									href="#"
+									>Quên mật khẩu?</a
+								>
+							</div>
+							<div class="relative flex items-center">
+								<input
+									class="w-full h-12 px-lg pr-12 rounded-lg bg-surface-container-lowest text-on-surface border border-outline focus:border-primary focus:outline-none transition-colors font-body-md"
+									id="password"
+									placeholder="Nhập mật khẩu của bạn"
+									required=""
+									type="password"
+								/>
+								<button
+									class="absolute right-4 text-on-surface-variant hover:text-on-surface flex items-center justify-center focus:outline-none"
+									onclick="togglePassword()"
+									type="button"
+								>
+									<span
+										class="material-symbols-outlined text-[20px]"
+										id="eyeIcon"
+										>visibility</span
+									>
+								</button>
+							</div>
+						</div>
+						<div class="flex items-center justify-between py-xs">
+							<label
+								class="flex items-center gap-sm cursor-pointer select-none"
+							>
+								<input
+									class="w-4 h-4 rounded border-outline text-primary focus:ring-0 accent-primary"
+									id="remember"
+									type="checkbox"
+								/>
+								<span
+									class="font-body-md text-on-surface-variant text-sm"
+									>Ghi nhớ đăng nhập</span
+								>
+							</label>
+						</div>
+						<button
+							class="w-full h-12 rounded-full bg-primary text-on-primary font-label-md hover:bg-primary-container hover:text-on-primary-container transition-all shadow-sm flex items-center justify-center gap-sm"
+							type="submit"
+						>
+							<span class="">Đăng nhập</span>
+							<span class="material-symbols-outlined text-[18px]"
+								>arrow_forward</span
+							>
+						</button>
+						<div class="relative flex py-sm items-center">
+							<div
+								class="flex-grow border-t border-outline-variant"
+							></div>
+							<span
+								class="flex-shrink mx-4 font-caption text-on-surface-variant uppercase tracking-wider"
+								>Hoặc tiếp tục với</span
+							>
+							<div
+								class="flex-grow border-t border-outline-variant"
+							></div>
+						</div>
+						<div class="grid grid-cols-2 gap-md">
+							<button
+								class="flex items-center justify-center gap-sm h-12 rounded-full bg-surface-container hover:bg-surface-container-high transition-all text-on-surface font-label-md border border-outline-variant"
+								type="button"
+							>
+								<svg class="w-5 h-5" viewBox="0 0 24 24">
+									<path
+										d="M23.745 12.27c0-.7-.06-1.4-.19-2.07H12v4.51h6.6c-.29 1.52-1.14 2.82-2.4 3.68v3.05h3.88c2.27-2.09 3.66-5.17 3.66-9.17z"
+										fill="#4285F4"
+									></path>
+									<path
+										d="M12 24c3.24 0 5.95-1.08 7.93-2.91l-3.88-3.05c-1.08.72-2.45 1.16-4.05 1.16-3.12 0-5.77-2.1-6.72-4.93H1.2v3.15C3.18 21.32 7.24 24 12 24z"
+										fill="#34A853"
+									></path>
+									<path
+										d="M5.28 14.27c-.25-.72-.38-1.49-.38-2.27s.13-1.55.38-2.27V6.58H1.2C.44 8.12 0 9.87 0 11.7c0 1.83.44 3.58 1.2 5.12l4.08-2.55z"
+										fill="#FBBC05"
+									></path>
+									<path
+										d="M12 4.75c1.76 0 3.34.61 4.59 1.8l3.43-3.43C17.95 1.19 15.24 0 12 0 7.24 0 3.18 2.68 1.2 6.58l4.08 3.15c.95-2.83 3.6-4.98 6.72-4.98z"
+										fill="#EA4335"
+									></path>
+								</svg>
+								<span class="">Google</span>
+							</button>
+							<button
+								class="flex items-center justify-center gap-sm h-12 rounded-full bg-surface-container hover:bg-surface-container-high transition-all text-on-surface font-label-md border border-outline-variant"
+								type="button"
+							>
+								<svg
+									class="w-5 h-5 fill-current"
+									viewBox="0 0 24 24"
+								>
+									<path
+										d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.81-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M15.83 5.03c.66-.82 1.11-1.95.99-3.09-.96.04-2.12.64-2.79 1.45-.61.71-1.14 1.87-1 2.99 1.08.08 2.15-.53 2.8-1.35z"
+									></path>
+								</svg>
+								<span class="">Apple</span>
+							</button>
+						</div>
+					</form>
+					<div class="mt-xl text-center">
+						<p class="font-body-md text-on-surface-variant text-sm">
+							Chưa có tài khoản?
+							<a
+								class="text-primary font-semibold hover:underline"
+								data-path="dang-ky"
+								href="#"
+								>Đăng ký ngay</a
+							>
+						</p>
+					</div>
+				</div>
+			</div>
+			<script>
+				function togglePassword() {
+					const passwordInput = document.getElementById('password');
+					const eyeIcon = document.getElementById('eyeIcon');
+					if (passwordInput.type === 'password') {
+						passwordInput.type = 'text';
+						eyeIcon.textContent = 'visibility_off';
+					} else {
+						passwordInput.type = 'password';
+						eyeIcon.textContent = 'visibility';
+					}
+				}
+			</script>
+		</main>
+		<footer class="w-full bg-surface-container-low py-2xl">
+			<div
+				class="max-w-7xl mx-auto px-lg flex flex-col md:flex-row items-center justify-between gap-md text-on-surface-variant text-caption"
+			>
+				<p class="">
+					© 2026 DaNang Travel. Bản quyền thuộc về chúng tôi.
+				</p>
+				<p class="">
+					Hỗ trợ liên hệ: support@danangtravel.vn | Hotline: 1900 1234
+				</p>
+			</div>
+		</footer>
+	</body>
+</html>

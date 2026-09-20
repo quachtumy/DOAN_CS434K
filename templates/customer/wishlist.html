@@ -1,0 +1,928 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<meta content="width=device-width, initial-scale=1.0" name="viewport" />
+		<style>
+			@layer base {
+				html,
+				body {
+					margin: 0;
+					padding: 0;
+				}
+				body {
+					overscroll-behavior: none;
+				}
+				main > :first-child {
+					margin-top: 0 !important;
+				}
+				main > :last-child {
+					margin-bottom: 0 !important;
+				}
+			}
+			::-webkit-scrollbar {
+				display: none;
+			}
+		</style>
+		<script src="https://cdn.tailwindcss.com"></script>
+		<script id="tailwind-config">
+			tailwind.config = {
+				darkMode: 'class',
+				theme: {
+					extend: {
+						colors: {
+							'on-surface-variant': '#44474e',
+							'secondary-fixed-dim': '#ffb86c',
+							surface: '#f7fafc',
+							'inverse-primary': '#aec7f5',
+							background: '#f7fafc',
+							'inverse-surface': '#2d3133',
+							'tertiary-container': '#172131',
+							'primary-fixed-dim': '#aec7f5',
+							'outline-variant': '#c4c6cf',
+							'on-primary': '#ffffff',
+							'on-tertiary-fixed-variant': '#3d4759',
+							outline: '#74777f',
+							'primary-fixed': '#d6e3ff',
+							'surface-container-high': '#e6e8eb',
+							'error-container': '#ffdad6',
+							'on-tertiary-fixed': '#121c2c',
+							'on-secondary': '#ffffff',
+							'tertiary-fixed': '#d9e3f9',
+							'surface-tint': '#465f87',
+							'surface-variant': '#e0e3e5',
+							'surface-bright': '#f7fafc',
+							'on-error': '#ffffff',
+							'secondary-fixed': '#ffdcbc',
+							'on-error-container': '#93000a',
+							secondary: '#895100',
+							'surface-container-low': '#f1f4f6',
+							error: '#ba1a1a',
+							'inverse-on-surface': '#eef1f4',
+							'on-surface': '#181c1e',
+							'surface-container': '#ebeef1',
+							'tertiary-fixed-dim': '#bdc7dc',
+							'on-tertiary-container': '#7e889c',
+							'surface-container-lowest': '#ffffff',
+							'on-primary-fixed': '#001b3c',
+							'on-secondary-container': '#663b00',
+							'on-secondary-fixed': '#2c1700',
+							'surface-dim': '#d7dadd',
+							'on-primary-fixed-variant': '#2e476e',
+							tertiary: '#020919',
+							'on-tertiary': '#ffffff',
+							'on-background': '#181c1e',
+							'secondary-container': '#fd9d1a',
+							'primary-container': '#002045',
+							'on-secondary-fixed-variant': '#683d00',
+							'on-primary-container': '#7089b3',
+							primary: '#00091b',
+							'surface-container-highest': '#e0e3e5',
+						},
+						borderRadius: {
+							DEFAULT: '0.125rem',
+							lg: '0.25rem',
+							xl: '0.5rem',
+							full: '0.75rem',
+						},
+						spacing: {
+							'3xl': '64px',
+							sm: '8px',
+							xs: '4px',
+							md: '16px',
+							xl: '32px',
+							base: '8px',
+							'2xl': '48px',
+							lg: '24px',
+						},
+						fontFamily: {
+							'body-lg': ['Inter'],
+							'display-lg': ['Montserrat'],
+							'body-md': ['Inter'],
+							'headline-md': ['Montserrat'],
+							'label-md': ['Inter'],
+							'headline-lg': ['Montserrat'],
+							caption: ['Inter'],
+						},
+						fontSize: {
+							'body-lg': [
+								'18px',
+								{ lineHeight: '1.6', fontWeight: '400' },
+							],
+							'display-lg': [
+								'48px',
+								{
+									lineHeight: '1.2',
+									letterSpacing: '-0.02em',
+									fontWeight: '700',
+								},
+							],
+							'body-md': [
+								'16px',
+								{ lineHeight: '1.5', fontWeight: '400' },
+							],
+							'headline-md': [
+								'24px',
+								{ lineHeight: '1.4', fontWeight: '600' },
+							],
+							'label-md': [
+								'14px',
+								{
+									lineHeight: '1.2',
+									letterSpacing: '0.01em',
+									fontWeight: '600',
+								},
+							],
+							'headline-lg': [
+								'32px',
+								{ lineHeight: '1.3', fontWeight: '700' },
+							],
+							caption: [
+								'12px',
+								{ lineHeight: '1.4', fontWeight: '400' },
+							],
+						},
+					},
+				},
+			};
+		</script>
+		<link
+			href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+			rel="stylesheet"
+		/>
+		<link
+			href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&amp;family=Montserrat:wght@100..900&amp;display=swap"
+			rel="stylesheet"
+		/>
+	</head>
+	<body class="bg-surface font-body-md text-on-surface">
+		<header
+			class="fixed top-0 w-full z-50 bg-surface/80 backdrop-blur-xl shadow-[0_1px_8px_rgba(0,0,0,0.04)]"
+		>
+			<div
+				class="h-16 max-w-7xl mx-auto px-6 lg:px-12 flex items-center justify-between"
+			>
+				<div class="flex items-center gap-xl">
+					<span class="text-headline-md text-primary font-bold"
+						>DaNang Travel</span
+					>
+					<nav
+						class="hidden md:flex items-center gap-lg"
+						data-active-classes="bg-primary-container text-on-primary-container font-bold rounded-lg px-3 py-1.5"
+					>
+						<a
+							class="text-label-md text-on-surface-variant hover:text-on-surface transition-colors"
+							data-path="trang-chu"
+							href="#"
+							>Trang chủ</a
+						><a
+							class="text-label-md text-on-surface-variant hover:text-on-surface transition-colors"
+							data-path="kham-pha-va-tim-kiem"
+							href="#"
+							>Khám phá &amp; Tìm kiếm</a
+						><a
+							class="text-label-md text-on-surface-variant hover:text-on-surface transition-colors"
+							data-path="danh-sach-yeu-thich"
+							href="#"
+							>Danh sách yêu thích</a
+						><a
+							class="text-label-md text-on-surface-variant hover:text-on-surface transition-colors"
+							data-path="don-dat-phong"
+							href="#"
+							>Đơn đặt phòng</a
+						><a
+							class="text-label-md text-on-surface-variant hover:text-on-surface transition-colors"
+							data-path="thong-bao"
+							href="#"
+							>Thông báo</a
+						>
+					</nav>
+				</div>
+				<div class="flex items-center gap-md">
+					<div
+						class="w-8 h-8 rounded-full bg-primary flex items-center justify-center"
+					>
+						<span
+							class="material-symbols-outlined text-on-primary text-[18px]"
+							>person</span
+						>
+					</div>
+				</div>
+			</div>
+		</header>
+		<main class="w-full pt-16 bg-surface">
+			<div class="flex flex-col w-full min-h-screen pb-24">
+				<!-- Top Banner / Header Segment for Wishlist -->
+				<div
+					class="relative w-full bg-primary text-on-primary py-16 px-6 lg:px-12 overflow-hidden"
+				>
+					<div
+						class="absolute inset-0 opacity-10 bg-cover bg-center"
+						data-alt="A sophisticated panoramic view of Da Nang coastal city featuring the iconic Dragon Bridge, luxury beachfront resorts, and golden sand beaches under a clear sunset sky, cinematic composition, professional photography style"
+						style="
+							background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDWVBOrmmHa350KKWzkyHUBRM62cFQoEB8t5DR8Ugqs1aBZ8oXDSs4oMTNUJzQt_CpRGndgOS17QWzcPxIJ9T1gd7kYJP0ntOTA-vYQRMRjetrc4h4Pi7MmjtkFD288t3zgdUXkuDrr6ywq2n_dM_PU_Dw29NvuQAr7mEqa_2-4MQNHTg0BGkW4gBeMBLN9yqsIiffVMkhfxkWLVOlsh_sKee5MA-85RbV9mCvZSrX7c0HS4EIa2gXn');
+						"
+					></div>
+					<div
+						class="max-w-7xl mx-auto relative z-10 flex flex-col md:flex-row justify-between items-start md:items-end gap-6"
+					>
+						<div>
+							<div class="flex items-center gap-2 mb-3">
+								<span
+									class="text-secondary-fixed-dim text-label-md uppercase tracking-widest font-bold"
+									>Danh sách yêu thích</span
+								>
+								<span
+									class="w-1.5 h-1.5 rounded-full bg-secondary-fixed-dim"
+								></span>
+								<span
+									class="text-on-primary-container text-caption"
+									>Đà Nẵng Stay</span
+								>
+							</div>
+							<h1
+								class="text-display-lg text-on-primary font-bold"
+							>
+								Bộ sưu tập điểm đến &amp; khách sạn mơ ước
+							</h1>
+							<p
+								class="text-body-lg text-inverse-primary mt-2 max-w-2xl"
+							>
+								Quản lý các địa điểm nghỉ dưỡng và danh lam
+								thắng cảnh bạn đã lưu lại cho chuyến hành trình
+								sắp tới tại Đà Nẵng.
+							</p>
+						</div>
+						<div
+							class="flex items-center gap-3 bg-primary-container/80 backdrop-blur-md px-6 py-4 rounded-xl shadow-md border-0"
+						>
+							<div class="flex flex-col">
+								<span
+									class="text-caption text-on-primary-container"
+									>Đã lưu</span
+								>
+								<span
+									class="text-headline-lg text-on-primary font-bold"
+									>4 địa điểm</span
+								>
+							</div>
+							<div
+								class="w-px h-10 bg-outline-variant/30 mx-3"
+							></div>
+							<div class="flex flex-col">
+								<span
+									class="text-caption text-on-primary-container"
+									>Sẵn sàng đặt</span
+								>
+								<span
+									class="text-headline-lg text-secondary-fixed-dim font-bold"
+									>4</span
+								>
+							</div>
+						</div>
+					</div>
+				</div>
+				<!-- Main Content Area -->
+				<div class="max-w-7xl mx-auto px-6 lg:px-12 w-full mt-10">
+					<!-- Controls Bar: Filter & View Switcher -->
+					<div
+						class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 mb-8 bg-surface-container-lowest p-4 rounded-xl shadow-[0_4px_20px_rgba(26,54,93,0.05)]"
+					>
+						<div
+							class="flex items-center gap-2 flex-wrap"
+							id="filter-tabs"
+						>
+							<button
+								class="filter-btn px-4 py-2 rounded-full text-label-md bg-primary text-on-primary transition-all shadow-sm"
+								onclick="filterSelection('all')"
+							>
+								Tất cả (4)
+							</button>
+							<button
+								class="filter-btn px-4 py-2 rounded-full text-label-md bg-surface-container text-on-surface-variant hover:bg-surface-container-high transition-all"
+								onclick="filterSelection('hotel')"
+							>
+								Khách sạn &amp; Resort (2)
+							</button>
+							<button
+								class="filter-btn px-4 py-2 rounded-full text-label-md bg-surface-container text-on-surface-variant hover:bg-surface-container-high transition-all"
+								onclick="filterSelection('attraction')"
+							>
+								Danh thắng (2)
+							</button>
+						</div>
+						<div class="flex items-center gap-2">
+							<span
+								class="text-caption text-on-surface-variant mr-1"
+								>Hiển thị:</span
+							>
+							<button
+								class="p-2 rounded-lg bg-primary text-on-primary transition-all shadow-sm"
+								id="grid-view-btn"
+								onclick="setViewMode('grid')"
+								title="Grid View"
+							>
+								<span
+									class="material-symbols-outlined text-[20px]"
+									>grid_view</span
+								>
+							</button>
+							<button
+								class="p-2 rounded-lg bg-surface-container text-on-surface-variant hover:bg-surface-container-high transition-all"
+								id="list-view-btn"
+								onclick="setViewMode('list')"
+								title="List View"
+							>
+								<span
+									class="material-symbols-outlined text-[20px]"
+									>view_list</span
+								>
+							</button>
+						</div>
+					</div>
+					<!-- Wishlist Grid/List Container -->
+					<div
+						class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-8"
+						id="wishlist-container"
+					>
+						<!-- Item 1: InterContinental Danang -->
+						<div
+							class="wishlist-item group bg-surface-container-lowest rounded-xl overflow-hidden shadow-[0_4px_20px_rgba(26,54,93,0.05)] hover:shadow-xl transition-all duration-300 flex flex-col"
+							data-category="hotel"
+						>
+							<div class="relative h-64 w-full overflow-hidden">
+								<div
+									class="absolute inset-0 bg-cover bg-center group-hover:scale-105 transition-transform duration-500"
+									data-alt="InterContinental Danang Sun Peninsula Resort nestled in the lush green hills of Son Tra Peninsula overlooking a private golden sand beach and blue ocean, architectural masterpiece by Bill Bensley, high-end luxury resort photography"
+									style="
+										background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuCOx0nutC6_U87s7sQXEm8BB-ikj3rWrCdzzETi1uxzXafV1lBtPaHqbjbt1bHuCygttSgk6i5uFunwA6C69p16Bd2tizZPnwqDiemVSe4tUInRlWcFoLncs5tt3nZ4bRLLCDyXPRLToAIwl18u4LeyU9Dw3C4yyZ5k154lU9sQAaK4CvpfVHwzIEO9Rpj3rmk7Hgc3XlSZxVbqOj0fua2oCcNDMcrFrQ9P7x6y2UlaroXMYMDoTnjB');
+									"
+								></div>
+								<div
+									class="absolute inset-0 bg-gradient-to-t from-primary/80 via-transparent to-transparent"
+								></div>
+								<div class="absolute top-4 left-4 flex gap-2">
+									<span
+										class="px-3 py-1 rounded-full text-caption bg-secondary text-on-secondary font-bold shadow-md"
+										>Khách sạn 5 sao</span
+									>
+									<span
+										class="px-3 py-1 rounded-full text-caption bg-surface-container-lowest/90 backdrop-blur-md text-on-surface font-semibold flex items-center gap-1 shadow-md"
+									>
+										<span
+											class="material-symbols-outlined text-[14px] text-secondary-container"
+											style="
+												font-variation-settings: 'FILL'
+													1;
+											"
+											>star</span
+										>
+										4.9 (328)
+									</span>
+								</div>
+								<button
+									class="absolute top-4 right-4 w-10 h-10 rounded-full bg-surface-container-lowest/80 backdrop-blur-md text-error hover:bg-error hover:text-on-error flex items-center justify-center transition-all shadow-md"
+									onclick="removeItem(this)"
+									title="Xóa khỏi yêu thích"
+								>
+									<span
+										class="material-symbols-outlined text-[20px]"
+										>favorite</span
+									>
+								</button>
+								<div
+									class="absolute bottom-4 left-4 right-4 flex justify-between items-end"
+								>
+									<div>
+										<span
+											class="text-inverse-primary text-caption flex items-center gap-1"
+										>
+											<span
+												class="material-symbols-outlined text-[14px]"
+												>location_on</span
+											>
+											Bán đảo Sơn Trà, Đà Nẵng
+										</span>
+										<h3
+											class="text-headline-md text-on-primary font-bold mt-0.5"
+										>
+											InterContinental Danang Sun
+											Peninsula Resort
+										</h3>
+									</div>
+								</div>
+							</div>
+							<div
+								class="p-6 flex flex-col flex-grow justify-between gap-6"
+							>
+								<p
+									class="text-body-md text-on-surface-variant line-clamp-2"
+								>
+									Khu nghỉ dưỡng sang trọng bậc nhất thế giới
+									ẩn mình giữa những ngọn đồi hoang sơ của Bán
+									đảo Sơn Trà với tầm nhìn tuyệt mỹ ra biển
+									Đông.
+								</p>
+								<div
+									class="flex items-center justify-between pt-4 border-t border-surface-container"
+								>
+									<div>
+										<span
+											class="text-caption text-on-surface-variant block"
+											>Giá từ</span
+										>
+										<span
+											class="text-headline-md text-primary font-bold"
+											>12.500.000 ₫
+											<span
+												class="text-caption font-normal text-on-surface-variant"
+												>/ đêm</span
+											></span
+										>
+									</div>
+									<a
+										class="px-5 py-2.5 rounded-full bg-primary text-on-primary text-label-md font-bold hover:bg-primary-container transition-colors flex items-center gap-2 shadow-sm"
+										href="#"
+									>
+										<span>Đặt phòng ngay</span>
+										<span
+											class="material-symbols-outlined text-[16px]"
+											>arrow_forward</span
+										>
+									</a>
+								</div>
+							</div>
+						</div>
+						<!-- Item 2: Mỹ Khê Beach -->
+						<div
+							class="wishlist-item group bg-surface-container-lowest rounded-xl overflow-hidden shadow-[0_4px_20px_rgba(26,54,93,0.05)] hover:shadow-xl transition-all duration-300 flex flex-col"
+							data-category="attraction"
+						>
+							<div class="relative h-64 w-full overflow-hidden">
+								<div
+									class="absolute inset-0 bg-cover bg-center group-hover:scale-105 transition-transform duration-500"
+									data-alt="My Khe Beach in Da Nang during early morning golden hour with calm turquoise water, smooth white sand, distant silhouettes of Marble Mountains, and gentle waves, vibrant travel photography"
+									style="
+										background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuBLGLx1yHJ9d6LXSA8A9Bmj29XFWnStmTkCfShXRktKiyelT1KPlIA1F_dXZJVzvbFFQZBlBVCcvd2NsRBY8V8s6FUsS79n5aLqQokLHTAKcsmdK-CkM0tM4U3H3nzM79HUZ0LwfLqqZQyEvAx-SYrGGRamgL67Gi6hJEXkzAm-Os9_0xSWSV74b3lAVBXXsoI1uy4vpp7KtG-y_PL-7bVbN7Qx6FMgYAW-LjldrNsSaSWIu8Ry9Eik');
+									"
+								></div>
+								<div
+									class="absolute inset-0 bg-gradient-to-t from-primary/80 via-transparent to-transparent"
+								></div>
+								<div class="absolute top-4 left-4 flex gap-2">
+									<span
+										class="px-3 py-1 rounded-full text-caption bg-secondary-container text-on-secondary-container font-bold shadow-md"
+										>Danh thắng</span
+									>
+									<span
+										class="px-3 py-1 rounded-full text-caption bg-surface-container-lowest/90 backdrop-blur-md text-on-surface font-semibold flex items-center gap-1 shadow-md"
+									>
+										<span
+											class="material-symbols-outlined text-[14px] text-secondary-container"
+											style="
+												font-variation-settings: 'FILL'
+													1;
+											"
+											>star</span
+										>
+										4.8 (1.4k)
+									</span>
+								</div>
+								<button
+									class="absolute top-4 right-4 w-10 h-10 rounded-full bg-surface-container-lowest/80 backdrop-blur-md text-error hover:bg-error hover:text-on-error flex items-center justify-center transition-all shadow-md"
+									onclick="removeItem(this)"
+									title="Xóa khỏi yêu thích"
+								>
+									<span
+										class="material-symbols-outlined text-[20px]"
+										>favorite</span
+									>
+								</button>
+								<div
+									class="absolute bottom-4 left-4 right-4 flex justify-between items-end"
+								>
+									<div>
+										<span
+											class="text-inverse-primary text-caption flex items-center gap-1"
+										>
+											<span
+												class="material-symbols-outlined text-[14px]"
+												>location_on</span
+											>
+											Quận Ngũ Hành Sơn, Đà Nẵng
+										</span>
+										<h3
+											class="text-headline-md text-on-primary font-bold mt-0.5"
+										>
+											Bãi biển Mỹ Khê
+										</h3>
+									</div>
+								</div>
+							</div>
+							<div
+								class="p-6 flex flex-col flex-grow justify-between gap-6"
+							>
+								<p
+									class="text-body-md text-on-surface-variant line-clamp-2"
+								>
+									Một trong những bãi biển quyến rũ nhất hành
+									tinh do tạp chí Forbes bình chọn, nổi tiếng
+									với cát trắng mịn, nước ấm quanh năm và hàng
+									dừa thơ mộng.
+								</p>
+								<div
+									class="flex items-center justify-between pt-4 border-t border-surface-container"
+								>
+									<div>
+										<span
+											class="text-caption text-on-surface-variant block"
+											>Trải nghiệm</span
+										>
+										<span
+											class="text-headline-md text-primary font-bold"
+											>Miễn phí
+											<span
+												class="text-caption font-normal text-on-surface-variant"
+												>/ Tự do</span
+											></span
+										>
+									</div>
+									<a
+										class="px-5 py-2.5 rounded-full bg-primary text-on-primary text-label-md font-bold hover:bg-primary-container transition-colors flex items-center gap-2 shadow-sm"
+										href="#"
+									>
+										<span>Xem lịch trình</span>
+										<span
+											class="material-symbols-outlined text-[16px]"
+											>arrow_forward</span
+										>
+									</a>
+								</div>
+							</div>
+						</div>
+						<!-- Item 3: Ba Na Hills -->
+						<div
+							class="wishlist-item group bg-surface-container-lowest rounded-xl overflow-hidden shadow-[0_4px_20px_rgba(26,54,93,0.05)] hover:shadow-xl transition-all duration-300 flex flex-col"
+							data-category="attraction"
+						>
+							<div class="relative h-64 w-full overflow-hidden">
+								<div
+									class="absolute inset-0 bg-cover bg-center group-hover:scale-105 transition-transform duration-500"
+									data-alt="Sun World Ba Na Hills showing the iconic Golden Bridge held by two giant stone hands amidst misty mountain peaks and European-style French Village architecture, dramatic landscape photography"
+									style="
+										background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuAa_Etv0pio72Xz0O-vafdfoeWYpReuJN8UBEYN2z8-_t4jEIFdQF6Xxh_g3j2I7gCOejlV9xNSfVKm3r53IEMO7JiGqo2urQkpeBlBJNA6_0yz_riRi_mkbf4XEyvlcq0qu7Q-oDtNj_dn6oKhmsbaFbLoxUuKmUeFAn0efFkx7wBtydiBG6C5zajdv5Y4iu7W_L1Fiuu0T-LIULWaZH_XXaHrgJFMV9EwIE-vv7rhvm9-Y9VrwyAp');
+									"
+								></div>
+								<div
+									class="absolute inset-0 bg-gradient-to-t from-primary/80 via-transparent to-transparent"
+								></div>
+								<div class="absolute top-4 left-4 flex gap-2">
+									<span
+										class="px-3 py-1 rounded-full text-caption bg-secondary-container text-on-secondary-container font-bold shadow-md"
+										>Khu vui chơi</span
+									>
+									<span
+										class="px-3 py-1 rounded-full text-caption bg-surface-container-lowest/90 backdrop-blur-md text-on-surface font-semibold flex items-center gap-1 shadow-md"
+									>
+										<span
+											class="material-symbols-outlined text-[14px] text-secondary-container"
+											style="
+												font-variation-settings: 'FILL'
+													1;
+											"
+											>star</span
+										>
+										4.9 (2.1k)
+									</span>
+								</div>
+								<button
+									class="absolute top-4 right-4 w-10 h-10 rounded-full bg-surface-container-lowest/80 backdrop-blur-md text-error hover:bg-error hover:text-on-error flex items-center justify-center transition-all shadow-md"
+									onclick="removeItem(this)"
+									title="Xóa khỏi yêu thích"
+								>
+									<span
+										class="material-symbols-outlined text-[20px]"
+										>favorite</span
+									>
+								</button>
+								<div
+									class="absolute bottom-4 left-4 right-4 flex justify-between items-end"
+								>
+									<div>
+										<span
+											class="text-inverse-primary text-caption flex items-center gap-1"
+										>
+											<span
+												class="material-symbols-outlined text-[14px]"
+												>location_on</span
+											>
+											Huyện Hòa Vang, Đà Nẵng
+										</span>
+										<h3
+											class="text-headline-md text-on-primary font-bold mt-0.5"
+										>
+											Sun World Ba Na Hills &amp; Cầu Vàng
+										</h3>
+									</div>
+								</div>
+							</div>
+							<div
+								class="p-6 flex flex-col flex-grow justify-between gap-6"
+							>
+								<p
+									class="text-body-md text-on-surface-variant line-clamp-2"
+								>
+									Tổ hợp du lịch nghỉ dưỡng kết hợp giải trí
+									đẳng cấp với Cầu Vàng nổi tiếng toàn cầu,
+									làng Pháp cổ kính và hệ thống cáp treo đạt
+									nhiều kỷ lục thế giới.
+								</p>
+								<div
+									class="flex items-center justify-between pt-4 border-t border-surface-container"
+								>
+									<div>
+										<span
+											class="text-caption text-on-surface-variant block"
+											>Vé tham quan từ</span
+										>
+										<span
+											class="text-headline-md text-primary font-bold"
+											>950.000 ₫
+											<span
+												class="text-caption font-normal text-on-surface-variant"
+												>/ người</span
+											></span
+										>
+									</div>
+									<a
+										class="px-5 py-2.5 rounded-full bg-primary text-on-primary text-label-md font-bold hover:bg-primary-container transition-colors flex items-center gap-2 shadow-sm"
+										href="#"
+									>
+										<span>Đặt vé ngay</span>
+										<span
+											class="material-symbols-outlined text-[16px]"
+											>arrow_forward</span
+										>
+									</a>
+								</div>
+							</div>
+						</div>
+						<!-- Item 4: Pullman Danang Beach Resort -->
+						<div
+							class="wishlist-item group bg-surface-container-lowest rounded-xl overflow-hidden shadow-[0_4px_20px_rgba(26,54,93,0.05)] hover:shadow-xl transition-all duration-300 flex flex-col"
+							data-category="hotel"
+						>
+							<div class="relative h-64 w-full overflow-hidden">
+								<div
+									class="absolute inset-0 bg-cover bg-center group-hover:scale-105 transition-transform duration-500"
+									data-alt="Pullman Danang Beach Resort swimming pool surrounded by tropical palm trees leading out to Bac My An beach under a bright sunny sky, luxury hospitality resort photography"
+									style="
+										background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuBeZl6tKXqSn_0IubTNHYhdQgu02AjpMQjetyGCNjDG07aiyyG2Sb3wFW9gD_kgPa6ehuv0t5SF1uVryH9LhdcI8Rwd7zBkfJN5FXlFe0F6etkl9Z3iVy8hTy4zucsyVrORrmc8psDGoYUdSf8lrGcOzvA93GWiLhz_vWcm3OE5RMvw4C1E2mB-c_pvgPSfn2gln8-jCVBuUguHFOx-LVgw4LL9vr03tVb-9_q13SZXSxWA8Zbc5SjY');
+									"
+								></div>
+								<div
+									class="absolute inset-0 bg-gradient-to-t from-primary/80 via-transparent to-transparent"
+								></div>
+								<div class="absolute top-4 left-4 flex gap-2">
+									<span
+										class="px-3 py-1 rounded-full text-caption bg-secondary text-on-secondary font-bold shadow-md"
+										>Resort 5 sao</span
+									>
+									<span
+										class="px-3 py-1 rounded-full text-caption bg-surface-container-lowest/90 backdrop-blur-md text-on-surface font-semibold flex items-center gap-1 shadow-md"
+									>
+										<span
+											class="material-symbols-outlined text-[14px] text-secondary-container"
+											style="
+												font-variation-settings: 'FILL'
+													1;
+											"
+											>star</span
+										>
+										4.7 (415)
+									</span>
+								</div>
+								<button
+									class="absolute top-4 right-4 w-10 h-10 rounded-full bg-surface-container-lowest/80 backdrop-blur-md text-error hover:bg-error hover:text-on-error flex items-center justify-center transition-all shadow-md"
+									onclick="removeItem(this)"
+									title="Xóa khỏi yêu thích"
+								>
+									<span
+										class="material-symbols-outlined text-[20px]"
+										>favorite</span
+									>
+								</button>
+								<div
+									class="absolute bottom-4 left-4 right-4 flex justify-between items-end"
+								>
+									<div>
+										<span
+											class="text-inverse-primary text-caption flex items-center gap-1"
+										>
+											<span
+												class="material-symbols-outlined text-[14px]"
+												>location_on</span
+											>
+											Bãi biển Bắc Mỹ An, Đà Nẵng
+										</span>
+										<h3
+											class="text-headline-md text-on-primary font-bold mt-0.5"
+										>
+											Pullman Danang Beach Resort
+										</h3>
+									</div>
+								</div>
+							</div>
+							<div
+								class="p-6 flex flex-col flex-grow justify-between gap-6"
+							>
+								<p
+									class="text-body-md text-on-surface-variant line-clamp-2"
+								>
+									Thiên đường nghỉ dưỡng ven biển đẳng cấp
+									quốc tế tọa lạc trên bãi biển Bắc Mỹ An,
+									mang đến trải nghiệm ẩm thực tinh tế và dịch
+									vụ hoàn hảo.
+								</p>
+								<div
+									class="flex items-center justify-between pt-4 border-t border-surface-container"
+								>
+									<div>
+										<span
+											class="text-caption text-on-surface-variant block"
+											>Giá từ</span
+										>
+										<span
+											class="text-headline-md text-primary font-bold"
+											>4.800.000 ₫
+											<span
+												class="text-caption font-normal text-on-surface-variant"
+												>/ đêm</span
+											></span
+										>
+									</div>
+									<a
+										class="px-5 py-2.5 rounded-full bg-primary text-on-primary text-label-md font-bold hover:bg-primary-container transition-colors flex items-center gap-2 shadow-sm"
+										href="#"
+									>
+										<span>Đặt phòng ngay</span>
+										<span
+											class="material-symbols-outlined text-[16px]"
+											>arrow_forward</span
+										>
+									</a>
+								</div>
+							</div>
+						</div>
+					</div>
+					<!-- Empty State (Hidden by default, shown via JS if all items removed) -->
+					<div
+						class="hidden flex-col items-center justify-center py-20 text-center"
+						id="empty-state"
+					>
+						<div
+							class="w-20 h-20 rounded-full bg-surface-container flex items-center justify-center text-on-surface-variant mb-4"
+						>
+							<span class="material-symbols-outlined text-[40px]"
+								>favorite_border</span
+							>
+						</div>
+						<h3 class="text-headline-md text-on-surface font-bold">
+							Danh sách yêu thích đang trống
+						</h3>
+						<p
+							class="text-body-md text-on-surface-variant mt-1 max-w-md"
+						>
+							Bạn chưa lưu điểm đến hoặc khách sạn nào vào danh
+							sách. Hãy khám phá Đà Nẵng và thêm những địa điểm
+							bạn yêu thích vào đây!
+						</p>
+						<a
+							class="mt-6 px-6 py-3 rounded-full bg-primary text-on-primary text-label-md font-bold hover:bg-primary-container transition-colors shadow-sm"
+							href="#"
+							>Khám phá ngay</a
+						>
+					</div>
+				</div>
+				<!-- Recommendation Section -->
+				<div class="max-w-7xl mx-auto px-6 lg:px-12 w-full mt-20">
+					<div
+						class="bg-surface-container-low rounded-xl p-8 lg:p-12 relative overflow-hidden flex flex-col md:flex-row items-center justify-between gap-8 shadow-sm"
+					>
+						<div
+							class="absolute -right-10 -bottom-10 w-64 h-64 rounded-full bg-primary/5 pointer-events-none"
+						></div>
+						<div class="max-w-xl">
+							<span
+								class="text-secondary text-label-md uppercase tracking-wider font-bold"
+								>Gợi ý cho bạn</span
+							>
+							<h2
+								class="text-headline-lg text-on-surface font-bold mt-1"
+							>
+								Bạn muốn tạo lịch trình tùy chỉnh với các địa
+								điểm đã lưu?
+							</h2>
+							<p
+								class="text-body-md text-on-surface-variant mt-2"
+							>
+								Hệ thống của chúng tôi sẽ tự động sắp xếp lộ
+								trình tối ưu nhất dựa trên danh sách khách sạn
+								và điểm tham quan trong mục yêu thích của bạn.
+							</p>
+						</div>
+						<button
+							class="px-8 py-4 rounded-full bg-secondary text-on-secondary text-label-md font-bold hover:bg-secondary-container hover:text-on-secondary-container transition-all shadow-md flex items-center gap-2 whitespace-nowrap"
+						>
+							<span>Tạo lịch trình thông minh</span>
+							<span class="material-symbols-outlined text-[18px]"
+								>auto_awesome</span
+							>
+						</button>
+					</div>
+				</div>
+				<!-- Interactive Script -->
+				<script>
+					function removeItem(btn) {
+						const card = btn.closest('.wishlist-item');
+						card.style.transform = 'scale(0.95)';
+						card.style.opacity = '0';
+						setTimeout(() => {
+							card.remove();
+							checkEmptyState();
+						}, 300);
+					}
+
+					function checkEmptyState() {
+						const container =
+							document.getElementById('wishlist-container');
+						const emptyState =
+							document.getElementById('empty-state');
+						const items =
+							container.querySelectorAll('.wishlist-item');
+						if (items.length === 0) {
+							container.style.display = 'none';
+							emptyState.style.display = 'flex';
+						}
+					}
+
+					function filterSelection(category) {
+						const buttons = document.querySelectorAll(
+							'#filter-tabs button',
+						);
+						buttons.forEach((btn) => {
+							btn.className =
+								'filter-btn px-4 py-2 rounded-full text-label-md bg-surface-container text-on-surface-variant hover:bg-surface-container-high transition-all';
+						});
+						event.currentTarget.className =
+							'filter-btn px-4 py-2 rounded-full text-label-md bg-primary text-on-primary transition-all shadow-sm';
+
+						const items =
+							document.querySelectorAll('.wishlist-item');
+						items.forEach((item) => {
+							if (
+								category === 'all' ||
+								item.getAttribute('data-category') === category
+							) {
+								item.style.display = 'flex';
+							} else {
+								item.style.display = 'none';
+							}
+						});
+					}
+
+					function setViewMode(mode) {
+						const container =
+							document.getElementById('wishlist-container');
+						const gridBtn =
+							document.getElementById('grid-view-btn');
+						const listBtn =
+							document.getElementById('list-view-btn');
+
+						if (mode === 'grid') {
+							container.className =
+								'grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-8';
+							gridBtn.className =
+								'p-2 rounded-lg bg-primary text-on-primary transition-all shadow-sm';
+							listBtn.className =
+								'p-2 rounded-lg bg-surface-container text-on-surface-variant hover:bg-surface-container-high transition-all';
+						} else {
+							container.className = 'grid grid-cols-1 gap-6';
+							listBtn.className =
+								'p-2 rounded-lg bg-primary text-on-primary transition-all shadow-sm';
+							gridBtn.className =
+								'p-2 rounded-lg bg-surface-container text-on-surface-variant hover:bg-surface-container-high transition-all';
+						}
+					}
+				</script>
+			</div>
+		</main>
+		<footer class="w-full bg-surface-container-low py-12">
+			<div
+				class="max-w-7xl mx-auto px-6 lg:px-12 text-center text-on-surface-variant text-caption"
+			>
+				© 2026 DaNang Travel. All rights reserved.
+			</div>
+		</footer>
+	</body>
+</html>

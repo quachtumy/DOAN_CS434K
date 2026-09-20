@@ -1,0 +1,910 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<meta content="width=device-width, initial-scale=1.0" name="viewport" />
+		<style>
+			@layer base {
+				html,
+				body {
+					margin: 0;
+					padding: 0;
+				}
+				body {
+					overscroll-behavior: none;
+				}
+				main > :first-child {
+					margin-top: 0 !important;
+				}
+				main > :last-child {
+					margin-bottom: 0 !important;
+				}
+			}
+			::-webkit-scrollbar {
+				display: none;
+			}
+		</style>
+		<script src="https://cdn.tailwindcss.com"></script>
+		<script id="tailwind-config">
+			tailwind.config = {
+				darkMode: 'class',
+				theme: {
+					extend: {
+						colors: {
+							'on-surface-variant': '#44474e',
+							'secondary-fixed-dim': '#ffb86c',
+							surface: '#f7fafc',
+							'inverse-primary': '#aec7f5',
+							background: '#f7fafc',
+							'inverse-surface': '#2d3133',
+							'tertiary-container': '#172131',
+							'primary-fixed-dim': '#aec7f5',
+							'outline-variant': '#c4c6cf',
+							'on-primary': '#ffffff',
+							'on-tertiary-fixed-variant': '#3d4759',
+							outline: '#74777f',
+							'primary-fixed': '#d6e3ff',
+							'surface-container-high': '#e6e8eb',
+							'error-container': '#ffdad6',
+							'on-tertiary-fixed': '#121c2c',
+							'on-secondary': '#ffffff',
+							'tertiary-fixed': '#d9e3f9',
+							'surface-tint': '#465f87',
+							'surface-variant': '#e0e3e5',
+							'surface-bright': '#f7fafc',
+							'on-error': '#ffffff',
+							'secondary-fixed': '#ffdcbc',
+							'on-error-container': '#93000a',
+							secondary: '#895100',
+							'surface-container-low': '#f1f4f6',
+							error: '#ba1a1a',
+							'inverse-on-surface': '#eef1f4',
+							'on-surface': '#181c1e',
+							'surface-container': '#ebeef1',
+							'tertiary-fixed-dim': '#bdc7dc',
+							'on-tertiary-container': '#7e889c',
+							'surface-container-lowest': '#ffffff',
+							'on-primary-fixed': '#001b3c',
+							'on-secondary-container': '#663b00',
+							'on-secondary-fixed': '#2c1700',
+							'surface-dim': '#d7dadd',
+							'on-primary-fixed-variant': '#2e476e',
+							tertiary: '#020919',
+							'on-tertiary': '#ffffff',
+							'on-background': '#181c1e',
+							'secondary-container': '#fd9d1a',
+							'primary-container': '#002045',
+							'on-secondary-fixed-variant': '#683d00',
+							'on-primary-container': '#7089b3',
+							primary: '#00091b',
+							'surface-container-highest': '#e0e3e5',
+						},
+						borderRadius: {
+							DEFAULT: '0.125rem',
+							lg: '0.25rem',
+							xl: '0.5rem',
+							full: '0.75rem',
+						},
+						spacing: {
+							'3xl': '64px',
+							sm: '8px',
+							xs: '4px',
+							md: '16px',
+							xl: '32px',
+							base: '8px',
+							'2xl': '48px',
+							lg: '24px',
+						},
+						fontFamily: {
+							'body-lg': ['Inter'],
+							'display-lg': ['Montserrat'],
+							'body-md': ['Inter'],
+							'headline-md': ['Montserrat'],
+							'label-md': ['Inter'],
+							'headline-lg': ['Montserrat'],
+							caption: ['Inter'],
+						},
+						fontSize: {
+							'body-lg': [
+								'18px',
+								{ lineHeight: '1.6', fontWeight: '400' },
+							],
+							'display-lg': [
+								'48px',
+								{
+									lineHeight: '1.2',
+									letterSpacing: '-0.02em',
+									fontWeight: '700',
+								},
+							],
+							'body-md': [
+								'16px',
+								{ lineHeight: '1.5', fontWeight: '400' },
+							],
+							'headline-md': [
+								'24px',
+								{ lineHeight: '1.4', fontWeight: '600' },
+							],
+							'label-md': [
+								'14px',
+								{
+									lineHeight: '1.2',
+									letterSpacing: '0.01em',
+									fontWeight: '600',
+								},
+							],
+							'headline-lg': [
+								'32px',
+								{ lineHeight: '1.3', fontWeight: '700' },
+							],
+							caption: [
+								'12px',
+								{ lineHeight: '1.4', fontWeight: '400' },
+							],
+						},
+					},
+				},
+			};
+		</script>
+		<link
+			href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+			rel="stylesheet"
+		/>
+		<link
+			href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&amp;family=Montserrat:wght@100..900&amp;display=swap"
+			rel="stylesheet"
+		/>
+	</head>
+	<body class="bg-surface font-body-md text-on-surface">
+		<header
+			class="fixed top-0 w-full z-50 bg-surface/80 backdrop-blur-xl shadow-[0_1px_8px_rgba(0,0,0,0.04)]"
+		>
+			<div
+				class="h-16 max-w-7xl mx-auto px-6 lg:px-12 flex items-center justify-between"
+			>
+				<div class="flex items-center gap-xl">
+					<span class="text-headline-md text-primary font-bold"
+						>DaNang Travel</span
+					>
+					<nav
+						class="hidden md:flex items-center gap-lg"
+						data-active-classes="bg-primary-container text-on-primary-container font-bold rounded-lg px-3 py-1.5"
+					>
+						<a
+							class="text-label-md text-on-surface-variant hover:text-on-surface transition-colors"
+							data-path="trang-chu"
+							href="#"
+							>Trang chủ</a
+						><a
+							class="text-label-md text-on-surface-variant hover:text-on-surface transition-colors"
+							data-path="kham-pha-va-tim-kiem"
+							href="#"
+							>Khám phá &amp; Tìm kiếm</a
+						><a
+							class="text-label-md text-on-surface-variant hover:text-on-surface transition-colors"
+							data-path="danh-sach-yeu-thich"
+							href="#"
+							>Danh sách yêu thích</a
+						><a
+							class="text-label-md text-on-surface-variant hover:text-on-surface transition-colors"
+							data-path="don-dat-phong"
+							href="#"
+							>Đơn đặt phòng</a
+						><a
+							class="text-label-md text-on-surface-variant hover:text-on-surface transition-colors"
+							data-path="thong-bao"
+							href="#"
+							>Thông báo</a
+						>
+					</nav>
+				</div>
+				<div class="flex items-center gap-md">
+					<div
+						class="w-8 h-8 rounded-full bg-primary flex items-center justify-center"
+					>
+						<span
+							class="material-symbols-outlined text-on-primary text-[18px]"
+							>person</span
+						>
+					</div>
+				</div>
+			</div>
+		</header>
+		<main class="w-full pt-16 bg-surface">
+			<div class="flex flex-col w-full">
+				<!-- Personalized Welcome Banner & Quick Search Section -->
+				<section
+					class="relative w-full bg-primary-container text-on-primary-container py-12 px-6 lg:px-12 rounded-xl mb-12 shadow-md overflow-hidden"
+				>
+					<div
+						class="absolute inset-0 opacity-10 bg-cover bg-center pointer-events-none"
+						data-alt="Subtle ethereal abstract travel pattern featuring minimalist topographic map lines of Da Nang coastline, Son Tra peninsula, and Han River curves in deep blue and gold tones."
+						style="
+							background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuAxRei1evfx0mcqyRkl1Llwor58PHK0KRW2TKzvosemUYMNqqlIjbxbH0mv5nI41JZ2BwOQUC27F9m-6rGqVKzFC89C30h8Cx1PpEcqYnPoGRF96URez3GDxCZxnY18VOWVGZtvOIiuqq-IvWAYXKktULwAD2bL8e4r1AJKZsjuB7kZZXv3PgpoouPWeCNDklyCe9BWvASV4wUNqaxiqBXtrihPspS2Dxj9dLAFuo6j2EjqjY3z77IU');
+						"
+					></div>
+					<div
+						class="relative z-10 max-w-5xl mx-auto flex flex-col gap-xl"
+					>
+						<div
+							class="flex flex-col md:flex-row justify-between items-start md:items-center gap-md"
+						>
+							<div>
+								<span
+									class="text-caption uppercase tracking-wider text-primary-fixed-dim"
+									>Voyage Narrative • Hồ sơ cá nhân</span
+								>
+								<h1
+									class="text-headline-lg font-bold text-on-primary mt-1"
+								>
+									Xin chào, Nguyễn Văn An
+								</h1>
+								<p
+									class="text-body-md text-on-primary-container mt-1"
+								>
+									Khám phá hành trình tiếp theo của bạn tại
+									thành phố đáng sống nhất Việt Nam.
+								</p>
+							</div>
+							<div
+								class="flex items-center gap-sm bg-surface-container-lowest/10 px-4 py-2 rounded-full backdrop-blur-md"
+							>
+								<span
+									class="material-symbols-outlined text-secondary-fixed-dim text-[20px]"
+									style="font-variation-settings: 'FILL' 1"
+									>workspace_premium</span
+								>
+								<span class="text-label-md text-on-primary"
+									>Thành viên Vàng (Gold Tier)</span
+								>
+							</div>
+						</div>
+						<!-- Quick Search Bar Bento Box -->
+						<div
+							class="bg-surface-container-lowest text-on-surface p-4 lg:p-6 rounded-xl shadow-xl grid grid-cols-1 md:grid-cols-4 gap-md items-center"
+						>
+							<div class="flex flex-col gap-xs">
+								<label
+									class="text-label-md text-on-surface-variant flex items-center gap-xs"
+								>
+									<span
+										class="material-symbols-outlined text-[16px]"
+										>location_on</span
+									>
+									Điểm đến
+								</label>
+								<input
+									class="w-full bg-surface-container-low px-3 py-2 rounded-lg text-body-md text-on-surface focus:outline-none focus:ring-2 focus:ring-primary"
+									type="text"
+									value="Đà Nẵng, Việt Nam"
+								/>
+							</div>
+							<div class="flex flex-col gap-xs">
+								<label
+									class="text-label-md text-on-surface-variant flex items-center gap-xs"
+								>
+									<span
+										class="material-symbols-outlined text-[16px]"
+										>calendar_today</span
+									>
+									Ngày đi - Ngày về
+								</label>
+								<input
+									class="w-full bg-surface-container-low px-3 py-2 rounded-lg text-body-md text-on-surface focus:outline-none focus:ring-2 focus:ring-primary"
+									type="text"
+									value="20 Th10 - 24 Th10"
+								/>
+							</div>
+							<div class="flex flex-col gap-xs">
+								<label
+									class="text-label-md text-on-surface-variant flex items-center gap-xs"
+								>
+									<span
+										class="material-symbols-outlined text-[16px]"
+										>group</span
+									>
+									Khách &amp; Phòng
+								</label>
+								<input
+									class="w-full bg-surface-container-low px-3 py-2 rounded-lg text-body-md text-on-surface focus:outline-none focus:ring-2 focus:ring-primary"
+									type="text"
+									value="2 Người lớn, 1 Phòng"
+								/>
+							</div>
+							<div class="flex items-end h-full pt-5 md:pt-0">
+								<button
+									class="w-full bg-secondary text-on-secondary font-bold py-3 px-6 rounded-full flex items-center justify-center gap-sm hover:bg-secondary-container transition-colors shadow-sm"
+								>
+									<span
+										class="material-symbols-outlined text-[18px]"
+										>search</span
+									>
+									Tìm kiếm ngay
+								</button>
+							</div>
+						</div>
+					</div>
+				</section>
+				<!-- Featured Destinations in Da Nang -->
+				<section class="max-w-7xl mx-auto px-6 lg:px-12 w-full mb-16">
+					<div class="flex justify-between items-end mb-8">
+						<div>
+							<span
+								class="text-caption text-on-surface-variant uppercase tracking-wider"
+								>Điểm đến biểu tượng</span
+							>
+							<h2
+								class="text-headline-lg font-bold text-on-surface mt-1"
+							>
+								Khám phá Đà Nẵng
+							</h2>
+						</div>
+						<a
+							class="text-label-md text-secondary hover:underline flex items-center gap-xs"
+							href="#"
+							>Xem tất cả
+							<span class="material-symbols-outlined text-[16px]"
+								>arrow_forward</span
+							></a
+						>
+					</div>
+					<div
+						class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-lg"
+					>
+						<!-- Destination 1 -->
+						<div
+							class="group relative h-80 rounded-xl overflow-hidden shadow-md flex flex-col justify-end p-6 transition-all duration-300 hover:shadow-xl"
+						>
+							<div
+								class="absolute inset-0 bg-cover bg-center transition-transform duration-500 group-hover:scale-105"
+								data-alt="Breathtaking panoramic view of Ba Na Hills Sun World Golden Bridge held by giant stone hands wrapped in misty clouds, vibrant green mountain slopes, bright morning cinematic lighting."
+								style="
+									background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuCSNGP44R6IkGm6J8JgNCtCVKgiUWl6BN3hoEYLbzL3FR0MIDt3FBm6bYBk3kVBsWkhDfymmNLSlwQzcF2xlaHvNf8cD_XJOuR8M1mWYl-_MiAgWwmRr4XRDmLxCXV3b1bo8PlKWRTQa1eo2tavfU0j-toK6QGno84MaTG1sqDyp1ZoL41fB-7nHeuUHcIn0E6L-_n_zUtdFE4b4m_7eZzh0LWD9-fQHT0hBEayhEWxjZSHr5D6C57X');
+								"
+							></div>
+							<div
+								class="absolute inset-0 bg-gradient-to-t from-primary/90 via-primary/20 to-transparent"
+							></div>
+							<div class="relative z-10 flex flex-col">
+								<span
+									class="text-caption text-secondary-fixed-dim uppercase tracking-wider font-bold"
+									>Vui chơi &amp; Giải trí</span
+								>
+								<h3
+									class="text-headline-md text-on-primary font-bold"
+								>
+									Bà Nà Hills
+								</h3>
+								<p
+									class="text-caption text-surface-container-high mt-1"
+								>
+									Cầu Vàng huyền thoại và khu làng Pháp cổ
+									kính trên đỉnh núi.
+								</p>
+							</div>
+						</div>
+						<!-- Destination 2 -->
+						<div
+							class="group relative h-80 rounded-xl overflow-hidden shadow-md flex flex-col justify-end p-6 transition-all duration-300 hover:shadow-xl"
+						>
+							<div
+								class="absolute inset-0 bg-cover bg-center transition-transform duration-500 group-hover:scale-105"
+								data-alt="Majestic Marble Mountains (Ngu Hanh Son) in Da Nang with ancient stone pagodas, lush foliage, dramatic limestone karst peaks emerging under a soft golden sunset sky."
+								style="
+									background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuBQrr1SzhhsH_n0UsGdwKZZ6Y6UEEQbGXCky3fHsGc5l0KRPcXM_xCdwhPYyEKBR4CI0rSD9yPbKjGq1H7vRFd-H7bt6ZPYhwpuQMF97pRM5ODmwI1b89tvTUAx7zKh9cITrjWCTwjrXHFhBznOHL9VySNOr9k0anjOnJ3BvE1jkHMgwY1mkknPoM25VL0Z1J_ZHK9QOv9Sh_-Ue-1nAiclucUkh4kO_rrZYVZAxHW8Rg6av2j-C5OU');
+								"
+							></div>
+							<div
+								class="absolute inset-0 bg-gradient-to-t from-primary/90 via-primary/20 to-transparent"
+							></div>
+							<div class="relative z-10 flex flex-col">
+								<span
+									class="text-caption text-secondary-fixed-dim uppercase tracking-wider font-bold"
+									>Văn hóa &amp; Tâm linh</span
+								>
+								<h3
+									class="text-headline-md text-on-primary font-bold"
+								>
+									Ngũ Hành Sơn
+								</h3>
+								<p
+									class="text-caption text-surface-container-high mt-1"
+								>
+									Quần thể ngọn núi đá vôi với các hang động
+									kỳ bí và chùa cổ.
+								</p>
+							</div>
+						</div>
+						<!-- Destination 3 -->
+						<div
+							class="group relative h-80 rounded-xl overflow-hidden shadow-md flex flex-col justify-end p-6 transition-all duration-300 hover:shadow-xl"
+						>
+							<div
+								class="absolute inset-0 bg-cover bg-center transition-transform duration-500 group-hover:scale-105"
+								data-alt="Stunning night view of the iconic Dragon Bridge (Cau Rong) in Da Nang breathing brilliant golden fire and smoke across the Han River, vibrant urban reflections."
+								style="
+									background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuCYKZK9yTHyHTqhs_LjwiOj5Bekd7xPR01BLK30HLGx9eoJo7fwbAlGuW7nLuAgW6Eyt4VlGGSlzLGe6HoEy3ALWzRdbsDL2casCPKnDbhEMQ-YyFpV4URiisFbACASou05trNGynthHXmfNNGr-qIeWex4OmAhodXWdGl_3p3ilgA8LVT4N6V75l_NgkHwlUUSRko5dUv6s9XxLzHw_N0pRYg5161xmbjr0O3SwhyfNTzhk1vliD8t');
+								"
+							></div>
+							<div
+								class="absolute inset-0 bg-gradient-to-t from-primary/90 via-primary/20 to-transparent"
+							></div>
+							<div class="relative z-10 flex flex-col">
+								<span
+									class="text-caption text-secondary-fixed-dim uppercase tracking-wider font-bold"
+									>Kiến trúc biểu tượng</span
+								>
+								<h3
+									class="text-headline-md text-on-primary font-bold"
+								>
+									Cầu Rồng
+								</h3>
+								<p
+									class="text-caption text-surface-container-high mt-1"
+								>
+									Cầu phun lửa nước độc đáo bắc qua sông Hàn
+									thơ mộng.
+								</p>
+								b
+							</div>
+						</div>
+						<!-- Destination 4 -->
+						<div
+							class="group relative h-80 rounded-xl overflow-hidden shadow-md flex flex-col justify-end p-6 transition-all duration-300 hover:shadow-xl"
+						>
+							<div
+								class="absolute inset-0 bg-cover bg-center transition-transform duration-500 group-hover:scale-105"
+								data-alt="Pristine white sand and crystal clear turquoise waves of My Khe Beach in Da Nang under a bright sunny tropical sky, gentle rolling surf and luxury resorts along the coast."
+								style="
+									background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDN5lX0SzWaDbPmZXZAJw9X_7YVcpZ1mXXjLmOo4sPYgFtq40e8b2s9NTmX8BV95qq-Eqf__loKzmVbX_5OCkYdL3WGe2OWktGSIHXZjsSMFkPaoKLNfTF9UxhxfyZEdlT0o2-u1-NQt1KnU6WFZgpEyzQaK0TX6ofFV4HnQ7LSQGQtovL6vk_zA4YRcESbGwce1FhQxZWLvDOaVnBJnDbB-Q3Ysnp9hNH0AveIP2-9dP4oa8hZVQUV');
+								"
+							></div>
+							<div
+								class="absolute inset-0 bg-gradient-to-t from-primary/90 via-primary/20 to-transparent"
+							></div>
+							<div class="relative z-10 flex flex-col">
+								<span
+									class="text-caption text-secondary-fixed-dim uppercase tracking-wider font-bold"
+									>Nghỉ dưỡng biển</span
+								>
+								<h3
+									class="text-headline-md text-on-primary font-bold"
+								>
+									Biển Mỹ Khê
+								</h3>
+								<p
+									class="text-caption text-surface-container-high mt-1"
+								>
+									Một trong những bãi biển quyến rũ nhất hành
+									tinh với cát trắng mịn.
+								</p>
+							</div>
+						</div>
+					</div>
+				</section>
+				<!-- Recommended Hotels with Pricing & Ratings -->
+				<section class="max-w-7xl mx-auto px-6 lg:px-12 w-full mb-16">
+					<div class="flex justify-between items-end mb-8">
+						<div>
+							<span
+								class="text-caption text-on-surface-variant uppercase tracking-wider"
+								>Tuyển chọn riêng cho bạn</span
+							>
+							<h2
+								class="text-headline-lg font-bold text-on-surface mt-1"
+							>
+								Khách sạn đề xuất hàng đầu
+							</h2>
+						</div>
+						<div class="flex gap-sm">
+							<button
+								class="bg-surface-container px-4 py-2 rounded-full text-label-md text-on-surface hover:bg-primary hover:text-on-primary transition-colors"
+							>
+								Tất cả
+							</button>
+							<button
+								class="bg-surface-container px-4 py-2 rounded-full text-label-md text-on-surface hover:bg-primary hover:text-on-primary transition-colors"
+							>
+								Ven biển
+							</button>
+							<button
+								class="bg-surface-container px-4 py-2 rounded-full text-label-md text-on-surface hover:bg-primary hover:text-on-primary transition-colors"
+							>
+								Trung tâm
+							</button>
+						</div>
+					</div>
+					<div class="grid grid-cols-1 md:grid-cols-3 gap-lg">
+						<!-- Hotel Card 1 -->
+						<div
+							class="bg-surface-container-lowest rounded-xl shadow-md overflow-hidden flex flex-col justify-between hover:shadow-xl transition-shadow"
+						>
+							<div
+								class="relative h-60 w-full bg-cover bg-center"
+								data-alt="Luxurious beachfront resort exterior in Da Nang with infinity pool overlooking My Khe beach, elegant sun loungers, modern tropical architecture under clear daylight."
+								style="
+									background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuBhYyYXJjBMiCfRFyltgBweb4SK-hfk7FwIh2ZDycHq0AV_tGVhoRhEj2djfGT5yOkDSY22c96O1JJYA2x8bNuNZeqlLdWuhiMAU1S1vZ4cweteO83HTR9b0C7DThoojEqc-orvKc5AJuAXjMPhcsYftTd_eriFXyKVvStISxruLu_BzHhUuz4ntsv1WmNDekSYVBISEkUA_0gvIW9VAHz2IK6ppMK3LBojDHoObfjHtkPUvQNu9E8G');
+								"
+							>
+								<div
+									class="absolute top-4 right-4 bg-surface-container-lowest/90 backdrop-blur-md px-3 py-1 rounded-full flex items-center gap-xs shadow-sm"
+								>
+									<span
+										class="material-symbols-outlined text-secondary-fixed-dim text-[16px]"
+										style="
+											font-variation-settings: 'FILL' 1;
+										"
+										>star</span
+									>
+									<span class="text-label-md font-bold"
+										>4.9</span
+									>
+									<span
+										class="text-caption text-on-surface-variant"
+										>(128)</span
+									>
+								</div>
+							</div>
+							<div class="p-6 flex flex-col gap-md">
+								<div>
+									<div
+										class="flex justify-between items-start"
+									>
+										<span
+											class="text-caption text-secondary font-bold uppercase tracking-wider"
+											>Mỹ Khê Beach</span
+										>
+										<span
+											class="text-caption text-on-surface-variant"
+											>5 Sao</span
+										>
+									</div>
+									<h3
+										class="text-headline-md font-bold text-on-surface mt-1"
+									>
+										Ariyana Luxury Resort Da Nang
+									</h3>
+									<p
+										class="text-body-md text-on-surface-variant mt-2 line-clamp-2"
+									>
+										Nghỉ dưỡng đẳng cấp sát biển với hồ bơi
+										vô cực rộng lớn và hệ thống nhà hàng Á -
+										Âu tinh tế.
+									</p>
+								</div>
+								<div
+									class="flex items-center justify-between pt-4 border-t border-surface-container-high"
+								>
+									<div>
+										<span
+											class="text-caption text-on-surface-variant block"
+											>Giá mỗi đêm từ</span
+										>
+										<span
+											class="text-headline-md font-bold text-primary"
+											>2.450.000 ₫</span
+										>
+									</div>
+									<button
+										class="bg-primary text-on-primary py-2 px-4 rounded-full text-label-md hover:bg-primary-container transition-colors"
+									>
+										Đặt phòng
+									</button>
+								</div>
+							</div>
+						</div>
+						<!-- Hotel Card 2 -->
+						<div
+							class="bg-surface-container-lowest rounded-xl shadow-md overflow-hidden flex flex-col justify-between hover:shadow-xl transition-shadow"
+						>
+							<div
+								class="relative h-60 w-full bg-cover bg-center"
+								data-alt="Chic boutique hotel lobby and rooftop bar in downtown Da Nang overlooking Han river, sophisticated minimalist interior design with warm wooden accents and ambient lighting."
+								style="
+									background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDZYYZ_k-KWKFbE4YoRTPqITOZdgcY-DyKWWyg5ftpqjyhc6rzb8AbvpFVrAKvBj1m2BbJ-wtvACfPuRbiuEj54tqbOgqBGj6bzwB4bObN0RFvEREhln3sGvlwRQQJhGkhyCXzQy1-XlMgQEFPbjQNuXrF5bTcIAheoTHsIToyhR65AF1ZS0dvncbFY1-BwpA_W0lq8qPvzJDnISDUP_OApNKtcG3IM9wVycccUwj5qdB_tuLveVIBF');
+								"
+							>
+								<div
+									class="absolute top-4 right-4 bg-surface-container-lowest/90 backdrop-blur-md px-3 py-1 rounded-full flex items-center gap-xs shadow-sm"
+								>
+									<span
+										class="material-symbols-outlined text-secondary-fixed-dim text-[16px]"
+										style="
+											font-variation-settings: 'FILL' 1;
+										"
+										>star</span
+									>
+									<span class="text-label-md font-bold"
+										>4.8</span
+									>
+									<span
+										class="text-caption text-on-surface-variant"
+										>(94)</span
+									>
+								</div>
+							</div>
+							<div class="p-6 flex flex-col gap-md">
+								<div>
+									<div
+										class="flex justify-between items-start"
+									>
+										<span
+											class="text-caption text-secondary font-bold uppercase tracking-wider"
+											>Trung tâm Sông Hàn</span
+										>
+										<span
+											class="text-caption text-on-surface-variant"
+											>4 Sao</span
+										>
+									</div>
+									<h3
+										class="text-headline-md font-bold text-on-surface mt-1"
+									>
+										Novotel Danang Premier Han River
+									</h3>
+									<p
+										class="text-body-md text-on-surface-variant mt-2 line-clamp-2"
+									>
+										Tọa lạc ngay bên bờ tây sông Hàn, tầm
+										nhìn toàn cảnh thành phố lung linh về
+										đêm và dịch vụ thương gia cao cấp.
+									</p>
+								</div>
+								<div
+									class="flex items-center justify-between pt-4 border-t border-surface-container-high"
+								>
+									<div>
+										<span
+											class="text-caption text-on-surface-variant block"
+											>Giá mỗi đêm từ</span
+										>
+										<span
+											class="text-headline-md font-bold text-primary"
+											>1.890.000 ₫</span
+										>
+									</div>
+									<button
+										class="bg-primary text-on-primary py-2 px-4 rounded-full text-label-md hover:bg-primary-container transition-colors"
+									>
+										Đặt phòng
+									</button>
+								</div>
+							</div>
+						</div>
+						<!-- Hotel Card 3 -->
+						<div
+							class="bg-surface-container-lowest rounded-xl shadow-md overflow-hidden flex flex-col justify-between hover:shadow-xl transition-shadow"
+						>
+							<div
+								class="relative h-60 w-full bg-cover bg-center"
+								data-alt="Serene luxury eco-resort nestled near Son Tra peninsula Da Nang, private pool villas surrounded by lush tropical jungle and pristine ocean views."
+								style="
+									background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDCY5qJ0WQq3tBN5QO98uzLYvTuWY9hhGD7-e2wJJSJpx-YrYZ9awVFWUKV_LAFSoZt1XIvKvNta8AMj4zpYdYBAgQ6ABWqPoUpmd84ainNy6gbF4ISiuEIxDBQcIQO5Pm11KENzm7ffsxRQSTe3FgP68PtnUQPEp9JObPF4YqGg1EWMHeSIMvZZMWy3iFaywYOQ1linaUzc7wUP50KjrDr8HepFEyuDSE0gf65geJQVXntOYA-WdQ6');
+								"
+							>
+								<div
+									class="absolute top-4 right-4 bg-surface-container-lowest/90 backdrop-blur-md px-3 py-1 rounded-full flex items-center gap-xs shadow-sm"
+								>
+									<span
+										class="material-symbols-outlined text-secondary-fixed-dim text-[16px]"
+										style="
+											font-variation-settings: 'FILL' 1;
+										"
+										>star</span
+									>
+									<span class="text-label-md font-bold"
+										>5.0</span
+									>
+									<span
+										class="text-caption text-on-surface-variant"
+										>(210)</span
+									>
+								</div>
+							</div>
+							<div class="p-6 flex flex-col gap-md">
+								<div>
+									<div
+										class="flex justify-between items-start"
+									>
+										<span
+											class="text-caption text-secondary font-bold uppercase tracking-wider"
+											>Bán đảo Sơn Trà</span
+										>
+										<span
+											class="text-caption text-on-surface-variant"
+											>5 Sao+</span
+										>
+									</div>
+									<h3
+										class="text-headline-md font-bold text-on-surface mt-1"
+									>
+										InterContinental Danang Sun Peninsula
+									</h3>
+									<p
+										class="text-body-md text-on-surface-variant mt-2 line-clamp-2"
+									>
+										Kiệt tác kiến trúc nghỉ dưỡng ẩn mình
+										giữa thiên nhiên hoang sơ bán đảo Sơn
+										Trà, thiết kế bởi Bill Bensley.
+									</p>
+								</div>
+								<div
+									class="flex items-center justify-between pt-4 border-t border-surface-container-high"
+								>
+									<div>
+										<span
+											class="text-caption text-on-surface-variant block"
+											>Giá mỗi đêm từ</span
+										>
+										<span
+											class="text-headline-md font-bold text-primary"
+											>7.500.000 ₫</span
+										>
+									</div>
+									<button
+										class="bg-primary text-on-primary py-2 px-4 rounded-full text-label-md hover:bg-primary-container transition-colors"
+									>
+										Đặt phòng
+									</button>
+								</div>
+							</div>
+						</div>
+					</div>
+				</section>
+				<!-- Quick Booking History Overview -->
+				<section class="max-w-7xl mx-auto px-6 lg:px-12 w-full mb-16">
+					<div class="flex justify-between items-end mb-8">
+						<div>
+							<span
+								class="text-caption text-on-surface-variant uppercase tracking-wider"
+								>Quản lý hành trình</span
+							>
+							<h2
+								class="text-headline-lg font-bold text-on-surface mt-1"
+							>
+								Lịch sử đặt phòng gần đây
+							</h2>
+						</div>
+						<a
+							class="text-label-md text-secondary hover:underline flex items-center gap-xs"
+							href="#"
+							>Xem tất cả đơn (<span class="font-bold">3</span>)
+							<span class="material-symbols-outlined text-[16px]"
+								>arrow_forward</span
+							></a
+						>
+					</div>
+					<div
+						class="bg-surface-container-lowest rounded-xl shadow-md overflow-hidden"
+					>
+						<div
+							class="grid grid-cols-1 divide-y divide-surface-container-low"
+						>
+							<!-- Booking Item 1 -->
+							<div
+								class="p-6 flex flex-col md:flex-row items-start md:items-center justify-between gap-md hover:bg-surface-container/50 transition-colors"
+							>
+								<div class="flex items-center gap-md">
+									<div
+										class="w-12 h-12 rounded-xl bg-primary-container text-on-primary-container flex items-center justify-center flex-shrink-0"
+									>
+										<span class="material-symbols-outlined"
+											>hotel</span
+										>
+									</div>
+									<div>
+										<div class="flex items-center gap-sm">
+											<h4
+												class="text-headline-md font-bold text-on-surface"
+											>
+												Ariyana Luxury Resort Da Nang
+											</h4>
+											<span
+												class="bg-secondary-fixed text-on-secondary-fixed px-2.5 py-0.5 rounded-full text-caption font-bold"
+												>Đã xác nhận</span
+											>
+										</div>
+										<p
+											class="text-caption text-on-surface-variant mt-1"
+										>
+											Mã đặt phòng:
+											<span
+												class="font-bold text-on-surface"
+												>DN-88492</span
+											>
+											• 22 Th10, 2024 - 25 Th10, 2024 (3
+											đêm)
+										</p>
+									</div>
+								</div>
+								<div
+									class="flex items-center gap-md w-full md:w-auto justify-between md:justify-end"
+								>
+									<div class="text-right">
+										<span
+											class="text-caption text-on-surface-variant block"
+											>Tổng thanh toán</span
+										>
+										<span
+											class="text-label-md font-bold text-primary"
+											>7.350.000 ₫</span
+										>
+									</div>
+									<button
+										class="bg-surface-container px-4 py-2 rounded-full text-label-md text-on-surface hover:bg-primary hover:text-on-primary transition-colors"
+									>
+										Chi tiết
+									</button>
+								</div>
+							</div>
+							<!-- Booking Item 2 -->
+							<div
+								class="p-6 flex flex-col md:flex-row items-start md:items-center justify-between gap-md hover:bg-surface-container/50 transition-colors"
+							>
+								<div class="flex items-center gap-md">
+									<div
+										class="w-12 h-12 rounded-xl bg-surface-container text-on-surface-variant flex items-center justify-center flex-shrink-0"
+									>
+										<span class="material-symbols-outlined"
+											>check_circle</span
+										>
+									</div>
+									<div>
+										<div class="flex items-center gap-sm">
+											<h4
+												class="text-headline-md font-bold text-on-surface"
+											>
+												Novotel Danang Premier Han River
+											</h4>
+											<span
+												class="bg-surface-container-high text-on-surface-variant px-2.5 py-0.5 rounded-full text-caption font-bold"
+												>Đã hoàn thành</span
+											>
+										</div>
+										<p
+											class="text-caption text-on-surface-variant mt-1"
+										>
+											Mã đặt phòng:
+											<span
+												class="font-bold text-on-surface"
+												>DN-76120</span
+											>
+											• 10 Th9, 2024 - 12 Th9, 2024 (2
+											đêm)
+										</p>
+									</div>
+								</div>
+								<div
+									class="flex items-center gap-md w-full md:w-auto justify-between md:justify-end"
+								>
+									<div class="text-right">
+										<span
+											class="text-caption text-on-surface-variant block"
+											>Tổng thanh toán</span
+										>
+										<span
+											class="text-label-md font-bold text-primary"
+											>3.780.000 ₫</span
+										>
+									</div>
+									<button
+										class="bg-surface-container px-4 py-2 rounded-full text-label-md text-on-surface hover:bg-primary hover:text-on-primary transition-colors"
+									>
+										Đánh giá
+									</button>
+								</div>
+							</div>
+						</div>
+					</div>
+				</section>
+			</div>
+		</main>
+		<footer class="w-full bg-surface-container-low py-12">
+			<div
+				class="max-w-7xl mx-auto px-6 lg:px-12 text-center text-on-surface-variant text-caption"
+			>
+				© 2026 DaNang Travel. All rights reserved.
+			</div>
+		</footer>
+	</body>
+</html>

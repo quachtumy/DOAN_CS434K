@@ -1,0 +1,779 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<meta content="width=device-width, initial-scale=1.0" name="viewport" />
+		<style>
+			@layer base {
+				html,
+				body {
+					margin: 0;
+					padding: 0;
+				}
+				body {
+					overscroll-behavior: none;
+				}
+				main > :first-child {
+					margin-top: 0 !important;
+				}
+				main > :last-child {
+					margin-bottom: 0 !important;
+				}
+			}
+			::-webkit-scrollbar {
+				display: none;
+			}
+		</style>
+		<script src="https://cdn.tailwindcss.com"></script>
+		<script id="tailwind-config">
+			tailwind.config = {
+				darkMode: 'class',
+				theme: {
+					extend: {
+						colors: {
+							'on-error': '#ffffff',
+							'tertiary-fixed': '#d9e3f9',
+							'surface-container-low': '#f1f4f6',
+							'primary-container': '#002045',
+							'secondary-fixed-dim': '#ffb86c',
+							'surface-container-high': '#e6e8eb',
+							'tertiary-container': '#172131',
+							'on-primary-fixed': '#001b3c',
+							'inverse-primary': '#aec7f5',
+							'inverse-on-surface': '#eef1f4',
+							'outline-variant': '#c4c6cf',
+							'on-tertiary': '#ffffff',
+							surface: '#f7fafc',
+							'surface-dim': '#d7dadd',
+							'on-primary-fixed-variant': '#2e476e',
+							'surface-container': '#ebeef1',
+							'on-secondary': '#ffffff',
+							primary: '#00091b',
+							'surface-container-highest': '#e0e3e5',
+							'on-tertiary-fixed': '#121c2c',
+							'primary-fixed-dim': '#aec7f5',
+							'surface-tint': '#465f87',
+							'error-container': '#ffdad6',
+							secondary: '#895100',
+							'tertiary-fixed-dim': '#bdc7dc',
+							'on-primary': '#ffffff',
+							'on-tertiary-fixed-variant': '#3d4759',
+							'on-primary-container': '#7089b3',
+							'on-background': '#181c1e',
+							'inverse-surface': '#2d3133',
+							'primary-fixed': '#d6e3ff',
+							outline: '#74777f',
+							'on-surface': '#181c1e',
+							'on-secondary-container': '#663b00',
+							background: '#f7fafc',
+							tertiary: '#020919',
+							'on-tertiary-container': '#7e889c',
+							'on-surface-variant': '#44474e',
+							'on-secondary-fixed-variant': '#683d00',
+							'surface-variant': '#e0e3e5',
+							'on-secondary-fixed': '#2c1700',
+							'secondary-container': '#fd9d1a',
+							'secondary-fixed': '#ffdcbc',
+							'on-error-container': '#93000a',
+							error: '#ba1a1a',
+							'surface-bright': '#f7fafc',
+							'surface-container-lowest': '#ffffff',
+						},
+						borderRadius: {
+							DEFAULT: '0.125rem',
+							lg: '0.25rem',
+							xl: '0.5rem',
+							full: '0.75rem',
+						},
+						spacing: {
+							md: '16px',
+							xl: '32px',
+							base: '8px',
+							'3xl': '64px',
+							lg: '24px',
+							xs: '4px',
+							'2xl': '48px',
+							sm: '8px',
+						},
+						fontFamily: {
+							'body-md': ['Inter'],
+							'label-md': ['Inter'],
+							caption: ['Inter'],
+							'headline-md': ['Montserrat'],
+							'headline-lg': ['Montserrat'],
+							'body-lg': ['Inter'],
+							'display-lg': ['Montserrat'],
+						},
+						fontSize: {
+							'body-md': [
+								'16px',
+								{ lineHeight: '1.5', fontWeight: '400' },
+							],
+							'label-md': [
+								'14px',
+								{
+									lineHeight: '1.2',
+									letterSpacing: '0.01em',
+									fontWeight: '600',
+								},
+							],
+							caption: [
+								'12px',
+								{ lineHeight: '1.4', fontWeight: '400' },
+							],
+							'headline-md': [
+								'24px',
+								{ lineHeight: '1.4', fontWeight: '600' },
+							],
+							'headline-lg': [
+								'32px',
+								{ lineHeight: '1.3', fontWeight: '700' },
+							],
+							'body-lg': [
+								'18px',
+								{ lineHeight: '1.6', fontWeight: '400' },
+							],
+							'display-lg': [
+								'48px',
+								{
+									lineHeight: '1.2',
+									letterSpacing: '-0.02em',
+									fontWeight: '700',
+								},
+							],
+						},
+					},
+				},
+			};
+		</script>
+		<link
+			href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+			rel="stylesheet"
+		/>
+		<link
+			href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&amp;family=Montserrat:wght@100..900&amp;display=swap"
+			rel="stylesheet"
+		/>
+	</head>
+	<body class="bg-surface font-body-md text-on-surface">
+		<aside
+			class="fixed left-0 top-0 h-full w-72 bg-surface-container-low z-50 flex flex-col pt-6 pb-8 shadow-[0_1px_8px_rgba(0,0,0,0.04)]"
+		>
+			<div
+				class="px-xl mb-xl text-headline-md font-headline-md text-primary"
+			>
+				DaNang Travel
+			</div>
+			<nav
+				class="flex-1 px-4 space-y-xs overflow-y-auto"
+				data-active-classes="bg-primary-container text-on-primary-container font-bold rounded-xl"
+			>
+				<a
+					class="flex items-center px-4 py-3 rounded-xl text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-all"
+					data-path="dashboard"
+					href="#"
+					><span class="material-symbols-outlined mr-3"
+						>dashboard</span
+					>Bảng điều khiển</a
+				><a
+					class="flex items-center px-4 py-3 rounded-xl text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-all"
+					data-path="users"
+					href="#"
+					><span class="material-symbols-outlined mr-3">group</span
+					>Quản lý người dùng</a
+				><a
+					class="flex items-center px-4 py-3 rounded-xl text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-all"
+					data-path="hosts"
+					href="#"
+					><span class="material-symbols-outlined mr-3">badge</span
+					>Quản lý chủ cơ sở</a
+				><a
+					class="flex items-center px-4 py-3 rounded-xl text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-all"
+					data-path="locations"
+					href="#"
+					><span class="material-symbols-outlined mr-3"
+						>location_on</span
+					>Quản lý địa điểm</a
+				><a
+					class="flex items-center px-4 py-3 rounded-xl text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-all"
+					data-path="accommodations"
+					href="#"
+					><span class="material-symbols-outlined mr-3">hotel</span
+					>Quản lý cơ sở lưu trú</a
+				><a
+					class="flex items-center px-4 py-3 rounded-xl text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-all"
+					data-path="reviews"
+					href="#"
+					><span class="material-symbols-outlined mr-3"
+						>rate_review</span
+					>Quản lý đánh giá</a
+				><a
+					class="flex items-center px-4 py-3 rounded-xl text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-all"
+					data-path="statistics"
+					href="#"
+					><span class="material-symbols-outlined mr-3"
+						>bar_chart</span
+					>Thống kê &amp; Báo cáo</a
+				><a
+					class="flex items-center px-4 py-3 rounded-xl text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-all"
+					data-path="notifications"
+					href="#"
+					><span class="material-symbols-outlined mr-3"
+						>notifications</span
+					>Thông báo</a
+				><a
+					aria-current="page"
+					class="flex items-center px-4 py-3 transition-all bg-primary-container text-on-primary-container font-bold rounded-xl"
+					data-path="account"
+					href="#"
+					><span class="material-symbols-outlined mr-3"
+						>manage_accounts</span
+					>Tài khoản cá nhân</a
+				>
+			</nav>
+		</aside>
+		<div class="pl-72">
+			<header
+				class="fixed top-0 left-72 right-0 h-20 bg-surface/80 backdrop-blur-xl shadow-[0_1px_8px_rgba(0,0,0,0.04)] z-40 flex items-center justify-between px-xl"
+			>
+				<div class="flex items-center gap-md">
+					<span class="material-symbols-outlined text-outline"
+						>bolt</span
+					><span class="text-caption text-on-surface-variant"
+						>Trạng thái:
+						<strong class="text-on-surface"
+							>Hoạt động ổn định</strong
+						></span
+					>
+				</div>
+				<div class="flex items-center gap-md">
+					<div
+						class="w-8 h-8 rounded-full bg-primary flex items-center justify-center"
+					>
+						<span
+							class="material-symbols-outlined text-on-primary text-[18px]"
+							>person</span
+						>
+					</div>
+				</div>
+			</header>
+			<main class="relative pt-20 bg-surface min-h-screen p-xl">
+				<div class="flex flex-col w-full max-w-6xl mx-auto pb-3xl">
+					<!-- Top Header Intro -->
+					<div
+						class="flex flex-col md:flex-row md:items-end justify-between mb-xl gap-md"
+					>
+						<div>
+							<span
+								class="text-caption font-caption text-on-surface-variant uppercase tracking-wider block mb-xs"
+								>Bảo mật &amp; Cấu hình hệ thống</span
+							>
+							<h1
+								class="text-headline-lg font-headline-lg text-on-surface"
+							>
+								Tài khoản cá nhân quản trị
+							</h1>
+						</div>
+						<div class="flex items-center gap-md">
+							<span
+								class="inline-flex items-center px-3 py-1 rounded-full text-caption font-label-md bg-tertiary-fixed text-on-tertiary-fixed"
+							>
+								<span
+									class="material-symbols-outlined text-[14px] mr-1"
+									>verified</span
+								>
+								Super Admin
+							</span>
+							<span
+								class="text-caption font-caption text-on-surface-variant"
+								>ID: AD-88429</span
+							>
+						</div>
+					</div>
+					<!-- Main Content Grid -->
+					<div class="grid grid-cols-1 lg:grid-cols-12 gap-xl">
+						<!-- Left Column: Profile Card & Quick Stats -->
+						<div class="lg:col-span-4 flex flex-col gap-xl">
+							<div
+								class="bg-surface-container-lowest rounded-xl p-lg shadow-[0_4px_20px_rgba(26,54,93,0.05)] flex flex-col items-center text-center relative overflow-hidden"
+							>
+								<!-- Decorative bg glow -->
+								<div
+									class="absolute -top-12 -right-12 w-32 h-32 bg-primary/5 rounded-full blur-2xl pointer-events-none"
+								></div>
+								<div class="relative mb-md">
+									<div
+										class="w-24 h-24 rounded-full bg-primary-container text-on-primary-container flex items-center justify-center text-headline-lg font-headline-lg shadow-md overflow-hidden"
+									>
+										<img
+											class="w-full h-full object-cover"
+											data-alt="Portrait of a professional Vietnamese male administrator in sharp corporate attire with a confident expression, neutral modern office background, soft studio lighting, ultra clean composition."
+											src="https://lh3.googleusercontent.com/aida-public/AB6AXuA9yU-ylf88t7mnBXUgFzvyk4T73EXY7hQ7PiMBAcrlHXIvOBDki9c8taX8dVajEoGTyJQSw_IGyTJO3wVdHLjRCqSFyPqqw0j_1ekE2TiT-ZpMWmJ5TqC3QT3h7xJ5mFI6YIV_mKKWxPJUZhVctTXl4fpITrAXCewA2lz1e4vdxYvfHBdb5IcXnewT0z2rFYMYGxguHT6Qzmc3_ZStnfB49WQ2278T9CPODhGX2j7eR7FAWQbpy-6j"
+										/>
+									</div>
+									<button
+										class="absolute bottom-0 right-0 w-8 h-8 bg-secondary text-on-secondary rounded-full flex items-center justify-center shadow-md hover:scale-105 transition-transform"
+										title="Đổi ảnh đại diện"
+									>
+										<span
+											class="material-symbols-outlined text-[16px]"
+											>photo_camera</span
+										>
+									</button>
+								</div>
+								<h3
+									class="text-headline-md font-headline-md text-on-surface mb-xs"
+								>
+									Nguyễn Văn Minh
+								</h3>
+								<p
+									class="text-body-md font-body-md text-on-surface-variant mb-lg"
+								>
+									Quản trị viên hệ thống cấp cao
+								</p>
+								<div
+									class="w-full pt-lg border-t border-surface-container-high flex flex-col gap-sm text-left"
+								>
+									<div
+										class="flex items-center justify-between text-caption"
+									>
+										<span class="text-on-surface-variant"
+											>Lần đăng nhập cuối:</span
+										>
+										<span
+											class="font-label-md text-on-surface"
+											>Hôm nay, 08:30</span
+										>
+									</div>
+									<div
+										class="flex items-center justify-between text-caption"
+									>
+										<span class="text-on-surface-variant"
+											>IP Đăng nhập:</span
+										>
+										<span
+											class="font-label-md text-on-surface"
+											>113.161.88.12</span
+										>
+									</div>
+									<div
+										class="flex items-center justify-between text-caption"
+									>
+										<span class="text-on-surface-variant"
+											>Xác thực 2 bước (2FA):</span
+										>
+										<span
+											class="font-label-md text-secondary flex items-center"
+										>
+											<span
+												class="material-symbols-outlined text-[14px] mr-0.5"
+												>check_circle</span
+											>
+											Đã bật
+										</span>
+									</div>
+								</div>
+							</div>
+							<!-- Quick Action / Activity Security Card -->
+							<div
+								class="bg-surface-container-low rounded-xl p-lg flex flex-col gap-md"
+							>
+								<div class="flex items-center gap-md">
+									<span
+										class="material-symbols-outlined text-primary text-[24px]"
+										>shield</span
+									>
+									<div>
+										<h4
+											class="text-label-md font-label-md text-on-surface"
+										>
+											Nhật ký bảo mật
+										</h4>
+										<p
+											class="text-caption text-on-surface-variant"
+										>
+											Toàn bộ thay đổi được ghi nhận tự
+											động
+										</p>
+									</div>
+								</div>
+								<div class="space-y-sm mt-xs">
+									<div
+										class="text-caption bg-surface-container-lowest p-md rounded-lg flex items-center justify-between"
+									>
+										<span class="text-on-surface-variant"
+											>Đổi mật khẩu gần nhất</span
+										>
+										<span
+											class="font-label-md text-on-surface"
+											>14 ngày trước</span
+										>
+									</div>
+									<div
+										class="text-caption bg-surface-container-lowest p-md rounded-lg flex items-center justify-between"
+									>
+										<span class="text-on-surface-variant"
+											>Cập nhật thông tin</span
+										>
+										<span
+											class="font-label-md text-on-surface"
+											>Hôm qua</span
+										>
+									</div>
+								</div>
+							</div>
+						</div>
+						<!-- Right Column: Edit Forms -->
+						<div class="lg:col-span-8 flex flex-col gap-xl">
+							<!-- Personal Info Form Card -->
+							<div
+								class="bg-surface-container-lowest rounded-xl p-lg shadow-[0_4px_20px_rgba(26,54,93,0.05)]"
+							>
+								<div
+									class="flex items-center justify-between mb-lg pb-md border-b border-surface-container-high"
+								>
+									<div>
+										<h3
+											class="text-headline-md font-headline-md text-on-surface"
+										>
+											Thông tin cá nhân
+										</h3>
+										<p
+											class="text-caption text-on-surface-variant"
+										>
+											Cập nhật thông tin định danh và liên
+											hệ quản trị
+										</p>
+									</div>
+									<span
+										class="material-symbols-outlined text-outline"
+										>badge</span
+									>
+								</div>
+								<form
+									class="space-y-lg"
+									id="profile-form"
+									onsubmit="
+										event.preventDefault();
+										showToast(
+											'Đã lưu thay đổi thông tin thành công!',
+										);
+									"
+								>
+									<div
+										class="grid grid-cols-1 md:grid-cols-2 gap-lg"
+									>
+										<!-- Full Name -->
+										<div class="flex flex-col gap-sm">
+											<label
+												class="text-label-md font-label-md text-on-surface"
+												>Họ và tên</label
+											>
+											<div class="relative">
+												<span
+													class="absolute inset-y-0 left-0 pl-md flex items-center pointer-events-none text-outline"
+												>
+													<span
+														class="material-symbols-outlined text-[18px]"
+														>person</span
+													>
+												</span>
+												<input
+													class="w-full pl-11 pr-md py-3 bg-surface-container-lowest border border-outline rounded-lg text-body-md text-on-surface focus:outline-none focus:border-primary transition-colors"
+													required=""
+													type="text"
+													value="Nguyễn Văn Minh"
+												/>
+											</div>
+										</div>
+										<!-- Email -->
+										<div class="flex flex-col gap-sm">
+											<label
+												class="text-label-md font-label-md text-on-surface"
+												>Email quản trị</label
+											>
+											<div class="relative">
+												<span
+													class="absolute inset-y-0 left-0 pl-md flex items-center pointer-events-none text-outline"
+												>
+													<span
+														class="material-symbols-outlined text-[18px]"
+														>mail</span
+													>
+												</span>
+												<input
+													class="w-full pl-11 pr-md py-3 bg-surface-container-lowest border border-outline rounded-lg text-body-md text-on-surface focus:outline-none focus:border-primary transition-colors"
+													required=""
+													type="email"
+													value="admin.danang@tourism.gov.vn"
+												/>
+											</div>
+										</div>
+										<!-- Phone Number -->
+										<div class="flex flex-col gap-sm">
+											<label
+												class="text-label-md font-label-md text-on-surface"
+												>Số điện thoại</label
+											>
+											<div class="relative">
+												<span
+													class="absolute inset-y-0 left-0 pl-md flex items-center pointer-events-none text-outline"
+												>
+													<span
+														class="material-symbols-outlined text-[18px]"
+														>phone</span
+													>
+												</span>
+												<input
+													class="w-full pl-11 pr-md py-3 bg-surface-container-lowest border border-outline rounded-lg text-body-md text-on-surface focus:outline-none focus:border-primary transition-colors"
+													required=""
+													type="tel"
+													value="+84 905 123 456"
+												/>
+											</div>
+										</div>
+										<!-- Role/Position -->
+										<div class="flex flex-col gap-sm">
+											<label
+												class="text-label-md font-label-md text-on-surface"
+												>Chức vụ</label
+											>
+											<div class="relative">
+												<span
+													class="absolute inset-y-0 left-0 pl-md flex items-center pointer-events-none text-outline"
+												>
+													<span
+														class="material-symbols-outlined text-[18px]"
+														>work</span
+													>
+												</span>
+												<input
+													class="w-full pl-11 pr-md py-3 bg-surface-container border border-outline-variant rounded-lg text-body-md text-on-surface-variant cursor-not-allowed"
+													readonly=""
+													type="text"
+													value="Quản trị viên hệ thống cấp cao"
+												/>
+											</div>
+											<span
+												class="text-caption text-outline"
+												>Chức vụ được quản lý bởi hệ
+												thống phân quyền Tổng cục.</span
+											>
+										</div>
+									</div>
+									<div class="flex justify-end pt-md">
+										<button
+											class="px-xl py-3 bg-primary text-on-primary rounded-full text-label-md font-label-md shadow-md hover:opacity-95 transition-opacity flex items-center gap-sm"
+											type="submit"
+										>
+											<span
+												class="material-symbols-outlined text-[18px]"
+												>save</span
+											>
+											Lưu thay đổi
+										</button>
+									</div>
+								</form>
+							</div>
+							<!-- Password Security Form Card -->
+							<div
+								class="bg-surface-container-lowest rounded-xl p-lg shadow-[0_4px_20px_rgba(26,54,93,0.05)]"
+							>
+								<div
+									class="flex items-center justify-between mb-lg pb-md border-b border-surface-container-high"
+								>
+									<div>
+										<h3
+											class="text-headline-md font-headline-md text-on-surface"
+										>
+											Đổi mật khẩu bảo mật
+										</h3>
+										<p
+											class="text-caption text-on-surface-variant"
+										>
+											Đảm bảo tài khoản sử dụng mật khẩu
+											mạnh để bảo vệ hệ thống
+										</p>
+									</div>
+									<span
+										class="material-symbols-outlined text-outline"
+										>lock</span
+									>
+								</div>
+								<form
+									class="space-y-lg"
+									id="password-form"
+									onsubmit="
+										event.preventDefault();
+										showToast(
+											'Mật khẩu đã được cập nhật thành công!',
+										);
+										this.reset();
+									"
+								>
+									<div
+										class="grid grid-cols-1 md:grid-cols-3 gap-lg"
+									>
+										<!-- Current Password -->
+										<div class="flex flex-col gap-sm">
+											<label
+												class="text-label-md font-label-md text-on-surface"
+												>Mật khẩu hiện tại</label
+											>
+											<div class="relative">
+												<span
+													class="absolute inset-y-0 left-0 pl-md flex items-center pointer-events-none text-outline"
+												>
+													<span
+														class="material-symbols-outlined text-[18px]"
+														>key</span
+													>
+												</span>
+												<input
+													class="w-full pl-11 pr-md py-3 bg-surface-container-lowest border border-outline rounded-lg text-body-md text-on-surface focus:outline-none focus:border-primary transition-colors"
+													placeholder="••••••••"
+													required=""
+													type="password"
+												/>
+											</div>
+										</div>
+										<!-- New Password -->
+										<div class="flex flex-col gap-sm">
+											<label
+												class="text-label-md font-label-md text-on-surface"
+												>Mật khẩu mới</label
+											>
+											<div class="relative">
+												<span
+													class="absolute inset-y-0 left-0 pl-md flex items-center pointer-events-none text-outline"
+												>
+													<span
+														class="material-symbols-outlined text-[18px]"
+														>lock_reset</span
+													>
+												</span>
+												<input
+													class="w-full pl-11 pr-md py-3 bg-surface-container-lowest border border-outline rounded-lg text-body-md text-on-surface focus:outline-none focus:border-primary transition-colors"
+													placeholder="••••••••"
+													required=""
+													type="password"
+												/>
+											</div>
+										</div>
+										<!-- Confirm New Password -->
+										<div class="flex flex-col gap-sm">
+											<label
+												class="text-label-md font-label-md text-on-surface"
+												>Xác nhận mật khẩu</label
+											>
+											<div class="relative">
+												<span
+													class="absolute inset-y-0 left-0 pl-md flex items-center pointer-events-none text-outline"
+												>
+													<span
+														class="material-symbols-outlined text-[18px]"
+														>verified_user</span
+													>
+												</span>
+												<input
+													class="w-full pl-11 pr-md py-3 bg-surface-container-lowest border border-outline rounded-lg text-body-md text-on-surface focus:outline-none focus:border-primary transition-colors"
+													placeholder="••••••••"
+													required=""
+													type="password"
+												/>
+											</div>
+										</div>
+									</div>
+									<!-- Password requirements indicator -->
+									<div
+										class="bg-surface-container-low p-md rounded-lg flex flex-col gap-xs text-caption text-on-surface-variant"
+									>
+										<span
+											class="font-label-md text-on-surface mb-xs"
+											>Yêu cầu mật khẩu bảo mật:</span
+										>
+										<div class="flex items-center gap-xs">
+											<span
+												class="material-symbols-outlined text-[14px] text-secondary"
+												>check_circle</span
+											>
+											Ít nhất 8 ký tự, bao gồm chữ hoa,
+											chữ thường
+										</div>
+										<div class="flex items-center gap-xs">
+											<span
+												class="material-symbols-outlined text-[14px] text-secondary"
+												>check_circle</span
+											>
+											Có ít nhất một chữ số và một ký tự
+											đặc biệt
+										</div>
+									</div>
+									<div class="flex justify-end pt-md">
+										<button
+											class="px-xl py-3 bg-secondary text-on-secondary rounded-full text-label-md font-label-md shadow-md hover:opacity-95 transition-opacity flex items-center gap-sm"
+											type="submit"
+										>
+											<span
+												class="material-symbols-outlined text-[18px]"
+												>lock</span
+											>
+											Cập nhật mật khẩu
+										</button>
+									</div>
+								</form>
+							</div>
+						</div>
+					</div>
+					<!-- Toast Notification Container (Hidden by default) -->
+					<div
+						class="fixed bottom-8 right-8 z-50 transform translate-y-20 opacity-0 transition-all duration-300 pointer-events-none"
+						id="toast-notification"
+					>
+						<div
+							class="bg-primary text-on-primary px-lg py-md rounded-xl shadow-xl flex items-center gap-md"
+						>
+							<span
+								class="material-symbols-outlined text-secondary"
+								>check_circle</span
+							>
+							<span
+								class="text-label-md font-label-md"
+								id="toast-message"
+								>Thành công!</span
+							>
+						</div>
+					</div>
+					<script>
+						function showToast(message) {
+							const toast =
+								document.getElementById('toast-notification');
+							const msg =
+								document.getElementById('toast-message');
+							msg.textContent = message;
+
+							toast.classList.remove(
+								'translate-y-20',
+								'opacity-0',
+								'pointer-events-none',
+							);
+							toast.classList.add('translate-y-0', 'opacity-100');
+
+							setTimeout(() => {
+								toast.classList.remove(
+									'translate-y-0',
+									'opacity-100',
+								);
+								toast.classList.add(
+									'translate-y-20',
+									'opacity-0',
+									'pointer-events-none',
+								);
+							}, 3500);
+						}
+					</script>
+				</div>
+			</main>
+		</div>
+	</body>
+</html>

@@ -1,0 +1,1018 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<meta content="width=device-width, initial-scale=1.0" name="viewport" />
+		<style>
+			@layer base {
+				html,
+				body {
+					margin: 0;
+					padding: 0;
+				}
+				body {
+					overscroll-behavior: none;
+				}
+				main > :first-child {
+					margin-top: 0 !important;
+				}
+				main > :last-child {
+					margin-bottom: 0 !important;
+				}
+			}
+			::-webkit-scrollbar {
+				display: none;
+			}
+		</style>
+		<script src="https://cdn.tailwindcss.com"></script>
+		<script id="tailwind-config">
+			tailwind.config = {
+				darkMode: 'class',
+				theme: {
+					extend: {
+						colors: {
+							'on-error': '#ffffff',
+							'tertiary-fixed': '#d9e3f9',
+							'surface-container-low': '#f1f4f6',
+							'primary-container': '#002045',
+							'secondary-fixed-dim': '#ffb86c',
+							'surface-container-high': '#e6e8eb',
+							'tertiary-container': '#172131',
+							'on-primary-fixed': '#001b3c',
+							'inverse-primary': '#aec7f5',
+							'inverse-on-surface': '#eef1f4',
+							'outline-variant': '#c4c6cf',
+							'on-tertiary': '#ffffff',
+							surface: '#f7fafc',
+							'surface-dim': '#d7dadd',
+							'on-primary-fixed-variant': '#2e476e',
+							'surface-container': '#ebeef1',
+							'on-secondary': '#ffffff',
+							primary: '#00091b',
+							'surface-container-highest': '#e0e3e5',
+							'on-tertiary-fixed': '#121c2c',
+							'primary-fixed-dim': '#aec7f5',
+							'surface-tint': '#465f87',
+							'error-container': '#ffdad6',
+							secondary: '#895100',
+							'tertiary-fixed-dim': '#bdc7dc',
+							'on-primary': '#ffffff',
+							'on-tertiary-fixed-variant': '#3d4759',
+							'on-primary-container': '#7089b3',
+							'on-background': '#181c1e',
+							'inverse-surface': '#2d3133',
+							'primary-fixed': '#d6e3ff',
+							outline: '#74777f',
+							'on-surface': '#181c1e',
+							'on-secondary-container': '#663b00',
+							background: '#f7fafc',
+							tertiary: '#020919',
+							'on-tertiary-container': '#7e889c',
+							'on-surface-variant': '#44474e',
+							'on-secondary-fixed-variant': '#683d00',
+							'surface-variant': '#e0e3e5',
+							'on-secondary-fixed': '#2c1700',
+							'secondary-container': '#fd9d1a',
+							'secondary-fixed': '#ffdcbc',
+							'on-error-container': '#93000a',
+							error: '#ba1a1a',
+							'surface-bright': '#f7fafc',
+							'surface-container-lowest': '#ffffff',
+						},
+						borderRadius: {
+							DEFAULT: '0.125rem',
+							lg: '0.25rem',
+							xl: '0.5rem',
+							full: '0.75rem',
+						},
+						spacing: {
+							md: '16px',
+							xl: '32px',
+							base: '8px',
+							'3xl': '64px',
+							lg: '24px',
+							xs: '4px',
+							'2xl': '48px',
+							sm: '8px',
+						},
+						fontFamily: {
+							'body-md': ['Inter'],
+							'label-md': ['Inter'],
+							caption: ['Inter'],
+							'headline-md': ['Montserrat'],
+							'headline-lg': ['Montserrat'],
+							'body-lg': ['Inter'],
+							'display-lg': ['Montserrat'],
+						},
+						fontSize: {
+							'body-md': [
+								'16px',
+								{ lineHeight: '1.5', fontWeight: '400' },
+							],
+							'label-md': [
+								'14px',
+								{
+									lineHeight: '1.2',
+									letterSpacing: '0.01em',
+									fontWeight: '600',
+								},
+							],
+							caption: [
+								'12px',
+								{ lineHeight: '1.4', fontWeight: '400' },
+							],
+							'headline-md': [
+								'24px',
+								{ lineHeight: '1.4', fontWeight: '600' },
+							],
+							'headline-lg': [
+								'32px',
+								{ lineHeight: '1.3', fontWeight: '700' },
+							],
+							'body-lg': [
+								'18px',
+								{ lineHeight: '1.6', fontWeight: '400' },
+							],
+							'display-lg': [
+								'48px',
+								{
+									lineHeight: '1.2',
+									letterSpacing: '-0.02em',
+									fontWeight: '700',
+								},
+							],
+						},
+					},
+				},
+			};
+		</script>
+		<link
+			href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+			rel="stylesheet"
+		/>
+		<link
+			href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&amp;family=Montserrat:wght@100..900&amp;display=swap"
+			rel="stylesheet"
+		/>
+	</head>
+	<body class="bg-surface font-body-md text-on-surface">
+		<aside
+			class="fixed left-0 top-0 h-full w-72 bg-surface-container-low z-50 flex flex-col pt-6 pb-8 shadow-[0_1px_8px_rgba(0,0,0,0.04)]"
+		>
+			<div
+				class="px-xl mb-xl text-headline-md font-headline-md text-primary"
+			>
+				DaNang Travel
+			</div>
+			<nav
+				class="flex-1 px-4 space-y-xs overflow-y-auto"
+				data-active-classes="bg-primary-container text-on-primary-container font-bold rounded-xl"
+			>
+				<a
+					class="flex items-center px-4 py-3 rounded-xl text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-all"
+					data-path="dashboard"
+					href="#"
+					><span class="material-symbols-outlined mr-3"
+						>dashboard</span
+					>Bảng điều khiển</a
+				><a
+					class="flex items-center px-4 py-3 rounded-xl text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-all"
+					data-path="users"
+					href="#"
+					><span class="material-symbols-outlined mr-3">group</span
+					>Quản lý người dùng</a
+				><a
+					class="flex items-center px-4 py-3 rounded-xl text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-all"
+					data-path="hosts"
+					href="#"
+					><span class="material-symbols-outlined mr-3">badge</span
+					>Quản lý chủ cơ sở</a
+				><a
+					class="flex items-center px-4 py-3 rounded-xl text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-all"
+					data-path="locations"
+					href="#"
+					><span class="material-symbols-outlined mr-3"
+						>location_on</span
+					>Quản lý địa điểm</a
+				><a
+					class="flex items-center px-4 py-3 rounded-xl text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-all"
+					data-path="accommodations"
+					href="#"
+					><span class="material-symbols-outlined mr-3">hotel</span
+					>Quản lý cơ sở lưu trú</a
+				><a
+					class="flex items-center px-4 py-3 rounded-xl text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-all"
+					data-path="reviews"
+					href="#"
+					><span class="material-symbols-outlined mr-3"
+						>rate_review</span
+					>Quản lý đánh giá</a
+				><a
+					aria-current="page"
+					class="flex items-center px-4 py-3 transition-all bg-primary-container text-on-primary-container font-bold rounded-xl"
+					data-path="statistics"
+					href="#"
+					><span class="material-symbols-outlined mr-3"
+						>bar_chart</span
+					>Thống kê &amp; Báo cáo</a
+				><a
+					class="flex items-center px-4 py-3 rounded-xl text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-all"
+					data-path="notifications"
+					href="#"
+					><span class="material-symbols-outlined mr-3"
+						>notifications</span
+					>Thông báo</a
+				><a
+					class="flex items-center px-4 py-3 rounded-xl text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-all"
+					data-path="account"
+					href="#"
+					><span class="material-symbols-outlined mr-3"
+						>manage_accounts</span
+					>Tài khoản cá nhân</a
+				>
+			</nav>
+		</aside>
+		<div class="pl-72">
+			<header
+				class="fixed top-0 left-72 right-0 h-20 bg-surface/80 backdrop-blur-xl shadow-[0_1px_8px_rgba(0,0,0,0.04)] z-40 flex items-center justify-between px-xl"
+			>
+				<div class="flex items-center gap-md">
+					<span class="material-symbols-outlined text-outline"
+						>bolt</span
+					><span class="text-caption text-on-surface-variant"
+						>Trạng thái:
+						<strong class="text-on-surface"
+							>Hoạt động ổn định</strong
+						></span
+					>
+				</div>
+				<div class="flex items-center gap-md">
+					<div
+						class="w-8 h-8 rounded-full bg-primary flex items-center justify-center"
+					>
+						<span
+							class="material-symbols-outlined text-on-primary text-[18px]"
+							>person</span
+						>
+					</div>
+				</div>
+			</header>
+			<main class="relative pt-20 bg-surface min-h-screen p-xl">
+				<div class="flex flex-col w-full">
+					<!-- Top Action Bar -->
+					<div
+						class="flex flex-col md:flex-row md:items-center justify-between gap-md mb-xl"
+					>
+						<div>
+							<h1
+								class="font-headline-lg text-headline-lg text-primary tracking-tight"
+							>
+								Thống kê &amp; Báo cáo Hệ thống
+							</h1>
+							<p
+								class="font-body-md text-on-surface-variant mt-xs"
+							>
+								Tổng hợp số liệu kinh doanh, doanh thu đặt phòng
+								và hiệu suất khai thác tại Đà Nẵng.
+							</p>
+						</div>
+						<div class="flex items-center gap-md">
+							<div
+								class="flex bg-surface-container-low p-xs rounded-xl"
+							>
+								<button
+									class="px-4 py-2 rounded-lg font-label-md bg-surface-container-lowest text-primary shadow-sm transition-all"
+								>
+									Tháng
+								</button>
+								<button
+									class="px-4 py-2 rounded-lg font-label-md text-on-surface-variant hover:text-primary transition-all"
+								>
+									Quý
+								</button>
+								<button
+									class="px-4 py-2 rounded-lg font-label-md text-on-surface-variant hover:text-primary transition-all"
+								>
+									Năm
+								</button>
+							</div>
+							<button
+								class="flex items-center gap-2 px-5 py-2.5 rounded-full bg-primary text-on-primary font-label-md hover:bg-primary-container transition-all shadow-md"
+							>
+								<span
+									class="material-symbols-outlined text-[18px]"
+									>download</span
+								>
+								<span>Xuất báo cáo (Excel/PDF)</span>
+							</button>
+						</div>
+					</div>
+					<!-- Summary Metric Cards (Bento Grid Top Tier) -->
+					<div
+						class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-lg mb-xl"
+					>
+						<!-- Card 1 -->
+						<div
+							class="bg-surface-container-lowest rounded-xl p-lg shadow-[0_4px_20px_rgba(0,9,27,0.03)] flex flex-col justify-between relative overflow-hidden group hover:translate-y-[-2px] transition-all"
+						>
+							<div
+								class="absolute -right-6 -bottom-6 w-24 h-24 bg-primary-fixed/20 rounded-full blur-xl group-hover:bg-primary-fixed/40 transition-all"
+							></div>
+							<div>
+								<div
+									class="flex items-center justify-between mb-md"
+								>
+									<span
+										class="font-caption text-on-surface-variant uppercase tracking-wider"
+										>Tổng doanh thu</span
+									>
+									<div
+										class="w-10 h-10 rounded-xl bg-primary-fixed/30 flex items-center justify-center text-primary"
+									>
+										<span class="material-symbols-outlined"
+											>payments</span
+										>
+									</div>
+								</div>
+								<div
+									class="font-headline-lg text-headline-lg text-primary tracking-tight mb-xs"
+								>
+									48.2 Tỷ đ
+								</div>
+							</div>
+							<div
+								class="flex items-center gap-xs font-label-md text-secondary mt-md"
+							>
+								<span
+									class="material-symbols-outlined text-[16px]"
+									>trending_up</span
+								>
+								<span>+18.4% so với kỳ trước</span>
+							</div>
+						</div>
+						<!-- Card 2 -->
+						<div
+							class="bg-surface-container-lowest rounded-xl p-lg shadow-[0_4px_20px_rgba(0,9,27,0.03)] flex flex-col justify-between relative overflow-hidden group hover:translate-y-[-2px] transition-all"
+						>
+							<div
+								class="absolute -right-6 -bottom-6 w-24 h-24 bg-secondary-fixed/20 rounded-full blur-xl group-hover:bg-secondary-fixed/40 transition-all"
+							></div>
+							<div>
+								<div
+									class="flex items-center justify-between mb-md"
+								>
+									<span
+										class="font-caption text-on-surface-variant uppercase tracking-wider"
+										>Lượng khách đặt</span
+									>
+									<div
+										class="w-10 h-10 rounded-xl bg-secondary-fixed/30 flex items-center justify-center text-secondary"
+									>
+										<span class="material-symbols-outlined"
+											>group</span
+										>
+									</div>
+								</div>
+								<div
+									class="font-headline-lg text-headline-lg text-primary tracking-tight mb-xs"
+								>
+									124,850
+								</div>
+							</div>
+							<div
+								class="flex items-center gap-xs font-label-md text-secondary mt-md"
+							>
+								<span
+									class="material-symbols-outlined text-[16px]"
+									>trending_up</span
+								>
+								<span>+12.1% tăng trưởng</span>
+							</div>
+						</div>
+						<!-- Card 3 -->
+						<div
+							class="bg-surface-container-lowest rounded-xl p-lg shadow-[0_4px_20px_rgba(0,9,27,0.03)] flex flex-col justify-between relative overflow-hidden group hover:translate-y-[-2px] transition-all"
+						>
+							<div
+								class="absolute -right-6 -bottom-6 w-24 h-24 bg-tertiary-fixed/30 rounded-full blur-xl group-hover:bg-tertiary-fixed/50 transition-all"
+							></div>
+							<div>
+								<div
+									class="flex items-center justify-between mb-md"
+								>
+									<span
+										class="font-caption text-on-surface-variant uppercase tracking-wider"
+										>Tỷ lệ lấp đầy</span
+									>
+									<div
+										class="w-10 h-10 rounded-xl bg-tertiary-fixed/40 flex items-center justify-center text-on-tertiary-fixed"
+									>
+										<span class="material-symbols-outlined"
+											>hotel</span
+										>
+									</div>
+								</div>
+								<div
+									class="font-headline-lg text-headline-lg text-primary tracking-tight mb-xs"
+								>
+									82.6%
+								</div>
+							</div>
+							<div
+								class="flex items-center gap-xs font-label-md text-secondary mt-md"
+							>
+								<span
+									class="material-symbols-outlined text-[16px]"
+									>trending_up</span
+								>
+								<span>+5.3% điểm lấp đầy</span>
+							</div>
+						</div>
+						<!-- Card 4 -->
+						<div
+							class="bg-surface-container-lowest rounded-xl p-lg shadow-[0_4px_20px_rgba(0,9,27,0.03)] flex flex-col justify-between relative overflow-hidden group hover:translate-y-[-2px] transition-all"
+						>
+							<div
+								class="absolute -right-6 -bottom-6 w-24 h-24 bg-surface-container-high rounded-full blur-xl group-hover:bg-surface-container-highest transition-all"
+							></div>
+							<div>
+								<div
+									class="flex items-center justify-between mb-md"
+								>
+									<span
+										class="font-caption text-on-surface-variant uppercase tracking-wider"
+										>Giá TB / Đêm (ADR)</span
+									>
+									<div
+										class="w-10 h-10 rounded-xl bg-surface-container-high flex items-center justify-center text-on-surface-variant"
+									>
+										<span class="material-symbols-outlined"
+											>receipt_long</span
+										>
+									</div>
+								</div>
+								<div
+									class="font-headline-lg text-headline-lg text-primary tracking-tight mb-xs"
+								>
+									1,850,000 đ
+								</div>
+							</div>
+							<div
+								class="flex items-center gap-xs font-label-md text-on-surface-variant mt-md"
+							>
+								<span
+									class="material-symbols-outlined text-[16px]"
+									>remove</span
+								>
+								<span>Ổn định so với kỳ trước</span>
+							</div>
+						</div>
+					</div>
+					<!-- Main Analytics Section (Charts & Insights) -->
+					<div class="grid grid-cols-1 lg:grid-cols-3 gap-lg mb-xl">
+						<!-- Revenue & Bookings Chart (Spans 2 cols) -->
+						<div
+							class="lg:col-span-2 bg-surface-container-lowest rounded-xl p-lg shadow-[0_4px_20px_rgba(0,9,27,0.03)] flex flex-col"
+						>
+							<div
+								class="flex items-center justify-between mb-lg"
+							>
+								<div>
+									<h2 class="font-headline-md text-primary">
+										Biểu đồ Doanh thu &amp; Lượng khách
+									</h2>
+									<p
+										class="font-caption text-on-surface-variant"
+									>
+										So sánh tăng trưởng doanh thu theo tháng
+										tại khu vực Đà Nẵng
+									</p>
+								</div>
+								<div class="flex items-center gap-md">
+									<div class="flex items-center gap-2">
+										<div
+											class="w-3 h-3 rounded-full bg-primary"
+										></div>
+										<span
+											class="font-caption text-on-surface-variant"
+											>Doanh thu (Tỷ VNĐ)</span
+										>
+									</div>
+									<div class="flex items-center gap-2">
+										<div
+											class="w-3 h-3 rounded-full bg-secondary-container"
+										></div>
+										<span
+											class="font-caption text-on-surface-variant"
+											>Lượng khách (Nghìn)</span
+										>
+									</div>
+								</div>
+							</div>
+							<!-- Custom SVG Chart Visualization -->
+							<div
+								class="flex-1 w-full h-72 flex items-end justify-between gap-4 pt-8 px-2 relative"
+							>
+								<!-- Background grid lines -->
+								<div
+									class="absolute inset-0 flex flex-col justify-between pointer-events-none opacity-40"
+								>
+									<div
+										class="w-full border-b border-surface-container-high"
+									></div>
+									<div
+										class="w-full border-b border-surface-container-high"
+									></div>
+									<div
+										class="w-full border-b border-surface-container-high"
+									></div>
+									<div
+										class="w-full border-b border-surface-container-high"
+									></div>
+								</div>
+								<!-- Bar Columns -->
+								<div
+									class="relative flex-1 flex flex-col items-center gap-2 group h-full justify-end"
+								>
+									<div
+										class="absolute -top-10 opacity-0 group-hover:opacity-100 transition-opacity bg-primary text-on-primary text-caption px-2 py-1 rounded shadow-md whitespace-nowrap z-10"
+									>
+										Tháng 1: 3.2 Tỷ
+									</div>
+									<div
+										class="w-full max-w-[36px] bg-primary rounded-t-lg transition-all duration-500 group-hover:bg-primary-container"
+										style="height: 55%"
+									></div>
+									<span
+										class="font-caption text-on-surface-variant"
+										>T1</span
+									>
+								</div>
+								<div
+									class="relative flex-1 flex flex-col items-center gap-2 group h-full justify-end"
+								>
+									<div
+										class="absolute -top-10 opacity-0 group-hover:opacity-100 transition-opacity bg-primary text-on-primary text-caption px-2 py-1 rounded shadow-md whitespace-nowrap z-10"
+									>
+										Tháng 2: 4.5 Tỷ
+									</div>
+									<div
+										class="w-full max-w-[36px] bg-primary rounded-t-lg transition-all duration-500 group-hover:bg-primary-container"
+										style="height: 75%"
+									></div>
+									<span
+										class="font-caption text-on-surface-variant"
+										>T2</span
+									>
+								</div>
+								<div
+									class="relative flex-1 flex flex-col items-center gap-2 group h-full justify-end"
+								>
+									<div
+										class="absolute -top-10 opacity-0 group-hover:opacity-100 transition-opacity bg-primary text-on-primary text-caption px-2 py-1 rounded shadow-md whitespace-nowrap z-10"
+									>
+										Tháng 3: 3.8 Tỷ
+									</div>
+									<div
+										class="w-full max-w-[36px] bg-primary rounded-t-lg transition-all duration-500 group-hover:bg-primary-container"
+										style="height: 62%"
+									></div>
+									<span
+										class="font-caption text-on-surface-variant"
+										>T3</span
+									>
+								</div>
+								<div
+									class="relative flex-1 flex flex-col items-center gap-2 group h-full justify-end"
+								>
+									<div
+										class="absolute -top-10 opacity-0 group-hover:opacity-100 transition-opacity bg-primary text-on-primary text-caption px-2 py-1 rounded shadow-md whitespace-nowrap z-10"
+									>
+										Tháng 4: 5.1 Tỷ
+									</div>
+									<div
+										class="w-full max-w-[36px] bg-primary rounded-t-lg transition-all duration-500 group-hover:bg-primary-container"
+										style="height: 85%"
+									></div>
+									<span
+										class="font-caption text-on-surface-variant"
+										>T4</span
+									>
+								</div>
+								<div
+									class="relative flex-1 flex flex-col items-center gap-2 group h-full justify-end"
+								>
+									<div
+										class="absolute -top-10 opacity-0 group-hover:opacity-100 transition-opacity bg-primary text-on-primary text-caption px-2 py-1 rounded shadow-md whitespace-nowrap z-10"
+									>
+										Tháng 5: 6.0 Tỷ
+									</div>
+									<div
+										class="w-full max-w-[36px] bg-primary rounded-t-lg transition-all duration-500 group-hover:bg-primary-container"
+										style="height: 95%"
+									></div>
+									<span
+										class="font-caption text-on-surface-variant"
+										>T5</span
+									>
+								</div>
+								<div
+									class="relative flex-1 flex flex-col items-center gap-2 group h-full justify-end"
+								>
+									<div
+										class="absolute -top-10 opacity-0 group-hover:opacity-100 transition-opacity bg-primary text-on-primary text-caption px-2 py-1 rounded shadow-md whitespace-nowrap z-10"
+									>
+										Tháng 6: 7.2 Tỷ
+									</div>
+									<div
+										class="w-full max-w-[36px] bg-secondary-container rounded-t-lg transition-all duration-500 group-hover:brightness-95"
+										style="height: 100%"
+									></div>
+									<span
+										class="font-caption text-on-surface-variant"
+										>T6</span
+									>
+								</div>
+								<div
+									class="relative flex-1 flex flex-col items-center gap-2 group h-full justify-end"
+								>
+									<div
+										class="absolute -top-10 opacity-0 group-hover:opacity-100 transition-opacity bg-primary text-on-primary text-caption px-2 py-1 rounded shadow-md whitespace-nowrap z-10"
+									>
+										Tháng 7: 6.8 Tỷ
+									</div>
+									<div
+										class="w-full max-w-[36px] bg-primary rounded-t-lg transition-all duration-500 group-hover:bg-primary-container"
+										style="height: 90%"
+									></div>
+									<span
+										class="font-caption text-on-surface-variant"
+										>T7</span
+									>
+								</div>
+								<div
+									class="relative flex-1 flex flex-col items-center gap-2 group h-full justify-end"
+								>
+									<div
+										class="absolute -top-10 opacity-0 group-hover:opacity-100 transition-opacity bg-primary text-on-primary text-caption px-2 py-1 rounded shadow-md whitespace-nowrap z-10"
+									>
+										Tháng 8: 5.5 Tỷ
+									</div>
+									<div
+										class="w-full max-w-[36px] bg-primary rounded-t-lg transition-all duration-500 group-hover:bg-primary-container"
+										style="height: 78%"
+									></div>
+									<span
+										class="font-caption text-on-surface-variant"
+										>T8</span
+									>
+								</div>
+							</div>
+						</div>
+						<!-- Occupancy Rate Gauge/Donut breakdown -->
+						<div
+							class="bg-surface-container-lowest rounded-xl p-lg shadow-[0_4px_20px_rgba(0,9,27,0.03)] flex flex-col justify-between"
+						>
+							<div>
+								<h2 class="font-headline-md text-primary mb-xs">
+									Tỷ lệ lấp đầy theo khu vực
+								</h2>
+								<p
+									class="font-caption text-on-surface-variant mb-lg"
+								>
+									Mức độ tập trung khách hàng tại các quận
+									trung tâm Đà Nẵng
+								</p>
+							</div>
+							<div class="space-y-md">
+								<div>
+									<div
+										class="flex justify-between font-label-md mb-xs"
+									>
+										<span class="text-on-surface"
+											>Quận Sơn Trà (Bãi biển Mỹ
+											Khê)</span
+										>
+										<span class="text-primary">91%</span>
+									</div>
+									<div
+										class="w-full h-3 bg-surface-container rounded-full overflow-hidden"
+									>
+										<div
+											class="h-full bg-primary rounded-full"
+											style="width: 91%"
+										></div>
+									</div>
+								</div>
+								<div>
+									<div
+										class="flex justify-between font-label-md mb-xs"
+									>
+										<span class="text-on-surface"
+											>Quận Hải Châu (Trung tâm)</span
+										>
+										<span class="text-primary">84%</span>
+									</div>
+									<div
+										class="w-full h-3 bg-surface-container rounded-full overflow-hidden"
+									>
+										<div
+											class="h-full bg-primary rounded-full"
+											style="width: 84%"
+										></div>
+									</div>
+								</div>
+								<div>
+									<div
+										class="flex justify-between font-label-md mb-xs"
+									>
+										<span class="text-on-surface"
+											>Quận Ngũ Hành Sơn (Resort)</span
+										>
+										<span class="text-primary">78%</span>
+									</div>
+									<div
+										class="w-full h-3 bg-surface-container rounded-full overflow-hidden"
+									>
+										<div
+											class="h-full bg-secondary-container rounded-full"
+											style="width: 78%"
+										></div>
+									</div>
+								</div>
+								<div>
+									<div
+										class="flex justify-between font-label-md mb-xs"
+									>
+										<span class="text-on-surface"
+											>Quận Thanh Khê &amp; Liên
+											Chiểu</span
+										>
+										<span class="text-primary">62%</span>
+									</div>
+									<div
+										class="w-full h-3 bg-surface-container rounded-full overflow-hidden"
+									>
+										<div
+											class="h-full bg-tertiary-fixed-dim rounded-full"
+											style="width: 62%"
+										></div>
+									</div>
+								</div>
+							</div>
+							<div
+								class="bg-surface-container-low p-md rounded-xl mt-lg flex items-center gap-md"
+							>
+								<span
+									class="material-symbols-outlined text-secondary"
+									>info</span
+								>
+								<span
+									class="font-caption text-on-surface-variant"
+									>Sơn Trà dẫn đầu về lượng đặt phòng nhờ
+									chuỗi sự kiện lễ hội pháo hoa quốc tế.</span
+								>
+							</div>
+						</div>
+					</div>
+					<!-- Detailed Data Table Section -->
+					<div
+						class="bg-surface-container-lowest rounded-xl p-lg shadow-[0_4px_20px_rgba(0,9,27,0.03)]"
+					>
+						<div
+							class="flex flex-col md:flex-row md:items-center justify-between gap-md mb-lg"
+						>
+							<div>
+								<h2 class="font-headline-md text-primary">
+									Bảng tổng hợp chi tiết theo kỳ
+								</h2>
+								<p class="font-caption text-on-surface-variant">
+									Dữ liệu kiểm toán và thống kê chính thức từ
+									hệ thống cơ sở lưu trú Đà Nẵng
+								</p>
+							</div>
+							<div class="flex items-center gap-md">
+								<div class="relative">
+									<span
+										class="material-symbols-outlined absolute left-3 top-2.5 text-outline text-[18px]"
+										>search</span
+									>
+									<input
+										class="pl-10 pr-4 py-2 rounded-xl bg-surface-container-lowest border border-outline/30 focus:border-primary outline-none text-body-md w-64 transition-all"
+										placeholder="Tìm kiếm cơ sở, khu vực..."
+										type="text"
+									/>
+								</div>
+							</div>
+						</div>
+						<!-- Responsive Table -->
+						<div class="overflow-x-auto">
+							<table class="w-full text-left border-collapse">
+								<thead>
+									<tr
+										class="border-b border-surface-container-high"
+									>
+										<th
+											class="py-4 px-4 font-label-md text-on-surface-variant uppercase tracking-wider"
+										>
+											Kỳ báo cáo
+										</th>
+										<th
+											class="py-4 px-4 font-label-md text-on-surface-variant uppercase tracking-wider"
+										>
+											Tổng đặt phòng
+										</th>
+										<th
+											class="py-4 px-4 font-label-md text-on-surface-variant uppercase tracking-wider"
+										>
+											Doanh thu (VNĐ)
+										</th>
+										<th
+											class="py-4 px-4 font-label-md text-on-surface-variant uppercase tracking-wider"
+										>
+											Tỷ lệ lấp đầy
+										</th>
+										<th
+											class="py-4 px-4 font-label-md text-on-surface-variant uppercase tracking-wider"
+										>
+											Tăng trưởng
+										</th>
+										<th
+											class="py-4 px-4 font-label-md text-on-surface-variant uppercase tracking-wider text-right"
+										>
+											Thao tác
+										</th>
+									</tr>
+								</thead>
+								<tbody
+									class="divide-y divide-surface-container-low"
+								>
+									<tr
+										class="hover:bg-surface-container-low/50 transition-colors"
+									>
+										<td
+											class="py-4 px-4 font-label-md text-primary"
+										>
+											Tháng 06/2024
+										</td>
+										<td
+											class="py-4 px-4 font-body-md text-on-surface"
+										>
+											24,520
+										</td>
+										<td
+											class="py-4 px-4 font-label-md text-primary"
+										>
+											7,250,000,000 đ
+										</td>
+										<td class="py-4 px-4">
+											<span
+												class="inline-flex items-center px-2.5 py-1 rounded-full font-caption bg-secondary-fixed/30 text-on-secondary-fixed font-semibold"
+												>92.4%</span
+											>
+										</td>
+										<td
+											class="py-4 px-4 text-secondary font-label-md"
+										>
+											+22.5%
+										</td>
+										<td class="py-4 px-4 text-right">
+											<button
+												class="p-2 rounded-lg hover:bg-surface-container transition-colors text-on-surface-variant hover:text-primary"
+											>
+												<span
+													class="material-symbols-outlined text-[18px]"
+													>visibility</span
+												>
+											</button>
+										</td>
+									</tr>
+									<tr
+										class="hover:bg-surface-container-low/50 transition-colors"
+									>
+										<td
+											class="py-4 px-4 font-label-md text-primary"
+										>
+											Tháng 05/2024
+										</td>
+										<td
+											class="py-4 px-4 font-body-md text-on-surface"
+										>
+											21,800
+										</td>
+										<td
+											class="py-4 px-4 font-label-md text-primary"
+										>
+											6,100,000,000 đ
+										</td>
+										<td class="py-4 px-4">
+											<span
+												class="inline-flex items-center px-2.5 py-1 rounded-full font-caption bg-tertiary-fixed/40 text-on-tertiary-fixed font-semibold"
+												>85.1%</span
+											>
+										</td>
+										<td
+											class="py-4 px-4 text-secondary font-label-md"
+										>
+											+15.0%
+										</td>
+										<td class="py-4 px-4 text-right">
+											<button
+												class="p-2 rounded-lg hover:bg-surface-container transition-colors text-on-surface-variant hover:text-primary"
+											>
+												<span
+													class="material-symbols-outlined text-[18px]"
+													>visibility</span
+												>
+											</button>
+										</td>
+									</tr>
+									<tr
+										class="hover:bg-surface-container-low/50 transition-colors"
+									>
+										<td
+											class="py-4 px-4 font-label-md text-primary"
+										>
+											Tháng 04/2024
+										</td>
+										<td
+											class="py-4 px-4 font-body-md text-on-surface"
+										>
+											18,400
+										</td>
+										<td
+											class="py-4 px-4 font-label-md text-primary"
+										>
+											5,150,000,000 đ
+										</td>
+										<td class="py-4 px-4">
+											<span
+												class="inline-flex items-center px-2.5 py-1 rounded-full font-caption bg-surface-container-high text-on-surface-variant font-semibold"
+												>78.0%</span
+											>
+										</td>
+										<td
+											class="py-4 px-4 text-secondary font-label-md"
+										>
+											+8.2%
+										</td>
+										<td class="py-4 px-4 text-right">
+											<button
+												class="p-2 rounded-lg hover:bg-surface-container transition-colors text-on-surface-variant hover:text-primary"
+											>
+												<span
+													class="material-symbols-outlined text-[18px]"
+													>visibility</span
+												>
+											</button>
+										</td>
+									</tr>
+									<tr
+										class="hover:bg-surface-container-low/50 transition-colors"
+									>
+										<td
+											class="py-4 px-4 font-label-md text-primary"
+										>
+											Tháng 03/2024
+										</td>
+										<td
+											class="py-4 px-4 font-body-md text-on-surface"
+										>
+											15,200
+										</td>
+										<td
+											class="py-4 px-4 font-label-md text-primary"
+										>
+											3,800,000,000 đ
+										</td>
+										<td class="py-4 px-4">
+											<span
+												class="inline-flex items-center px-2.5 py-1 rounded-full font-caption bg-surface-container-high text-on-surface-variant font-semibold"
+												>71.5%</span
+											>
+										</td>
+										<td
+											class="py-4 px-4 text-on-surface-variant font-label-md"
+										>
+											+2.1%
+										</td>
+										<td class="py-4 px-4 text-right">
+											<button
+												class="p-2 rounded-lg hover:bg-surface-container transition-colors text-on-surface-variant hover:text-primary"
+											>
+												<span
+													class="material-symbols-outlined text-[18px]"
+													>visibility</span
+												>
+											</button>
+										</td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+					</div>
+				</div>
+			</main>
+		</div>
+	</body>
+</html>

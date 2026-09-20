@@ -1,0 +1,779 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<meta content="width=device-width, initial-scale=1.0" name="viewport" />
+		<style>
+			@layer base {
+				html,
+				body {
+					margin: 0;
+					padding: 0;
+				}
+				body {
+					overscroll-behavior: none;
+				}
+				main > :first-child {
+					margin-top: 0 !important;
+				}
+				main > :last-child {
+					margin-bottom: 0 !important;
+				}
+			}
+			::-webkit-scrollbar {
+				display: none;
+			}
+		</style>
+		<script src="https://cdn.tailwindcss.com"></script>
+		<script id="tailwind-config">
+			tailwind.config = {
+				darkMode: 'class',
+				theme: {
+					extend: {
+						colors: {
+							'on-surface-variant': '#44474e',
+							'secondary-fixed-dim': '#ffb86c',
+							surface: '#f7fafc',
+							'inverse-primary': '#aec7f5',
+							background: '#f7fafc',
+							'inverse-surface': '#2d3133',
+							'tertiary-container': '#172131',
+							'primary-fixed-dim': '#aec7f5',
+							'outline-variant': '#c4c6cf',
+							'on-primary': '#ffffff',
+							'on-tertiary-fixed-variant': '#3d4759',
+							outline: '#74777f',
+							'primary-fixed': '#d6e3ff',
+							'surface-container-high': '#e6e8eb',
+							'error-container': '#ffdad6',
+							'on-tertiary-fixed': '#121c2c',
+							'on-secondary': '#ffffff',
+							'tertiary-fixed': '#d9e3f9',
+							'surface-tint': '#465f87',
+							'surface-variant': '#e0e3e5',
+							'surface-bright': '#f7fafc',
+							'on-error': '#ffffff',
+							'secondary-fixed': '#ffdcbc',
+							'on-error-container': '#93000a',
+							secondary: '#895100',
+							'surface-container-low': '#f1f4f6',
+							error: '#ba1a1a',
+							'inverse-on-surface': '#eef1f4',
+							'on-surface': '#181c1e',
+							'surface-container': '#ebeef1',
+							'tertiary-fixed-dim': '#bdc7dc',
+							'on-tertiary-container': '#7e889c',
+							'surface-container-lowest': '#ffffff',
+							'on-primary-fixed': '#001b3c',
+							'on-secondary-container': '#663b00',
+							'on-secondary-fixed': '#2c1700',
+							'surface-dim': '#d7dadd',
+							'on-primary-fixed-variant': '#2e476e',
+							tertiary: '#020919',
+							'on-tertiary': '#ffffff',
+							'on-background': '#181c1e',
+							'secondary-container': '#fd9d1a',
+							'primary-container': '#002045',
+							'on-secondary-fixed-variant': '#683d00',
+							'on-primary-container': '#7089b3',
+							primary: '#00091b',
+							'surface-container-highest': '#e0e3e5',
+						},
+						borderRadius: {
+							DEFAULT: '0.125rem',
+							lg: '0.25rem',
+							xl: '0.5rem',
+							full: '0.75rem',
+						},
+						spacing: {
+							'3xl': '64px',
+							sm: '8px',
+							xs: '4px',
+							md: '16px',
+							xl: '32px',
+							base: '8px',
+							'2xl': '48px',
+							lg: '24px',
+						},
+						fontFamily: {
+							'body-lg': ['Inter'],
+							'display-lg': ['Montserrat'],
+							'body-md': ['Inter'],
+							'headline-md': ['Montserrat'],
+							'label-md': ['Inter'],
+							'headline-lg': ['Montserrat'],
+							caption: ['Inter'],
+						},
+						fontSize: {
+							'body-lg': [
+								'18px',
+								{ lineHeight: '1.6', fontWeight: '400' },
+							],
+							'display-lg': [
+								'48px',
+								{
+									lineHeight: '1.2',
+									letterSpacing: '-0.02em',
+									fontWeight: '700',
+								},
+							],
+							'body-md': [
+								'16px',
+								{ lineHeight: '1.5', fontWeight: '400' },
+							],
+							'headline-md': [
+								'24px',
+								{ lineHeight: '1.4', fontWeight: '600' },
+							],
+							'label-md': [
+								'14px',
+								{
+									lineHeight: '1.2',
+									letterSpacing: '0.01em',
+									fontWeight: '600',
+								},
+							],
+							'headline-lg': [
+								'32px',
+								{ lineHeight: '1.3', fontWeight: '700' },
+							],
+							caption: [
+								'12px',
+								{ lineHeight: '1.4', fontWeight: '400' },
+							],
+						},
+					},
+				},
+			};
+		</script>
+		<link
+			href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+			rel="stylesheet"
+		/>
+		<link
+			href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&amp;family=Montserrat:wght@100..900&amp;display=swap"
+			rel="stylesheet"
+		/>
+	</head>
+	<body class="bg-surface font-body-md text-on-surface">
+		<header
+			class="fixed top-0 w-full z-50 bg-surface/80 backdrop-blur-xl shadow-[0_1px_8px_rgba(0,0,0,0.04)]"
+		>
+			<div
+				class="h-16 max-w-7xl mx-auto px-6 lg:px-12 flex items-center justify-between"
+			>
+				<div class="flex items-center gap-xl">
+					<span class="text-headline-md text-primary font-bold"
+						>DaNang Travel</span
+					>
+					<nav
+						class="hidden md:flex items-center gap-lg"
+						data-active-classes="bg-primary-container text-on-primary-container font-bold rounded-lg px-3 py-1.5"
+					>
+						<a
+							class="text-label-md text-on-surface-variant hover:text-on-surface transition-colors"
+							data-path="trang-chu"
+							href="#"
+							>Trang chủ</a
+						><a
+							class="text-label-md text-on-surface-variant hover:text-on-surface transition-colors"
+							data-path="kham-pha-va-tim-kiem"
+							href="#"
+							>Khám phá &amp; Tìm kiếm</a
+						><a
+							class="text-label-md text-on-surface-variant hover:text-on-surface transition-colors"
+							data-path="danh-sach-yeu-thich"
+							href="#"
+							>Danh sách yêu thích</a
+						><a
+							class="text-label-md text-on-surface-variant hover:text-on-surface transition-colors"
+							data-path="don-dat-phong"
+							href="#"
+							>Đơn đặt phòng</a
+						><a
+							class="text-label-md text-on-surface-variant hover:text-on-surface transition-colors"
+							data-path="thong-bao"
+							href="#"
+							>Thông báo</a
+						>
+					</nav>
+				</div>
+				<div class="flex items-center gap-md">
+					<div
+						class="w-8 h-8 rounded-full bg-primary flex items-center justify-center"
+					>
+						<span
+							class="material-symbols-outlined text-on-primary text-[18px]"
+							>person</span
+						>
+					</div>
+				</div>
+			</div>
+		</header>
+		<main class="w-full pt-16 bg-surface">
+			<div class="flex flex-col w-full">
+				<!-- Top Section with Asymmetric Layout & Editorial Typography -->
+				<section
+					class="max-w-7xl mx-auto px-6 lg:px-12 pt-8 pb-12 w-full"
+				>
+					<div
+						class="flex flex-col md:flex-row md:items-end justify-between gap-xl mb-12"
+					>
+						<div>
+							<div
+								class="inline-flex items-center gap-sm px-3 py-1 rounded-full bg-surface-container mb-4"
+							>
+								<span
+									class="material-symbols-outlined text-[16px] text-secondary"
+									>lock</span
+								>
+								<span
+									class="text-caption text-on-surface-variant font-bold tracking-wider uppercase"
+									>Thanh toán bảo mật SSL 256-bit</span
+								>
+							</div>
+							<h1
+								class="text-headline-lg font-display-lg text-on-surface tracking-tight"
+							>
+								Xác nhận đơn đặt phòng
+							</h1>
+							<p
+								class="text-body-md text-on-surface-variant mt-2"
+							>
+								Vui lòng kiểm tra lại thông tin và hoàn tất
+								thanh toán để giữ chỗ tại Đà Nẵng.
+							</p>
+						</div>
+						<div
+							class="flex items-center gap-md bg-surface-container-low p-4 rounded-xl"
+						>
+							<span
+								class="material-symbols-outlined text-primary text-[28px]"
+								>schedule</span
+							>
+							<div>
+								<span
+									class="text-caption text-on-surface-variant block"
+									>Thời gian giữ phòng</span
+								>
+								<span
+									class="text-label-md text-primary font-bold font-mono"
+									id="countdown-timer"
+									>14:59</span
+								>
+							</div>
+						</div>
+					</div>
+					<!-- Main Grid Layout -->
+					<div
+						class="grid grid-cols-1 lg:grid-cols-12 gap-xl items-start"
+					>
+						<!-- Left Column: Forms (Guest Info & Payment) -->
+						<div class="lg:col-span-7 flex flex-col gap-xl">
+							<!-- Room Snapshot Card -->
+							<div
+								class="bg-surface-container-lowest p-lg rounded-xl shadow-sm flex flex-col sm:flex-row gap-6 items-center"
+							>
+								<div
+									class="w-full sm:w-40 h-32 rounded-lg bg-cover bg-center shrink-0"
+									data-alt="A luxurious modern hotel room in Da Nang with floor-to-ceiling windows overlooking the ocean, minimalist wooden furniture, king-size bed with crisp white linens, warm ambient lighting, and high-end interior design style."
+									style="
+										background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuAs_C2nc-mkJuL-38kvfJNDh4lssq95LF9HLo_4I2DohCWtBw2AurQqJ1RZsb9_dNGF_NakwcVhMi2y3jRM9DjX2aGEBuoiiKVbVa1jSIWT8z-XhaEuvyUtdwxtiTFOF9tqi4KclZ-yksVf9futQXe0Sz4U9xA0glEkRmQQ1j6rokh4K-saNL-imDmRTtdDnct3iToBD2OWWaQ2LfwgeeFzqFX_lI36FN2b0p7qV8srJY63dHy_fnOb');
+									"
+								></div>
+								<div
+									class="flex flex-col justify-between flex-1"
+								>
+									<div>
+										<span
+											class="text-caption text-secondary font-bold uppercase tracking-wider"
+											>Khu nghỉ dưỡng 5 sao</span
+										>
+										<h3
+											class="text-headline-md text-on-surface mt-1"
+										>
+											Premier Beach Resort &amp; Spa Đà
+											Nẵng
+										</h3>
+										<p
+											class="text-body-md text-on-surface-variant mt-1"
+										>
+											Phòng Deluxe Ocean View King Bed
+											(Bao gồm ăn sáng)
+										</p>
+									</div>
+									<div
+										class="flex items-center gap-xl mt-4 pt-4 border-t border-surface-container"
+									>
+										<div>
+											<span
+												class="text-caption text-on-surface-variant block"
+												>Nhận phòng</span
+											>
+											<span
+												class="text-label-md text-on-surface font-bold"
+												>24 Th10, 2024</span
+											>
+										</div>
+										<span
+											class="material-symbols-outlined text-on-surface-variant"
+											>arrow_forward</span
+										>
+										<div>
+											<span
+												class="text-caption text-on-surface-variant block"
+												>Trả phòng</span
+											>
+											<span
+												class="text-label-md text-on-surface font-bold"
+												>27 Th10, 2024</span
+											>
+										</div>
+										<div>
+											<span
+												class="text-caption text-on-surface-variant block"
+												>Thời gian</span
+											>
+											<span
+												class="text-label-md text-on-surface font-bold"
+												>3 Đêm</span
+											>
+										</div>
+									</div>
+								</div>
+							</div>
+							<!-- Guest Personal Info Form -->
+							<div
+								class="bg-surface-container-lowest p-lg rounded-xl shadow-sm"
+							>
+								<div
+									class="flex items-center justify-between mb-6"
+								>
+									<h3
+										class="text-headline-md text-on-surface flex items-center gap-md"
+									>
+										<span
+											class="w-8 h-8 rounded-full bg-primary-container text-on-primary-container flex items-center justify-center text-label-md"
+											>1</span
+										>
+										Thông tin khách lưu trú
+									</h3>
+								</div>
+								<div
+									class="grid grid-cols-1 sm:grid-cols-2 gap-md"
+								>
+									<div>
+										<label
+											class="text-label-md text-on-surface block mb-sm"
+											>Họ và tên</label
+										>
+										<input
+											class="w-full h-12 px-4 rounded-lg bg-surface-container-lowest border border-outline focus:border-primary outline-none transition-colors text-on-surface"
+											placeholder="Nguyễn Văn A"
+											type="text"
+										/>
+									</div>
+									<div>
+										<label
+											class="text-label-md text-on-surface block mb-sm"
+											>Số điện thoại</label
+										>
+										<input
+											class="w-full h-12 px-4 rounded-lg bg-surface-container-lowest border border-outline focus:border-primary outline-none transition-colors text-on-surface"
+											placeholder="0912 345 678"
+											type="tel"
+										/>
+									</div>
+									<div class="sm:col-span-2">
+										<label
+											class="text-label-md text-on-surface block mb-sm"
+											>Địa chỉ Email (Nhận mã xác nhận đơn
+											phòng)</label
+										>
+										<input
+											class="w-full h-12 px-4 rounded-lg bg-surface-container-lowest border border-outline focus:border-primary outline-none transition-colors text-on-surface"
+											placeholder="nguyenvan@example.com"
+											type="email"
+										/>
+									</div>
+									<div class="sm:col-span-2">
+										<label
+											class="text-label-md text-on-surface block mb-sm"
+											>Yêu cầu đặc biệt (Không bắt
+											buộc)</label
+										>
+										<textarea
+											class="w-full h-24 p-4 rounded-lg bg-surface-container-lowest border border-outline focus:border-primary outline-none transition-colors text-on-surface resize-none"
+											placeholder="Ví dụ: Giường đôi lớn, phòng tầng cao, check-in sớm nếu có thể..."
+										></textarea>
+									</div>
+								</div>
+							</div>
+							<!-- Payment Method Selection -->
+							<div
+								class="bg-surface-container-lowest p-lg rounded-xl shadow-sm"
+							>
+								<h3
+									class="text-headline-md text-on-surface flex items-center gap-md mb-6"
+								>
+									<span
+										class="w-8 h-8 rounded-full bg-primary-container text-on-primary-container flex items-center justify-center text-label-md"
+										>2</span
+									>
+									Phương thức thanh toán
+								</h3>
+								<div
+									class="flex flex-col gap-md"
+									id="payment-methods"
+								>
+									<!-- Bank Transfer -->
+									<label
+										class="flex items-center justify-between p-4 rounded-xl border border-outline/50 bg-surface-container-low cursor-pointer hover:border-primary transition-all payment-option active"
+									>
+										<div class="flex items-center gap-md">
+											<input
+												checked=""
+												class="w-4 h-4 text-primary"
+												name="payment_method"
+												type="radio"
+											/>
+											<div
+												class="w-10 h-10 rounded-lg bg-surface-container flex items-center justify-center"
+											>
+												<span
+													class="material-symbols-outlined text-primary"
+													>account_balance</span
+												>
+											</div>
+											<div>
+												<span
+													class="text-label-md text-on-surface block font-bold"
+													>Chuyển khoản ngân
+													hàng</span
+												>
+												<span
+													class="text-caption text-on-surface-variant"
+													>Vietcombank, Techcombank,
+													BIDV...</span
+												>
+											</div>
+										</div>
+										<span
+											class="text-caption text-secondary font-bold"
+											>Miễn phí giao dịch</span
+										>
+									</label>
+									<!-- E-Wallet -->
+									<label
+										class="flex items-center justify-between p-4 rounded-xl border border-outline/50 bg-surface-container-low cursor-pointer hover:border-primary transition-all payment-option"
+									>
+										<div class="flex items-center gap-md">
+											<input
+												class="w-4 h-4 text-primary"
+												name="payment_method"
+												type="radio"
+											/>
+											<div
+												class="w-10 h-10 rounded-lg bg-surface-container flex items-center justify-center"
+											>
+												<span
+													class="material-symbols-outlined text-secondary"
+													>wallet</span
+												>
+											</div>
+											<div>
+												<span
+													class="text-label-md text-on-surface block font-bold"
+													>Ví điện tử MoMo /
+													ZaloPay</span
+												>
+												<span
+													class="text-caption text-on-surface-variant"
+													>Thanh toán nhanh qua mã QR
+													ứng dụng ví</span
+												>
+											</div>
+										</div>
+										<span
+											class="text-caption text-secondary font-bold"
+											>Hoàn tiền 5%</span
+										>
+									</label>
+									<!-- Credit Card -->
+									<label
+										class="flex items-center justify-between p-4 rounded-xl border border-outline/50 bg-surface-container-low cursor-pointer hover:border-primary transition-all payment-option"
+									>
+										<div class="flex items-center gap-md">
+											<input
+												class="w-4 h-4 text-primary"
+												name="payment_method"
+												type="radio"
+											/>
+											<div
+												class="w-10 h-10 rounded-lg bg-surface-container flex items-center justify-center"
+											>
+												<span
+													class="material-symbols-outlined text-primary"
+													>credit_card</span
+												>
+											</div>
+											<div>
+												<span
+													class="text-label-md text-on-surface block font-bold"
+													>Thẻ tín dụng trực
+													tuyến</span
+												>
+												<span
+													class="text-caption text-on-surface-variant"
+													>Visa, MasterCard, JCB,
+													American Express</span
+												>
+											</div>
+										</div>
+										<span
+											class="text-caption text-on-surface-variant"
+											>Bảo mật 3D Secure</span
+										>
+									</label>
+								</div>
+								<!-- Dynamic Card Input Details (Shows when credit card is selected) -->
+								<div
+									class="hidden mt-6 p-4 rounded-xl bg-surface-container-low flex flex-col gap-md"
+									id="credit-card-details"
+								>
+									<div>
+										<label
+											class="text-label-md text-on-surface block mb-sm"
+											>Số thẻ</label
+										>
+										<input
+											class="w-full h-12 px-4 rounded-lg bg-surface-container-lowest border border-outline outline-none text-on-surface font-mono"
+											placeholder="4532 •••• •••• 8932"
+											type="text"
+										/>
+									</div>
+									<div class="grid grid-cols-2 gap-md">
+										<div>
+											<label
+												class="text-label-md text-on-surface block mb-sm"
+												>Ngày hết hạn</label
+											>
+											<input
+												class="w-full h-12 px-4 rounded-lg bg-surface-container-lowest border border-outline outline-none text-on-surface font-mono"
+												placeholder="MM/YY"
+												type="text"
+											/>
+										</div>
+										<div>
+											<label
+												class="text-label-md text-on-surface block mb-sm"
+												>CVV</label
+											>
+											<input
+												class="w-full h-12 px-4 rounded-lg bg-surface-container-lowest border border-outline outline-none text-on-surface font-mono"
+												maxlength="4"
+												placeholder="123"
+												type="password"
+											/>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+						<!-- Right Column: Price Breakdown & CTA -->
+						<div class="lg:col-span-5 flex flex-col gap-xl">
+							<div
+								class="bg-surface-container-lowest p-lg rounded-xl shadow-sm sticky top-24"
+							>
+								<h3
+									class="text-headline-md text-on-surface mb-6"
+								>
+									Chi tiết giá
+								</h3>
+								<div
+									class="flex flex-col gap-md pb-6 border-b border-surface-container"
+								>
+									<div
+										class="flex justify-between items-center"
+									>
+										<span
+											class="text-body-md text-on-surface-variant"
+											>Phòng Deluxe (3 đêm x
+											2.400.000đ)</span
+										>
+										<span
+											class="text-body-md text-on-surface font-bold"
+											>7.200.000đ</span
+										>
+									</div>
+									<div
+										class="flex justify-between items-center"
+									>
+										<span
+											class="text-body-md text-on-surface-variant"
+											>Ưu đãi mùa hè Đà Nẵng (-10%)</span
+										>
+										<span
+											class="text-body-md text-secondary font-bold"
+											>-720.000đ</span
+										>
+									</div>
+									<div
+										class="flex justify-between items-center"
+									>
+										<span
+											class="text-body-md text-on-surface-variant"
+											>Thuế VAT (10%)</span
+										>
+										<span
+											class="text-body-md text-on-surface"
+											>648.000đ</span
+										>
+									</div>
+									<div
+										class="flex justify-between items-center"
+									>
+										<span
+											class="text-body-md text-on-surface-variant"
+											>Phí dịch vụ (5%)</span
+										>
+										<span
+											class="text-body-md text-on-surface"
+											>324.000đ</span
+										>
+									</div>
+								</div>
+								<div
+									class="flex items-center justify-between py-6"
+								>
+									<div>
+										<span
+											class="text-headline-md text-on-surface block"
+											>Tổng thanh toán</span
+										>
+										<span
+											class="text-caption text-on-surface-variant"
+											>Đã bao gồm tất cả thuế và phí</span
+										>
+									</div>
+									<span
+										class="text-headline-lg text-primary font-bold"
+										>7.452.000đ</span
+									>
+								</div>
+								<!-- Promo Code input -->
+								<div class="flex gap-sm mb-6">
+									<input
+										class="flex-1 h-12 px-4 rounded-lg bg-surface-container-low border border-outline/50 outline-none text-on-surface text-label-md"
+										placeholder="Nhập mã ưu đãi (nếu có)"
+										type="text"
+									/>
+									<button
+										class="px-6 h-12 rounded-lg bg-surface-container text-on-surface text-label-md font-bold hover:bg-surface-container-high transition-colors"
+									>
+										Áp dụng
+									</button>
+								</div>
+								<!-- Terms acceptance -->
+								<div class="flex items-start gap-md mb-6">
+									<input
+										checked=""
+										class="mt-1 w-4 h-4 text-primary rounded"
+										id="terms"
+										type="checkbox"
+									/>
+									<label
+										class="text-caption text-on-surface-variant leading-relaxed"
+										for="terms"
+									>
+										Tôi đồng ý với
+										<a
+											class="text-primary underline"
+											href="#"
+											>Điều khoản &amp; Chính sách hủy
+											phòng</a
+										>
+										của Đà Nẵng Stay và khách sạn.
+									</label>
+								</div>
+								<!-- Final Action Button -->
+								<button
+									class="w-full h-14 rounded-full bg-primary text-on-primary text-label-md font-bold hover:opacity-95 transition-opacity shadow-lg flex items-center justify-center gap-md"
+									onclick="
+										alert(
+											'Đơn đặt phòng đã được tạo thành công! Chuyển hướng đến cổng thanh toán...',
+										)
+									"
+								>
+									<span
+										class="material-symbols-outlined text-[20px]"
+										>lock_open</span
+									>
+									Xác nhận và thanh toán
+								</button>
+								<div
+									class="flex items-center justify-center gap-xl mt-6 pt-6 border-t border-surface-container text-caption text-on-surface-variant"
+								>
+									<div class="flex items-center gap-xs">
+										<span
+											class="material-symbols-outlined text-[16px] text-secondary"
+											>verified</span
+										>
+										<span>Đảm bảo giá tốt nhất</span>
+									</div>
+									<div class="flex items-center gap-xs">
+										<span
+											class="material-symbols-outlined text-[16px] text-secondary"
+											>support_agent</span
+										>
+										<span>Hỗ trợ 24/7</span>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</section>
+				<!-- Script for interactive micro-behaviors -->
+				<script>
+					// Simple countdown simulation
+					let time = 900; // 15 minutes
+					const timerElement =
+						document.getElementById('countdown-timer');
+					setInterval(() => {
+						if (time > 0) {
+							time--;
+							let minutes = Math.floor(time / 60);
+							let seconds = time % 60;
+							timerElement.innerText = `${minutes < 10 ? '0' : ''}${minutes}:${seconds < 10 ? '0' : ''}${seconds}`;
+						}
+					}, 1000);
+
+					// Toggle credit card input
+					const radios = document.querySelectorAll(
+						'input[name="payment_method"]',
+					);
+					const ccDetails = document.getElementById(
+						'credit-card-details',
+					);
+
+					radios.forEach((radio, index) => {
+						radio.addEventListener('change', () => {
+							if (index === 2) {
+								ccDetails.classList.remove('hidden');
+							} else {
+								ccDetails.classList.add('hidden');
+							}
+						});
+					});
+				</script>
+			</div>
+		</main>
+		<footer class="w-full bg-surface-container-low py-12">
+			<div
+				class="max-w-7xl mx-auto px-6 lg:px-12 text-center text-on-surface-variant text-caption"
+			>
+				© 2026 DaNang Travel. All rights reserved.
+			</div>
+		</footer>
+	</body>
+</html>
