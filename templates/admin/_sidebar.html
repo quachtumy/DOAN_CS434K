@@ -1,0 +1,32 @@
+{% set current = request.endpoint.split('.')[-1] if request.endpoint else '' %}
+{% if current in ('create_destination', 'edit_destination', 'delete_destination') %}
+    {% set current = 'destinations' %}
+{% elif current in ('create_accommodation', 'accommodation_detail', 'edit_accommodation', 'change_accommodation_status', 'delete_accommodation') %}
+    {% set current = 'accommodations' %}
+{% elif current in ('host_detail', 'approve_host_accommodation') %}
+    {% set current = 'hosts' %}
+{% elif current in ('user_detail', 'edit_user') %}
+    {% set current = 'users' %}
+{% elif current == 'review_detail' %}
+    {% set current = 'reviews' %}
+{% endif %}
+{% macro item(label, icon, href, key) %}
+<a href="{{ href }}" {% if current == key %}aria-current="page"{% endif %}
+   class="flex items-center rounded-xl px-4 py-3 transition-colors {{ 'bg-[#002045] text-white font-semibold' if current == key else 'text-slate-700 hover:bg-slate-100 hover:text-[#002045]' }}">
+    <span class="material-symbols-outlined mr-3" aria-hidden="true">{{ icon }}</span>{{ label }}
+</a>
+{% endmacro %}
+<aside class="fixed left-0 top-0 z-50 flex h-screen w-72 flex-col overflow-y-auto border-r border-slate-200 bg-white px-4 pb-8 pt-6 shadow-sm">
+    <div class="px-4 mb-8 text-2xl font-bold text-[#002045]">DaNang Travel</div>
+    <nav aria-label="Quản trị" class="space-y-1">
+        {{ item('Bảng điều khiển', 'dashboard', url_for('admin.dashboard'), 'dashboard') }}
+        {{ item('Quản lý người dùng', 'group', url_for('admin.users'), 'users') }}
+        {{ item('Quản lý chủ cơ sở', 'badge', url_for('admin.hosts'), 'hosts') }}
+        {{ item('Quản lý địa điểm', 'location_on', url_for('admin.destinations'), 'destinations') }}
+        {{ item('Quản lý cơ sở lưu trú', 'hotel', url_for('admin.accommodations'), 'accommodations') }}
+        {{ item('Quản lý đánh giá', 'rate_review', url_for('admin.reviews'), 'reviews') }}
+        {{ item('Thống kê & Báo cáo', 'bar_chart', url_for('admin.reports'), 'reports') }}
+        {{ item('Thông báo', 'notifications', url_for('admin.notifications'), 'notifications') }}
+        {{ item('Tài khoản cá nhân', 'manage_accounts', url_for('admin.profile'), 'profile') }}
+    </nav>
+</aside>

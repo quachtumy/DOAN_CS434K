@@ -1,974 +1,172 @@
-<!doctype html>
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<meta content="width=device-width, initial-scale=1.0" name="viewport" />
-		<style>
-			@layer base {
-				html,
-				body {
-					margin: 0;
-					padding: 0;
-				}
-				body {
-					overscroll-behavior: none;
-				}
-				main > :first-child {
-					margin-top: 0 !important;
-				}
-				main > :last-child {
-					margin-bottom: 0 !important;
-				}
-			}
-			::-webkit-scrollbar {
-				display: none;
-			}
-		</style>
-		<script src="https://cdn.tailwindcss.com"></script>
-		<script id="tailwind-config">
-			tailwind.config = {
-				darkMode: 'class',
-				theme: {
-					extend: {
-						colors: {
-							'on-error': '#ffffff',
-							'tertiary-fixed': '#d9e3f9',
-							'surface-container-low': '#f1f4f6',
-							'primary-container': '#002045',
-							'secondary-fixed-dim': '#ffb86c',
-							'surface-container-high': '#e6e8eb',
-							'tertiary-container': '#172131',
-							'on-primary-fixed': '#001b3c',
-							'inverse-primary': '#aec7f5',
-							'inverse-on-surface': '#eef1f4',
-							'outline-variant': '#c4c6cf',
-							'on-tertiary': '#ffffff',
-							surface: '#f7fafc',
-							'surface-dim': '#d7dadd',
-							'on-primary-fixed-variant': '#2e476e',
-							'surface-container': '#ebeef1',
-							'on-secondary': '#ffffff',
-							primary: '#00091b',
-							'surface-container-highest': '#e0e3e5',
-							'on-tertiary-fixed': '#121c2c',
-							'primary-fixed-dim': '#aec7f5',
-							'surface-tint': '#465f87',
-							'error-container': '#ffdad6',
-							secondary: '#895100',
-							'tertiary-fixed-dim': '#bdc7dc',
-							'on-primary': '#ffffff',
-							'on-tertiary-fixed-variant': '#3d4759',
-							'on-primary-container': '#7089b3',
-							'on-background': '#181c1e',
-							'inverse-surface': '#2d3133',
-							'primary-fixed': '#d6e3ff',
-							outline: '#74777f',
-							'on-surface': '#181c1e',
-							'on-secondary-container': '#663b00',
-							background: '#f7fafc',
-							tertiary: '#020919',
-							'on-tertiary-container': '#7e889c',
-							'on-surface-variant': '#44474e',
-							'on-secondary-fixed-variant': '#683d00',
-							'surface-variant': '#e0e3e5',
-							'on-secondary-fixed': '#2c1700',
-							'secondary-container': '#fd9d1a',
-							'secondary-fixed': '#ffdcbc',
-							'on-error-container': '#93000a',
-							error: '#ba1a1a',
-							'surface-bright': '#f7fafc',
-							'surface-container-lowest': '#ffffff',
-						},
-						borderRadius: {
-							DEFAULT: '0.125rem',
-							lg: '0.25rem',
-							xl: '0.5rem',
-							full: '0.75rem',
-						},
-						spacing: {
-							md: '16px',
-							xl: '32px',
-							base: '8px',
-							'3xl': '64px',
-							lg: '24px',
-							xs: '4px',
-							'2xl': '48px',
-							sm: '8px',
-						},
-						fontFamily: {
-							'body-md': ['Inter'],
-							'label-md': ['Inter'],
-							caption: ['Inter'],
-							'headline-md': ['Montserrat'],
-							'headline-lg': ['Montserrat'],
-							'body-lg': ['Inter'],
-							'display-lg': ['Montserrat'],
-						},
-						fontSize: {
-							'body-md': [
-								'16px',
-								{ lineHeight: '1.5', fontWeight: '400' },
-							],
-							'label-md': [
-								'14px',
-								{
-									lineHeight: '1.2',
-									letterSpacing: '0.01em',
-									fontWeight: '600',
-								},
-							],
-							caption: [
-								'12px',
-								{ lineHeight: '1.4', fontWeight: '400' },
-							],
-							'headline-md': [
-								'24px',
-								{ lineHeight: '1.4', fontWeight: '600' },
-							],
-							'headline-lg': [
-								'32px',
-								{ lineHeight: '1.3', fontWeight: '700' },
-							],
-							'body-lg': [
-								'18px',
-								{ lineHeight: '1.6', fontWeight: '400' },
-							],
-							'display-lg': [
-								'48px',
-								{
-									lineHeight: '1.2',
-									letterSpacing: '-0.02em',
-									fontWeight: '700',
-								},
-							],
-						},
-					},
-				},
-			};
-		</script>
-		<link
-			href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
-			rel="stylesheet"
-		/>
-		<link
-			href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&amp;family=Montserrat:wght@100..900&amp;display=swap"
-			rel="stylesheet"
-		/>
-	</head>
-	<body class="bg-surface font-body-md text-on-surface">
-		<aside
-			class="fixed left-0 top-0 h-full w-72 bg-surface-container-low z-50 flex flex-col pt-6 pb-8 shadow-[0_1px_8px_rgba(0,0,0,0.04)]"
-		>
-			<div
-				class="px-xl mb-xl text-headline-md font-headline-md text-primary"
-			>
-				DaNang Travel
-			</div>
-			<nav
-				class="flex-1 px-4 space-y-xs overflow-y-auto"
-				data-active-classes="bg-primary-container text-on-primary-container font-bold rounded-xl"
-			>
-				<a
-					class="flex items-center px-4 py-3 rounded-xl text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-all"
-					data-path="dashboard"
-					href="#"
-					><span class="material-symbols-outlined mr-3"
-						>dashboard</span
-					>Bảng điều khiển</a
-				><a
-					class="flex items-center px-4 py-3 rounded-xl text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-all"
-					data-path="users"
-					href="#"
-					><span class="material-symbols-outlined mr-3">group</span
-					>Quản lý người dùng</a
-				><a
-					class="flex items-center px-4 py-3 rounded-xl text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-all"
-					data-path="hosts"
-					href="#"
-					><span class="material-symbols-outlined mr-3">badge</span
-					>Quản lý chủ cơ sở</a
-				><a
-					class="flex items-center px-4 py-3 rounded-xl text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-all"
-					data-path="locations"
-					href="#"
-					><span class="material-symbols-outlined mr-3"
-						>location_on</span
-					>Quản lý địa điểm</a
-				><a
-					class="flex items-center px-4 py-3 rounded-xl text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-all"
-					data-path="accommodations"
-					href="#"
-					><span class="material-symbols-outlined mr-3">hotel</span
-					>Quản lý cơ sở lưu trú</a
-				><a
-					aria-current="page"
-					class="flex items-center px-4 py-3 transition-all bg-primary-container text-on-primary-container font-bold rounded-xl"
-					data-path="reviews"
-					href="#"
-					><span class="material-symbols-outlined mr-3"
-						>rate_review</span
-					>Quản lý đánh giá</a
-				><a
-					class="flex items-center px-4 py-3 rounded-xl text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-all"
-					data-path="statistics"
-					href="#"
-					><span class="material-symbols-outlined mr-3"
-						>bar_chart</span
-					>Thống kê &amp; Báo cáo</a
-				><a
-					class="flex items-center px-4 py-3 rounded-xl text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-all"
-					data-path="notifications"
-					href="#"
-					><span class="material-symbols-outlined mr-3"
-						>notifications</span
-					>Thông báo</a
-				><a
-					class="flex items-center px-4 py-3 rounded-xl text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-all"
-					data-path="account"
-					href="#"
-					><span class="material-symbols-outlined mr-3"
-						>manage_accounts</span
-					>Tài khoản cá nhân</a
-				>
-			</nav>
-		</aside>
-		<div class="pl-72">
-			<header
-				class="fixed top-0 left-72 right-0 h-20 bg-surface/80 backdrop-blur-xl shadow-[0_1px_8px_rgba(0,0,0,0.04)] z-40 flex items-center justify-between px-xl"
-			>
-				<div class="flex items-center gap-md">
-					<span class="material-symbols-outlined text-outline"
-						>bolt</span
-					><span class="text-caption text-on-surface-variant"
-						>Trạng thái:
-						<strong class="text-on-surface"
-							>Hoạt động ổn định</strong
-						></span
-					>
-				</div>
-				<div class="flex items-center gap-md">
-					<div
-						class="w-8 h-8 rounded-full bg-primary flex items-center justify-center"
-					>
-						<span
-							class="material-symbols-outlined text-on-primary text-[18px]"
-							>person</span
-						>
-					</div>
-				</div>
-			</header>
-			<main class="relative pt-20 bg-surface min-h-screen p-xl">
-				<div class="flex flex-col w-full">
-					<!-- Top header / stats overview -->
-					<div
-						class="flex flex-col md:flex-row justify-between items-start md:items-center gap-md mb-8"
-					>
-						<div>
-							<h1
-								class="font-headline-lg text-headline-lg text-primary tracking-tight"
-							>
-								Quản lý Đánh giá &amp; Bình luận
-							</h1>
-							<p
-								class="font-body-md text-on-surface-variant mt-1"
-							>
-								Kiểm duyệt và quản lý phản hồi của khách hàng về
-								các dịch vụ tại Đà Nẵng.
-							</p>
-						</div>
-						<div class="flex items-center gap-md">
-							<div
-								class="bg-surface-container-low px-4 py-3 rounded-xl flex items-center gap-md shadow-sm"
-							>
-								<span
-									class="material-symbols-outlined text-secondary"
-									>star</span
-								>
-								<div>
-									<div
-										class="text-caption text-on-surface-variant"
-									>
-										Điểm trung bình
-									</div>
-									<div
-										class="text-headline-md font-headline-md text-primary"
-									>
-										4.8 / 5.0
-									</div>
-								</div>
-							</div>
-							<div
-								class="bg-surface-container-low px-4 py-3 rounded-xl flex items-center gap-md shadow-sm"
-							>
-								<span
-									class="material-symbols-outlined text-primary-container"
-									>rate_review</span
-								>
-								<div>
-									<div
-										class="text-caption text-on-surface-variant"
-									>
-										Tổng đánh giá
-									</div>
-									<div
-										class="text-headline-md font-headline-md text-primary"
-									>
-										1,482
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-					<!-- Search and Filters Bar -->
-					<div
-						class="bg-surface-container-low p-lg rounded-xl mb-8 shadow-sm flex flex-col lg:flex-row gap-md items-center justify-between"
-					>
-						<div
-							class="flex flex-wrap items-center gap-md w-full lg:w-auto flex-1"
-						>
-							<!-- Search input -->
-							<div class="relative flex-1 min-w-[280px]">
-								<span
-									class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-outline"
-									>search</span
-								>
-								<input
-									class="w-full bg-surface-container-lowest text-on-surface pl-10 pr-4 py-3 rounded-xl outline-none border border-outline/20 focus:border-primary transition-all font-body-md"
-									placeholder="Tìm kiếm theo nội dung, khách hàng..."
-									type="text"
-								/>
-							</div>
-							<!-- Star Filter -->
-							<div
-								class="flex items-center gap-xs overflow-x-auto pb-1 lg:pb-0"
-							>
-								<button
-									class="px-4 py-3 rounded-xl bg-primary text-on-primary font-label-md transition-all shadow-sm"
-								>
-									Tất cả
-								</button>
-								<button
-									class="px-4 py-3 rounded-xl bg-surface-container hover:bg-surface-container-high text-on-surface font-label-md transition-all flex items-center gap-xs"
-								>
-									5
-									<span
-										class="material-symbols-outlined text-amber-500 text-[16px]"
-										>star</span
-									>
-								</button>
-								<button
-									class="px-4 py-3 rounded-xl bg-surface-container hover:bg-surface-container-high text-on-surface font-label-md transition-all flex items-center gap-xs"
-								>
-									4
-									<span
-										class="material-symbols-outlined text-amber-500 text-[16px]"
-										>star</span
-									>
-								</button>
-								<button
-									class="px-4 py-3 rounded-xl bg-surface-container hover:bg-surface-container-high text-on-surface font-label-md transition-all flex items-center gap-xs"
-								>
-									3
-									<span
-										class="material-symbols-outlined text-amber-500 text-[16px]"
-										>star</span
-									>
-								</button>
-								<button
-									class="px-4 py-3 rounded-xl bg-surface-container hover:bg-surface-container-high text-on-surface font-label-md transition-all flex items-center gap-xs"
-								>
-									1-2
-									<span
-										class="material-symbols-outlined text-amber-500 text-[16px]"
-										>star</span
-									>
-								</button>
-							</div>
-						</div>
-						<!-- Status Filter Dropdown -->
-						<div
-							class="flex items-center gap-md w-full lg:w-auto justify-end"
-						>
-							<select
-								class="bg-surface-container-lowest text-on-surface px-4 py-3 rounded-xl outline-none border border-outline/20 font-label-md cursor-pointer"
-							>
-								<option>Tất cả trạng thái</option>
-								<option>Hiển thị</option>
-								<option>Đã ẩn</option>
-								<option>Vi phạm</option>
-							</select>
-						</div>
-					</div>
-					<!-- Reviews Table Section -->
-					<div
-						class="bg-surface-container-lowest rounded-xl shadow-md overflow-hidden"
-					>
-						<div class="overflow-x-auto">
-							<table class="w-full text-left border-collapse">
-								<thead>
-									<tr
-										class="bg-surface-container-low text-on-surface-variant font-label-md border-b border-outline/10"
-									>
-										<th class="p-lg">ID</th>
-										<th class="p-lg">Khách hàng</th>
-										<th class="p-lg">Đối tượng đánh giá</th>
-										<th class="p-lg">Điểm số</th>
-										<th class="p-lg max-w-xs">
-											Nội dung bình luận
-										</th>
-										<th class="p-lg">Ngày đăng</th>
-										<th class="p-lg">Trạng thái</th>
-										<th class="p-lg text-right">
-											Thao tác
-										</th>
-									</tr>
-								</thead>
-								<tbody
-									class="divide-y divide-outline/5 font-body-md text-on-surface"
-								>
-									<!-- Row 1 -->
-									<tr
-										class="hover:bg-surface-container-low/50 transition-colors"
-									>
-										<td
-											class="p-lg font-label-md text-outline"
-										>
-											#REV-9821
-										</td>
-										<td class="p-lg">
-											<div
-												class="flex items-center gap-md"
-											>
-												<div
-													class="w-10 h-10 rounded-full bg-primary-container text-on-primary-container flex items-center justify-center font-label-md"
-												>
-													HN
-												</div>
-												<div>
-													<div class="font-label-md">
-														Hoàng Ngọc
-													</div>
-													<div
-														class="text-caption text-on-surface-variant"
-													>
-														ngoc.h@gmail.com
-													</div>
-												</div>
-											</div>
-										</td>
-										<td class="p-lg">
-											<div class="font-label-md">
-												Novotel Danang Premier
-											</div>
-											<div
-												class="text-caption text-on-surface-variant"
-											>
-												Khách sạn &amp; Khu nghỉ dưỡng
-											</div>
-										</td>
-										<td class="p-lg">
-											<div
-												class="flex items-center text-amber-500"
-											>
-												<span
-													class="material-symbols-outlined text-[18px]"
-													style="
-														font-variation-settings: 'FILL'
-															1;
-													"
-													>star</span
-												>
-												<span
-													class="material-symbols-outlined text-[18px]"
-													style="
-														font-variation-settings: 'FILL'
-															1;
-													"
-													>star</span
-												>
-												<span
-													class="material-symbols-outlined text-[18px]"
-													style="
-														font-variation-settings: 'FILL'
-															1;
-													"
-													>star</span
-												>
-												<span
-													class="material-symbols-outlined text-[18px]"
-													style="
-														font-variation-settings: 'FILL'
-															1;
-													"
-													>star</span
-												>
-												<span
-													class="material-symbols-outlined text-[18px]"
-													style="
-														font-variation-settings: 'FILL'
-															1;
-													"
-													>star</span
-												>
-											</div>
-										</td>
-										<td class="p-lg max-w-xs">
-											<p
-												class="line-clamp-2 text-on-surface-variant"
-											>
-												Khách sạn tuyệt vời! View hướng
-												sông Hàn cực đẹp về đêm, nhân
-												viên chu đáo và đồ ăn sáng rất
-												ngon miệng.
-											</p>
-										</td>
-										<td
-											class="p-lg text-caption text-on-surface-variant"
-										>
-											24/10/2023
-										</td>
-										<td class="p-lg">
-											<span
-												class="px-3 py-1 rounded-full bg-emerald-100 text-emerald-800 text-caption font-label-md inline-block"
-												>Hiển thị</span
-											>
-										</td>
-										<td class="p-lg text-right">
-											<div
-												class="flex items-center justify-end gap-xs"
-											>
-												<button
-													class="p-2 rounded-xl hover:bg-surface-container text-on-surface-variant hover:text-on-surface transition-all"
-													title="Ẩn đánh giá"
-												>
-													<span
-														class="material-symbols-outlined text-[20px]"
-														>visibility_off</span
-													>
-												</button>
-												<button
-													class="p-2 rounded-xl hover:bg-error-container text-error transition-all"
-													title="Xóa"
-												>
-													<span
-														class="material-symbols-outlined text-[20px]"
-														>delete</span
-													>
-												</button>
-											</div>
-										</td>
-									</tr>
-									<!-- Row 2 -->
-									<tr
-										class="hover:bg-surface-container-low/50 transition-colors"
-									>
-										<td
-											class="p-lg font-label-md text-outline"
-										>
-											#REV-9820
-										</td>
-										<td class="p-lg">
-											<div
-												class="flex items-center gap-md"
-											>
-												<div
-													class="w-10 h-10 rounded-full bg-secondary text-on-secondary flex items-center justify-center font-label-md"
-												>
-													TM
-												</div>
-												<div>
-													<div class="font-label-md">
-														Trần Minh
-													</div>
-													<div
-														class="text-caption text-on-surface-variant"
-													>
-														minh.tran@yahoo.com
-													</div>
-												</div>
-											</div>
-										</td>
-										<td class="p-lg">
-											<div class="font-label-md">
-												Bà Nà Hills Sun World
-											</div>
-											<div
-												class="text-caption text-on-surface-variant"
-											>
-												Địa điểm du lịch
-											</div>
-										</td>
-										<td class="p-lg">
-											<div
-												class="flex items-center text-amber-500"
-											>
-												<span
-													class="material-symbols-outlined text-[18px]"
-													style="
-														font-variation-settings: 'FILL'
-															1;
-													"
-													>star</span
-												>
-												<span
-													class="material-symbols-outlined text-[18px]"
-													style="
-														font-variation-settings: 'FILL'
-															1;
-													"
-													>star</span
-												>
-												<span
-													class="material-symbols-outlined text-[18px]"
-													style="
-														font-variation-settings: 'FILL'
-															1;
-													"
-													>star</span
-												>
-												<span
-													class="material-symbols-outlined text-[18px]"
-													>star</span
-												>
-												<span
-													class="material-symbols-outlined text-[18px]"
-													>star</span
-												>
-											</div>
-										</td>
-										<td class="p-lg max-w-xs">
-											<p
-												class="line-clamp-2 text-on-surface-variant"
-											>
-												Cảnh đẹp nhưng quá đông đúc vào
-												cuối tuần. Phải xếp hàng rất lâu
-												ở cáp treo.
-											</p>
-										</td>
-										<td
-											class="p-lg text-caption text-on-surface-variant"
-										>
-											23/10/2023
-										</td>
-										<td class="p-lg">
-											<span
-												class="px-3 py-1 rounded-full bg-emerald-100 text-emerald-800 text-caption font-label-md inline-block"
-												>Hiển thị</span
-											>
-										</td>
-										<td class="p-lg text-right">
-											<div
-												class="flex items-center justify-end gap-xs"
-											>
-												<button
-													class="p-2 rounded-xl hover:bg-surface-container text-on-surface-variant hover:text-on-surface transition-all"
-													title="Ẩn đánh giá"
-												>
-													<span
-														class="material-symbols-outlined text-[20px]"
-														>visibility_off</span
-													>
-												</button>
-												<button
-													class="p-2 rounded-xl hover:bg-error-container text-error transition-all"
-													title="Xóa"
-												>
-													<span
-														class="material-symbols-outlined text-[20px]"
-														>delete</span
-													>
-												</button>
-											</div>
-										</td>
-									</tr>
-									<!-- Row 3 -->
-									<tr
-										class="hover:bg-surface-container-low/50 transition-colors"
-									>
-										<td
-											class="p-lg font-label-md text-outline"
-										>
-											#REV-9819
-										</td>
-										<td class="p-lg">
-											<div
-												class="flex items-center gap-md"
-											>
-												<div
-													class="w-10 h-10 rounded-full bg-tertiary text-on-tertiary flex items-center justify-center font-label-md"
-												>
-													LN
-												</div>
-												<div>
-													<div class="font-label-md">
-														Lê Nam
-													</div>
-													<div
-														class="text-caption text-on-surface-variant"
-													>
-														nam.le@outlook.com
-													</div>
-												</div>
-											</div>
-										</td>
-										<td class="p-lg">
-											<div class="font-label-md">
-												Mường Thanh Luxury Đà Nẵng
-											</div>
-											<div
-												class="text-caption text-on-surface-variant"
-											>
-												Khách sạn &amp; Khu nghỉ dưỡng
-											</div>
-										</td>
-										<td class="p-lg">
-											<div
-												class="flex items-center text-amber-500"
-											>
-												<span
-													class="material-symbols-outlined text-[18px]"
-													style="
-														font-variation-settings: 'FILL'
-															1;
-													"
-													>star</span
-												>
-												<span
-													class="material-symbols-outlined text-[18px]"
-													>star</span
-												>
-												<span
-													class="material-symbols-outlined text-[18px]"
-													>star</span
-												>
-												<span
-													class="material-symbols-outlined text-[18px]"
-													>star</span
-												>
-												<span
-													class="material-symbols-outlined text-[18px]"
-													>star</span
-												>
-											</div>
-										</td>
-										<td class="p-lg max-w-xs">
-											<p
-												class="line-clamp-2 text-on-surface-variant"
-											>
-												Dịch vụ kém, phòng có mùi ẩm mốc
-												và nhân viên lễ tân không thân
-												thiện với khách hàng.
-											</p>
-										</td>
-										<td
-											class="p-lg text-caption text-on-surface-variant"
-										>
-											22/10/2023
-										</td>
-										<td class="p-lg">
-											<span
-												class="px-3 py-1 rounded-full bg-error-container text-on-error-container text-caption font-label-md inline-block"
-												>Vi phạm</span
-											>
-										</td>
-										<td class="p-lg text-right">
-											<div
-												class="flex items-center justify-end gap-xs"
-											>
-												<button
-													class="p-2 rounded-xl hover:bg-surface-container text-primary transition-all"
-													title="Duyệt hiển thị"
-												>
-													<span
-														class="material-symbols-outlined text-[20px]"
-														>visibility</span
-													>
-												</button>
-												<button
-													class="p-2 rounded-xl hover:bg-error-container text-error transition-all"
-													title="Xóa"
-												>
-													<span
-														class="material-symbols-outlined text-[20px]"
-														>delete</span
-													>
-												</button>
-											</div>
-										</td>
-									</tr>
-									<!-- Row 4 -->
-									<tr
-										class="hover:bg-surface-container-low/50 transition-colors"
-									>
-										<td
-											class="p-lg font-label-md text-outline"
-										>
-											#REV-9818
-										</td>
-										<td class="p-lg">
-											<div
-												class="flex items-center gap-md"
-											>
-												<div
-													class="w-10 h-10 rounded-full bg-primary-container text-on-primary-container flex items-center justify-center font-label-md"
-												>
-													PA
-												</div>
-												<div>
-													<div class="font-label-md">
-														Phạm Anh
-													</div>
-													<div
-														class="text-caption text-on-surface-variant"
-													>
-														anh.pham@gmail.com
-													</div>
-												</div>
-											</div>
-										</td>
-										<td class="p-lg">
-											<div class="font-label-md">
-												Ngũ Hành Sơn
-											</div>
-											<div
-												class="text-caption text-on-surface-variant"
-											>
-												Địa điểm du lịch
-											</div>
-										</td>
-										<td class="p-lg">
-											<div
-												class="flex items-center text-amber-500"
-											>
-												<span
-													class="material-symbols-outlined text-[18px]"
-													style="
-														font-variation-settings: 'FILL'
-															1;
-													"
-													>star</span
-												>
-												<span
-													class="material-symbols-outlined text-[18px]"
-													style="
-														font-variation-settings: 'FILL'
-															1;
-													"
-													>star</span
-												>
-												<span
-													class="material-symbols-outlined text-[18px]"
-													style="
-														font-variation-settings: 'FILL'
-															1;
-													"
-													>star</span
-												>
-												<span
-													class="material-symbols-outlined text-[18px]"
-													style="
-														font-variation-settings: 'FILL'
-															1;
-													"
-													>star</span
-												>
-												<span
-													class="material-symbols-outlined text-[18px]"
-													style="
-														font-variation-settings: 'FILL'
-															1;
-													"
-													>star</span
-												>
-											</div>
-										</td>
-										<td class="p-lg max-w-xs">
-											<p
-												class="line-clamp-2 text-on-surface-variant"
-											>
-												Hang động huyền ảo, phong cảnh
-												tuyệt đẹp. Rất đáng để trải
-												nghiệm khi đến Đà Nẵng.
-											</p>
-										</td>
-										<td
-											class="p-lg text-caption text-on-surface-variant"
-										>
-											21/10/2023
-										</td>
-										<td class="p-lg">
-											<span
-												class="px-3 py-1 rounded-full bg-surface-container text-on-surface-variant text-caption font-label-md inline-block"
-												>Đã ẩn</span
-											>
-										</td>
-										<td class="p-lg text-right">
-											<div
-												class="flex items-center justify-end gap-xs"
-											>
-												<button
-													class="p-2 rounded-xl hover:bg-surface-container text-primary transition-all"
-													title="Duyệt hiển thị"
-												>
-													<span
-														class="material-symbols-outlined text-[20px]"
-														>visibility</span
-													>
-												</button>
-												<button
-													class="p-2 rounded-xl hover:bg-error-container text-error transition-all"
-													title="Xóa"
-												>
-													<span
-														class="material-symbols-outlined text-[20px]"
-														>delete</span
-													>
-												</button>
-											</div>
-										</td>
-									</tr>
-								</tbody>
-							</table>
-						</div>
-						<!-- Pagination footer -->
-						<div
-							class="p-lg bg-surface-container-low flex items-center justify-between border-t border-outline/10"
-						>
-							<div class="text-caption text-on-surface-variant">
-								Hiển thị 1-4 trong số 1,482 đánh giá
-							</div>
-							<div class="flex items-center gap-xs">
-								<button
-									class="px-4 py-2 rounded-xl bg-surface-container hover:bg-surface-container-high text-on-surface font-label-md transition-all disabled:opacity-50"
-									disabled=""
-								>
-									Trước
-								</button>
-								<button
-									class="px-4 py-2 rounded-xl bg-primary text-on-primary font-label-md transition-all"
-								>
-									1
-								</button>
-								<button
-									class="px-4 py-2 rounded-xl bg-surface-container hover:bg-surface-container-high text-on-surface font-label-md transition-all"
-								>
-									2
-								</button>
-								<button
-									class="px-4 py-2 rounded-xl bg-surface-container hover:bg-surface-container-high text-on-surface font-label-md transition-all"
-								>
-									3
-								</button>
-								<button
-									class="px-4 py-2 rounded-xl bg-surface-container hover:bg-surface-container-high text-on-surface font-label-md transition-all"
-								>
-									Tiếp
-								</button>
-							</div>
-						</div>
-					</div>
-				</div>
-			</main>
-		</div>
-	</body>
+﻿<!doctype html>
+<html lang="vi">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Quản lý đánh giá - DaNang Travel</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined&amp;display=swap" rel="stylesheet">
+</head>
+<body class="bg-slate-50 text-slate-900">
+    {% include 'admin/_sidebar.html' %}
+    <div class="min-h-screen pl-72">
+        <header class="flex h-20 items-center border-b border-slate-200 bg-white px-8">
+            <span class="material-symbols-outlined mr-3 text-[#002045]" aria-hidden="true">rate_review</span>
+            <span class="font-semibold">DaNang Travel · Quản trị</span>
+        </header>
+        <main class="mx-auto max-w-7xl p-8">
+            {% if view == 'detail' %}
+            <div class="mb-8 flex flex-wrap items-center justify-between gap-4">
+                <div>
+                    <h1 class="text-3xl font-bold text-[#002045]">Đánh giá #{{ review.review_id }}</h1>
+                    <p class="mt-2 text-slate-600">
+                        {{ review.created_at.strftime('%d/%m/%Y %H:%M') if review.created_at else 'Không rõ ngày đăng' }}
+                    </p>
+                </div>
+                <a href="{{ url_for('admin.reviews') }}" class="rounded-xl border border-slate-300 bg-white px-5 py-3 font-semibold text-[#002045] hover:bg-slate-100">
+                    Về danh sách
+                </a>
+            </div>
+            <div class="grid gap-6 lg:grid-cols-3">
+                <section class="rounded-xl bg-white p-6 shadow-sm lg:col-span-2" aria-labelledby="review-content">
+                    <h2 id="review-content" class="text-xl font-bold text-[#002045]">Nội dung đánh giá</h2>
+                    <p class="mt-4 font-semibold text-amber-700">{{ review.rating }} / 5 sao</p>
+                    <p class="mt-4 whitespace-pre-line break-words text-slate-700">{{ review.comment or 'Khách hàng không để lại bình luận.' }}</p>
+                    {% if review.images %}
+                    <div class="mt-6 border-t border-slate-100 pt-5">
+                        <h3 class="font-semibold">Ảnh đính kèm</h3>
+                        <p class="mt-2 whitespace-pre-wrap break-all text-sm text-slate-600">{{ review.images }}</p>
+                    </div>
+                    {% endif %}
+                </section>
+                <div class="space-y-6">
+                    <section class="rounded-xl bg-white p-6 shadow-sm" aria-labelledby="customer-heading">
+                        <h2 id="customer-heading" class="text-lg font-bold text-[#002045]">Khách hàng</h2>
+                        <p class="mt-3">{{ review.customer_name or 'Không tìm thấy tài khoản' }}</p>
+                        <p class="mt-1 break-all text-sm text-slate-600">{{ review.customer_email or 'Không có email' }}</p>
+                        <p class="mt-2 text-sm text-slate-500">ID #{{ review.customer_id }}</p>
+                    </section>
+                    <section class="rounded-xl bg-white p-6 shadow-sm" aria-labelledby="accommodation-heading">
+                        <h2 id="accommodation-heading" class="text-lg font-bold text-[#002045]">Cơ sở lưu trú</h2>
+                        <p class="mt-3">{{ review.accommodation_name or 'Không tìm thấy cơ sở' }}</p>
+                        <p class="mt-1 text-sm text-slate-600">{{ review.accommodation_address or '' }}</p>
+                        <p class="mt-2 text-sm text-slate-500">ID #{{ review.accommodation_id }}</p>
+                    </section>
+                    <section class="rounded-xl bg-white p-6 shadow-sm" aria-labelledby="booking-heading">
+                        <h2 id="booking-heading" class="text-lg font-bold text-[#002045]">Đặt phòng liên quan</h2>
+                        <p class="mt-3">Booking #{{ review.booking_id }}</p>
+                        {% if review.room_id %}
+                        <p class="mt-1 text-sm text-slate-600">Phòng #{{ review.room_id }}</p>
+                        <p class="mt-1 text-sm text-slate-600">Nhận phòng: {{ review.check_in_date.strftime('%d/%m/%Y') if review.check_in_date else '—' }}</p>
+                        <p class="mt-1 text-sm text-slate-600">Trả phòng: {{ review.check_out_date.strftime('%d/%m/%Y') if review.check_out_date else '—' }}</p>
+                        <p class="mt-1 text-sm text-slate-600">Trạng thái: {{ review.booking_status or 'Chưa xác định' }}</p>
+                        <p class="mt-1 text-sm text-slate-600">Tổng tiền: {{ review.total_price }}</p>
+                        {% else %}
+                        <p class="mt-1 text-sm text-slate-600">Không tìm thấy thông tin đặt phòng.</p>
+                        {% endif %}
+                    </section>
+                </div>
+            </div>
+            {% else %}
+            <div class="mb-8">
+                <h1 class="text-3xl font-bold text-[#002045]">Quản lý đánh giá</h1>
+                <p class="mt-2 text-slate-600">Tra cứu đánh giá của khách hàng về cơ sở lưu trú.</p>
+            </div>
+            <div class="mb-6 grid gap-4 sm:grid-cols-2">
+                <section class="rounded-xl bg-white p-5 shadow-sm">
+                    <h2 class="text-sm font-semibold text-slate-600">Tổng đánh giá</h2>
+                    <p class="mt-2 text-3xl font-bold text-[#002045]">{{ summary.total }}</p>
+                </section>
+                <section class="rounded-xl bg-white p-5 shadow-sm">
+                    <h2 class="text-sm font-semibold text-slate-600">Điểm trung bình</h2>
+                    <p class="mt-2 text-3xl font-bold text-[#002045]">
+                        {{ '%.1f'|format(summary.average_rating) if summary.average_rating is not none else '—' }}
+                    </p>
+                </section>
+            </div>
+            <form method="get" action="{{ url_for('admin.reviews') }}" role="search"
+                  class="mb-4 flex flex-wrap items-end gap-4 rounded-xl bg-white p-5 shadow-sm">
+                <input type="hidden" name="rating" value="{{ rating_filter }}">
+                <div class="min-w-64 flex-1">
+                    <label for="q" class="mb-2 block font-semibold">Tìm đánh giá</label>
+                    <input id="q" name="q" type="search" maxlength="100" value="{{ keyword }}"
+                           placeholder="Nội dung, khách hàng, email, cơ sở"
+                           class="w-full rounded-lg border border-slate-300 px-4 py-3 focus:border-[#002045] focus:outline-none">
+                </div>
+                <div class="min-w-64 flex-1">
+                    <label for="accommodation_id" class="mb-2 block font-semibold">Cơ sở lưu trú</label>
+                    <select id="accommodation_id" name="accommodation_id"
+                            class="w-full rounded-lg border border-slate-300 bg-white px-4 py-3 focus:border-[#002045] focus:outline-none">
+                        <option value="">Tất cả cơ sở</option>
+                        {% for accommodation in accommodations %}
+                        <option value="{{ accommodation.accommodation_id }}"
+                                {% if accommodation_text == accommodation.accommodation_id|string %}selected{% endif %}>
+                            {{ accommodation.name }}
+                        </option>
+                        {% endfor %}
+                    </select>
+                </div>
+                <button type="submit" class="rounded-xl bg-[#002045] px-5 py-3 font-semibold text-white hover:opacity-90">Tìm kiếm</button>
+                <a href="{{ url_for('admin.reviews') }}" class="rounded-xl border border-slate-300 px-5 py-3 font-semibold text-[#002045] hover:bg-slate-100">Xóa bộ lọc</a>
+            </form>
+            <nav class="mb-6 flex flex-wrap gap-2" aria-label="Lọc theo điểm đánh giá">
+                {% for value, label in [('', 'Tất cả'), ('5', '5 sao'), ('4', '4 sao'), ('3', '3 sao'), ('1-2', '1–2 sao')] %}
+                <a href="{{ url_for('admin.reviews', q=keyword, accommodation_id=accommodation_text, rating=value) }}"
+                   class="rounded-lg px-4 py-2 font-semibold {{ 'bg-[#002045] text-white' if rating_filter == value else 'bg-white text-[#002045] border border-slate-200' }}"
+                   {% if rating_filter == value %}aria-current="page"{% endif %}>{{ label }}</a>
+                {% endfor %}
+            </nav>
+            {% if errors %}
+            <div class="mb-6 rounded-xl border border-red-200 bg-red-50 p-4 text-red-900" role="alert">
+                <ul class="list-inside list-disc">{% for error in errors %}<li>{{ error }}</li>{% endfor %}</ul>
+            </div>
+            {% endif %}
+            <section class="overflow-hidden rounded-xl bg-white shadow-sm" aria-label="Danh sách đánh giá">
+                <div class="overflow-x-auto">
+                    <table class="w-full min-w-[850px] text-left">
+                        <thead class="bg-slate-100 text-sm text-slate-600">
+                            <tr>
+                                <th scope="col" class="p-4">ID</th>
+                                <th scope="col" class="p-4">Khách hàng</th>
+                                <th scope="col" class="p-4">Cơ sở lưu trú</th>
+                                <th scope="col" class="p-4">Điểm</th>
+                                <th scope="col" class="p-4">Bình luận</th>
+                                <th scope="col" class="p-4">Ngày đăng</th>
+                                <th scope="col" class="p-4">Chi tiết</th>
+                            </tr>
+                        </thead>
+                        <tbody class="divide-y divide-slate-100">
+                            {% for review in reviews %}
+                            <tr>
+                                <td class="p-4">#{{ review.review_id }}</td>
+                                <td class="p-4">
+                                    <span class="font-semibold">{{ review.customer_name or 'Không tìm thấy tài khoản' }}</span>
+                                    <span class="block break-all text-sm text-slate-500">{{ review.customer_email or '' }}</span>
+                                </td>
+                                <td class="p-4">{{ review.accommodation_name or 'Không tìm thấy cơ sở' }}</td>
+                                <td class="p-4 font-semibold text-amber-700">{{ review.rating }} / 5</td>
+                                <td class="max-w-xs p-4"><p class="line-clamp-2 break-words">{{ review.comment or 'Không có bình luận' }}</p></td>
+                                <td class="whitespace-nowrap p-4 text-sm text-slate-600">
+                                    {{ review.created_at.strftime('%d/%m/%Y %H:%M') if review.created_at else '—' }}
+                                </td>
+                                <td class="p-4">
+                                    <a href="{{ url_for('admin.review_detail', review_id=review.review_id) }}"
+                                       class="font-semibold text-[#002045] underline">Xem chi tiết</a>
+                                </td>
+                            </tr>
+                            {% else %}
+                            <tr>
+                                <td colspan="7" class="p-8 text-center text-slate-600">
+                                    {{ 'Bảng Reviews chưa có dữ liệu.' if summary.total == 0 else 'Không có đánh giá phù hợp với bộ lọc.' }}
+                                </td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+            {% endif %}
+        </main>
+    </div>
+</body>
 </html>
