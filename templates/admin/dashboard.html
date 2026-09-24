@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+<html lang="vi">
 	<head>
 		<meta charset="utf-8" />
 		<meta content="width=device-width, initial-scale=1.0" name="viewport" />
@@ -154,916 +154,194 @@
 			href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&amp;family=Montserrat:wght@100..900&amp;display=swap"
 			rel="stylesheet"
 		/>
-	</head>
-	<body class="bg-surface font-body-md text-on-surface">
-		<aside
-			class="fixed left-0 top-0 h-full w-72 bg-surface-container-low z-50 flex flex-col pt-6 pb-8 shadow-[0_1px_8px_rgba(0,0,0,0.04)]"
-		>
-			<div
-				class="px-xl mb-xl text-headline-md font-headline-md text-primary"
-			>
-				DaNang Travel
-			</div>
-			<nav
-				class="flex-1 px-4 space-y-xs overflow-y-auto"
-				data-active-classes="bg-primary-container text-on-primary-container font-bold rounded-xl"
-			>
-				<a
-					aria-current="page"
-					class="flex items-center px-4 py-3 transition-all bg-primary-container text-on-primary-container font-bold rounded-xl"
-					data-path="dashboard"
-					href="#"
-					><span class="material-symbols-outlined mr-3"
-						>dashboard</span
-					>Bảng điều khiển</a
-				><a
-					class="flex items-center px-4 py-3 rounded-xl text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-all"
-					data-path="users"
-					href="#"
-					><span class="material-symbols-outlined mr-3">group</span
-					>Quản lý người dùng</a
-				><a
-					class="flex items-center px-4 py-3 rounded-xl text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-all"
-					data-path="hosts"
-					href="#"
-					><span class="material-symbols-outlined mr-3">badge</span
-					>Quản lý chủ cơ sở</a
-				><a
-					class="flex items-center px-4 py-3 rounded-xl text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-all"
-					data-path="locations"
-					href="#"
-					><span class="material-symbols-outlined mr-3"
-						>location_on</span
-					>Quản lý địa điểm</a
-				><a
-					class="flex items-center px-4 py-3 rounded-xl text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-all"
-					data-path="accommodations"
-					href="#"
-					><span class="material-symbols-outlined mr-3">hotel</span
-					>Quản lý cơ sở lưu trú</a
-				><a
-					class="flex items-center px-4 py-3 rounded-xl text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-all"
-					data-path="reviews"
-					href="#"
-					><span class="material-symbols-outlined mr-3"
-						>rate_review</span
-					>Quản lý đánh giá</a
-				><a
-					class="flex items-center px-4 py-3 rounded-xl text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-all"
-					data-path="statistics"
-					href="#"
-					><span class="material-symbols-outlined mr-3"
-						>bar_chart</span
-					>Thống kê &amp; Báo cáo</a
-				><a
-					class="flex items-center px-4 py-3 rounded-xl text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-all"
-					data-path="notifications"
-					href="#"
-					><span class="material-symbols-outlined mr-3"
-						>notifications</span
-					>Thông báo</a
-				><a
-					class="flex items-center px-4 py-3 rounded-xl text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-all"
-					data-path="account"
-					href="#"
-					><span class="material-symbols-outlined mr-3"
-						>manage_accounts</span
-					>Tài khoản cá nhân</a
-				>
-			</nav>
-		</aside>
-		<div class="pl-72">
-			<header
-				class="fixed top-0 left-72 right-0 h-20 bg-surface/80 backdrop-blur-xl shadow-[0_1px_8px_rgba(0,0,0,0.04)] z-40 flex items-center justify-between px-xl"
-			>
-				<div class="flex items-center gap-md">
-					<span class="material-symbols-outlined text-outline"
-						>bolt</span
-					><span class="text-caption text-on-surface-variant"
-						>Trạng thái:
-						<strong class="text-on-surface"
-							>Hoạt động ổn định</strong
-						></span
-					>
-				</div>
-				<div class="flex items-center gap-md">
-					<div
-						class="w-8 h-8 rounded-full bg-primary flex items-center justify-center"
-					>
-						<span
-							class="material-symbols-outlined text-on-primary text-[18px]"
-							>person</span
-						>
-					</div>
-				</div>
-			</header>
-			<main class="relative pt-20 bg-surface min-h-screen p-xl">
-				<div class="flex flex-col w-full">
-					<!-- Top Greeting & Quick Stats Header -->
-					<div
-						class="flex flex-col md:flex-row md:items-end justify-between mb-xl gap-md"
-					>
-						<div>
-							<div
-								class="text-caption uppercase tracking-wider text-on-surface-variant font-label-md mb-xs"
-							>
-								Tổng quan hệ thống
-							</div>
-							<h1
-								class="text-headline-lg font-headline-lg text-primary"
-							>
-								Bảng điều khiển Đà Nẵng Tourism
-							</h1>
-						</div>
-						<div class="flex items-center gap-md">
-							<div
-								class="bg-surface-container-low px-md py-2 rounded-xl flex items-center gap-md shadow-sm"
-							>
-								<span
-									class="w-3 h-3 rounded-full bg-secondary-container animate-pulse"
-								></span>
-								<span class="text-label-md text-on-surface"
-									>Cập nhật lúc: Vừa xong</span
-								>
-							</div>
-							<button
-								class="bg-primary text-on-primary font-label-md px-lg py-3 rounded-full hover:bg-primary-container transition-all shadow-[0_4px_20px_rgba(0,9,27,0.1)] flex items-center gap-2"
-							>
-								<span
-									class="material-symbols-outlined text-[18px]"
-									>download</span
-								>
-								<span>Xuất báo cáo</span>
-							</button>
-						</div>
-					</div>
-					<!-- Key Metrics Bento Grid -->
-					<div
-						class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-lg mb-xl"
-					>
-						<!-- Card 1: Users -->
-						<div
-							class="bg-surface-container-lowest p-lg rounded-xl shadow-[0_4px_20px_rgba(0,9,27,0.03)] hover:shadow-[0_6px_24px_rgba(0,9,27,0.06)] transition-all flex flex-col justify-between relative overflow-hidden group"
-						>
-							<div
-								class="absolute -right-6 -bottom-6 w-24 h-24 bg-surface-container-low rounded-full group-hover:scale-125 transition-transform duration-500"
-							></div>
-							<div
-								class="flex items-center justify-between mb-xl relative z-10"
-							>
-								<div
-									class="w-12 h-12 rounded-xl bg-primary-fixed flex items-center justify-center text-primary-container"
-								>
-									<span
-										class="material-symbols-outlined text-[24px]"
-										>group</span
-									>
-								</div>
-								<span
-									class="text-caption font-label-md text-secondary bg-secondary-fixed/30 px-2 py-1 rounded"
-									>+12% tháng này</span
-								>
-							</div>
-							<div class="relative z-10">
-								<div
-									class="text-caption text-on-surface-variant mb-1 font-label-md"
-								>
-									Tổng số người dùng
-								</div>
-								<div
-									class="text-headline-lg text-primary font-headline-lg"
-								>
-									12,450
-								</div>
-							</div>
-						</div>
-						<!-- Card 2: Accommodations -->
-						<div
-							class="bg-surface-container-lowest p-lg rounded-xl shadow-[0_4px_20px_rgba(0,9,27,0.03)] hover:shadow-[0_6px_24px_rgba(0,9,27,0.06)] transition-all flex flex-col justify-between relative overflow-hidden group"
-						>
-							<div
-								class="absolute -right-6 -bottom-6 w-24 h-24 bg-surface-container-low rounded-full group-hover:scale-125 transition-transform duration-500"
-							></div>
-							<div
-								class="flex items-center justify-between mb-xl relative z-10"
-							>
-								<div
-									class="w-12 h-12 rounded-xl bg-tertiary-fixed flex items-center justify-center text-tertiary-container"
-								>
-									<span
-										class="material-symbols-outlined text-[24px]"
-										>hotel</span
-									>
-								</div>
-								<span
-									class="text-caption font-label-md text-on-primary-container bg-primary-fixed/40 px-2 py-1 rounded"
-									>+5 cơ sở mới</span
-								>
-							</div>
-							<div class="relative z-10">
-								<div
-									class="text-caption text-on-surface-variant mb-1 font-label-md"
-								>
-									Tổng cơ sở lưu trú
-								</div>
-								<div
-									class="text-headline-lg text-primary font-headline-lg"
-								>
-									340
-								</div>
-							</div>
-						</div>
-						<!-- Card 3: Bookings -->
-						<div
-							class="bg-surface-container-lowest p-lg rounded-xl shadow-[0_4px_20px_rgba(0,9,27,0.03)] hover:shadow-[0_6px_24px_rgba(0,9,27,0.06)] transition-all flex flex-col justify-between relative overflow-hidden group"
-						>
-							<div
-								class="absolute -right-6 -bottom-6 w-24 h-24 bg-surface-container-low rounded-full group-hover:scale-125 transition-transform duration-500"
-							></div>
-							<div
-								class="flex items-center justify-between mb-xl relative z-10"
-							>
-								<div
-									class="w-12 h-12 rounded-xl bg-secondary-fixed flex items-center justify-center text-secondary"
-								>
-									<span
-										class="material-symbols-outlined text-[24px]"
-										>calendar_month</span
-									>
-								</div>
-								<span
-									class="text-caption font-label-md text-secondary bg-secondary-fixed/30 px-2 py-1 rounded"
-									>+24% tuần này</span
-								>
-							</div>
-							<div class="relative z-10">
-								<div
-									class="text-caption text-on-surface-variant mb-1 font-label-md"
-								>
-									Lượt đặt phòng tháng này
-								</div>
-								<div
-									class="text-headline-lg text-primary font-headline-lg"
-								>
-									1,890
-								</div>
-							</div>
-						</div>
-						<!-- Card 4: Revenue -->
-						<div
-							class="bg-surface-container-lowest p-lg rounded-xl shadow-[0_4px_20px_rgba(0,9,27,0.03)] hover:shadow-[0_6px_24px_rgba(0,9,27,0.06)] transition-all flex flex-col justify-between relative overflow-hidden group"
-						>
-							<div
-								class="absolute -right-6 -bottom-6 w-24 h-24 bg-surface-container-low rounded-full group-hover:scale-125 transition-transform duration-500"
-							></div>
-							<div
-								class="flex items-center justify-between mb-xl relative z-10"
-							>
-								<div
-									class="w-12 h-12 rounded-xl bg-primary-container flex items-center justify-center text-inverse-primary"
-								>
-									<span
-										class="material-symbols-outlined text-[24px]"
-										>payments</span
-									>
-								</div>
-								<span
-									class="text-caption font-label-md text-secondary bg-secondary-fixed/30 px-2 py-1 rounded"
-									>+18.5%</span
-								>
-							</div>
-							<div class="relative z-10">
-								<div
-									class="text-caption text-on-surface-variant mb-1 font-label-md"
-								>
-									Doanh thu hệ thống
-								</div>
-								<div
-									class="text-headline-lg text-primary font-headline-lg"
-								>
-									2.4 tỷ
-									<span
-										class="text-body-md text-on-surface-variant"
-										>VNĐ</span
-									>
-								</div>
-							</div>
-						</div>
-					</div>
-					<!-- Analytics Section (Chart + Summary Breakdown) -->
-					<div class="grid grid-cols-1 lg:grid-cols-3 gap-lg mb-xl">
-						<!-- Main Chart Card -->
-						<div
-							class="lg:col-span-2 bg-surface-container-lowest p-lg rounded-xl shadow-[0_4px_20px_rgba(0,9,27,0.03)] flex flex-col justify-between"
-						>
-							<div
-								class="flex items-center justify-between mb-lg"
-							>
-								<div>
-									<h2
-										class="text-headline-md font-headline-md text-primary"
-									>
-										Lượt truy cập &amp; Đặt phòng
-									</h2>
-									<p
-										class="text-caption text-on-surface-variant"
-									>
-										Biểu đồ thống kê chi tiết trong 7 ngày
-										qua tại Đà Nẵng
-									</p>
-								</div>
-								<div class="flex items-center gap-2">
-									<button
-										class="px-md py-1.5 rounded-xl bg-primary text-on-primary text-label-md transition-all"
-									>
-										7 Ngày
-									</button>
-									<button
-										class="px-md py-1.5 rounded-xl bg-surface-container text-on-surface-variant text-label-md hover:bg-surface-container-high transition-all"
-									>
-										30 Ngày
-									</button>
-								</div>
-							</div>
-							<!-- Inline SVG Custom Chart Representation -->
-							<div
-								class="w-full h-64 relative flex items-end pt-8"
-							>
-								<svg
-									class="w-full h-full overflow-visible"
-									fill="none"
-									viewBox="0 0 700 200"
-									xmlns="http://www.w3.org/2000/svg"
-								>
-									<!-- Background Grid Lines -->
-									<line
-										stroke="#e0e3e5"
-										stroke-dasharray="4 4"
-										stroke-width="1"
-										x1="0"
-										x2="700"
-										y1="0"
-										y2="0"
-									></line>
-									<line
-										stroke="#e0e3e5"
-										stroke-dasharray="4 4"
-										stroke-width="1"
-										x1="0"
-										x2="700"
-										y1="50"
-										y2="50"
-									></line>
-									<line
-										stroke="#e0e3e5"
-										stroke-dasharray="4 4"
-										stroke-width="1"
-										x1="0"
-										x2="700"
-										y1="100"
-										y2="100"
-									></line>
-									<line
-										stroke="#e0e3e5"
-										stroke-dasharray="4 4"
-										stroke-width="1"
-										x1="0"
-										x2="700"
-										y1="150"
-										y2="150"
-									></line>
-									<line
-										stroke="#e0e3e5"
-										stroke-width="1"
-										x1="0"
-										x2="700"
-										y1="200"
-										y2="200"
-									></line>
-									<!-- Area Fill Access -->
-									<path
-										d="M0 130 C100 110, 200 80, 300 95 C400 110, 500 50, 600 40 C650 35, 680 20, 700 15 L700 200 L0 200 Z"
-										fill="url(#paint0_linear)"
-										opacity="0.15"
-									></path>
-									<!-- Line Access -->
-									<path
-										d="M0 130 C100 110, 200 80, 300 95 C400 110, 500 50, 600 40 C650 35, 680 20, 700 15"
-										stroke="#00091b"
-										stroke-linecap="round"
-										stroke-width="3"
-									></path>
-									<!-- Line Bookings -->
-									<path
-										d="M0 170 C100 150, 200 130, 300 140 C400 150, 500 90, 600 80 C650 75, 680 60, 700 50"
-										stroke="#895100"
-										stroke-dasharray="6 6"
-										stroke-linecap="round"
-										stroke-width="3"
-									></path>
-									<defs>
-										<linearGradient
-											gradientUnits="userSpaceOnUse"
-											id="paint0_linear"
-											x1="350"
-											x2="350"
-											y1="15"
-											y2="200"
-										>
-											<stop stop-color="#00091b"></stop>
-											<stop
-												offset="1"
-												stop-color="#00091b"
-												stop-opacity="0"
-											></stop>
-										</linearGradient>
-									</defs>
-								</svg>
-							</div>
-							<!-- Chart Legend -->
-							<div
-								class="flex items-center justify-center gap-xl pt-4"
-							>
-								<div class="flex items-center gap-2">
-									<span
-										class="w-3 h-3 rounded-full bg-primary"
-									></span>
-									<span
-										class="text-caption text-on-surface-variant font-label-md"
-										>Lượt truy cập hệ thống</span
-									>
-								</div>
-								<div class="flex items-center gap-2">
-									<span
-										class="w-3 h-3 rounded-full bg-secondary"
-									></span>
-									<span
-										class="text-caption text-on-surface-variant font-label-md"
-										>Lượt đặt phòng thực tế</span
-									>
-								</div>
-							</div>
-						</div>
-						<!-- Quick Status / District breakdown -->
-						<div
-							class="bg-surface-container-lowest p-lg rounded-xl shadow-[0_4px_20px_rgba(0,9,27,0.03)] flex flex-col justify-between"
-						>
-							<div>
-								<h2
-									class="text-headline-md font-headline-md text-primary mb-1"
-								>
-									Khu vực nổi bật
-								</h2>
-								<p
-									class="text-caption text-on-surface-variant mb-lg"
-								>
-									Phân bổ lưu lượng đặt phòng theo quận
-								</p>
-								<div class="space-y-md">
-									<div>
-										<div
-											class="flex justify-between text-label-md mb-xs"
-										>
-											<span class="text-on-surface"
-												>Quận Sơn Trà (Bãi biển Mỹ
-												Khê)</span
-											>
-											<span class="text-primary font-bold"
-												>45%</span
-											>
-										</div>
-										<div
-											class="w-full h-2 bg-surface-container rounded-full overflow-hidden"
-										>
-											<div
-												class="bg-primary h-full rounded-full"
-												style="width: 45%"
-											></div>
-										</div>
-									</div>
-									<div>
-										<div
-											class="flex justify-between text-label-md mb-xs"
-										>
-											<span class="text-on-surface"
-												>Quận Hải Châu (Trung tâm)</span
-											>
-											<span class="text-primary font-bold"
-												>30%</span
-											>
-										</div>
-										<div
-											class="w-full h-2 bg-surface-container rounded-full overflow-hidden"
-										>
-											<div
-												class="bg-secondary h-full rounded-full"
-												style="width: 30%"
-											></div>
-										</div>
-									</div>
-									<div>
-										<div
-											class="flex justify-between text-label-md mb-xs"
-										>
-											<span class="text-on-surface"
-												>Quận Ngũ Hành Sơn</span
-											>
-											<span class="text-primary font-bold"
-												>15%</span
-											>
-										</div>
-										<div
-											class="w-full h-2 bg-surface-container rounded-full overflow-hidden"
-										>
-											<div
-												class="bg-outline h-full rounded-full"
-												style="width: 15%"
-											></div>
-										</div>
-									</div>
-									<div>
-										<div
-											class="flex justify-between text-label-md mb-xs"
-										>
-											<span class="text-on-surface"
-												>Khu vực khác (Hòa Vang, Liên
-												Chiểu)</span
-											>
-											<span class="text-primary font-bold"
-												>10%</span
-											>
-										</div>
-										<div
-											class="w-full h-2 bg-surface-container rounded-full overflow-hidden"
-										>
-											<div
-												class="bg-surface-dim h-full rounded-full"
-												style="width: 10%"
-											></div>
-										</div>
-									</div>
-								</div>
-							</div>
-							<div class="pt-lg">
-								<div
-									class="p-md rounded-xl bg-surface-container-low flex items-center gap-md"
-								>
-									<span
-										class="material-symbols-outlined text-secondary"
-										>info</span
-									>
-									<span
-										class="text-caption text-on-surface-variant"
-										>Lượng khách quốc tế tăng trưởng vượt
-										trội 28% trong tháng này.</span
-									>
-								</div>
-							</div>
-						</div>
-					</div>
-					<!-- Recent Activities Table Section -->
-					<div
-						class="bg-surface-container-lowest rounded-xl shadow-[0_4px_20px_rgba(0,9,27,0.03)] p-lg mb-xl"
-					>
-						<div
-							class="flex flex-col md:flex-row md:items-center justify-between mb-lg gap-md"
-						>
-							<div>
-								<h2
-									class="text-headline-md font-headline-md text-primary"
-								>
-									Hoạt động gần đây
-								</h2>
-								<p class="text-caption text-on-surface-variant">
-									Theo dõi đặt phòng mới, đăng ký chủ cơ sở và
-									báo cáo vi phạm
-								</p>
-							</div>
-							<div class="flex items-center gap-md">
-								<div class="relative">
-									<span
-										class="material-symbols-outlined absolute left-3 top-2.5 text-outline text-[18px]"
-										>search</span
-									>
-									<input
-										class="bg-surface-container-low pl-10 pr-4 py-2 rounded-xl text-body-md text-on-surface focus:outline-none focus:ring-2 focus:ring-primary w-64"
-										placeholder="Tìm kiếm hoạt động..."
-										type="text"
-									/>
-								</div>
-								<button
-									class="bg-surface-container hover:bg-surface-container-high px-md py-2 rounded-xl text-label-md text-on-surface transition-all flex items-center gap-2"
-								>
-									<span
-										class="material-symbols-outlined text-[18px]"
-										>filter_list</span
-									>
-									<span>Lọc</span>
-								</button>
-							</div>
-						</div>
-						<!-- Clean Flat Table -->
-						<div class="overflow-x-auto">
-							<table class="w-full text-left border-collapse">
-								<thead>
-									<tr
-										class="border-b border-surface-container-high text-caption uppercase tracking-wider text-on-surface-variant font-label-md"
-									>
-										<th class="py-3 px-4">
-											Loại hoạt động
-										</th>
-										<th class="py-3 px-4">
-											Thông tin chi tiết
-										</th>
-										<th class="py-3 px-4">Đối tượng</th>
-										<th class="py-3 px-4">Thời gian</th>
-										<th class="py-3 px-4">Trạng thái</th>
-										<th class="py-3 px-4 text-right">
-											Thao tác
-										</th>
-									</tr>
-								</thead>
-								<tbody
-									class="text-body-md divide-y divide-surface-container-low"
-								>
-									<!-- Row 1 -->
-									<tr
-										class="hover:bg-surface-container-low/50 transition-colors"
-									>
-										<td
-											class="py-4 px-4 flex items-center gap-3"
-										>
-											<div
-												class="w-8 h-8 rounded-full bg-secondary-fixed/30 flex items-center justify-center text-secondary"
-											>
-												<span
-													class="material-symbols-outlined text-[16px]"
-													>bookmark_added</span
-												>
-											</div>
-											<span
-												class="font-label-md text-on-surface"
-												>Đặt phòng mới</span
-											>
-										</td>
-										<td class="py-4 px-4">
-											<div
-												class="text-on-surface font-label-md"
-											>
-												Novotel Danang Premier
-											</div>
-											<div
-												class="text-caption text-on-surface-variant"
-											>
-												Phòng Deluxe Ocean View (2 đêm)
-											</div>
-										</td>
-										<td
-											class="py-4 px-4 text-on-surface-variant"
-										>
-											Nguyễn Văn An
-										</td>
-										<td
-											class="py-4 px-4 text-caption text-on-surface-variant"
-										>
-											5 phút trước
-										</td>
-										<td class="py-4 px-4">
-											<span
-												class="px-2.5 py-1 rounded-full text-caption font-label-md bg-secondary-fixed/30 text-secondary"
-												>Thành công</span
-											>
-										</td>
-										<td class="py-4 px-4 text-right">
-											<button
-												class="p-2 hover:bg-surface-container rounded-xl text-on-surface-variant transition-all"
-											>
-												<span
-													class="material-symbols-outlined text-[18px]"
-													>visibility</span
-												>
-											</button>
-										</td>
-									</tr>
-									<!-- Row 2 -->
-									<tr
-										class="hover:bg-surface-container-low/50 transition-colors"
-									>
-										<td
-											class="py-4 px-4 flex items-center gap-3"
-										>
-											<div
-												class="w-8 h-8 rounded-full bg-primary-fixed flex items-center justify-center text-primary"
-											>
-												<span
-													class="material-symbols-outlined text-[16px]"
-													>badge</span
-												>
-											</div>
-											<span
-												class="font-label-md text-on-surface"
-												>Đăng ký chủ cơ sở</span
-											>
-										</td>
-										<td class="py-4 px-4">
-											<div
-												class="text-on-surface font-label-md"
-											>
-												Đà Nẵng Riverside Villa
-											</div>
-											<div
-												class="text-caption text-on-surface-variant"
-											>
-												Chờ xác thực giấy phép kinh
-												doanh
-											</div>
-										</td>
-										<td
-											class="py-4 px-4 text-on-surface-variant"
-										>
-											Trần Thị Mai
-										</td>
-										<td
-											class="py-4 px-4 text-caption text-on-surface-variant"
-										>
-											25 phút trước
-										</td>
-										<td class="py-4 px-4">
-											<span
-												class="px-2.5 py-1 rounded-full text-caption font-label-md bg-surface-container text-on-surface-variant"
-												>Chờ duyệt</span
-											>
-										</td>
-										<td class="py-4 px-4 text-right">
-											<button
-												class="p-2 hover:bg-surface-container rounded-xl text-on-surface-variant transition-all"
-											>
-												<span
-													class="material-symbols-outlined text-[18px]"
-													>visibility</span
-												>
-											</button>
-										</td>
-									</tr>
-									<!-- Row 3 -->
-									<tr
-										class="hover:bg-surface-container-low/50 transition-colors"
-									>
-										<td
-											class="py-4 px-4 flex items-center gap-3"
-										>
-											<div
-												class="w-8 h-8 rounded-full bg-error-container flex items-center justify-center text-error"
-											>
-												<span
-													class="material-symbols-outlined text-[16px]"
-													>report</span
-												>
-											</div>
-											<span
-												class="font-label-md text-on-surface"
-												>Báo cáo vi phạm</span
-											>
-										</td>
-										<td class="py-4 px-4">
-											<div
-												class="text-on-surface font-label-md"
-											>
-												Homestay An Thượng 2
-											</div>
-											<div
-												class="text-caption text-on-surface-variant"
-											>
-												Sai lệch thông tin giá niêm yết
-											</div>
-										</td>
-										<td
-											class="py-4 px-4 text-on-surface-variant"
-										>
-											Michael Johnson
-										</td>
-										<td
-											class="py-4 px-4 text-caption text-on-surface-variant"
-										>
-											1 giờ trước
-										</td>
-										<td class="py-4 px-4">
-											<span
-												class="px-2.5 py-1 rounded-full text-caption font-label-md bg-error-container text-on-error-container"
-												>Cần xử lý</span
-											>
-										</td>
-										<td class="py-4 px-4 text-right">
-											<button
-												class="p-2 hover:bg-surface-container rounded-xl text-on-surface-variant transition-all"
-											>
-												<span
-													class="material-symbols-outlined text-[18px]"
-													>visibility</span
-												>
-											</button>
-										</td>
-									</tr>
-									<!-- Row 4 -->
-									<tr
-										class="hover:bg-surface-container-low/50 transition-colors"
-									>
-										<td
-											class="py-4 px-4 flex items-center gap-3"
-										>
-											<div
-												class="w-8 h-8 rounded-full bg-secondary-fixed/30 flex items-center justify-center text-secondary"
-											>
-												<span
-													class="material-symbols-outlined text-[16px]"
-													>bookmark_added</span
-												>
-											</div>
-											<span
-												class="font-label-md text-on-surface"
-												>Đặt phòng mới</span
-											>
-										</td>
-										<td class="py-4 px-4">
-											<div
-												class="text-on-surface font-label-md"
-											>
-												InterContinental Danang Sun
-											</div>
-											<div
-												class="text-caption text-on-surface-variant"
-											>
-												Penthouse Ocean Panorama (4 đêm)
-											</div>
-										</td>
-										<td
-											class="py-4 px-4 text-on-surface-variant"
-										>
-											Lê Hoàng Nam
-										</td>
-										<td
-											class="py-4 px-4 text-caption text-on-surface-variant"
-										>
-											3 giờ trước
-										</td>
-										<td class="py-4 px-4">
-											<span
-												class="px-2.5 py-1 rounded-full text-caption font-label-md bg-secondary-fixed/30 text-secondary"
-												>Thành công</span
-											>
-										</td>
-										<td class="py-4 px-4 text-right">
-											<button
-												class="p-2 hover:bg-surface-container rounded-xl text-on-surface-variant transition-all"
-											>
-												<span
-													class="material-symbols-outlined text-[18px]"
-													>visibility</span
-												>
-											</button>
-										</td>
-									</tr>
-								</tbody>
-							</table>
-						</div>
-						<!-- Table Pagination -->
-						<div
-							class="flex items-center justify-between pt-lg mt-lg border-t border-surface-container-low"
-						>
-							<div class="text-caption text-on-surface-variant">
-								Hiển thị 4 từ tổng số 240 hoạt động hôm nay
-							</div>
-							<div class="flex items-center gap-2">
-								<button
-									class="px-md py-1.5 rounded-xl bg-surface-container text-on-surface-variant text-label-md hover:bg-surface-container-high transition-all"
-								>
-									Trước
-								</button>
-								<button
-									class="px-md py-1.5 rounded-xl bg-primary text-on-primary text-label-md transition-all"
-								>
-									1
-								</button>
-								<button
-									class="px-md py-1.5 rounded-xl bg-surface-container text-on-surface-variant text-label-md hover:bg-surface-container-high transition-all"
-								>
-									2
-								</button>
-								<button
-									class="px-md py-1.5 rounded-xl bg-surface-container text-on-surface-variant text-label-md hover:bg-surface-container-high transition-all"
-								>
-									3
-								</button>
-								<button
-									class="px-md py-1.5 rounded-xl bg-surface-container text-on-surface-variant text-label-md hover:bg-surface-container-high transition-all"
-								>
-									Sau
-								</button>
-							</div>
-						</div>
-					</div>
-				</div>
-			</main>
-		</div>
-	</body>
+	<style>
+@media (max-width: 767px) {
+    body > aside.fixed {
+        position: relative;
+        width: 100%;
+        height: auto;
+        padding: 0.75rem;
+        overflow: visible;
+        box-shadow: none;
+    }
+    body > aside.fixed > div { margin-bottom: 0.75rem; }
+    body > aside nav {
+        display: flex;
+        gap: 0.5rem;
+        overflow-x: auto;
+        padding-bottom: 0.25rem;
+    }
+    body > aside nav > a {
+        flex: 0 0 auto;
+        white-space: nowrap;
+        margin-top: 0 !important;
+    }
+    body > .dashboard-shell { padding-left: 0; }
+    .dashboard-shell > .dashboard-topbar {
+        position: relative;
+        left: auto;
+        right: auto;
+        height: auto;
+        min-height: 3.5rem;
+        padding: 0.75rem 1rem;
+    }
+    .dashboard-shell > .dashboard-main { padding-top: 1.5rem; }
+}
+</style>
+</head>
+	<body class="bg-slate-50 text-slate-900">
+    {% include 'admin/_sidebar.html' %}
+    <div class="dashboard-shell pl-72">
+        <header class="dashboard-topbar fixed left-72 right-0 top-0 z-40 flex h-20 items-center border-b border-slate-200 bg-white/95 px-8 backdrop-blur">
+            <span class="material-symbols-outlined mr-3 text-[#002045]" aria-hidden="true">dashboard</span>
+            <span class="font-semibold text-[#002045]">DaNang Travel · Bảng điều khiển</span>
+        </header>
+        <main class="dashboard-main min-h-screen px-4 pb-10 pt-24 sm:px-6 lg:px-8 xl:px-10">
+            <div class="mx-auto max-w-[1440px] space-y-8">
+                <div class="flex flex-col gap-5 sm:flex-row sm:items-end sm:justify-between">
+                    <div>
+                        <p class="text-xs font-bold uppercase tracking-[0.14em] text-slate-500">Tổng quan hệ thống</p>
+                        <h1 class="mt-2 text-3xl font-bold leading-tight text-[#002045] sm:text-4xl">Bảng điều khiển</h1>
+                    </div>
+                    <a href="{{ url_for('admin.reports') }}"
+                       class="inline-flex min-h-11 items-center justify-center self-start rounded-xl bg-[#002045] px-5 py-3 text-sm font-semibold text-white transition hover:bg-blue-950 sm:self-auto">
+                        Thống kê &amp; Báo cáo
+                        <span class="material-symbols-outlined ml-2 text-lg" aria-hidden="true">arrow_forward</span>
+                    </a>
+                </div>
+
+                <section aria-label="Chỉ số tổng quan" class="grid grid-cols-1 gap-4 sm:grid-cols-2 xl:grid-cols-4">
+                    <a href="{{ url_for('admin.users') }}" class="flex min-h-[164px] flex-col justify-between rounded-2xl border border-slate-100 bg-white p-5 shadow-sm transition hover:shadow-md">
+                        <span class="flex h-10 w-10 items-center justify-center rounded-xl bg-blue-50 text-[#002045]">
+                            <span class="material-symbols-outlined" aria-hidden="true">group</span>
+                        </span>
+                        <div><p class="text-sm font-medium text-slate-600">Người dùng</p><p class="mt-1 text-4xl font-bold leading-none text-[#002045]">{{ user_count }}</p></div>
+                    </a>
+                    <a href="{{ url_for('admin.accommodations') }}" class="flex min-h-[164px] flex-col justify-between rounded-2xl border border-slate-100 bg-white p-5 shadow-sm transition hover:shadow-md">
+                        <span class="flex h-10 w-10 items-center justify-center rounded-xl bg-blue-50 text-[#002045]">
+                            <span class="material-symbols-outlined" aria-hidden="true">hotel</span>
+                        </span>
+                        <div><p class="text-sm font-medium text-slate-600">Cơ sở lưu trú</p><p class="mt-1 text-4xl font-bold leading-none text-[#002045]">{{ accommodation_count }}</p></div>
+                    </a>
+                    <div class="flex min-h-[164px] flex-col justify-between rounded-2xl border border-slate-100 bg-white p-5 shadow-sm">
+                        <span class="flex h-10 w-10 items-center justify-center rounded-xl bg-blue-50 text-[#002045]">
+                            <span class="material-symbols-outlined" aria-hidden="true">bed</span>
+                        </span>
+                        <div><p class="text-sm font-medium text-slate-600">Phòng</p><p class="mt-1 text-4xl font-bold leading-none text-[#002045]">{{ room_count }}</p></div>
+                    </div>
+                    <div class="flex min-h-[164px] flex-col justify-between rounded-2xl border border-slate-100 bg-white p-5 shadow-sm">
+                        <span class="flex h-10 w-10 items-center justify-center rounded-xl bg-blue-50 text-[#002045]">
+                            <span class="material-symbols-outlined" aria-hidden="true">book_online</span>
+                        </span>
+                        <div><p class="text-sm font-medium text-slate-600">Đặt phòng</p><p class="mt-1 text-4xl font-bold leading-none text-[#002045]">{{ booking_count }}</p></div>
+                    </div>
+                </section>
+
+                <section aria-label="Phân bố" class="grid grid-cols-1 gap-4 lg:grid-cols-2 xl:grid-cols-3">
+                    <div class="flex min-h-[245px] flex-col rounded-2xl border border-slate-100 bg-white p-5 shadow-sm">
+                        <div class="grid min-h-[104px] grid-cols-[minmax(0,1fr)_auto] items-start gap-3 border-b border-slate-100 pb-4">
+                            <h2 class="min-w-0 text-lg font-bold leading-snug text-[#002045]">Người dùng theo vai trò</h2>
+                            <a href="{{ url_for('admin.users') }}" class="inline-flex shrink-0 items-center whitespace-nowrap rounded-lg bg-blue-50 px-3 py-2 text-xs font-bold text-[#002045] hover:bg-blue-100">Xem danh sách</a>
+                        </div>
+                        <div class="flex-1 pt-2">
+                            {% for row in user_roles %}
+                            <div class="flex items-start justify-between gap-4 py-2.5 text-sm">
+                                <span class="min-w-0 break-words text-slate-600">{{ row.role or 'Chưa xác định' }}</span>
+                                <strong class="shrink-0 tabular-nums text-slate-900">{{ row.total }}</strong>
+                            </div>
+                            {% else %}
+                            <p class="mt-3 rounded-lg bg-slate-50 p-4 text-sm text-slate-600">Chưa có người dùng.</p>
+                            {% endfor %}
+                        </div>
+                    </div>
+                    <div class="flex min-h-[245px] flex-col rounded-2xl border border-slate-100 bg-white p-5 shadow-sm">
+                        <div class="grid min-h-[104px] grid-cols-[minmax(0,1fr)_auto] items-start gap-3 border-b border-slate-100 pb-4">
+                            <h2 class="min-w-0 text-lg font-bold leading-snug text-[#002045]">Cơ sở theo trạng thái</h2>
+                            <a href="{{ url_for('admin.accommodations') }}" class="inline-flex shrink-0 items-center whitespace-nowrap rounded-lg bg-blue-50 px-3 py-2 text-xs font-bold text-[#002045] hover:bg-blue-100">Xem danh sách</a>
+                        </div>
+                        <div class="flex-1 pt-2">
+                            {% for row in accommodation_statuses %}
+                            <div class="flex items-start justify-between gap-4 py-2.5 text-sm">
+                                <span class="min-w-0 break-words text-slate-600">{{ row.status or 'Chưa xác định' }}</span>
+                                <strong class="shrink-0 tabular-nums text-slate-900">{{ row.total }}</strong>
+                            </div>
+                            {% else %}
+                            <p class="mt-3 rounded-lg bg-slate-50 p-4 text-sm text-slate-600">Chưa có cơ sở lưu trú.</p>
+                            {% endfor %}
+                        </div>
+                    </div>
+                    <div class="flex min-h-[245px] flex-col rounded-2xl border border-slate-100 bg-white p-5 shadow-sm lg:col-span-2 xl:col-span-1">
+                        <div class="grid min-h-[104px] grid-cols-[minmax(0,1fr)_auto] items-start gap-3 border-b border-slate-100 pb-4">
+                            <h2 class="min-w-0 text-lg font-bold leading-snug text-[#002045]">Đặt phòng theo trạng thái</h2>
+                            <a href="{{ url_for('admin.reports') }}" class="inline-flex shrink-0 items-center whitespace-nowrap rounded-lg bg-blue-50 px-3 py-2 text-xs font-bold text-[#002045] hover:bg-blue-100">Xem báo cáo</a>
+                        </div>
+                        <div class="flex-1 pt-2">
+                            {% for row in booking_statuses %}
+                            <div class="flex items-start justify-between gap-4 py-2.5 text-sm">
+                                <span class="min-w-0 break-words text-slate-600">{{ row.status or 'Chưa xác định' }}</span>
+                                <strong class="shrink-0 tabular-nums text-slate-900">{{ row.total }}</strong>
+                            </div>
+                            {% else %}
+                            <p class="mt-3 rounded-lg bg-slate-50 p-4 text-sm text-slate-600">Chưa có đặt phòng.</p>
+                            {% endfor %}
+                        </div>
+                    </div>
+                </section>
+
+                <section aria-label="Đặt phòng và doanh thu" class="grid grid-cols-1 gap-4 xl:grid-cols-3">
+                    <div class="rounded-2xl border border-slate-100 bg-white p-5 shadow-sm sm:p-6 xl:col-span-2">
+                        <h2 class="text-xl font-bold text-[#002045]">Đặt phòng mới trong 7 ngày</h2>
+                        {% if has_chart_data %}
+                        <div class="mt-6 space-y-4" role="img" aria-label="Số đặt phòng mới từng ngày trong 7 ngày">
+                            {% for day in chart_days %}
+                            <div class="grid grid-cols-[3.5rem_minmax(0,1fr)_2rem] items-center gap-3">
+                                <span class="text-xs text-slate-600">{{ day.label }}</span>
+                                <div class="h-4 overflow-hidden rounded-full bg-slate-100">
+                                    <svg class="block h-full w-full" viewBox="0 0 100 4" preserveAspectRatio="none" aria-hidden="true">
+                                        <rect width="{{ day.percent }}" height="4" rx="2" fill="#002045" />
+                                    </svg>
+                                </div>
+                                <strong class="text-right text-sm tabular-nums">{{ day.count }}</strong>
+                            </div>
+                            {% endfor %}
+                        </div>
+                        {% else %}
+                        <p class="mt-5 rounded-xl bg-slate-50 p-5 text-sm text-slate-600">Chưa có đặt phòng trong 7 ngày gần đây.</p>
+                        {% endif %}
+                    </div>
+                    <div class="rounded-2xl border border-slate-100 bg-white p-5 shadow-sm sm:p-6">
+                        <h2 class="text-xl font-bold text-[#002045]">Doanh thu</h2>
+                        <p class="mt-5 rounded-xl bg-slate-50 p-5 text-sm leading-relaxed text-slate-600">Chưa có số liệu doanh thu được xác nhận.</p>
+                    </div>
+                </section>
+
+                <section class="rounded-2xl border border-slate-100 bg-white p-5 shadow-sm sm:p-6">
+                    <h2 class="text-xl font-bold text-[#002045]">Hoạt động gần đây</h2>
+                    {% if activities %}
+                    <div class="mt-5 grid gap-3 lg:grid-cols-2">
+                        {% for activity in activities %}
+                        <article class="min-w-0 rounded-xl border border-slate-100 bg-slate-50 p-4">
+                            <div class="flex flex-wrap items-start justify-between gap-2">
+                                <span class="text-xs font-bold uppercase tracking-wide text-slate-500">{{ activity.kind }}</span>
+                                <span class="rounded-full bg-white px-2.5 py-1 text-xs font-medium text-slate-700">{{ activity.status or 'Chưa xác định' }}</span>
+                            </div>
+                            <h3 class="mt-3 break-words font-semibold text-slate-900">{{ activity.title }}</h3>
+                            <p class="mt-1 break-words text-sm text-slate-600">{{ activity.detail or '—' }}</p>
+                            <div class="mt-4 flex flex-wrap items-center justify-between gap-3 border-t border-slate-200 pt-3 text-xs text-slate-500">
+                                <time>{{ activity.time }}</time>
+                                {% if activity.url %}
+                                <a href="{{ activity.url }}" class="font-semibold text-[#002045] underline underline-offset-2">Xem chi tiết</a>
+                                {% endif %}
+                            </div>
+                        </article>
+                        {% endfor %}
+                    </div>
+                    {% else %}
+                    <p class="mt-5 rounded-xl bg-slate-50 p-5 text-sm text-slate-600">Chưa có hoạt động để hiển thị.</p>
+                    {% endif %}
+                </section>
+            </div>
+        </main>
+    </div>
+</body>
 </html>
