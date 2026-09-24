@@ -170,62 +170,56 @@
 					>travel_explore</span
 				><span>DaNang Travel</span>
 			</div>
-			<nav
-				class="flex-1 px-md flex flex-col gap-xs"
-				data-active-classes="bg-primary-container text-on-primary-container font-semibold"
-			>
+
+			<!-- CHUẨN SIDEBAR YÊU CẦU TỪ BẠN -->
+			<nav class="flex-1 px-md flex flex-col gap-xs">
 				<a
 					class="flex items-center px-md py-sm rounded-xl text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-all"
-					data-path="bang-dieu-khien"
-					href="#"
+					href="{{ url_for('host.dashboard') }}"
 					><span class="material-symbols-outlined mr-md"
 						>dashboard</span
 					>Bảng điều khiển</a
-				><a
+				>
+				<a
 					class="flex items-center px-md py-sm rounded-xl text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-all"
-					data-path="thong-tin-co-so"
-					href="#"
+					href="{{ url_for('host.accommodation_info') }}"
 					><span class="material-symbols-outlined mr-md"
 						>apartment</span
 					>Thông tin cơ sở</a
-				><a
+				>
+				<a
 					class="flex items-center px-md py-sm rounded-xl text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-all"
-					data-path="quan-ly-phong"
-					href="#"
+					href="{{ url_for('host.rooms_management') }}"
 					><span class="material-symbols-outlined mr-md"
 						>meeting_room</span
 					>Quản lý phòng</a
-				><a
+				>
+				<a
 					class="flex items-center px-md py-sm rounded-xl text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-all"
-					data-path="don-dat-phong"
-					href="#"
+					href="{{ url_for('host.bookings_management') }}"
 					><span class="material-symbols-outlined mr-md"
 						>book_online</span
 					>Đơn đặt phòng</a
 				><a
 					class="flex items-center px-md py-sm rounded-xl text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-all"
-					data-path="danh-gia"
-					href="#"
+					href="{{ url_for('host.reviews') }}"
 					><span class="material-symbols-outlined mr-md">star</span
 					>Đánh giá</a
 				><a
 					class="flex items-center px-md py-sm rounded-xl text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-all"
-					data-path="thong-ke-bao-cao"
-					href="#"
+					href="{{ url_for('host.analytics') }}"
 					><span class="material-symbols-outlined mr-md"
 						>bar_chart</span
 					>Thống kê &amp; Báo cáo</a
 				><a
 					class="flex items-center px-md py-sm rounded-xl text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-all"
-					data-path="thong-bao"
-					href="#"
+					href="{{ url_for('host.notifications') }}"
 					><span class="material-symbols-outlined mr-md"
 						>notifications</span
 					>Thông báo</a
 				><a
-					class="flex items-center px-md py-sm rounded-xl text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-all"
-					data-path="tai-khoan-ca-nhan"
-					href="#"
+					class="flex items-center px-md py-sm rounded-xl bg-surface-container-high text-on-surface font-semibold transition-all"
+					href="{{ url_for('host.profile') }}"
 					><span class="material-symbols-outlined mr-md"
 						>account_circle</span
 					>Tài khoản cá nhân</a
@@ -256,6 +250,25 @@
 				</div>
 			</header>
 			<main class="relative pt-20 bg-surface min-h-screen p-xl">
+				<!-- Flash messages -->
+				{% with messages = get_flashed_messages(with_categories=true) %}
+				{% if messages %} {% for category, message in messages %}
+				<div
+					id="flash-msg"
+					class="mb-md p-md rounded-lg flex items-center justify-between shadow {{ 'bg-error text-on-error' if category == 'error' else 'bg-primary text-on-primary' }}"
+				>
+					<span>{{ message }}</span>
+					<span
+						class="material-symbols-outlined cursor-pointer"
+						onclick="
+							document.getElementById('flash-msg').style.display =
+								'none'
+						"
+						>close</span
+					>
+				</div>
+				{% endfor %} {% endif %} {% endwith %}
+
 				<div
 					class="flex flex-col w-full max-w-6xl mx-auto gap-xl pb-3xl"
 				>
@@ -267,22 +280,29 @@
 							<div
 								class="w-20 h-20 rounded-full bg-primary-container text-on-primary-container flex items-center justify-center text-headline-lg font-headline-lg shadow-inner"
 							>
-								NA
+								{{ profile.initials }}
 							</div>
 							<div class="flex flex-col">
 								<h1
 									class="text-headline-lg font-headline-lg text-on-surface"
 								>
-									Nguyễn Văn An
+									{{ profile.name }}
 								</h1>
 								<p
 									class="text-body-md text-on-surface-variant flex items-center gap-xs mt-xs"
 								>
+									{% if profile.acc_status == 'Approved' %}
 									<span
-										class="material-symbols-outlined text-[18px]"
+										class="material-symbols-outlined text-[18px] text-primary"
 										>verified</span
 									>
-									Chủ cơ sở lưu trú cao cấp • Đã xác thực
+									Chủ cơ sở lưu trú cao cấp • Đã xác thực {%
+									else %}
+									<span
+										class="material-symbols-outlined text-[18px] text-error"
+										>pending</span
+									>
+									Chủ cơ sở lưu trú • Chờ xác thực {% endif %}
 								</p>
 							</div>
 						</div>
@@ -326,13 +346,21 @@
 									</h2>
 									<span
 										class="text-caption text-on-surface-variant"
-										>Cập nhật lần cuối: Hôm nay</span
+										>Cập nhật lần cuối: {{
+										profile.updated_at }}</span
 									>
 								</div>
 								<form
 									class="flex flex-col gap-lg"
 									id="profile-form"
+									method="POST"
+									action="{{ url_for('host.profile') }}"
 								>
+									<input
+										type="hidden"
+										name="action"
+										value="update_profile"
+									/>
 									<div
 										class="grid grid-cols-1 md:grid-cols-2 gap-lg"
 									>
@@ -349,10 +377,11 @@
 													>person</span
 												>
 												<input
+													name="full_name"
 													class="w-full bg-surface-container-lowest border border-outline rounded-xl py-md pl-12 pr-md text-body-md text-on-surface focus:border-primary outline-none transition-all"
 													required=""
 													type="text"
-													value="Nguyễn Văn An"
+													value="{{ profile.name }}"
 												/>
 											</div>
 										</div>
@@ -369,10 +398,11 @@
 													>mail</span
 												>
 												<input
+													name="email"
 													class="w-full bg-surface-container-lowest border border-outline rounded-xl py-md pl-12 pr-md text-body-md text-on-surface focus:border-primary outline-none transition-all"
 													required=""
 													type="email"
-													value="nguyenvanan.host@travel.vn"
+													value="{{ profile.email }}"
 												/>
 											</div>
 										</div>
@@ -393,10 +423,11 @@
 													>call</span
 												>
 												<input
+													name="phone"
 													class="w-full bg-surface-container-lowest border border-outline rounded-xl py-md pl-12 pr-md text-body-md text-on-surface focus:border-primary outline-none transition-all"
 													required=""
 													type="tel"
-													value="0912 345 678"
+													value="{{ profile.phone }}"
 												/>
 											</div>
 										</div>
@@ -432,9 +463,10 @@
 												>location_on</span
 											>
 											<input
+												name="address"
 												class="w-full bg-surface-container-lowest border border-outline rounded-xl py-md pl-12 pr-md text-body-md text-on-surface focus:border-primary outline-none transition-all"
 												type="text"
-												value="123 Nguyễn Huệ, Phường Bến Nghé, Quận 1, TP. Hồ Chí Minh"
+												value="{{ profile.address }}"
 											/>
 										</div>
 									</div>
@@ -485,7 +517,14 @@
 								<form
 									class="flex flex-col gap-lg"
 									id="password-form"
+									method="POST"
+									action="{{ url_for('host.profile') }}"
 								>
+									<input
+										type="hidden"
+										name="action"
+										value="change_password"
+									/>
 									<div class="flex flex-col gap-xs">
 										<label
 											class="text-label-md text-on-surface font-semibold"
@@ -497,6 +536,7 @@
 												>key</span
 											>
 											<input
+												name="old_password"
 												class="w-full bg-surface-container-lowest border border-outline rounded-xl py-md pl-12 pr-md text-body-md text-on-surface focus:border-primary outline-none transition-all"
 												placeholder="••••••••"
 												required=""
@@ -515,6 +555,7 @@
 												>lock_reset</span
 											>
 											<input
+												name="new_password"
 												class="w-full bg-surface-container-lowest border border-outline rounded-xl py-md pl-12 pr-md text-body-md text-on-surface focus:border-primary outline-none transition-all"
 												placeholder="••••••••"
 												required=""
@@ -533,6 +574,7 @@
 												>verified_user</span
 											>
 											<input
+												name="confirm_password"
 												class="w-full bg-surface-container-lowest border border-outline rounded-xl py-md pl-12 pr-md text-body-md text-on-surface focus:border-primary outline-none transition-all"
 												placeholder="••••••••"
 												required=""
@@ -552,87 +594,6 @@
 								>
 									Đổi mật khẩu
 								</button>
-							</div>
-						</div>
-					</div>
-					<!-- Bottom Notification / Activity Log Preview -->
-					<div
-						class="bg-surface-container-lowest p-lg rounded-xl shadow-sm flex flex-col gap-md"
-					>
-						<div class="flex items-center justify-between">
-							<h3
-								class="text-headline-md font-headline-md text-on-surface flex items-center gap-sm"
-							>
-								<span
-									class="material-symbols-outlined text-primary"
-									>history</span
-								>
-								Hoạt động đăng nhập gần đây
-							</h3>
-							<span
-								class="text-caption text-primary cursor-pointer hover:underline"
-								>Xem toàn bộ nhật ký</span
-							>
-						</div>
-						<div
-							class="grid grid-cols-1 md:grid-cols-3 gap-md mt-sm"
-						>
-							<div
-								class="p-md bg-surface-container rounded-xl flex items-center gap-md"
-							>
-								<div
-									class="w-10 h-10 rounded-full bg-surface-container-highest flex items-center justify-center text-primary"
-								>
-									<span class="material-symbols-outlined"
-										>laptop</span
-									>
-								</div>
-								<div class="flex flex-col">
-									<span class="text-label-md text-on-surface"
-										>Chrome trên Windows</span
-									>
-									<span class="text-caption text-outline"
-										>TP. Hồ Chí Minh • 2 giờ trước</span
-									>
-								</div>
-							</div>
-							<div
-								class="p-md bg-surface-container rounded-xl flex items-center gap-md"
-							>
-								<div
-									class="w-10 h-10 rounded-full bg-surface-container-highest flex items-center justify-center text-primary"
-								>
-									<span class="material-symbols-outlined"
-										>smartphone</span
-									>
-								</div>
-								<div class="flex flex-col">
-									<span class="text-label-md text-on-surface"
-										>Ứng dụng di động iOS</span
-									>
-									<span class="text-caption text-outline"
-										>TP. Hồ Chí Minh • Hôm qua</span
-									>
-								</div>
-							</div>
-							<div
-								class="p-md bg-surface-container rounded-xl flex items-center gap-md"
-							>
-								<div
-									class="w-10 h-10 rounded-full bg-surface-container-highest flex items-center justify-center text-primary"
-								>
-									<span class="material-symbols-outlined"
-										>devices</span
-									>
-								</div>
-								<div class="flex flex-col">
-									<span class="text-label-md text-on-surface"
-										>Safari trên MacOS</span
-									>
-									<span class="text-caption text-outline"
-										>Hà Nội • 3 ngày trước</span
-									>
-								</div>
 							</div>
 						</div>
 					</div>

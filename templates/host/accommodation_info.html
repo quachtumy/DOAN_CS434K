@@ -1,773 +1,665 @@
 <!doctype html>
 <html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<meta content="width=device-width, initial-scale=1.0" name="viewport" />
-		<style>
-			@layer base {
-				html,
-				body {
-					margin: 0;
-					padding: 0;
-				}
-				body {
-					overscroll-behavior: none;
-				}
-				main > :first-child {
-					margin-top: 0 !important;
-				}
-				main > :last-child {
-					margin-bottom: 0 !important;
-				}
-			}
-			::-webkit-scrollbar {
-				display: none;
-			}
-		</style>
-		<link
-			href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&amp;family=Montserrat:wght@600;700&amp;display=swap"
-			rel="stylesheet"
-		/>
-		<link
-			href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0"
-			rel="stylesheet"
-		/>
-		<link
-			href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
-			rel="stylesheet"
-		/>
-		<script src="https://cdn.tailwindcss.com"></script>
-		<script id="tailwind-config">
-			tailwind.config = {
-				darkMode: 'class',
-				theme: {
-					extend: {
-						colors: {
-							'surface-container-high': '#e6e8eb',
-							'tertiary-fixed': '#d9e3f9',
-							surface: '#f7fafc',
-							'on-primary-fixed': '#001b3c',
-							'surface-tint': '#465f87',
-							'on-secondary-container': '#663b00',
-							'on-error-container': '#93000a',
-							'surface-variant': '#e0e3e5',
-							'inverse-primary': '#aec7f5',
-							'surface-container': '#ebeef1',
-							'on-primary': '#ffffff',
-							'primary-fixed-dim': '#aec7f5',
-							'on-tertiary-fixed-variant': '#3d4759',
-							'primary-container': '#002045',
-							'error-container': '#ffdad6',
-							'surface-container-low': '#f1f4f6',
-							tertiary: '#020919',
-							'secondary-fixed': '#ffdcbc',
-							'inverse-surface': '#2d3133',
-							'on-tertiary-fixed': '#121c2c',
-							'on-secondary': '#ffffff',
-							'surface-container-lowest': '#ffffff',
-							background: '#f7fafc',
-							'on-surface': '#181c1e',
-							'surface-container-highest': '#e0e3e5',
-							'surface-dim': '#d7dadd',
-							'on-tertiary-container': '#7e889c',
-							'on-tertiary': '#ffffff',
-							'on-secondary-fixed-variant': '#683d00',
-							'on-background': '#181c1e',
-							secondary: '#895100',
-							'on-error': '#ffffff',
-							'tertiary-container': '#172131',
-							error: '#ba1a1a',
-							'outline-variant': '#c4c6cf',
-							'secondary-container': '#fd9d1a',
-							'on-secondary-fixed': '#2c1700',
-							'surface-bright': '#f7fafc',
-							'tertiary-fixed-dim': '#bdc7dc',
-							'on-primary-fixed-variant': '#2e476e',
-							'inverse-on-surface': '#eef1f4',
-							'primary-fixed': '#d6e3ff',
-							'on-primary-container': '#7089b3',
-							'on-surface-variant': '#44474e',
-							'secondary-fixed-dim': '#ffb86c',
-							outline: '#74777f',
-							primary: '#00091b',
-						},
-						borderRadius: {
-							DEFAULT: '0.125rem',
-							lg: '0.25rem',
-							xl: '0.5rem',
-							full: '0.75rem',
-						},
-						spacing: {
-							xl: '32px',
-							lg: '24px',
-							'2xl': '48px',
-							xs: '4px',
-							'3xl': '64px',
-							sm: '8px',
-							md: '16px',
-							base: '8px',
-						},
-						fontFamily: {
-							'headline-lg': ['Montserrat'],
-							'body-md': ['Inter'],
-							'body-lg': ['Inter'],
-							caption: ['Inter'],
-							'display-lg': ['Montserrat'],
-							'label-md': ['Inter'],
-							'headline-md': ['Montserrat'],
-						},
-						fontSize: {
-							'headline-lg': [
-								'32px',
-								{ lineHeight: '1.3', fontWeight: '700' },
-							],
-							'body-md': [
-								'16px',
-								{ lineHeight: '1.5', fontWeight: '400' },
-							],
-							'body-lg': [
-								'18px',
-								{ lineHeight: '1.6', fontWeight: '400' },
-							],
-							caption: [
-								'12px',
-								{ lineHeight: '1.4', fontWeight: '400' },
-							],
-							'display-lg': [
-								'48px',
-								{
-									lineHeight: '1.2',
-									letterSpacing: '-0.02em',
-									fontWeight: '700',
-								},
-							],
-							'label-md': [
-								'14px',
-								{
-									lineHeight: '1.2',
-									letterSpacing: '0.01em',
-									fontWeight: '600',
-								},
-							],
-							'headline-md': [
-								'24px',
-								{ lineHeight: '1.4', fontWeight: '600' },
-							],
-						},
-					},
-				},
-			};
-		</script>
-	</head>
-	<body class="bg-surface font-body-md text-on-surface">
-		<aside
-			class="fixed left-0 top-0 h-full w-64 bg-surface-container-low z-50 flex flex-col pt-lg pb-lg"
-		>
-			<div
-				class="px-lg mb-xl text-headline-md font-headline-md text-primary flex items-center gap-sm"
-			>
-				<span class="material-symbols-outlined text-[28px]"
-					>travel_explore</span
-				><span>DaNang Travel</span>
-			</div>
-			<nav
-				class="flex-1 px-md flex flex-col gap-xs"
-				data-active-classes="bg-primary-container text-on-primary-container font-semibold"
-			>
+    <head>
+        <meta charset="utf-8" />
+        <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+        <style>
+            @layer base {
+                html,
+                body {
+                    margin: 0;
+                    padding: 0;
+                }
+                body {
+                    overscroll-behavior: none;
+                }
+                main > :first-child {
+                    margin-top: 0 !important;
+                }
+                main > :last-child {
+                    margin-bottom: 0 !important;
+                }
+            }
+            ::-webkit-scrollbar {
+                display: none;
+            }
+        </style>
+        <link
+            href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Montserrat:wght@600;700&display=swap"
+            rel="stylesheet"
+        />
+        <link
+            href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0"
+            rel="stylesheet"
+        />
+        <script src="https://cdn.tailwindcss.com"></script>
+        <script id="tailwind-config">
+            tailwind.config = {
+                darkMode: 'class',
+                theme: {
+                    extend: {
+                        colors: {
+                            'surface-container-high': '#e6e8eb',
+                            'tertiary-fixed': '#d9e3f9',
+                            surface: '#f7fafc',
+                            'on-primary-fixed': '#001b3c',
+                            'surface-tint': '#465f87',
+                            'surface-variant': '#e0e3e5',
+                            'surface-container': '#ebeef1',
+                            'on-primary': '#ffffff',
+                            'primary-container': '#002045',
+                            'surface-container-low': '#f1f4f6',
+                            tertiary: '#020919',
+                            'inverse-surface': '#2d3133',
+                            'on-secondary': '#ffffff',
+                            'surface-container-lowest': '#ffffff',
+                            background: '#f7fafc',
+                            'on-surface': '#181c1e',
+                            'surface-container-highest': '#e0e3e5',
+                            'on-background': '#181c1e',
+                            secondary: '#895100',
+                            'tertiary-container': '#172131',
+                            error: '#ba1a1a',
+                            'outline-variant': '#c4c6cf',
+                            'surface-bright': '#f7fafc',
+                            'on-surface-variant': '#44474e',
+                            outline: '#74777f',
+                            primary: '#00091b',
+                        },
+                        borderRadius: {
+                            DEFAULT: '0.125rem',
+                            lg: '0.25rem',
+                            xl: '0.5rem',
+                            full: '0.75rem',
+                        },
+                        spacing: {
+                            xl: '32px',
+                            lg: '24px',
+                            xs: '4px',
+                            md: '16px',
+                            sm: '8px',
+                        },
+                        fontFamily: {
+                            'headline-lg': ['Montserrat'],
+                            'body-md': ['Inter'],
+                            'label-md': ['Inter'],
+                            'headline-md': ['Montserrat'],
+                        },
+                        fontSize: {
+                            'headline-lg': [
+                                '32px',
+                                { lineHeight: '1.3', fontWeight: '700' },
+                            ],
+                            'body-md': [
+                                '16px',
+                                { lineHeight: '1.5', fontWeight: '400' },
+                            ],
+                            caption: [
+                                '12px',
+                                { lineHeight: '1.4', fontWeight: '400' },
+                            ],
+                            'label-md': [
+                                '14px',
+                                { lineHeight: '1.2', fontWeight: '600' },
+                            ],
+                            'headline-md': [
+                                '24px',
+                                { lineHeight: '1.4', fontWeight: '600' },
+                            ],
+                        },
+                    },
+                },
+            };
+        </script>
+    </head>
+    <body class="bg-surface font-body-md text-on-surface">
+        <aside
+            class="fixed left-0 top-0 h-full w-64 bg-surface-container-low z-50 flex flex-col pt-lg pb-lg"
+        >
+            <div
+                class="px-lg mb-xl text-headline-md font-headline-md text-primary flex items-center gap-sm"
+            >
+                <span class="material-symbols-outlined text-[28px]"
+                    >travel_explore</span
+                ><span>DaNang Travel</span>
+            </div>
+            <nav class="flex-1 px-md flex flex-col gap-xs">
 				<a
 					class="flex items-center px-md py-sm rounded-xl text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-all"
-					data-path="bang-dieu-khien"
-					href="#"
+					href="{{ url_for('host.dashboard') }}"
 					><span class="material-symbols-outlined mr-md"
 						>dashboard</span
 					>Bảng điều khiển</a
-				><a
-					class="flex items-center px-md py-sm rounded-xl text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-all"
-					data-path="thong-tin-co-so"
-					href="#"
+				>
+				<a
+					class="flex items-center px-md py-sm rounded-xl bg-surface-container-high text-on-surface font-semibold transition-all"
+					href="{{ url_for('host.accommodation_info') }}"
 					><span class="material-symbols-outlined mr-md"
 						>apartment</span
 					>Thông tin cơ sở</a
-				><a
+				>
+				<!-- ACTIVE TAB: Dùng màu xám nhẹ đồng bộ giao diện Sidebar -->
+				<a
 					class="flex items-center px-md py-sm rounded-xl text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-all"
-					data-path="quan-ly-phong"
-					href="#"
+					href="{{ url_for('host.rooms_management') }}"
 					><span class="material-symbols-outlined mr-md"
 						>meeting_room</span
 					>Quản lý phòng</a
-				><a
+				>
+				<a
 					class="flex items-center px-md py-sm rounded-xl text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-all"
-					data-path="don-dat-phong"
-					href="#"
+					href="{{ url_for('host.bookings_management') }}"
 					><span class="material-symbols-outlined mr-md"
 						>book_online</span
 					>Đơn đặt phòng</a
 				><a
 					class="flex items-center px-md py-sm rounded-xl text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-all"
-					data-path="danh-gia"
-					href="#"
+					href="{{ url_for('host.reviews') }}"
 					><span class="material-symbols-outlined mr-md">star</span
 					>Đánh giá</a
 				><a
 					class="flex items-center px-md py-sm rounded-xl text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-all"
-					data-path="thong-ke-bao-cao"
-					href="#"
+					href="{{ url_for('host.analytics') }}"
 					><span class="material-symbols-outlined mr-md"
 						>bar_chart</span
 					>Thống kê &amp; Báo cáo</a
 				><a
 					class="flex items-center px-md py-sm rounded-xl text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-all"
-					data-path="thong-bao"
-					href="#"
+					href="{{ url_for('host.notifications') }}"
 					><span class="material-symbols-outlined mr-md"
 						>notifications</span
 					>Thông báo</a
 				><a
 					class="flex items-center px-md py-sm rounded-xl text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-all"
-					data-path="tai-khoan-ca-nhan"
-					href="#"
+					href="{{ url_for('host.profile') }}"
 					><span class="material-symbols-outlined mr-md"
 						>account_circle</span
 					>Tài khoản cá nhân</a
 				>
 			</nav>
-		</aside>
-		<div class="pl-64">
-			<header
-				class="fixed top-0 left-64 right-0 h-20 bg-surface/80 backdrop-blur-xl shadow-[0_1px_8px_rgba(0,0,0,0.04)] z-40 flex items-center justify-between px-xl"
-			>
-				<div class="flex items-center gap-md text-on-surface-variant">
-					<span class="material-symbols-outlined">search</span
-					><input
-						class="bg-transparent border-none outline-none text-on-surface placeholder:text-outline text-body-md w-64"
-						placeholder="Tìm kiếm nhanh..."
-						type="text"
-					/>
-				</div>
-				<div class="flex items-center gap-md">
-					<div
-						class="w-8 h-8 rounded-full bg-primary flex items-center justify-center"
-					>
-						<span
-							class="material-symbols-outlined text-on-primary text-[18px]"
-							>person</span
-						>
-					</div>
-				</div>
-			</header>
-			<main class="relative pt-20 bg-surface min-h-screen p-xl">
-				<div class="flex flex-col w-full">
-					<!-- Top Header Bar for Property Details -->
-					<div
-						class="flex flex-col md:flex-row md:items-center justify-between gap-md mb-xl"
-					>
-						<div>
-							<div class="flex items-center gap-sm mb-xs">
-								<span
-									class="px-md py-xs bg-surface-container text-on-surface-variant font-label-md rounded-full"
-									>Khách sạn 5 sao</span
-								>
-								<span
-									class="px-md py-xs bg-tertiary-fixed text-on-tertiary-fixed font-label-md rounded-full flex items-center gap-xs"
-								>
-									<span
-										class="material-symbols-outlined text-[16px]"
-										>verified</span
-									>
-									Đã xác thực
-								</span>
-							</div>
-							<h1
-								class="text-headline-lg font-headline-lg text-primary"
-							>
-								Mường Thanh Luxury Đà Nẵng
-							</h1>
-							<p
-								class="text-body-md text-on-surface-variant flex items-center gap-xs mt-xs"
-							>
-								<span
-									class="material-symbols-outlined text-[18px]"
-									>location_on</span
-								>
-								270 Võ Nguyên Giáp, Phường Mỹ An, Quận Ngũ Hành
-								Sơn, Đà Nẵng
-							</p>
-						</div>
-						<div class="flex items-center gap-md">
-							<button
-								class="px-lg py-md bg-surface-container hover:bg-surface-container-high text-on-surface font-label-md rounded-full transition-all flex items-center gap-sm"
-							>
-								<span
-									class="material-symbols-outlined text-[18px]"
-									>visibility</span
-								>
-								Xem trang công khai
-							</button>
-							<button
-								class="px-xl py-md bg-primary hover:bg-primary-container text-on-primary font-label-md rounded-full transition-all shadow-sm flex items-center gap-sm"
-								onclick="saveChanges()"
-							>
-								<span
-									class="material-symbols-outlined text-[18px]"
-									>save</span
-								>
-								Lưu thay đổi
-							</button>
-						</div>
-					</div>
-					<!-- Main Grid Layout -->
-					<div class="grid grid-cols-1 lg:grid-cols-12 gap-xl">
-						<!-- Left Column: General Info & Description (8 cols) -->
-						<div class="lg:col-span-8 flex flex-col gap-xl">
-							<!-- Card: Thông tin cơ bản -->
-							<div
-								class="bg-surface-container-lowest rounded-xl p-lg shadow-sm flex flex-col gap-lg"
-							>
-								<div class="flex items-center justify-between">
-									<h2
-										class="text-headline-md font-headline-md text-primary flex items-center gap-sm"
-									>
-										<span class="material-symbols-outlined"
-											>info</span
-										>
-										Thông tin chung
-									</h2>
-									<span
-										class="text-caption text-on-surface-variant"
-										>Cập nhật lần cuối: 24/10/2023</span
-									>
-								</div>
-								<div
-									class="grid grid-cols-1 md:grid-cols-2 gap-lg"
-								>
-									<div class="flex flex-col gap-sm">
-										<label
-											class="font-label-md text-on-surface-variant"
-											>Tên cơ sở lưu trú</label
-										>
-										<input
-											class="w-full bg-surface-container-lowest border border-outline rounded-lg px-md py-md text-on-surface outline-none focus:border-primary transition-all"
-											type="text"
-											value="Mường Thanh Luxury Đà Nẵng"
-										/>
-									</div>
-									<div class="flex flex-col gap-sm">
-										<label
-											class="font-label-md text-on-surface-variant"
-											>Loại hình cơ sở</label
-										>
-										<select
-											class="w-full bg-surface-container-lowest border border-outline rounded-lg px-md py-md text-on-surface outline-none focus:border-primary transition-all"
-										>
-											<option selected="">
-												Khách sạn cao cấp (Luxury Hotel)
-											</option>
-											<option>Resort nghỉ dưỡng</option>
-											<option>Căn hộ dịch vụ</option>
-										</select>
-									</div>
-								</div>
-								<div class="flex flex-col gap-sm">
-									<label
-										class="font-label-md text-on-surface-variant"
-										>Địa chỉ chi tiết</label
-									>
-									<input
-										class="w-full bg-surface-container-lowest border border-outline rounded-lg px-md py-md text-on-surface outline-none focus:border-primary transition-all"
-										type="text"
-										value="270 Võ Nguyên Giáp, Phường Mỹ An, Quận Ngũ Hành Sơn, Đà Nẵng"
-									/>
-								</div>
-								<div class="flex flex-col gap-sm">
-									<label
-										class="font-label-md text-on-surface-variant"
-										>Mô tả giới thiệu</label
-									>
-									<textarea
-										class="w-full bg-surface-container-lowest border border-outline rounded-lg p-md text-on-surface outline-none focus:border-primary transition-all resize-none"
-										rows="4"
-									>
-Tọa lạc tại vị trí đắc địa trên tuyến đường biển tỷ đô Võ Nguyên Giáp, Mường Thanh Luxury Đà Nẵng mang đến tầm nhìn toàn cảnh biển Mỹ Khê tuyệt đẹp. Hệ thống phòng nghỉ sang trọng, trang thiết bị hiện đại cùng chuỗi tiện ích đẳng cấp gồm hồ bơi vô cực, spa chuyên nghiệp và nhà hàng Á - Âu sẽ làm hài lòng mọi du khách trong chuyến công tác hoặc nghỉ dưỡng.</textarea
-									>
-								</div>
-							</div>
-							<!-- Card: Hình ảnh cơ sở -->
-							<div
-								class="bg-surface-container-lowest rounded-xl p-lg shadow-sm flex flex-col gap-lg"
-							>
-								<div class="flex items-center justify-between">
-									<h2
-										class="text-headline-md font-headline-md text-primary flex items-center gap-sm"
-									>
-										<span class="material-symbols-outlined"
-											>photo_library</span
-										>
-										Thư viện hình ảnh
-									</h2>
-									<button
-										class="px-md py-sm bg-surface-container hover:bg-surface-container-high text-on-surface font-label-md rounded-full transition-all flex items-center gap-xs"
-									>
-										<span
-											class="material-symbols-outlined text-[16px]"
-											>add_a_photo</span
-										>
-										Tải lên ảnh mới
-									</button>
-								</div>
-								<div
-									class="grid grid-cols-1 sm:grid-cols-3 gap-md"
-								>
-									<div
-										class="relative group rounded-xl overflow-hidden h-40 bg-cover bg-center"
-										data-alt="Toàn cảnh mặt tiền khách sạn Mường Thanh Luxury Đà Nẵng buổi tối với hệ thống chiếu sáng hiện đại, kiến trúc cao tầng sang trọng hướng ra biển Võ Nguyên Giáp."
-										style="
-											background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuByZu1QtP9qzjyB8fXirH6cr44rm9zk9J_rFfKujQxwhTqP9W9YcvdKx9h9ajdmG9Sqd0htGWrQpkuQEHCQT3dSdX9HiRwfk4KpeGO6LAN4KJjd0PxpmemUqm_acvJXDSoQcYP3Su1JwM574B9gV_cBwVyQpASDkXK56uIjy3SwpcJChSIZ_aA-mb4MGqv94SRK_JEAaJ3p9ZmJ9hgSySuzvdguYK_1FbgLiya4q9WQdmpRvoyeDOeA');
-										"
-									>
-										<div
-											class="absolute inset-0 bg-primary/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center gap-sm"
-										>
-											<button
-												class="w-8 h-8 rounded-full bg-surface text-on-surface flex items-center justify-center shadow"
-											>
-												<span
-													class="material-symbols-outlined text-[16px]"
-													>delete</span
-												>
-											</button>
-											<button
-												class="w-8 h-8 rounded-full bg-surface text-on-surface flex items-center justify-center shadow"
-											>
-												<span
-													class="material-symbols-outlined text-[16px]"
-													>star</span
-												>
-											</button>
-										</div>
-										<span
-											class="absolute bottom-xs left-xs px-sm py-xs bg-primary/70 text-on-primary text-caption rounded-full"
-											>Ảnh chính</span
-										>
-									</div>
-									<div
-										class="relative group rounded-xl overflow-hidden h-40 bg-cover bg-center"
-										data-alt="Hồ bơi vô cực ngoài trời sang trọng tại tầng thượng khách sạn nhìn ra bãi biển Mỹ Khê, có ghế tắm nắng và không gian thoáng đãng."
-										style="
-											background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuBfKfkCnoCylJ8zR_myJkYHdnGUMmZI0qIt8WRUfF5egTFv_UGeXMhb02QPtWWoZnDXvZtq__MvGOuCv-MivgzZ0FYwjrl_ltQ1bGE4AG3XLSCGzqJLb5N2WtxdQH2s3J6PWdOOeGl9aYkh2xeha89O1V4eeVLNcYuLFBhetwMPrXwgo-j1jVK8V9r9kRhCtvRVS7QNU8lkOfc66bY1iPW0MiGU0DkkZfeZP802Yz_OY-Rffmuz6b7k');
-										"
-									>
-										<div
-											class="absolute inset-0 bg-primary/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center gap-sm"
-										>
-											<button
-												class="w-8 h-8 rounded-full bg-surface text-on-surface flex items-center justify-center shadow"
-											>
-												<span
-													class="material-symbols-outlined text-[16px]"
-													>delete</span
-												>
-											</button>
-											<button
-												class="w-8 h-8 rounded-full bg-surface text-on-surface flex items-center justify-center shadow"
-											>
-												<span
-													class="material-symbols-outlined text-[16px]"
-													>star</span
-												>
-											</button>
-										</div>
-									</div>
-									<div
-										class="relative group rounded-xl overflow-hidden h-40 bg-cover bg-center"
-										data-alt="Không gian phòng ngủ hạng sang Deluxe King Room với giường lớn, cửa sổ kính lớn hướng biển đón ánh sáng tự nhiên, nội thất gỗ cao cấp."
-										style="
-											background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuAHEO0ZHO7kx2ajZ-btia38NWh28m07ODuTGPEyquhvp4NMYIrIDaNSS3XD61DStLRfCwUNpYuvfZNICnW12QwzLL8c2eDRWmo3Es_bVtXRM2U-ASw7S0paqW6MCdDDW7qIV0IcYi-3_tEtwr6MfcSmK_LtvpUxi1_JaDaxG2MQNPQB3gjooYFi-HI5bfy5q6thWIhTVYEH4piS1V7XXbdsmPQ9j0wiNRMLqF3ciLa_Q8D8c76fZvUP');
-										"
-									>
-										<div
-											class="absolute inset-0 bg-primary/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center gap-sm"
-										>
-											<button
-												class="w-8 h-8 rounded-full bg-surface text-on-surface flex items-center justify-center shadow"
-											>
-												<span
-													class="material-symbols-outlined text-[16px]"
-													>delete</span
-												>
-											</button>
-											<button
-												class="w-8 h-8 rounded-full bg-surface text-on-surface flex items-center justify-center shadow"
-											>
-												<span
-													class="material-symbols-outlined text-[16px]"
-													>star</span
-												>
-											</button>
-										</div>
-									</div>
-								</div>
-							</div>
-							<!-- Card: Chính sách nhận phòng / trả phòng -->
-							<div
-								class="bg-surface-container-lowest rounded-xl p-lg shadow-sm flex flex-col gap-lg"
-							>
-								<h2
-									class="text-headline-md font-headline-md text-primary flex items-center gap-sm"
-								>
-									<span class="material-symbols-outlined"
-										>schedule</span
-									>
-									Chính sách nhận &amp; trả phòng
-								</h2>
-								<div
-									class="grid grid-cols-1 md:grid-cols-2 gap-lg"
-								>
-									<div class="flex flex-col gap-sm">
-										<label
-											class="font-label-md text-on-surface-variant"
-											>Giờ nhận phòng (Check-in)</label
-										>
-										<input
-											class="w-full bg-surface-container-lowest border border-outline rounded-lg px-md py-md text-on-surface outline-none focus:border-primary transition-all"
-											type="text"
-											value="14:00 - 23:30"
-										/>
-									</div>
-									<div class="flex flex-col gap-sm">
-										<label
-											class="font-label-md text-on-surface-variant"
-											>Giờ trả phòng (Check-out)</label
-										>
-										<input
-											class="w-full bg-surface-container-lowest border border-outline rounded-lg px-md py-md text-on-surface outline-none focus:border-primary transition-all"
-											type="text"
-											value="06:00 - 12:00"
-										/>
-									</div>
-								</div>
-								<div class="flex flex-col gap-sm">
-									<label
-										class="font-label-md text-on-surface-variant"
-										>Quy định hủy đặt phòng</label
-									>
-									<textarea
-										class="w-full bg-surface-container-lowest border border-outline rounded-lg p-md text-on-surface outline-none focus:border-primary transition-all resize-none"
-										rows="3"
-									>
-Miễn phí hủy phòng trước 3 ngày so với ngày nhận phòng. Nếu hủy trong vòng 3 ngày hoặc không đến, tính phí 100% tổng giá trị đặt phòng đêm đầu tiên.</textarea
-									>
-								</div>
-								<div class="flex flex-col gap-sm">
-									<label
-										class="font-label-md text-on-surface-variant"
-										>Chính sách trẻ em &amp; giường
-										phụ</label
-									>
-									<textarea
-										class="w-full bg-surface-container-lowest border border-outline rounded-lg p-md text-on-surface outline-none focus:border-primary transition-all resize-none"
-										rows="3"
-									>
-Trẻ em dưới 6 tuổi ở chung với bố mẹ được miễn phí ăn sáng (tối đa 2 trẻ/phòng). Trẻ từ 6 - 11 tuổi phụ thu ăn sáng theo quy định. Không hỗ trợ kê giường phụ (extra bed).</textarea
-									>
-								</div>
-							</div>
-						</div>
-						<!-- Right Column: Map & Amenities (4 cols) -->
-						<div class="lg:col-span-4 flex flex-col gap-xl">
-							<!-- Card: Vị trí bản đồ -->
-							<div
-								class="bg-surface-container-lowest rounded-xl p-lg shadow-sm flex flex-col gap-md"
-							>
-								<h2
-									class="text-headline-md font-headline-md text-primary flex items-center gap-sm"
-								>
-									<span class="material-symbols-outlined"
-										>map</span
-									>
-									Vị trí bản đồ
-								</h2>
-								<p class="text-caption text-on-surface-variant">
-									Vị trí chính xác giúp khách hàng dễ dàng tìm
-									đường tới cơ sở.
-								</p>
-								<div
-									class="w-full h-48 bg-cover bg-center rounded-xl overflow-hidden shadow-inner"
-									data-location="270 Võ Nguyên Giáp, Đà Nẵng"
-									style="
-										background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuA_m-qM0QKVXyXygrEtq8ai3H6U4VpocQEx_FAaXGA5ppM8UIF4b7ixVgZ-UpVJ5q2pvH-bKF0S_uW0-quitCs7I0gN3jntNL3mt96LDNgK2YoPYLzEAGRMn2uPOtbjBpQ1o_na7T3PT5ZCFgttBmqqGK4ziEYV085osqMyFtC0-AhonLGcG1yQhVLVIy3CUglS1L4P24C3zvLcMwkKozhuhIGWmOrGTjRnwWdeyHoTQVvlgwJYPxE1');
-									"
-								></div>
-								<div
-									class="flex items-center justify-between text-caption text-on-surface-variant mt-xs"
-								>
-									<span>Cách sân bay: 5.5 km</span>
-									<span>Cách biển Mỹ Khê: 50m</span>
-								</div>
-							</div>
-							<!-- Card: Danh sách tiện ích -->
-							<div
-								class="bg-surface-container-lowest rounded-xl p-lg shadow-sm flex flex-col gap-lg"
-							>
-								<h2
-									class="text-headline-md font-headline-md text-primary flex items-center gap-sm"
-								>
-									<span class="material-symbols-outlined"
-										>room_service</span
-									>
-									Tiện ích cơ sở
-								</h2>
-								<p class="text-caption text-on-surface-variant">
-									Bật/tắt các tiện ích có sẵn tại khách sạn
-									của bạn.
-								</p>
-								<div class="flex flex-col gap-md">
-									<!-- Amenity Item 1 -->
-									<div
-										class="flex items-center justify-between p-sm rounded-lg bg-surface hover:bg-surface-container transition-all"
-									>
-										<div class="flex items-center gap-md">
-											<span
-												class="material-symbols-outlined text-primary text-[24px]"
-												>pool</span
-											>
-											<span
-												class="font-label-md text-on-surface"
-												>Hồ bơi ngoài trời</span
-											>
-										</div>
-										<input
-											checked=""
-											class="w-5 h-5 accent-primary cursor-pointer"
-											type="checkbox"
-										/>
-									</div>
-									<!-- Amenity Item 2 -->
-									<div
-										class="flex items-center justify-between p-sm rounded-lg bg-surface hover:bg-surface-container transition-all"
-									>
-										<div class="flex items-center gap-md">
-											<span
-												class="material-symbols-outlined text-primary text-[24px]"
-												>spa</span
-											>
-											<span
-												class="font-label-md text-on-surface"
-												>Spa &amp; Xông hơi</span
-											>
-										</div>
-										<input
-											checked=""
-											class="w-5 h-5 accent-primary cursor-pointer"
-											type="checkbox"
-										/>
-									</div>
-									<!-- Amenity Item 3 -->
-									<div
-										class="flex items-center justify-between p-sm rounded-lg bg-surface hover:bg-surface-container transition-all"
-									>
-										<div class="flex items-center gap-md">
-											<span
-												class="material-symbols-outlined text-primary text-[24px]"
-												>restaurant</span
-											>
-											<span
-												class="font-label-md text-on-surface"
-												>Nhà hàng &amp; Bar</span
-											>
-										</div>
-										<input
-											checked=""
-											class="w-5 h-5 accent-primary cursor-pointer"
-											type="checkbox"
-										/>
-									</div>
-									<!-- Amenity Item 4 -->
-									<div
-										class="flex items-center justify-between p-sm rounded-lg bg-surface hover:bg-surface-container transition-all"
-									>
-										<div class="flex items-center gap-md">
-											<span
-												class="material-symbols-outlined text-primary text-[24px]"
-												>umbrella</span
-											>
-											<span
-												class="font-label-md text-on-surface"
-												>Bãi biển riêng / Ghế tắm
-												nắng</span
-											>
-										</div>
-										<input
-											checked=""
-											class="w-5 h-5 accent-primary cursor-pointer"
-											type="checkbox"
-										/>
-									</div>
-									<!-- Amenity Item 5 -->
-									<div
-										class="flex items-center justify-between p-sm rounded-lg bg-surface hover:bg-surface-container transition-all"
-									>
-										<div class="flex items-center gap-md">
-											<span
-												class="material-symbols-outlined text-primary text-[24px]"
-												>fitness_center</span
-											>
-											<span
-												class="font-label-md text-on-surface"
-												>Phòng tập Gym</span
-											>
-										</div>
-										<input
-											checked=""
-											class="w-5 h-5 accent-primary cursor-pointer"
-											type="checkbox"
-										/>
-									</div>
-									<!-- Amenity Item 6 -->
-									<div
-										class="flex items-center justify-between p-sm rounded-lg bg-surface hover:bg-surface-container transition-all"
-									>
-										<div class="flex items-center gap-md">
-											<span
-												class="material-symbols-outlined text-primary text-[24px]"
-												>local_parking</span
-											>
-											<span
-												class="font-label-md text-on-surface"
-												>Bãi đỗ xe miễn phí</span
-											>
-										</div>
-										<input
-											checked=""
-											class="w-5 h-5 accent-primary cursor-pointer"
-											type="checkbox"
-										/>
-									</div>
-								</div>
-								<button
-									class="w-full py-md bg-surface-container hover:bg-surface-container-high text-on-surface font-label-md rounded-full transition-all text-center"
-								>
-									+ Thêm tiện ích khác
-								</button>
-							</div>
-						</div>
-					</div>
-					<!-- Toast Notification simulation script -->
-					<script>
-						function saveChanges() {
-							const toast = document.createElement('div');
-							toast.className =
-								'fixed bottom-8 right-8 bg-primary text-on-primary px-lg py-md rounded-xl shadow-xl flex items-center gap-sm z-50 transition-all transform translate-y-0';
-							toast.innerHTML =
-								'<span class="material-symbols-outlined text-[20px]">check_circle</span><span>Đã cập nhật thông tin thành công!</span>';
-							document.body.appendChild(toast);
-							setTimeout(() => {
-								toast.style.opacity = '0';
-								setTimeout(() => toast.remove(), 300);
-							}, 3000);
-						}
-					</script>
-				</div>
-			</main>
-		</div>
-	</body>
+        </aside>
+
+        <div class="pl-64">
+            <header
+                class="fixed top-0 left-64 right-0 h-20 bg-surface/80 backdrop-blur-xl shadow-[0_1px_8px_rgba(0,0,0,0.04)] z-40 flex items-center justify-between px-xl"
+            >
+                <div class="flex items-center gap-md text-on-surface-variant">
+                    <span class="material-symbols-outlined">search</span>
+                    <input
+                        class="bg-transparent border-none outline-none text-on-surface placeholder:text-outline text-body-md w-64"
+                        placeholder="Tìm kiếm nhanh..."
+                        type="text"
+                    />
+                </div>
+                <div
+                    class="w-8 h-8 rounded-full bg-primary flex items-center justify-center"
+                >
+                    <span
+                        class="material-symbols-outlined text-on-primary text-[18px]"
+                        >person</span
+                    >
+                </div>
+            </header>
+
+            <main class="relative pt-20 bg-surface min-h-screen p-xl">
+                <div class="flex flex-col w-full">
+                    
+                    <!-- Flash message ẩn hiện khi bấm lưu (Giữ nguyên style) -->
+                    {% with messages = get_flashed_messages(with_categories=true) %}
+                      {% if messages %}
+                        {% for category, message in messages %}
+                            <div id="flash-msg" class="mb-md p-md rounded-lg text-on-primary bg-primary flex items-center justify-between shadow">
+                                <span>{{ message }}</span>
+                                <span class="material-symbols-outlined cursor-pointer" onclick="document.getElementById('flash-msg').style.display='none'">close</span>
+                            </div>
+                        {% endfor %}
+                      {% endif %}
+                    {% endwith %}
+
+                    <!-- Form bọc toàn trang để Submit (Giữ nguyên div flex) -->
+                    <form method="POST" action="{{ url_for('host.accommodation_info') }}" id="acc-form" class="flex flex-col w-full">
+                        <!-- Top Header Bar -->
+                        <div
+                            class="flex flex-col md:flex-row md:items-center justify-between gap-md mb-xl"
+                        >
+                            <div>
+                                <div class="flex items-center gap-sm mb-xs">
+                                    <span
+                                        class="px-md py-xs bg-surface-container text-on-surface-variant font-label-md rounded-full"
+                                        >{{ acc.property_type }}</span
+                                    >
+                                    {% if acc.status == 'Approved' %}
+                                    <span
+                                        class="px-md py-xs bg-tertiary-fixed text-primary font-label-md rounded-full flex items-center gap-xs"
+                                    >
+                                        <span
+                                            class="material-symbols-outlined text-[16px]"
+                                            >verified</span
+                                        >
+                                        Đã xác thực
+                                    </span>
+                                    {% else %}
+                                    <span
+                                        class="px-md py-xs bg-error/20 text-error font-label-md rounded-full flex items-center gap-xs"
+                                    >
+                                        <span
+                                            class="material-symbols-outlined text-[16px]"
+                                            >pending</span
+                                        >
+                                        Chờ duyệt
+                                    </span>
+                                    {% endif %}
+                                </div>
+                                <h1
+                                    class="text-headline-lg font-headline-lg text-primary"
+                                >
+                                    {{ acc.name }}
+                                </h1>
+                                <p
+                                    class="text-body-md text-on-surface-variant flex items-center gap-xs mt-xs"
+                                >
+                                    <span
+                                        class="material-symbols-outlined text-[18px]"
+                                        >location_on</span
+                                    >
+                                    {{ acc.address }}
+                                </p>
+                            </div>
+                            <div class="flex items-center gap-md">
+                                <a
+                                    class="px-lg py-md bg-surface-container hover:bg-surface-container-high text-on-surface font-label-md rounded-full transition-all flex items-center gap-sm"
+                                    href="{{ url_for('public.search_rooms', keyword=acc.name) }}" 
+                                    target="_blank"
+                                >
+                                    <span
+                                        class="material-symbols-outlined text-[18px]"
+                                        >visibility</span
+                                    >
+                                    Xem trang công khai
+                                </a>
+                                <button
+                                    type="submit"
+                                    class="px-xl py-md bg-primary hover:bg-primary-container text-on-primary font-label-md rounded-full transition-all shadow-sm flex items-center gap-sm"
+                                >
+                                    <span
+                                        class="material-symbols-outlined text-[18px]"
+                                        >save</span
+                                    >
+                                    Lưu thay đổi
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- Main Grid -->
+                        <div class="grid grid-cols-1 lg:grid-cols-12 gap-xl">
+                            <!-- Left Column (8 cols) -->
+                            <div class="lg:col-span-8 flex flex-col gap-xl">
+                                <!-- Thông tin chung -->
+                                <div
+                                    class="bg-surface-container-lowest rounded-xl p-lg shadow-sm flex flex-col gap-lg"
+                                >
+                                    <div class="flex items-center justify-between">
+                                        <h2
+                                            class="text-headline-md font-headline-md text-primary flex items-center gap-sm"
+                                        >
+                                            <span class="material-symbols-outlined"
+                                                >info</span
+                                            >
+                                            Thông tin chung
+                                        </h2>
+                                        <span
+                                            class="text-caption text-on-surface-variant"
+                                            >Cập nhật lần cuối: {{ acc.updated_at }}</span
+                                        >
+                                    </div>
+                                    <div
+                                        class="grid grid-cols-1 md:grid-cols-2 gap-lg"
+                                    >
+                                        <div class="flex flex-col gap-sm">
+                                            <label
+                                                class="font-label-md text-on-surface-variant"
+                                                >Tên cơ sở lưu trú</label
+                                            >
+                                            <input
+                                                name="name"
+                                                class="w-full bg-surface-container-lowest border border-outline rounded-lg px-md py-md text-on-surface outline-none focus:border-primary transition-all"
+                                                type="text"
+                                                value="{{ acc.name }}"
+                                            />
+                                        </div>
+                                        <div class="flex flex-col gap-sm">
+                                            <label
+                                                class="font-label-md text-on-surface-variant"
+                                                >Loại hình cơ sở</label
+                                            >
+                                            <select
+                                                name="property_type"
+                                                class="w-full bg-surface-container-lowest border border-outline rounded-lg px-md py-md text-on-surface outline-none focus:border-primary transition-all"
+                                            >
+                                                <option {{ 'selected' if acc.property_type == 'Khách sạn cao cấp (Luxury Hotel)' else '' }}>Khách sạn cao cấp (Luxury Hotel)</option>
+                                                <option {{ 'selected' if acc.property_type == 'Khách sạn' else '' }}>Khách sạn</option>
+                                                <option {{ 'selected' if acc.property_type == 'Resort nghỉ dưỡng' else '' }}>Resort nghỉ dưỡng</option>
+                                                <option {{ 'selected' if acc.property_type == 'Căn hộ dịch vụ' else '' }}>Căn hộ dịch vụ</option>
+                                                <option {{ 'selected' if acc.property_type == 'Homestay' else '' }}>Homestay</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="flex flex-col gap-sm">
+                                        <label
+                                            class="font-label-md text-on-surface-variant"
+                                            >Địa chỉ chi tiết</label
+                                        >
+                                        <input
+                                            name="address"
+                                            class="w-full bg-surface-container-lowest border border-outline rounded-lg px-md py-md text-on-surface outline-none focus:border-primary transition-all"
+                                            type="text"
+                                            value="{{ acc.address }}"
+                                        />
+                                    </div>
+                                    <div class="flex flex-col gap-sm">
+                                        <label
+                                            class="font-label-md text-on-surface-variant"
+                                            >Mô tả giới thiệu</label
+                                        >
+                                        <textarea
+                                            name="description"
+                                            class="w-full bg-surface-container-lowest border border-outline rounded-lg p-md text-on-surface outline-none focus:border-primary transition-all resize-none"
+                                            rows="4"
+                                        >{{ acc.description }}</textarea>
+                                    </div>
+                                </div>
+
+                                <!-- Thư viện hình ảnh -->
+                                <div
+                                    class="bg-surface-container-lowest rounded-xl p-lg shadow-sm flex flex-col gap-lg"
+                                >
+                                    <div class="flex items-center justify-between">
+                                        <h2
+                                            class="text-headline-md font-headline-md text-primary flex items-center gap-sm"
+                                        >
+                                            <span class="material-symbols-outlined"
+                                                >photo_library</span
+                                            >
+                                            Thư viện hình ảnh
+                                        </h2>
+                                        <button
+                                            type="button" 
+                                            onclick="document.getElementById('new-img-input').classList.toggle('hidden')"
+                                            class="px-md py-sm bg-surface-container hover:bg-surface-container-high text-on-surface font-label-md rounded-full transition-all flex items-center gap-xs"
+                                        >
+                                            <span
+                                                class="material-symbols-outlined text-[16px]"
+                                                >add_a_photo</span
+                                            >
+                                            Tải lên ảnh mới
+                                        </button>
+                                    </div>
+                                    
+                                    <div id="new-img-input" class="hidden flex gap-sm items-center">
+                                        <input type="text" id="temp-img-url" placeholder="Dán URL link ảnh vào đây..." class="w-full bg-surface-container border border-outline rounded-lg px-md py-sm text-body-md outline-none">
+                                        <button type="button" onclick="addNewImage()" class="px-md py-sm bg-primary hover:bg-primary-container text-on-primary rounded-lg font-label-md transition-all whitespace-nowrap">Thêm</button>
+                                    </div>
+
+                                    <div
+                                        class="grid grid-cols-1 sm:grid-cols-3 gap-md"
+                                        id="image-gallery-container"
+                                    >
+                                        {% for img in acc.images %}
+                                        <div
+                                            class="relative group rounded-xl overflow-hidden h-40 bg-cover bg-center image-card"
+                                            style="background-image: url('{{ img }}');"
+                                        >
+                                            <input type="hidden" name="images[]" value="{{ img }}">
+                                            
+                                            <div
+                                                class="absolute inset-0 bg-primary/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center gap-sm"
+                                            >
+                                                <button
+                                                    type="button" onclick="this.closest('.image-card').remove()"
+                                                    class="w-8 h-8 rounded-full bg-surface text-on-surface flex items-center justify-center shadow"
+                                                >
+                                                    <span
+                                                        class="material-symbols-outlined text-[16px]"
+                                                        >delete</span
+                                                    >
+                                                </button>
+                                                <button
+                                                    type="button"
+                                                    class="w-8 h-8 rounded-full bg-surface text-on-surface flex items-center justify-center shadow"
+                                                >
+                                                    <span
+                                                        class="material-symbols-outlined text-[16px]"
+                                                        >star</span
+                                                    >
+                                                </button>
+                                            </div>
+                                            {% if loop.index == 1 %}
+                                            <span
+                                                class="absolute bottom-xs left-xs px-sm py-xs bg-primary/70 text-on-primary text-caption rounded-full"
+                                                >Ảnh chính</span
+                                            >
+                                            {% endif %}
+                                        </div>
+                                        {% endfor %}
+                                    </div>
+                                </div>
+
+                                <!-- Chính sách -->
+                                <div
+                                    class="bg-surface-container-lowest rounded-xl p-lg shadow-sm flex flex-col gap-lg"
+                                >
+                                    <h2
+                                        class="text-headline-md font-headline-md text-primary flex items-center gap-sm"
+                                    >
+                                        <span class="material-symbols-outlined"
+                                            >schedule</span
+                                        >
+                                        Chính sách nhận &amp; trả phòng
+                                    </h2>
+                                    <div
+                                        class="grid grid-cols-1 md:grid-cols-2 gap-lg"
+                                    >
+                                        <div class="flex flex-col gap-sm">
+                                            <label
+                                                class="font-label-md text-on-surface-variant"
+                                                >Giờ nhận phòng (Check-in)</label
+                                            >
+                                            <input
+                                                name="check_in"
+                                                class="w-full bg-surface-container-lowest border border-outline rounded-lg px-md py-md text-on-surface outline-none focus:border-primary transition-all"
+                                                type="text"
+                                                value="{{ acc.check_in }}"
+                                            />
+                                        </div>
+                                        <div class="flex flex-col gap-sm">
+                                            <label
+                                                class="font-label-md text-on-surface-variant"
+                                                >Giờ trả phòng (Check-out)</label
+                                            >
+                                            <input
+                                                name="check_out"
+                                                class="w-full bg-surface-container-lowest border border-outline rounded-lg px-md py-md text-on-surface outline-none focus:border-primary transition-all"
+                                                type="text"
+                                                value="{{ acc.check_out }}"
+                                            />
+                                        </div>
+                                    </div>
+                                    <div class="flex flex-col gap-sm">
+                                        <label
+                                            class="font-label-md text-on-surface-variant"
+                                            >Quy định hủy đặt phòng</label
+                                        >
+                                        <textarea
+                                            name="cancel_policy"
+                                            class="w-full bg-surface-container-lowest border border-outline rounded-lg p-md text-on-surface outline-none focus:border-primary transition-all resize-none"
+                                            rows="3"
+                                        >{{ acc.cancel_policy }}</textarea>
+                                    </div>
+                                    <div class="flex flex-col gap-sm">
+                                        <label
+                                            class="font-label-md text-on-surface-variant"
+                                            >Chính sách trẻ em &amp; giường
+                                            phụ</label
+                                        >
+                                        <textarea
+                                            name="children_policy"
+                                            class="w-full bg-surface-container-lowest border border-outline rounded-lg p-md text-on-surface outline-none focus:border-primary transition-all resize-none"
+                                            rows="3"
+                                        >{{ acc.children_policy }}</textarea>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Right Column (4 cols) -->
+                            <div class="lg:col-span-4 flex flex-col gap-xl">
+                                <!-- Vị trí bản đồ -->
+                                <div
+                                    class="bg-surface-container-lowest rounded-xl p-lg shadow-sm flex flex-col gap-md"
+                                >
+                                    <h2
+                                        class="text-headline-md font-headline-md text-primary flex items-center gap-sm"
+                                    >
+                                        <span class="material-symbols-outlined"
+                                            >map</span
+                                        >
+                                        Vị trí bản đồ
+                                    </h2>
+                                    <p class="text-caption text-on-surface-variant">
+                                        Vị trí chính xác giúp khách hàng dễ dàng tìm
+                                        đường tới cơ sở.
+                                    </p>
+                                    <div
+                                        class="w-full h-48 bg-cover bg-center rounded-xl overflow-hidden shadow-inner"
+                                        style="
+                                            background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuA_m-qM0QKVXyXygrEtq8ai3H6U4VpocQEx_FAaXGA5ppM8UIF4b7ixVgZ-UpVJ5q2pvH-bKF0S_uW0-quitCs7I0gN3jntNL3mt96LDNgK2YoPYLzEAGRMn2uPOtbjBpQ1o_na7T3PT5ZCFgttBmqqGK4ziEYV085osqMyFtC0-AhonLGcG1yQhVLVIy3CUglS1L4P24C3zvLcMwkKozhuhIGWmOrGTjRnwWdeyHoTQVvlgwJYPxE1');
+                                        "
+                                    ></div>
+                                    <div
+                                        class="flex items-center justify-between text-caption text-on-surface-variant mt-xs"
+                                    >
+                                        <span>{{ acc.dist_airport }}</span>
+                                        <span>{{ acc.dist_beach }}</span>
+                                    </div>
+                                </div>
+
+                                <!-- Danh sách tiện ích động -->
+                                <div
+                                    class="bg-surface-container-lowest rounded-xl p-lg shadow-sm flex flex-col gap-lg"
+                                >
+                                    <h2
+                                        class="text-headline-md font-headline-md text-primary flex items-center gap-sm"
+                                    >
+                                        <span class="material-symbols-outlined"
+                                            >room_service</span
+                                        >
+                                        Tiện ích cơ sở
+                                    </h2>
+                                    <p class="text-caption text-on-surface-variant">
+                                        Bật/tắt các tiện ích có sẵn tại khách sạn
+                                        của bạn.
+                                    </p>
+
+                                    <div class="flex flex-col gap-md" id="amenities-container">
+                                        {% for amenity_id, amenity_name, icon in all_amenities %}
+                                        <div
+                                            class="flex items-center justify-between p-sm rounded-lg bg-surface hover:bg-surface-container transition-all"
+                                        >
+                                            <div class="flex items-center gap-md">
+                                                <span
+                                                    class="material-symbols-outlined text-primary text-[24px]"
+                                                    >{{ icon }}</span
+                                                >
+                                                <span
+                                                    class="font-label-md text-on-surface"
+                                                    >{{ amenity_name }}</span
+                                                >
+                                            </div>
+                                            <!-- Thêm name="amenities" -->
+                                            <input
+                                                class="w-5 h-5 accent-primary cursor-pointer"
+                                                type="checkbox"
+                                                name="amenities"
+                                                value="{{ amenity_id }}"
+                                                {{ 'checked' if amenity_id in acc.amenities_list else '' }}
+                                            />
+                                        </div>
+                                        {% endfor %}
+                                        
+                                        <!-- Render Tiện ích tự gõ trước đó -->
+                                        {% for custom_amn in acc.amenities_list %}
+                                            {% if custom_amn not in ['Hồ bơi ngoài trời', 'Spa & Xông hơi', 'Nhà hàng & Bar', 'Bãi biển riêng / Ghế tắm nắng', 'Phòng tập Gym', 'Bãi đỗ xe miễn phí'] %}
+                                            <div class="flex items-center justify-between p-sm rounded-lg bg-surface hover:bg-surface-container transition-all">
+                                                <div class="flex items-center gap-md">
+                                                    <span class="material-symbols-outlined text-primary text-[24px]">star</span>
+                                                    <span class="font-label-md text-on-surface">{{ custom_amn }}</span>
+                                                </div>
+                                                <input class="w-5 h-5 accent-primary cursor-pointer" type="checkbox" name="amenities" value="{{ custom_amn }}" checked />
+                                            </div>
+                                            {% endif %}
+                                        {% endfor %}
+                                    </div>
+
+                                    <div id="new-amenity-input" class="hidden flex gap-sm items-center">
+                                        <input type="text" id="temp-amn-name" placeholder="Tên tiện ích mới..." class="w-full bg-surface-container border border-outline rounded-lg px-md py-sm text-body-md outline-none">
+                                        <button type="button" onclick="addNewAmenity()" class="px-md py-sm bg-primary hover:bg-primary-container text-on-primary rounded-lg font-label-md transition-all whitespace-nowrap">Thêm</button>
+                                    </div>
+
+                                    <button
+                                        type="button"
+                                        onclick="document.getElementById('new-amenity-input').classList.toggle('hidden')"
+                                        class="w-full py-md bg-surface-container hover:bg-surface-container-high text-on-surface font-label-md rounded-full transition-all text-center"
+                                    >
+                                        + Thêm tiện ích khác
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </main>
+        </div>
+
+        <script>
+            function addNewImage() {
+                const url = document.getElementById('temp-img-url').value.trim();
+                if(!url) return;
+
+                const container = document.getElementById('image-gallery-container');
+                const newCard = document.createElement('div');
+                newCard.className = "relative group rounded-xl overflow-hidden h-40 bg-cover bg-center image-card";
+                newCard.style.backgroundImage = `url('${url}')`;
+                
+                newCard.innerHTML = `
+                    <input type="hidden" name="images[]" value="${url}">
+                    <div class="absolute inset-0 bg-primary/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center gap-sm">
+                        <button type="button" onclick="this.closest('.image-card').remove()" class="w-8 h-8 rounded-full bg-surface text-on-surface flex items-center justify-center shadow"><span class="material-symbols-outlined text-[16px]">delete</span></button>
+                        <button type="button" class="w-8 h-8 rounded-full bg-surface text-on-surface flex items-center justify-center shadow"><span class="material-symbols-outlined text-[16px]">star</span></button>
+                    </div>
+                `;
+                container.appendChild(newCard);
+                document.getElementById('temp-img-url').value = '';
+                document.getElementById('new-img-input').classList.add('hidden');
+            }
+
+            function addNewAmenity() {
+                const name = document.getElementById('temp-amn-name').value.trim();
+                if(!name) return;
+
+                const container = document.getElementById('amenities-container');
+                const newDiv = document.createElement('div');
+                newDiv.className = "flex items-center justify-between p-sm rounded-lg bg-surface hover:bg-surface-container transition-all";
+                
+                newDiv.innerHTML = `
+                    <div class="flex items-center gap-md">
+                        <span class="material-symbols-outlined text-primary text-[24px]">star</span>
+                        <span class="font-label-md text-on-surface">${name}</span>
+                    </div>
+                    <input class="w-5 h-5 accent-primary cursor-pointer" type="checkbox" name="amenities" value="${name}" checked />
+                `;
+                container.appendChild(newDiv);
+                document.getElementById('temp-amn-name').value = '';
+                document.getElementById('new-amenity-input').classList.add('hidden');
+            }
+        </script>
+    </body>
 </html>

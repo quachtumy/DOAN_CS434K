@@ -170,75 +170,69 @@
 					>travel_explore</span
 				><span>DaNang Travel</span>
 			</div>
-			<nav
-				class="flex-1 px-md flex flex-col gap-xs"
-				data-active-classes="bg-primary-container text-on-primary-container font-semibold"
-			>
+			<nav class="flex-1 px-md flex flex-col gap-xs">
 				<a
 					class="flex items-center px-md py-sm rounded-xl text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-all"
-					data-path="bang-dieu-khien"
-					href="#"
+					href="{{ url_for('host.dashboard') }}"
 					><span class="material-symbols-outlined mr-md"
 						>dashboard</span
 					>Bảng điều khiển</a
-				><a
+				>
+				<a
 					class="flex items-center px-md py-sm rounded-xl text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-all"
-					data-path="thong-tin-co-so"
-					href="#"
+					href="{{ url_for('host.accommodation_info') }}"
 					><span class="material-symbols-outlined mr-md"
 						>apartment</span
 					>Thông tin cơ sở</a
-				><a
+				>
+				<!-- ACTIVE TAB: Dùng màu xám nhẹ đồng bộ giao diện Sidebar -->
+				<a
 					class="flex items-center px-md py-sm rounded-xl text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-all"
-					data-path="quan-ly-phong"
-					href="#"
+					href="{{ url_for('host.rooms_management') }}"
 					><span class="material-symbols-outlined mr-md"
 						>meeting_room</span
 					>Quản lý phòng</a
-				><a
+				>
+				<a
 					class="flex items-center px-md py-sm rounded-xl text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-all"
-					data-path="don-dat-phong"
-					href="#"
+					href="{{ url_for('host.bookings_management') }}"
 					><span class="material-symbols-outlined mr-md"
 						>book_online</span
 					>Đơn đặt phòng</a
 				><a
 					class="flex items-center px-md py-sm rounded-xl text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-all"
-					data-path="danh-gia"
-					href="#"
+					href="{{ url_for('host.reviews') }}"
 					><span class="material-symbols-outlined mr-md">star</span
 					>Đánh giá</a
 				><a
 					class="flex items-center px-md py-sm rounded-xl text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-all"
-					data-path="thong-ke-bao-cao"
-					href="#"
+					href="{{ url_for('host.analytics') }}"
 					><span class="material-symbols-outlined mr-md"
 						>bar_chart</span
 					>Thống kê &amp; Báo cáo</a
 				><a
-					class="flex items-center px-md py-sm rounded-xl text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-all"
-					data-path="thong-bao"
-					href="#"
+					class="flex items-center px-md py-sm rounded-xl bg-surface-container-high text-on-surface font-semibold transition-all"
+					href="{{ url_for('host.notifications') }}"
 					><span class="material-symbols-outlined mr-md"
 						>notifications</span
 					>Thông báo</a
 				><a
 					class="flex items-center px-md py-sm rounded-xl text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-all"
-					data-path="tai-khoan-ca-nhan"
-					href="#"
+					href="{{ url_for('host.profile') }}"
 					><span class="material-symbols-outlined mr-md"
 						>account_circle</span
 					>Tài khoản cá nhân</a
 				>
 			</nav>
 		</aside>
+
 		<div class="pl-64">
 			<header
 				class="fixed top-0 left-64 right-0 h-20 bg-surface/80 backdrop-blur-xl shadow-[0_1px_8px_rgba(0,0,0,0.04)] z-40 flex items-center justify-between px-xl"
 			>
 				<div class="flex items-center gap-md text-on-surface-variant">
-					<span class="material-symbols-outlined">search</span
-					><input
+					<span class="material-symbols-outlined">search</span>
+					<input
 						class="bg-transparent border-none outline-none text-on-surface placeholder:text-outline text-body-md w-64"
 						placeholder="Tìm kiếm nhanh..."
 						type="text"
@@ -255,8 +249,10 @@
 					</div>
 				</div>
 			</header>
+
 			<main class="relative pt-20 bg-surface min-h-screen p-xl">
 				<div class="flex flex-col w-full">
+					<!-- Top Actions -->
 					<div
 						class="flex flex-col md:flex-row md:items-center justify-between mb-xl gap-md"
 					>
@@ -272,16 +268,27 @@
 							</p>
 						</div>
 						<div class="flex items-center gap-sm">
-							<button
-								class="px-md py-sm bg-surface-container hover:bg-surface-container-high text-on-surface font-label-md rounded-xl transition-all flex items-center gap-xs"
-								onclick="markAllAsRead()"
+							<form
+								method="POST"
+								action="{{ url_for('host.notifications') }}"
+								class="m-0 p-0"
 							>
-								<span
-									class="material-symbols-outlined text-[18px]"
-									>done_all</span
+								<input
+									type="hidden"
+									name="action"
+									value="mark_all_read"
+								/>
+								<button
+									type="submit"
+									class="px-md py-sm bg-surface-container hover:bg-surface-container-high text-on-surface font-label-md rounded-xl transition-all flex items-center gap-xs"
 								>
-								Đánh dấu tất cả đã đọc
-							</button>
+									<span
+										class="material-symbols-outlined text-[18px]"
+										>done_all</span
+									>
+									Đánh dấu tất cả đã đọc
+								</button>
+							</form>
 							<button
 								class="px-md py-sm bg-primary text-on-primary font-label-md rounded-xl transition-all hover:opacity-90 flex items-center gap-xs"
 							>
@@ -293,7 +300,9 @@
 							</button>
 						</div>
 					</div>
+
 					<div class="grid grid-cols-1 lg:grid-cols-4 gap-xl">
+						<!-- Left Sidebar (Filters) -->
 						<div class="lg:col-span-1 flex flex-col gap-sm">
 							<div
 								class="bg-surface-container-lowest p-lg rounded-xl shadow-[0_4px_20px_rgba(0,0,0,0.03)] flex flex-col gap-xs"
@@ -302,10 +311,11 @@
 									class="font-label-md text-on-surface-variant mb-xs uppercase tracking-wider text-[11px]"
 									>Bộ lọc nhanh</span
 								>
+
 								<button
-									class="flex items-center justify-between px-md py-sm rounded-xl bg-primary text-on-primary font-label-md transition-all"
+									class="flex items-center justify-between px-md py-sm rounded-xl bg-primary text-on-primary font-label-md transition-all filter-btn"
 									id="filter-all"
-									onclick="filterNotifications('all')"
+									onclick="filterNotifications('all', this)"
 								>
 									<span class="flex items-center gap-sm"
 										><span
@@ -315,13 +325,16 @@
 									>
 									<span
 										class="bg-primary-container text-on-primary-container px-xs py-0.5 rounded text-[11px]"
-										>12</span
+										>{{ stats.total }}</span
 									>
 								</button>
+
 								<button
-									class="flex items-center justify-between px-md py-sm rounded-xl text-on-surface-variant hover:bg-surface-container hover:text-on-surface font-label-md transition-all"
+									class="flex items-center justify-between px-md py-sm rounded-xl text-on-surface-variant hover:bg-surface-container hover:text-on-surface font-label-md transition-all filter-btn"
 									id="filter-unread"
-									onclick="filterNotifications('unread')"
+									onclick="
+										filterNotifications('unread', this)
+									"
 								>
 									<span class="flex items-center gap-sm"
 										><span
@@ -331,13 +344,16 @@
 									>
 									<span
 										class="bg-secondary-container text-on-secondary-container px-xs py-0.5 rounded text-[11px]"
-										>4</span
+										>{{ stats.unread }}</span
 									>
 								</button>
+
 								<button
-									class="flex items-center justify-between px-md py-sm rounded-xl text-on-surface-variant hover:bg-surface-container hover:text-on-surface font-label-md transition-all"
+									class="flex items-center justify-between px-md py-sm rounded-xl text-on-surface-variant hover:bg-surface-container hover:text-on-surface font-label-md transition-all filter-btn"
 									id="filter-booking"
-									onclick="filterNotifications('booking')"
+									onclick="
+										filterNotifications('booking', this)
+									"
 								>
 									<span class="flex items-center gap-sm"
 										><span
@@ -347,13 +363,16 @@
 									>
 									<span
 										class="text-on-surface-variant text-[11px]"
-										>5</span
+										>{{ stats.booking }}</span
 									>
 								</button>
+
 								<button
-									class="flex items-center justify-between px-md py-sm rounded-xl text-on-surface-variant hover:bg-surface-container hover:text-on-surface font-label-md transition-all"
+									class="flex items-center justify-between px-md py-sm rounded-xl text-on-surface-variant hover:bg-surface-container hover:text-on-surface font-label-md transition-all filter-btn"
 									id="filter-review"
-									onclick="filterNotifications('review')"
+									onclick="
+										filterNotifications('review', this)
+									"
 								>
 									<span class="flex items-center gap-sm"
 										><span
@@ -363,13 +382,16 @@
 									>
 									<span
 										class="text-on-surface-variant text-[11px]"
-										>3</span
+										>{{ stats.review }}</span
 									>
 								</button>
+
 								<button
-									class="flex items-center justify-between px-md py-sm rounded-xl text-on-surface-variant hover:bg-surface-container hover:text-on-surface font-label-md transition-all"
+									class="flex items-center justify-between px-md py-sm rounded-xl text-on-surface-variant hover:bg-surface-container hover:text-on-surface font-label-md transition-all filter-btn"
 									id="filter-system"
-									onclick="filterNotifications('system')"
+									onclick="
+										filterNotifications('system', this)
+									"
 								>
 									<span class="flex items-center gap-sm"
 										><span
@@ -379,10 +401,12 @@
 									>
 									<span
 										class="text-on-surface-variant text-[11px]"
-										>4</span
+										>{{ stats.system }}</span
 									>
 								</button>
 							</div>
+
+							<!-- Notice Box -->
 							<div
 								class="bg-tertiary-fixed/30 p-lg rounded-xl flex flex-col gap-sm"
 							>
@@ -405,29 +429,57 @@
 								</p>
 							</div>
 						</div>
+
+						<!-- Right List (Notifications) -->
 						<div
 							class="lg:col-span-3 flex flex-col gap-md"
 							id="notification-list"
 						>
+							{% for n in notifs %}
+
+							<!-- CÁC THIẾT KẾ CSS PHỤ THUỘC VÀO TRẠNG THÁI VÀ CATEGORY (BÁM SÁT 100% BẢN GỐC) -->
+							{% set is_read_class = 'opacity-75' if n.is_read
+							else '' %} {% set line_color =
+							'bg-secondary-container' if n.category == 'booking'
+							else ('bg-error' if n.category == 'system' else
+							'bg-secondary-container') %} {% set icon_color =
+							'bg-secondary-container/20 text-secondary' if
+							n.category == 'booking' else ('bg-error-container
+							text-error' if n.category == 'system' else
+							'bg-tertiary-fixed text-on-primary-fixed') %} {% set
+							icon_name = 'book_online' if n.category == 'booking'
+							else ('warning' if n.category == 'system' else
+							'star') %}
+
+							<!-- Đã đọc thì background icon xám mờ giống bản gốc -->
+							{% if n.is_read %} {% set icon_color =
+							'bg-surface-container text-on-surface-variant' %} {%
+							set icon_name = 'info' if n.category == 'system'
+							else icon_name %} {% endif %}
+
 							<div
-								class="notif-item bg-surface-container-lowest p-lg rounded-xl shadow-[0_4px_20px_rgba(0,0,0,0.03)] flex items-start gap-md relative overflow-hidden transition-all hover:shadow-md"
-								data-category="booking"
-								data-read="false"
+								class="notif-item bg-surface-container-lowest p-lg rounded-xl shadow-[0_4px_20px_rgba(0,0,0,0.03)] flex items-start gap-md relative overflow-hidden transition-all hover:shadow-md {{ is_read_class }}"
+								data-category="{{ n.category }}"
+								data-read="{{ 'true' if n.is_read else 'false' }}"
 							>
+								{% if not n.is_read %}
 								<div
-									class="absolute left-0 top-0 bottom-0 w-1 bg-secondary-container"
+									class="absolute left-0 top-0 bottom-0 w-1 {{ line_color }}"
 								></div>
+								{% endif %}
+
 								<div
-									class="w-10 h-10 rounded-full bg-secondary-container/20 text-secondary flex items-center justify-center shrink-0"
+									class="w-10 h-10 rounded-full {{ icon_color }} flex items-center justify-center shrink-0"
 								>
 									<span
 										class="material-symbols-outlined text-[20px]"
 										style="
 											font-variation-settings: 'FILL' 1;
 										"
-										>book_online</span
+										>{{ icon_name }}</span
 									>
 								</div>
+
 								<div class="flex-1 min-w-0">
 									<div
 										class="flex items-center justify-between mb-xs"
@@ -435,253 +487,95 @@
 										<h3
 											class="font-label-md text-on-surface flex items-center gap-sm"
 										>
-											Đơn đặt phòng mới #BK-9824
+											{{ n.title }} {% if not n.is_read %}
 											<span
 												class="bg-secondary-container text-on-secondary-container px-xs py-0.5 rounded text-[10px] font-semibold"
 												>Chưa đọc</span
 											>
+											{% endif %}
 										</h3>
 										<span
 											class="font-caption text-on-surface-variant"
-											>10 phút trước</span
+											>{{ n.time_ago }}</span
 										>
 									</div>
 									<p
-										class="font-body-md text-on-surface-variant mb-md"
+										class="font-body-md text-on-surface-variant {{ 'mb-md' if not n.is_read else '' }}"
 									>
-										Khách hàng Nguyễn Văn An đã đặt phòng
-										Deluxe Suite cho 2 người từ 15/10 -
-										18/10/2023. Tổng giá trị: 4.500.000đ.
+										{{ n.message }}
 									</p>
+
+									<!-- HIỂN THỊ CÁC NÚT BẤM (CHỈ KHI CHƯA ĐỌC) -->
+									{% if not n.is_read %}
 									<div class="flex items-center gap-sm">
+										{% if n.category == 'booking' %}
 										<button
+											onclick="window.location.href=`{{ url_for('host.bookings_management') }}`"
 											class="px-md py-sm bg-primary text-on-primary font-label-md rounded-xl text-xs hover:opacity-90 transition-all"
 										>
 											Xác nhận ngay
 										</button>
 										<button
+											onclick="window.location.href=`{{ url_for('host.bookings_management') }}`"
 											class="px-md py-sm bg-surface-container hover:bg-surface-container-high text-on-surface font-label-md rounded-xl text-xs transition-all"
 										>
 											Xem chi tiết
 										</button>
+										{% elif n.category == 'review' %}
 										<button
-											class="ml-auto text-on-surface-variant hover:text-on-surface font-caption flex items-center gap-xs"
-											onclick="markAsRead(this)"
-										>
-											<span
-												class="material-symbols-outlined text-[16px]"
-												>done</span
-											>Đánh dấu đã đọc
-										</button>
-									</div>
-								</div>
-							</div>
-							<div
-								class="notif-item bg-surface-container-lowest p-lg rounded-xl shadow-[0_4px_20px_rgba(0,0,0,0.03)] flex items-start gap-md relative overflow-hidden transition-all hover:shadow-md"
-								data-category="review"
-								data-read="false"
-							>
-								<div
-									class="absolute left-0 top-0 bottom-0 w-1 bg-secondary-container"
-								></div>
-								<div
-									class="w-10 h-10 rounded-full bg-tertiary-fixed text-on-primary-fixed flex items-center justify-center shrink-0"
-								>
-									<span
-										class="material-symbols-outlined text-[20px]"
-										style="
-											font-variation-settings: 'FILL' 1;
-										"
-										>star</span
-									>
-								</div>
-								<div class="flex-1 min-w-0">
-									<div
-										class="flex items-center justify-between mb-xs"
-									>
-										<h3
-											class="font-label-md text-on-surface flex items-center gap-sm"
-										>
-											Đánh giá mới (5 sao) từ Trần Thị Mai
-											<span
-												class="bg-secondary-container text-on-secondary-container px-xs py-0.5 rounded text-[10px] font-semibold"
-												>Chưa đọc</span
-											>
-										</h3>
-										<span
-											class="font-caption text-on-surface-variant"
-											>1 giờ trước</span
-										>
-									</div>
-									<p
-										class="font-body-md text-on-surface-variant mb-md"
-									>
-										"Phòng ốc cực kỳ sạch sẽ, nhân viên niềm
-										nở và view hướng biển tuyệt đẹp. Chắc
-										chắn sẽ quay lại vào dịp gần nhất!"
-									</p>
-									<div class="flex items-center gap-sm">
-										<button
+											onclick="window.location.href=`{{ url_for('host.reviews') }}`"
 											class="px-md py-sm bg-primary text-on-primary font-label-md rounded-xl text-xs hover:opacity-90 transition-all"
 										>
 											Gửi phản hồi
 										</button>
-										<button
-											class="ml-auto text-on-surface-variant hover:text-on-surface font-caption flex items-center gap-xs"
-											onclick="markAsRead(this)"
-										>
-											<span
-												class="material-symbols-outlined text-[16px]"
-												>done</span
-											>Đánh dấu đã đọc
-										</button>
-									</div>
-								</div>
-							</div>
-							<div
-								class="notif-item bg-surface-container-lowest p-lg rounded-xl shadow-[0_4px_20px_rgba(0,0,0,0.03)] flex items-start gap-md relative overflow-hidden transition-all hover:shadow-md"
-								data-category="system"
-								data-read="false"
-							>
-								<div
-									class="absolute left-0 top-0 bottom-0 w-1 bg-error"
-								></div>
-								<div
-									class="w-10 h-10 rounded-full bg-error-container text-error flex items-center justify-center shrink-0"
-								>
-									<span
-										class="material-symbols-outlined text-[20px]"
-										style="
-											font-variation-settings: 'FILL' 1;
-										"
-										>warning</span
-									>
-								</div>
-								<div class="flex-1 min-w-0">
-									<div
-										class="flex items-center justify-between mb-xs"
-									>
-										<h3
-											class="font-label-md text-on-surface flex items-center gap-sm"
-										>
-											Cảnh báo hệ thống: Xác thực tài
-											khoản thanh toán
-											<span
-												class="bg-secondary-container text-on-secondary-container px-xs py-0.5 rounded text-[10px] font-semibold"
-												>Chưa đọc</span
-											>
-										</h3>
-										<span
-											class="font-caption text-on-surface-variant"
-											>Hôm qua</span
-										>
-									</div>
-									<p
-										class="font-body-md text-on-surface-variant mb-md"
-									>
-										Vui lòng cập nhật thông tin giấy phép
-										kinh doanh trước ngày 30/10/2023 để
-										tránh gián đoạn quy trình nhận thanh
-										toán tự động.
-									</p>
-									<div class="flex items-center gap-sm">
+										{% elif n.category == 'system' %}
 										<button
 											class="px-md py-sm bg-primary text-on-primary font-label-md rounded-xl text-xs hover:opacity-90 transition-all"
 										>
 											Cập nhật ngay
 										</button>
-										<button
-											class="ml-auto text-on-surface-variant hover:text-on-surface font-caption flex items-center gap-xs"
-											onclick="markAsRead(this)"
+										{% endif %}
+
+										<!-- Form ẩn để gửi lệnh Đánh dấu đã đọc -->
+										<form
+											method="POST"
+											action="{{ url_for('host.notifications') }}"
+											class="ml-auto m-0 p-0"
 										>
-											<span
-												class="material-symbols-outlined text-[16px]"
-												>done</span
-											>Đánh dấu đã đọc
-										</button>
+											<input
+												type="hidden"
+												name="action"
+												value="mark_read"
+											/>
+											<input
+												type="hidden"
+												name="notif_id"
+												value="{{ n.id }}"
+											/>
+											<button
+												type="submit"
+												class="text-on-surface-variant hover:text-on-surface font-caption flex items-center gap-xs"
+											>
+												<span
+													class="material-symbols-outlined text-[16px]"
+													>done</span
+												>Đánh dấu đã đọc
+											</button>
+										</form>
 									</div>
+									{% endif %}
 								</div>
 							</div>
-							<div
-								class="notif-item bg-surface-container-lowest p-lg rounded-xl shadow-[0_4px_20px_rgba(0,0,0,0.03)] flex items-start gap-md relative overflow-hidden transition-all hover:shadow-md opacity-75"
-								data-category="booking"
-								data-read="true"
-							>
-								<div
-									class="w-10 h-10 rounded-full bg-surface-container text-on-surface-variant flex items-center justify-center shrink-0"
-								>
-									<span
-										class="material-symbols-outlined text-[20px]"
-										>book_online</span
-									>
-								</div>
-								<div class="flex-1 min-w-0">
-									<div
-										class="flex items-center justify-between mb-xs"
-									>
-										<h3
-											class="font-label-md text-on-surface"
-										>
-											Đơn đặt phòng #BK-9820 đã hoàn thành
-										</h3>
-										<span
-											class="font-caption text-on-surface-variant"
-											>2 ngày trước</span
-										>
-									</div>
-									<p
-										class="font-body-md text-on-surface-variant"
-									>
-										Khách hàng Lê Hoàng Long đã check-out
-										thành công khỏi phòng Standard Double.
-									</p>
-								</div>
-							</div>
-							<div
-								class="notif-item bg-surface-container-lowest p-lg rounded-xl shadow-[0_4px_20px_rgba(0,0,0,0.03)] flex items-start gap-md relative overflow-hidden transition-all hover:shadow-md opacity-75"
-								data-category="system"
-								data-read="true"
-							>
-								<div
-									class="w-10 h-10 rounded-full bg-surface-container text-on-surface-variant flex items-center justify-center shrink-0"
-								>
-									<span
-										class="material-symbols-outlined text-[20px]"
-										>info</span
-									>
-								</div>
-								<div class="flex-1 min-w-0">
-									<div
-										class="flex items-center justify-between mb-xs"
-									>
-										<h3
-											class="font-label-md text-on-surface"
-										>
-											Báo cáo doanh thu tháng 9 đã sẵn
-											sàng
-										</h3>
-										<span
-											class="font-caption text-on-surface-variant"
-											>3 ngày trước</span
-										>
-									</div>
-									<p
-										class="font-body-md text-on-surface-variant"
-									>
-										Hệ thống đã tổng hợp báo cáo tài chính
-										tháng 9/2023. Tổng doanh thu tăng 15% so
-										với tháng trước.
-									</p>
-								</div>
-							</div>
+							{% endfor %}
 						</div>
 					</div>
+
+					<!-- SCRIPTS ĐỂ LỌC -->
 					<script>
-						function filterNotifications(category) {
-							// Update active button state
-							const buttons = document.querySelectorAll(
-								'.lg\\:col-span-1 button[onclick^="filterNotifications"]',
-							);
+						function filterNotifications(category, btnElement) {
+							// Cập nhật lại UI cho các nút ở sidebar
+							const buttons =
+								document.querySelectorAll('.filter-btn');
 							buttons.forEach((btn) => {
 								btn.classList.remove(
 									'bg-primary',
@@ -694,20 +588,17 @@
 								);
 							});
 
-							const activeBtn = document.getElementById(
-								'filter-' + category,
-							);
-							activeBtn.classList.remove(
+							btnElement.classList.remove(
 								'text-on-surface-variant',
 								'hover:bg-surface-container',
 								'hover:text-on-surface',
 							);
-							activeBtn.classList.add(
+							btnElement.classList.add(
 								'bg-primary',
 								'text-on-primary',
 							);
 
-							// Filter items
+							// Xử lý logic Ẩn/Hiện thông báo
 							const items =
 								document.querySelectorAll('.notif-item');
 							items.forEach((item) => {
@@ -725,43 +616,6 @@
 									item.style.display =
 										cat === category ? 'flex' : 'none';
 								}
-							});
-						}
-
-						function markAsRead(button) {
-							const item = button.closest('.notif-item');
-							item.setAttribute('data-read', 'true');
-							item.classList.add('opacity-75');
-							const badge = item.querySelector(
-								'.bg-secondary-container',
-							);
-							if (badge) badge.remove();
-							const indicator =
-								item.querySelector('.absolute.left-0');
-							if (indicator) indicator.remove();
-							const actionRow = button.closest(
-								'.flex.items-center.gap-sm',
-							);
-							button.parentElement.remove();
-						}
-
-						function markAllAsRead() {
-							const items =
-								document.querySelectorAll('.notif-item');
-							items.forEach((item) => {
-								item.setAttribute('data-read', 'true');
-								item.classList.add('opacity-75');
-								const badge = item.querySelector(
-									'.bg-secondary-container',
-								);
-								if (badge) badge.remove();
-								const indicator =
-									item.querySelector('.absolute.left-0');
-								if (indicator) indicator.remove();
-								const markBtn = item.querySelector(
-									'button[onclick="markAsRead(this)"]',
-								);
-								if (markBtn) markBtn.parentElement.remove();
 							});
 						}
 					</script>

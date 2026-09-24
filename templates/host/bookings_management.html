@@ -160,6 +160,7 @@
 		</script>
 	</head>
 	<body class="bg-surface font-body-md text-on-surface">
+		<!-- SIDEBAR CHUẨN ĐỒNG BỘ -->
 		<aside
 			class="fixed left-0 top-0 h-full w-64 bg-surface-container-low z-50 flex flex-col pt-lg pb-lg"
 		>
@@ -170,62 +171,55 @@
 					>travel_explore</span
 				><span>DaNang Travel</span>
 			</div>
-			<nav
-				class="flex-1 px-md flex flex-col gap-xs"
-				data-active-classes="bg-primary-container text-on-primary-container font-semibold"
-			>
+			<nav class="flex-1 px-md flex flex-col gap-xs">
 				<a
 					class="flex items-center px-md py-sm rounded-xl text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-all"
-					data-path="bang-dieu-khien"
-					href="#"
+					href="{{ url_for('host.dashboard') }}"
 					><span class="material-symbols-outlined mr-md"
 						>dashboard</span
 					>Bảng điều khiển</a
-				><a
+				>
+				<a
 					class="flex items-center px-md py-sm rounded-xl text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-all"
-					data-path="thong-tin-co-so"
-					href="#"
+					href="{{ url_for('host.accommodation_info') }}"
 					><span class="material-symbols-outlined mr-md"
 						>apartment</span
 					>Thông tin cơ sở</a
-				><a
+				>
+				<!-- ACTIVE TAB: Dùng màu xám nhẹ đồng bộ giao diện Sidebar -->
+				<a
 					class="flex items-center px-md py-sm rounded-xl text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-all"
-					data-path="quan-ly-phong"
-					href="#"
+					href="{{ url_for('host.rooms_management') }}"
 					><span class="material-symbols-outlined mr-md"
 						>meeting_room</span
 					>Quản lý phòng</a
-				><a
-					class="flex items-center px-md py-sm rounded-xl text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-all"
-					data-path="don-dat-phong"
-					href="#"
+				>
+				<a
+					class="flex items-center px-md py-sm rounded-xl bg-surface-container-high text-on-surface font-semibold transition-all"
+					href="{{ url_for('host.bookings_management') }}"
 					><span class="material-symbols-outlined mr-md"
 						>book_online</span
 					>Đơn đặt phòng</a
 				><a
 					class="flex items-center px-md py-sm rounded-xl text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-all"
-					data-path="danh-gia"
-					href="#"
+					href="{{ url_for('host.reviews') }}"
 					><span class="material-symbols-outlined mr-md">star</span
 					>Đánh giá</a
 				><a
 					class="flex items-center px-md py-sm rounded-xl text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-all"
-					data-path="thong-ke-bao-cao"
-					href="#"
+					href="{{ url_for('host.analytics') }}"
 					><span class="material-symbols-outlined mr-md"
 						>bar_chart</span
 					>Thống kê &amp; Báo cáo</a
 				><a
 					class="flex items-center px-md py-sm rounded-xl text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-all"
-					data-path="thong-bao"
-					href="#"
+					href="{{ url_for('host.notifications') }}"
 					><span class="material-symbols-outlined mr-md"
 						>notifications</span
 					>Thông báo</a
 				><a
 					class="flex items-center px-md py-sm rounded-xl text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-all"
-					data-path="tai-khoan-ca-nhan"
-					href="#"
+					href="{{ url_for('host.profile') }}"
 					><span class="material-symbols-outlined mr-md"
 						>account_circle</span
 					>Tài khoản cá nhân</a
@@ -241,6 +235,8 @@
 					><input
 						class="bg-transparent border-none outline-none text-on-surface placeholder:text-outline text-body-md w-64"
 						placeholder="Tìm kiếm nhanh..."
+						id="searchInput"
+						onkeyup="searchBookings()"
 						type="text"
 					/>
 				</div>
@@ -256,6 +252,25 @@
 				</div>
 			</header>
 			<main class="relative pt-20 bg-surface min-h-screen p-xl">
+				<!-- Flash messages -->
+				{% with messages = get_flashed_messages(with_categories=true) %}
+				{% if messages %} {% for category, message in messages %}
+				<div
+					id="flash-msg"
+					class="mb-md p-md rounded-lg text-on-primary bg-primary flex items-center justify-between shadow"
+				>
+					<span>{{ message }}</span>
+					<span
+						class="material-symbols-outlined cursor-pointer"
+						onclick="
+							document.getElementById('flash-msg').style.display =
+								'none'
+						"
+						>close</span
+					>
+				</div>
+				{% endfor %} {% endif %} {% endwith %}
+
 				<div class="flex flex-col w-full">
 					<!-- Top header stats banner -->
 					<div class="grid grid-cols-1 md:grid-cols-4 gap-lg mb-xl">
@@ -271,7 +286,7 @@
 								<h3
 									class="text-headline-lg font-headline-lg text-primary"
 								>
-									24
+									{{ stats.total }}
 								</h3>
 							</div>
 							<div
@@ -294,7 +309,7 @@
 								<h3
 									class="text-headline-lg font-headline-lg text-secondary"
 								>
-									06
+									{{ stats.pending }}
 								</h3>
 							</div>
 							<div
@@ -317,7 +332,7 @@
 								<h3
 									class="text-headline-lg font-headline-lg text-primary"
 								>
-									15
+									{{ stats.confirmed }}
 								</h3>
 							</div>
 							<div
@@ -340,7 +355,7 @@
 								<h3
 									class="text-headline-lg font-headline-lg text-error"
 								>
-									03
+									{{ stats.cancelled }}
 								</h3>
 							</div>
 							<div
@@ -360,24 +375,28 @@
 							class="flex items-center gap-sm overflow-x-auto w-full md:w-auto pb-2 md:pb-0"
 						>
 							<button
-								class="px-md py-sm rounded-full bg-primary text-on-primary label-md transition-all"
+								class="filter-btn px-md py-sm rounded-full bg-primary text-on-primary label-md transition-all"
+								onclick="filterBookings('all', this)"
 							>
-								Tất cả (24)
+								Tất cả ({{ stats.total }})
 							</button>
 							<button
-								class="px-md py-sm rounded-full bg-surface-container text-on-surface-variant hover:bg-surface-container-high label-md transition-all"
+								class="filter-btn px-md py-sm rounded-full bg-surface-container text-on-surface-variant hover:bg-surface-container-high label-md transition-all"
+								onclick="filterBookings('Pending', this)"
 							>
-								Chờ xác nhận (6)
+								Chờ xác nhận ({{ stats.pending }})
 							</button>
 							<button
-								class="px-md py-sm rounded-full bg-surface-container text-on-surface-variant hover:bg-surface-container-high label-md transition-all"
+								class="filter-btn px-md py-sm rounded-full bg-surface-container text-on-surface-variant hover:bg-surface-container-high label-md transition-all"
+								onclick="filterBookings('Confirmed', this)"
 							>
-								Đã xác nhận (15)
+								Đã xác nhận ({{ stats.confirmed }})
 							</button>
 							<button
-								class="px-md py-sm rounded-full bg-surface-container text-on-surface-variant hover:bg-surface-container-high label-md transition-all"
+								class="filter-btn px-md py-sm rounded-full bg-surface-container text-on-surface-variant hover:bg-surface-container-high label-md transition-all"
+								onclick="filterBookings('Cancelled', this)"
 							>
-								Đã hủy (3)
+								Đã hủy ({{ stats.cancelled }})
 							</button>
 						</div>
 						<div
@@ -391,14 +410,18 @@
 									>filter_list</span
 								>
 								<select
+									id="sortSelect"
+									onchange="sortBookings()"
 									class="bg-transparent border-none outline-none text-on-surface label-md w-full cursor-pointer"
 								>
-									<option>Sắp xếp: Mới nhất</option>
-									<option>Thời gian nhận phòng</option>
-									<option>Tên khách hàng</option>
+									<option value="newest">
+										Sắp xếp: Mới nhất
+									</option>
+									<option value="name">Tên khách hàng</option>
 								</select>
 							</div>
 							<button
+								onclick="openAddBookingModal()"
 								class="px-lg py-sm rounded-full bg-secondary text-on-secondary label-md flex items-center gap-sm shadow-sm hover:opacity-90 transition-all"
 							>
 								<span
@@ -413,7 +436,7 @@
 					<div
 						class="bg-surface-container-lowest rounded-xl shadow-[0_4px_20px_rgba(0,9,27,0.03)] overflow-hidden"
 					>
-						<div class="overflow-x-auto">
+						<div class="overflow-x-auto min-h-[400px]">
 							<table class="w-full text-left border-collapse">
 								<thead>
 									<tr
@@ -433,15 +456,20 @@
 								</thead>
 								<tbody
 									class="divide-y divide-surface-container"
+									id="bookingsTableBody"
 								>
-									<!-- Row 1: Pending -->
+									<!-- Render data động bằng Jinja2 giữ 100% css -->
+									{% for b in bookings %}
 									<tr
-										class="hover:bg-surface-container-low transition-colors"
+										class="booking-row hover:bg-surface-container-low transition-colors"
+										data-status="{{ b.status }}"
+										data-name="{{ b.guest_name }}"
+										data-date="{{ b.created_at }}"
 									>
 										<td
 											class="py-md px-lg font-semibold text-primary"
 										>
-											#MT-84920
+											#MT-{{ b.id }}
 										</td>
 										<td class="py-md px-lg">
 											<div
@@ -450,45 +478,50 @@
 												<div
 													class="w-8 h-8 rounded-full bg-surface-container-high flex items-center justify-center font-semibold text-primary"
 												>
-													NV
+													{{ b.guest_initials }}
 												</div>
 												<div>
 													<div
 														class="font-semibold text-on-surface"
 													>
-														Nguyễn Văn A
+														{{ b.guest_name }}
 													</div>
 													<div
 														class="text-caption text-outline"
 													>
-														+84 912 345 678
+														{{ b.guest_phone }}
 													</div>
 												</div>
 											</div>
 										</td>
 										<td class="py-md px-lg">
 											<span class="text-on-surface"
-												>Deluxe Ocean View</span
+												>{{ b.room_name }} ({{
+												b.room_type }})</span
 											>
 											<div
 												class="text-caption text-outline"
 											>
-												1 Giường King • 2 Khách
+												{{ b.capacity }} Khách
 											</div>
 										</td>
 										<td class="py-md px-lg">
 											<div
 												class="text-on-surface font-medium"
 											>
-												24/10/2023 - 26/10/2023
+												{{ b.check_in }} - {{
+												b.check_out }}
 											</div>
 											<div
 												class="text-caption text-outline"
 											>
-												2 đêm
+												{{ b.nights }} đêm | {{
+												"{:,.0f}".format(b.total_price).replace(',',
+												'.') }} đ
 											</div>
 										</td>
 										<td class="py-md px-lg">
+											{% if b.status == 'Pending' %}
 											<span
 												class="inline-flex items-center gap-xs px-md py-xs rounded-full bg-secondary-fixed text-on-secondary-fixed label-md"
 											>
@@ -497,108 +530,7 @@
 												></span>
 												Chờ xác nhận
 											</span>
-										</td>
-										<td class="py-md px-lg text-right">
-											<div
-												class="flex items-center justify-end gap-sm"
-											>
-												<button
-													class="p-sm rounded-xl bg-tertiary-fixed text-on-tertiary-fixed hover:opacity-80 transition-all"
-													onclick="
-														updateStatus(
-															this,
-															'confirmed',
-														)
-													"
-													title="Xác nhận"
-												>
-													<span
-														class="material-symbols-outlined text-[18px]"
-														>check</span
-													>
-												</button>
-												<button
-													class="p-sm rounded-xl bg-error-container text-on-error-container hover:opacity-80 transition-all"
-													onclick="
-														updateStatus(
-															this,
-															'cancelled',
-														)
-													"
-													title="Từ chối"
-												>
-													<span
-														class="material-symbols-outlined text-[18px]"
-														>close</span
-													>
-												</button>
-												<button
-													class="p-sm rounded-xl bg-surface-container text-on-surface-variant hover:bg-surface-container-high transition-all"
-													title="Chi tiết"
-												>
-													<span
-														class="material-symbols-outlined text-[18px]"
-														>visibility</span
-													>
-												</button>
-											</div>
-										</td>
-									</tr>
-									<!-- Row 2: Confirmed -->
-									<tr
-										class="hover:bg-surface-container-low transition-colors"
-									>
-										<td
-											class="py-md px-lg font-semibold text-primary"
-										>
-											#MT-84919
-										</td>
-										<td class="py-md px-lg">
-											<div
-												class="flex items-center gap-md"
-											>
-												<div
-													class="w-8 h-8 rounded-full bg-surface-container-high flex items-center justify-center font-semibold text-primary"
-												>
-													TT
-												</div>
-												<div>
-													<div
-														class="font-semibold text-on-surface"
-													>
-														Trần Thị B
-													</div>
-													<div
-														class="text-caption text-outline"
-													>
-														+84 988 111 222
-													</div>
-												</div>
-											</div>
-										</td>
-										<td class="py-md px-lg">
-											<span class="text-on-surface"
-												>Grand Suite Beach</span
-											>
-											<div
-												class="text-caption text-outline"
-											>
-												2 Giường Đơn • 3 Khách
-											</div>
-										</td>
-										<td class="py-md px-lg">
-											<div
-												class="text-on-surface font-medium"
-											>
-												25/10/2023 - 28/10/2023
-											</div>
-											<div
-												class="text-caption text-outline"
-											>
-												3 đêm
-											</div>
-										</td>
-										<td class="py-md px-lg">
+											{% elif b.status == 'Confirmed' %}
 											<span
 												class="inline-flex items-center gap-xs px-md py-xs rounded-full bg-tertiary-fixed text-on-tertiary-fixed label-md"
 											>
@@ -607,78 +539,7 @@
 												></span>
 												Đã xác nhận
 											</span>
-										</td>
-										<td class="py-md px-lg text-right">
-											<div
-												class="flex items-center justify-end gap-sm"
-											>
-												<button
-													class="p-sm rounded-xl bg-surface-container text-on-surface-variant hover:bg-surface-container-high transition-all"
-													title="Chi tiết"
-												>
-													<span
-														class="material-symbols-outlined text-[18px]"
-														>visibility</span
-													>
-												</button>
-											</div>
-										</td>
-									</tr>
-									<!-- Row 3: Cancelled -->
-									<tr
-										class="hover:bg-surface-container-low transition-colors"
-									>
-										<td
-											class="py-md px-lg font-semibold text-primary"
-										>
-											#MT-84918
-										</td>
-										<td class="py-md px-lg">
-											<div
-												class="flex items-center gap-md"
-											>
-												<div
-													class="w-8 h-8 rounded-full bg-surface-container-high flex items-center justify-center font-semibold text-primary"
-												>
-													LH
-												</div>
-												<div>
-													<div
-														class="font-semibold text-on-surface"
-													>
-														Lê Hoàng C
-													</div>
-													<div
-														class="text-caption text-outline"
-													>
-														+84 905 777 888
-													</div>
-												</div>
-											</div>
-										</td>
-										<td class="py-md px-lg">
-											<span class="text-on-surface"
-												>Executive Suite</span
-											>
-											<div
-												class="text-caption text-outline"
-											>
-												1 Giường King • 2 Khách
-											</div>
-										</td>
-										<td class="py-md px-lg">
-											<div
-												class="text-on-surface font-medium"
-											>
-												26/10/2023 - 27/10/2023
-											</div>
-											<div
-												class="text-caption text-outline"
-											>
-												1 đêm
-											</div>
-										</td>
-										<td class="py-md px-lg">
+											{% else %}
 											<span
 												class="inline-flex items-center gap-xs px-md py-xs rounded-full bg-error-container text-on-error-container label-md"
 											>
@@ -687,99 +548,16 @@
 												></span>
 												Đã hủy
 											</span>
+											{% endif %}
 										</td>
 										<td class="py-md px-lg text-right">
 											<div
 												class="flex items-center justify-end gap-sm"
 											>
-												<button
-													class="p-sm rounded-xl bg-surface-container text-on-surface-variant hover:bg-surface-container-high transition-all"
-													title="Chi tiết"
-												>
-													<span
-														class="material-symbols-outlined text-[18px]"
-														>visibility</span
-													>
-												</button>
-											</div>
-										</td>
-									</tr>
-									<!-- Row 4: Pending -->
-									<tr
-										class="hover:bg-surface-container-low transition-colors"
-									>
-										<td
-											class="py-md px-lg font-semibold text-primary"
-										>
-											#MT-84917
-										</td>
-										<td class="py-md px-lg">
-											<div
-												class="flex items-center gap-md"
-											>
-												<div
-													class="w-8 h-8 rounded-full bg-surface-container-high flex items-center justify-center font-semibold text-primary"
-												>
-													PM
-												</div>
-												<div>
-													<div
-														class="font-semibold text-on-surface"
-													>
-														Phạm Minh D
-													</div>
-													<div
-														class="text-caption text-outline"
-													>
-														+84 935 444 555
-													</div>
-												</div>
-											</div>
-										</td>
-										<td class="py-md px-lg">
-											<span class="text-on-surface"
-												>Deluxe Ocean View</span
-											>
-											<div
-												class="text-caption text-outline"
-											>
-												1 Giường King • 2 Khách
-											</div>
-										</td>
-										<td class="py-md px-lg">
-											<div
-												class="text-on-surface font-medium"
-											>
-												27/10/2023 - 30/10/2023
-											</div>
-											<div
-												class="text-caption text-outline"
-											>
-												3 đêm
-											</div>
-										</td>
-										<td class="py-md px-lg">
-											<span
-												class="inline-flex items-center gap-xs px-md py-xs rounded-full bg-secondary-fixed text-on-secondary-fixed label-md"
-											>
-												<span
-													class="w-1.5 h-1.5 rounded-full bg-secondary"
-												></span>
-												Chờ xác nhận
-											</span>
-										</td>
-										<td class="py-md px-lg text-right">
-											<div
-												class="flex items-center justify-end gap-sm"
-											>
+												{% if b.status == 'Pending' %}
 												<button
 													class="p-sm rounded-xl bg-tertiary-fixed text-on-tertiary-fixed hover:opacity-80 transition-all"
-													onclick="
-														updateStatus(
-															this,
-															'confirmed',
-														)
-													"
+													onclick="submitStatusUpdate('{{ b.id }}', 'Confirmed')"
 													title="Xác nhận"
 												>
 													<span
@@ -789,12 +567,7 @@
 												</button>
 												<button
 													class="p-sm rounded-xl bg-error-container text-on-error-container hover:opacity-80 transition-all"
-													onclick="
-														updateStatus(
-															this,
-															'cancelled',
-														)
-													"
+													onclick="submitStatusUpdate('{{ b.id }}', 'Cancelled')"
 													title="Từ chối"
 												>
 													<span
@@ -802,6 +575,7 @@
 														>close</span
 													>
 												</button>
+												{% endif %}
 												<button
 													class="p-sm rounded-xl bg-surface-container text-on-surface-variant hover:bg-surface-container-high transition-all"
 													title="Chi tiết"
@@ -814,6 +588,7 @@
 											</div>
 										</td>
 									</tr>
+									{% endfor %}
 								</tbody>
 							</table>
 						</div>
@@ -821,85 +596,366 @@
 						<div
 							class="p-lg flex items-center justify-between border-t border-surface-container"
 						>
-							<span class="text-caption text-outline"
+							<span
+								class="text-caption text-outline"
+								id="page-info"
 								>Hiển thị 1-4 trên tổng số 24 đơn đặt
 								phòng</span
 							>
-							<div class="flex items-center gap-sm">
-								<button
-									class="w-8 h-8 rounded-xl bg-surface-container flex items-center justify-center text-on-surface-variant hover:bg-surface-container-high transition-all disabled:opacity-50"
-									disabled=""
-								>
-									<span
-										class="material-symbols-outlined text-[18px]"
-										>chevron_left</span
-									>
-								</button>
-								<button
-									class="w-8 h-8 rounded-xl bg-primary text-on-primary label-md flex items-center justify-center"
-								>
-									1
-								</button>
-								<button
-									class="w-8 h-8 rounded-xl bg-surface-container text-on-surface-variant label-md flex items-center justify-center hover:bg-surface-container-high transition-all"
-								>
-									2
-								</button>
-								<button
-									class="w-8 h-8 rounded-xl bg-surface-container text-on-surface-variant label-md flex items-center justify-center hover:bg-surface-container-high transition-all"
-								>
-									3
-								</button>
-								<button
-									class="w-8 h-8 rounded-xl bg-surface-container flex items-center justify-center text-on-surface-variant hover:bg-surface-container-high transition-all"
-								>
-									<span
-										class="material-symbols-outlined text-[18px]"
-										>chevron_right</span
-									>
-								</button>
+							<div
+								class="flex items-center gap-sm"
+								id="pagination-buttons"
+							>
+								<!-- Nút tự sinh bằng Javascript y hệt CSS gốc -->
 							</div>
 						</div>
 					</div>
-					<script>
-						function updateStatus(btn, status) {
-							const row = btn.closest('tr');
-							const statusCell = row.querySelector(
-								'td:nth-last-child(2)',
-							);
-							const actionCell =
-								row.querySelector('td:last-child');
 
-							if (status === 'confirmed') {
-								statusCell.innerHTML = `
-          <span class="inline-flex items-center gap-xs px-md py-xs rounded-full bg-tertiary-fixed text-on-tertiary-fixed label-md">
-            <span class="w-1.5 h-1.5 rounded-full bg-primary"></span>
-            Đã xác nhận
-          </span>
-        `;
-								actionCell.innerHTML = `
-          <div class="flex items-center justify-end gap-sm">
-            <button class="p-sm rounded-xl bg-surface-container text-on-surface-variant hover:bg-surface-container-high transition-all" title="Chi tiết">
-              <span class="material-symbols-outlined text-[18px]">visibility</span>
-            </button>
-          </div>
-        `;
-							} else if (status === 'cancelled') {
-								statusCell.innerHTML = `
-          <span class="inline-flex items-center gap-xs px-md py-xs rounded-full bg-error-container text-on-error-container label-md">
-            <span class="w-1.5 h-1.5 rounded-full bg-error"></span>
-            Đã hủy
-          </span>
-        `;
-								actionCell.innerHTML = `
-          <div class="flex items-center justify-end gap-sm">
-            <button class="p-sm rounded-xl bg-surface-container text-on-surface-variant hover:bg-surface-container-high transition-all" title="Chi tiết">
-              <span class="material-symbols-outlined text-[18px]">visibility</span>
-            </button>
-          </div>
-        `;
+					<!-- FORM ẨN ĐỂ CẬP NHẬT TRẠNG THÁI -->
+					<form
+						id="statusForm"
+						method="POST"
+						action="{{ url_for('host.bookings_management') }}"
+						style="display: none"
+					>
+						<input
+							type="hidden"
+							name="action"
+							value="update_status"
+						/>
+						<input
+							type="hidden"
+							name="booking_id"
+							id="statusBookingId"
+						/>
+						<input type="hidden" name="status" id="statusValue" />
+					</form>
+
+					<!-- MODAL TẠO ĐƠN MỚI (CHUNG DESIGN SYSTEM TỪ ĐẦU) -->
+					<div
+						class="fixed inset-0 z-50 bg-inverse-surface/40 backdrop-blur-sm hidden flex items-center justify-center p-md"
+						id="bookingModal"
+					>
+						<div
+							class="bg-surface-container-lowest rounded-xl shadow-2xl w-full max-w-2xl p-xl relative max-h-[90vh] overflow-y-auto"
+						>
+							<div
+								class="flex items-center justify-between mb-lg sticky top-0 bg-surface-container-lowest z-10 py-xs border-b border-surface-container-high"
+							>
+								<h3
+									class="font-headline-md text-headline-md text-on-surface"
+								>
+									Tạo Đơn Mới Thủ Công
+								</h3>
+								<button
+									type="button"
+									class="p-sm rounded-lg hover:bg-surface-container text-on-surface-variant"
+									onclick="closeBookingModal()"
+								>
+									<span class="material-symbols-outlined"
+										>close</span
+									>
+								</button>
+							</div>
+
+							<form
+								method="POST"
+								action="{{ url_for('host.bookings_management') }}"
+								class="flex flex-col gap-md mt-sm"
+							>
+								<input
+									type="hidden"
+									name="action"
+									value="add_booking"
+								/>
+
+								<div
+									class="grid grid-cols-1 md:grid-cols-2 gap-md"
+								>
+									<div>
+										<label
+											class="block font-label-md text-on-surface mb-xs"
+											>Tên khách hàng
+											<span class="text-error"
+												>*</span
+											></label
+										>
+										<input
+											name="guest_name"
+											class="w-full bg-surface-container-lowest border border-outline rounded-xl px-md py-md text-on-surface focus:border-primary outline-none"
+											placeholder="Nguyễn Văn A"
+											required
+											type="text"
+										/>
+									</div>
+									<div>
+										<label
+											class="block font-label-md text-on-surface mb-xs"
+											>Số điện thoại
+											<span class="text-error"
+												>*</span
+											></label
+										>
+										<input
+											name="guest_phone"
+											class="w-full bg-surface-container-lowest border border-outline rounded-xl px-md py-md text-on-surface focus:border-primary outline-none"
+											placeholder="0912345678"
+											required
+											type="text"
+										/>
+									</div>
+									<div>
+										<label
+											class="block font-label-md text-on-surface mb-xs"
+											>Ngày nhận phòng
+											<span class="text-error"
+												>*</span
+											></label
+										>
+										<input
+											name="check_in_date"
+											class="w-full bg-surface-container-lowest border border-outline rounded-xl px-md py-md text-on-surface focus:border-primary outline-none"
+											required
+											type="date"
+										/>
+									</div>
+									<div>
+										<label
+											class="block font-label-md text-on-surface mb-xs"
+											>Ngày trả phòng
+											<span class="text-error"
+												>*</span
+											></label
+										>
+										<input
+											name="check_out_date"
+											class="w-full bg-surface-container-lowest border border-outline rounded-xl px-md py-md text-on-surface focus:border-primary outline-none"
+											required
+											type="date"
+										/>
+									</div>
+								</div>
+
+								<div>
+									<label
+										class="block font-label-md text-on-surface mb-xs"
+										>Chọn phòng trống
+										<span class="text-error">*</span></label
+									>
+									<select
+										name="room_id"
+										class="w-full bg-surface-container-lowest border border-outline rounded-xl px-md py-md text-on-surface focus:border-primary outline-none"
+										required
+									>
+										{% for r in available_rooms %}
+										<option value="{{ r.room_id }}">
+											{{ r.room_name }} ({{ r.room_type
+											}}) - {{
+											"{:,.0f}".format(r.price_per_night).replace(',',
+											'.') }}đ/đêm
+										</option>
+										{% endfor %}
+									</select>
+								</div>
+
+								<div>
+									<label
+										class="block font-label-md text-on-surface mb-xs"
+										>Tổng số tiền thanh toán (VNĐ)</label
+									>
+									<input
+										name="total_price"
+										class="w-full bg-surface-container-lowest border border-outline rounded-xl px-md py-md text-on-surface focus:border-primary outline-none"
+										placeholder="VD: 5000000"
+										type="number"
+									/>
+								</div>
+
+								<div
+									class="flex items-center justify-end gap-md mt-lg sticky bottom-0 bg-surface-container-lowest py-sm border-t border-surface-container-high"
+								>
+									<button
+										type="button"
+										class="px-lg py-md rounded-full bg-surface-container text-on-surface-variant font-label-md hover:bg-surface-container-high transition-all"
+										onclick="closeBookingModal()"
+									>
+										Hủy
+									</button>
+									<button
+										type="submit"
+										class="px-lg py-md rounded-full bg-secondary text-on-secondary font-label-md hover:bg-secondary-container transition-all"
+									>
+										Lưu đơn đặt phòng
+									</button>
+								</div>
+							</form>
+						</div>
+					</div>
+
+					<!-- JAVASCRIPT: LOGIC TÌM KIẾM, LỌC VÀ PHÂN TRANG -->
+					<script>
+						// API Xác nhận / Hủy
+						function submitStatusUpdate(bookingId, status) {
+							if (
+								confirm(
+									`Bạn chắc chắn muốn ${status === 'Confirmed' ? 'duyệt' : 'hủy'} đơn hàng #${bookingId}?`,
+								)
+							) {
+								document.getElementById(
+									'statusBookingId',
+								).value = bookingId;
+								document.getElementById('statusValue').value =
+									status;
+								document.getElementById('statusForm').submit();
 							}
 						}
+
+						// Mở/Đóng Modal thêm đơn
+						function openAddBookingModal() {
+							document
+								.getElementById('bookingModal')
+								.classList.remove('hidden');
+						}
+						function closeBookingModal() {
+							document
+								.getElementById('bookingModal')
+								.classList.add('hidden');
+						}
+
+						// LỌC, TÌM KIẾM, SẮP XẾP, PHÂN TRANG (4 ĐƠN/TRANG)
+						let currentPage = 1;
+						const itemsPerPage = 4;
+						let currentCategory = 'all';
+						let searchQuery = '';
+						let currentSort = 'newest';
+
+						function renderTable() {
+							let rows = Array.from(
+								document.querySelectorAll('.booking-row'),
+							);
+
+							// Lọc dữ liệu
+							const filteredRows = rows.filter((row) => {
+								const status = row.getAttribute('data-status');
+								const text = row.textContent.toLowerCase();
+								const matchCat =
+									currentCategory === 'all' ||
+									status === currentCategory;
+								const matchSearch = text.includes(searchQuery);
+								return matchCat && matchSearch;
+							});
+
+							// Sắp xếp
+							if (currentSort === 'name') {
+								filteredRows.sort((a, b) =>
+									a
+										.getAttribute('data-name')
+										.localeCompare(
+											b.getAttribute('data-name'),
+										),
+								);
+							} else {
+								filteredRows.sort((a, b) =>
+									b
+										.getAttribute('data-date')
+										.localeCompare(
+											a.getAttribute('data-date'),
+										),
+								);
+							}
+
+							// Phân trang
+							const totalPages =
+								Math.ceil(filteredRows.length / itemsPerPage) ||
+								1;
+							if (currentPage > totalPages)
+								currentPage = totalPages;
+
+							const start = (currentPage - 1) * itemsPerPage;
+							const end = start + itemsPerPage;
+
+							rows.forEach((r) => (r.style.display = 'none'));
+							filteredRows
+								.slice(start, end)
+								.forEach((r) => (r.style.display = ''));
+
+							// Cập nhật text hiển thị
+							const showStart =
+								filteredRows.length > 0 ? start + 1 : 0;
+							const showEnd = Math.min(end, filteredRows.length);
+							document.getElementById('page-info').textContent =
+								`Hiển thị ${showStart}-${showEnd} trên tổng số ${filteredRows.length} đơn đặt phòng`;
+
+							// Sinh HTML các nút trang chuẩn theo CSS gốc của bạn
+							const paginationContainer =
+								document.getElementById('pagination-buttons');
+							paginationContainer.innerHTML = '';
+
+							paginationContainer.innerHTML += `<button onclick="changePage(${currentPage - 1})" class="w-8 h-8 rounded-xl bg-surface-container flex items-center justify-center text-on-surface-variant hover:bg-surface-container-high transition-all disabled:opacity-50" ${currentPage === 1 ? 'disabled' : ''}><span class="material-symbols-outlined text-[18px]">chevron_left</span></button>`;
+
+							for (let i = 1; i <= totalPages; i++) {
+								if (i === currentPage) {
+									paginationContainer.innerHTML += `<button class="w-8 h-8 rounded-xl bg-primary text-on-primary label-md flex items-center justify-center">${i}</button>`;
+								} else {
+									paginationContainer.innerHTML += `<button onclick="changePage(${i})" class="w-8 h-8 rounded-xl bg-surface-container text-on-surface-variant label-md flex items-center justify-center hover:bg-surface-container-high transition-all">${i}</button>`;
+								}
+							}
+
+							paginationContainer.innerHTML += `<button onclick="changePage(${currentPage + 1})" class="w-8 h-8 rounded-xl bg-surface-container flex items-center justify-center text-on-surface-variant hover:bg-surface-container-high transition-all disabled:opacity-50" ${currentPage === totalPages ? 'disabled' : ''}><span class="material-symbols-outlined text-[18px]">chevron_right</span></button>`;
+						}
+
+						function changePage(page) {
+							currentPage = page;
+							renderTable();
+						}
+
+						function filterBookings(category, btnElement) {
+							currentCategory = category;
+							currentPage = 1;
+
+							document
+								.querySelectorAll('.filter-btn')
+								.forEach((btn) => {
+									btn.classList.remove(
+										'bg-primary',
+										'text-on-primary',
+									);
+									btn.classList.add(
+										'bg-surface-container',
+										'text-on-surface-variant',
+									);
+								});
+
+							btnElement.classList.remove(
+								'bg-surface-container',
+								'text-on-surface-variant',
+							);
+							btnElement.classList.add(
+								'bg-primary',
+								'text-on-primary',
+							);
+
+							renderTable();
+						}
+
+						function searchBookings() {
+							searchQuery = document
+								.getElementById('searchInput')
+								.value.toLowerCase();
+							currentPage = 1;
+							renderTable();
+						}
+
+						function sortBookings() {
+							currentSort =
+								document.getElementById('sortSelect').value;
+							currentPage = 1;
+							renderTable();
+						}
+
+						document.addEventListener('DOMContentLoaded', () =>
+							renderTable(),
+						);
 					</script>
 				</div>
 			</main>

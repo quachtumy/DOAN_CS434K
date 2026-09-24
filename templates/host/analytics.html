@@ -170,62 +170,56 @@
 					>travel_explore</span
 				><span>DaNang Travel</span>
 			</div>
-			<nav
-				class="flex-1 px-md flex flex-col gap-xs"
-				data-active-classes="bg-primary-container text-on-primary-container font-semibold"
-			>
+			<!-- CHUẨN SIDEBAR YÊU CẦU -->
+			<nav class="flex-1 px-md flex flex-col gap-xs">
 				<a
 					class="flex items-center px-md py-sm rounded-xl text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-all"
-					data-path="bang-dieu-khien"
-					href="#"
+					href="{{ url_for('host.dashboard') }}"
 					><span class="material-symbols-outlined mr-md"
 						>dashboard</span
 					>Bảng điều khiển</a
-				><a
+				>
+				<a
 					class="flex items-center px-md py-sm rounded-xl text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-all"
-					data-path="thong-tin-co-so"
-					href="#"
+					href="{{ url_for('host.accommodation_info') }}"
 					><span class="material-symbols-outlined mr-md"
 						>apartment</span
 					>Thông tin cơ sở</a
-				><a
+				>
+				<!-- ACTIVE TAB: Dùng màu xám nhẹ đồng bộ giao diện Sidebar -->
+				<a
 					class="flex items-center px-md py-sm rounded-xl text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-all"
-					data-path="quan-ly-phong"
-					href="#"
+					href="{{ url_for('host.rooms_management') }}"
 					><span class="material-symbols-outlined mr-md"
 						>meeting_room</span
 					>Quản lý phòng</a
-				><a
+				>
+				<a
 					class="flex items-center px-md py-sm rounded-xl text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-all"
-					data-path="don-dat-phong"
-					href="#"
+					href="{{ url_for('host.bookings_management') }}"
 					><span class="material-symbols-outlined mr-md"
 						>book_online</span
 					>Đơn đặt phòng</a
 				><a
 					class="flex items-center px-md py-sm rounded-xl text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-all"
-					data-path="danh-gia"
-					href="#"
+					href="{{ url_for('host.reviews') }}"
 					><span class="material-symbols-outlined mr-md">star</span
 					>Đánh giá</a
 				><a
-					class="flex items-center px-md py-sm rounded-xl text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-all"
-					data-path="thong-ke-bao-cao"
-					href="#"
+					class="flex items-center px-md py-sm rounded-xl bg-surface-container-high text-on-surface font-semibold transition-all"
+					href="{{ url_for('host.analytics') }}"
 					><span class="material-symbols-outlined mr-md"
 						>bar_chart</span
 					>Thống kê &amp; Báo cáo</a
 				><a
 					class="flex items-center px-md py-sm rounded-xl text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-all"
-					data-path="thong-bao"
-					href="#"
+					href="{{ url_for('host.notifications') }}"
 					><span class="material-symbols-outlined mr-md"
 						>notifications</span
 					>Thông báo</a
 				><a
 					class="flex items-center px-md py-sm rounded-xl text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-all"
-					data-path="tai-khoan-ca-nhan"
-					href="#"
+					href="{{ url_for('host.profile') }}"
 					><span class="material-symbols-outlined mr-md"
 						>account_circle</span
 					>Tài khoản cá nhân</a
@@ -274,7 +268,7 @@
 								<h1
 									class="text-headline-md font-headline-md text-on-surface m-0"
 								>
-									Mường Thanh Luxury Đà Nẵng
+									{{ stats.acc_name }}
 								</h1>
 								<p
 									class="text-caption text-on-surface-variant m-0"
@@ -288,34 +282,44 @@
 							<div
 								class="flex bg-surface-container p-xs rounded-xl"
 							>
+								<!-- Xử lý Filter Button Active UI -->
 								<button
-									class="px-md py-sm rounded-lg bg-primary text-on-primary text-label-md font-label-md transition-all"
+									onclick="
+										window.location.href = '?filter=month'
+									"
+									class="px-md py-sm rounded-lg text-label-md font-label-md transition-all {{ 'bg-primary text-on-primary' if stats.filter == 'month' else 'text-on-surface-variant hover:text-on-surface' }}"
 								>
 									Tháng này
 								</button>
 								<button
-									class="px-md py-sm rounded-lg text-on-surface-variant text-label-md font-label-md hover:text-on-surface transition-all"
+									onclick="
+										window.location.href = '?filter=quarter'
+									"
+									class="px-md py-sm rounded-lg text-label-md font-label-md transition-all {{ 'bg-primary text-on-primary' if stats.filter == 'quarter' else 'text-on-surface-variant hover:text-on-surface' }}"
 								>
 									Quý này
 								</button>
 								<button
-									class="px-md py-sm rounded-lg text-on-surface-variant text-label-md font-label-md hover:text-on-surface transition-all"
+									onclick="
+										window.location.href = '?filter=year'
+									"
+									class="px-md py-sm rounded-lg text-label-md font-label-md transition-all {{ 'bg-primary text-on-primary' if stats.filter == 'year' else 'text-on-surface-variant hover:text-on-surface' }}"
 								>
 									Cả năm
 								</button>
 							</div>
-							<button
+
+							<!-- NÚT XUẤT EXCEL / FILE CSV (GỌI API TẢI XUỐNG) -->
+							<a
+								href="{{ url_for('host.export_analytics') }}"
 								class="flex items-center gap-sm px-lg py-sm rounded-xl bg-secondary text-on-secondary text-label-md font-label-md shadow-[0_4px_20px_rgba(26,54,93,0.05)] hover:opacity-90 transition-all"
-								onclick="
-									alert('Đã xuất file Excel thành công!')
-								"
 							>
 								<span
 									class="material-symbols-outlined text-[18px]"
 									>download</span
 								>
 								Xuất Excel / PDF
-							</button>
+							</a>
 						</div>
 					</div>
 					<!-- KPI Metrics Grid -->
@@ -343,7 +347,9 @@
 							<div class="my-md">
 								<span
 									class="text-headline-lg font-headline-lg text-on-surface"
-									>2.480.500.000đ</span
+									>{{
+									"{:,.0f}".format(stats.revenue).replace(',',
+									'.') }}đ</span
 								>
 								<div
 									class="flex items-center gap-xs mt-xs text-secondary text-caption font-semibold"
@@ -352,7 +358,7 @@
 										class="material-symbols-outlined text-[16px]"
 										>trending_up</span
 									>
-									<span>+14.2% so với tháng trước</span>
+									<span>Trực tiếp từ khách đặt phòng</span>
 								</div>
 							</div>
 							<div
@@ -382,7 +388,7 @@
 							<div class="my-md">
 								<span
 									class="text-headline-lg font-headline-lg text-on-surface"
-									>1.420</span
+									>{{ stats.guests }}</span
 								>
 								<div
 									class="flex items-center gap-xs mt-xs text-secondary text-caption font-semibold"
@@ -391,7 +397,7 @@
 										class="material-symbols-outlined text-[16px]"
 										>trending_up</span
 									>
-									<span>+8.5% so với tháng trước</span>
+									<span>Khách đã lưu trú thành công</span>
 								</div>
 							</div>
 							<div
@@ -421,7 +427,7 @@
 							<div class="my-md">
 								<span
 									class="text-headline-lg font-headline-lg text-on-surface"
-									>88.4%</span
+									>{{ stats.occupancy }}%</span
 								>
 								<div
 									class="flex items-center gap-xs mt-xs text-secondary text-caption font-semibold"
@@ -430,13 +436,15 @@
 										class="material-symbols-outlined text-[16px]"
 										>trending_up</span
 									>
-									<span>+3.1% tỷ lệ lấp đầy</span>
+									<span>Tỷ lệ lấp đầy phòng trống</span>
 								</div>
 							</div>
 							<div
 								class="w-full bg-surface-container h-1.5 rounded-full overflow-hidden"
 							>
-								<div class="bg-primary h-full w-[88%]"></div>
+								<div
+									class="bg-primary h-full w-[{{ stats.occupancy }}%]"
+								></div>
 							</div>
 						</div>
 						<!-- Card 4 -->
@@ -460,19 +468,22 @@
 							<div class="my-md">
 								<span
 									class="text-headline-lg font-headline-lg text-on-surface"
-									>4.8 / 5.0</span
+									>{{ stats.avg_rating }} / 5.0</span
 								>
 								<div
 									class="flex items-center gap-xs mt-xs text-on-surface-variant text-caption"
 								>
-									<span>Từ 312 lượt đánh giá thực tế</span>
+									<span
+										>Từ {{ stats.total_reviews }} lượt đánh
+										giá thực tế</span
+									>
 								</div>
 							</div>
 							<div
 								class="w-full bg-surface-container h-1.5 rounded-full overflow-hidden"
 							>
 								<div
-									class="bg-secondary-container h-full w-[96%]"
+									class="bg-secondary-container h-full w-[{{ (stats.avg_rating / 5) * 100 }}%]"
 								></div>
 							</div>
 						</div>
@@ -496,7 +507,7 @@
 										class="text-caption text-on-surface-variant m-0"
 									>
 										Thống kê chi tiết theo các tháng trong
-										quý hiện tại
+										hệ thống
 									</p>
 								</div>
 								<div class="flex items-center gap-md">
@@ -520,120 +531,49 @@
 									</div>
 								</div>
 							</div>
-							<!-- Simulated SVG Bar Chart -->
+
+							<!-- Simulated SVG Bar Chart RENDER ĐỘNG THEO REPORT -->
 							<div
 								class="w-full h-64 flex items-end justify-between gap-md pt-lg pb-sm px-md bg-surface-container-low rounded-xl"
 							>
+								{% for r in reports|reverse %}
 								<div
 									class="flex-1 flex flex-col items-center gap-sm h-full justify-end group"
 								>
 									<span
 										class="text-caption text-on-surface-variant opacity-0 group-hover:opacity-100 transition-opacity"
-										>1.8B</span
 									>
+										{{
+										"{:,.0f}".format(r.total_revenue).replace(',',
+										'.') }}đ
+									</span>
 									<div
 										class="w-full max-w-[48px] bg-primary rounded-t-lg transition-all group-hover:opacity-90"
-										style="height: 65%"
+										style="height: {{ r.occupancy if r.occupancy > 10 else 10 }}%"
 									></div>
+									<!-- Render đoạn tháng rút gọn để vừa màn hình -->
 									<span
 										class="text-caption font-semibold text-on-surface"
-										>Tháng 1</span
+										>{{ r.period.split(' / ')[0] }}</span
 									>
 								</div>
-								<div
-									class="flex-1 flex flex-col items-center gap-sm h-full justify-end group"
-								>
-									<span
-										class="text-caption text-on-surface-variant opacity-0 group-hover:opacity-100 transition-opacity"
-										>2.1B</span
-									>
-									<div
-										class="w-full max-w-[48px] bg-primary rounded-t-lg transition-all group-hover:opacity-90"
-										style="height: 75%"
-									></div>
-									<span
-										class="text-caption font-semibold text-on-surface"
-										>Tháng 2</span
-									>
-								</div>
-								<div
-									class="flex-1 flex flex-col items-center gap-sm h-full justify-end group"
-								>
-									<span
-										class="text-caption text-on-surface-variant opacity-0 group-hover:opacity-100 transition-opacity"
-										>2.4B</span
-									>
-									<div
-										class="w-full max-w-[48px] bg-primary rounded-t-lg transition-all group-hover:opacity-90"
-										style="height: 90%"
-									></div>
-									<span
-										class="text-caption font-semibold text-on-surface"
-										>Tháng 3</span
-									>
-								</div>
-								<div
-									class="flex-1 flex flex-col items-center gap-sm h-full justify-end group"
-								>
-									<span
-										class="text-caption text-on-surface-variant opacity-0 group-hover:opacity-100 transition-opacity"
-										>1.9B</span
-									>
-									<div
-										class="w-full max-w-[48px] bg-primary rounded-t-lg transition-all group-hover:opacity-90"
-										style="height: 70%"
-									></div>
-									<span
-										class="text-caption font-semibold text-on-surface"
-										>Tháng 4</span
-									>
-								</div>
-								<div
-									class="flex-1 flex flex-col items-center gap-sm h-full justify-end group"
-								>
-									<span
-										class="text-caption text-on-surface-variant opacity-0 group-hover:opacity-100 transition-opacity"
-										>2.2B</span
-									>
-									<div
-										class="w-full max-w-[48px] bg-primary rounded-t-lg transition-all group-hover:opacity-90"
-										style="height: 82%"
-									></div>
-									<span
-										class="text-caption font-semibold text-on-surface"
-										>Tháng 5</span
-									>
-								</div>
-								<div
-									class="flex-1 flex flex-col items-center gap-sm h-full justify-end group"
-								>
-									<span
-										class="text-caption text-on-surface-variant opacity-0 group-hover:opacity-100 transition-opacity"
-										>2.48B</span
-									>
-									<div
-										class="w-full max-w-[48px] bg-secondary-container rounded-t-lg transition-all group-hover:opacity-90"
-										style="height: 98%"
-									></div>
-									<span
-										class="text-caption font-semibold text-on-surface"
-										>Tháng 6</span
-									>
-								</div>
+								{% endfor %}
 							</div>
+
 							<div
 								class="flex justify-between items-center mt-md pt-md border-t border-surface-container-high text-on-surface-variant text-caption"
 							>
 								<span
 									>* Dữ liệu được tổng hợp trực tiếp từ hệ
-									thống quản lý phòng Mường Thanh Luxury Đà
-									Nẵng</span
+									thống quản lý phòng {{ stats.acc_name
+									}}</span
 								>
 								<span class="font-semibold text-on-surface"
 									>Đơn vị: VNĐ &amp; Lượt khách</span
 								>
 							</div>
 						</div>
+
 						<!-- Room Type Performance Breakdown -->
 						<div
 							class="bg-surface-container-lowest p-lg rounded-xl shadow-[0_4px_20px_rgba(26,54,93,0.05)] flex flex-col justify-between"
@@ -651,90 +591,33 @@
 								</p>
 							</div>
 							<div class="flex flex-col gap-md">
-								<!-- Item 1 -->
+								<!-- Lặp động từng loại phòng -->
+								{% for item in room_breakdown %}
 								<div class="flex flex-col gap-xs">
 									<div
 										class="flex justify-between text-label-md"
 									>
 										<span
 											class="text-on-surface font-semibold"
-											>Deluxe Ocean View</span
+											>{{ item.type }}</span
 										>
 										<span class="text-on-surface-variant"
-											>1.050.000.000đ (42%)</span
+											>{{
+											"{:,.0f}".format(item.revenue).replace(',',
+											'.') }}đ ({{ item.percentage
+											}}%)</span
 										>
 									</div>
 									<div
 										class="w-full bg-surface-container h-2 rounded-full overflow-hidden"
 									>
 										<div
-											class="bg-primary h-full w-[42%]"
+											class="{{ item.color }} h-full"
+											style="width: {{ item.percentage }}%"
 										></div>
 									</div>
 								</div>
-								<!-- Item 2 -->
-								<div class="flex flex-col gap-xs">
-									<div
-										class="flex justify-between text-label-md"
-									>
-										<span
-											class="text-on-surface font-semibold"
-											>Executive Suite</span
-										>
-										<span class="text-on-surface-variant"
-											>744.150.000đ (30%)</span
-										>
-									</div>
-									<div
-										class="w-full bg-surface-container h-2 rounded-full overflow-hidden"
-									>
-										<div
-											class="bg-secondary-container h-full w-[30%]"
-										></div>
-									</div>
-								</div>
-								<!-- Item 3 -->
-								<div class="flex flex-col gap-xs">
-									<div
-										class="flex justify-between text-label-md"
-									>
-										<span
-											class="text-on-surface font-semibold"
-											>Grand Suite Presidential</span
-										>
-										<span class="text-on-surface-variant"
-											>446.490.000đ (18%)</span
-										>
-									</div>
-									<div
-										class="w-full bg-surface-container h-2 rounded-full overflow-hidden"
-									>
-										<div
-											class="bg-primary-container h-full w-[18%]"
-										></div>
-									</div>
-								</div>
-								<!-- Item 4 -->
-								<div class="flex flex-col gap-xs">
-									<div
-										class="flex justify-between text-label-md"
-									>
-										<span
-											class="text-on-surface font-semibold"
-											>Superior City View</span
-										>
-										<span class="text-on-surface-variant"
-											>239.860.000đ (10%)</span
-										>
-									</div>
-									<div
-										class="w-full bg-surface-container h-2 rounded-full overflow-hidden"
-									>
-										<div
-											class="bg-surface-tint h-full w-[10%]"
-										></div>
-									</div>
-								</div>
+								{% endfor %}
 							</div>
 							<div
 								class="mt-lg pt-md border-t border-surface-container-high flex justify-between items-center"
@@ -750,6 +633,7 @@
 							</div>
 						</div>
 					</div>
+
 					<!-- Bottom Detailed Data Table -->
 					<div
 						class="bg-surface-container-lowest p-lg rounded-xl shadow-[0_4px_20px_rgba(26,54,93,0.05)]"
@@ -765,12 +649,12 @@
 									class="text-caption text-on-surface-variant m-0"
 								>
 									Danh sách các kỳ báo cáo đã chốt số liệu tại
-									cơ sở Đà Nẵng
+									cơ sở
 								</p>
 							</div>
 							<div class="flex items-center gap-sm">
 								<div
-									class="flex items-center gap-xs bg-surface-container px-md py-sm rounded-xl text-on-surface-variant text-caption"
+									class="flex items-center gap-xs bg-surface-container px-md py-sm rounded-xl text-on-surface-variant text-caption cursor-pointer"
 								>
 									<span
 										class="material-symbols-outlined text-[16px]"
@@ -805,134 +689,42 @@
 									</tr>
 								</thead>
 								<tbody class="text-body-md text-on-surface">
+									{% for r in reports %}
 									<tr
 										class="border-b border-surface-container-low hover:bg-surface-container transition-colors"
 									>
 										<td class="py-md px-md font-semibold">
-											Tháng 06 / 2024
-										</td>
-										<td class="py-md px-md">1.420 khách</td>
-										<td class="py-md px-md">88.4%</td>
-										<td class="py-md px-md">
-											2.100.000.000đ
+											{{ r.period }}
 										</td>
 										<td class="py-md px-md">
-											380.500.000đ
+											{{ r.guests }} khách
 										</td>
+										<td class="py-md px-md">
+											{{ r.occupancy }}%
+										</td>
+										<td class="py-md px-md">
+											{{
+											"{:,.0f}".format(r.room_revenue).replace(',',
+											'.') }}đ
+										</td>
+										<td class="py-md px-md">0đ</td>
 										<td
 											class="py-md px-md font-semibold text-primary"
 										>
-											2.480.500.000đ
+											{{
+											"{:,.0f}".format(r.total_revenue).replace(',',
+											'.') }}đ
 										</td>
 										<td class="py-md px-md text-right">
-											<button
+											<a
+												href="{{ url_for('host.export_analytics') }}"
 												class="px-md py-xs rounded-lg bg-surface-container-high text-on-surface hover:bg-primary hover:text-on-primary transition-all text-caption font-semibold"
-												onclick="
-													alert(
-														'Đang tải xuống báo cáo Tháng 06/2024...',
-													)
-												"
 											>
-												Tải PDF
-											</button>
+												Tải file CSV
+											</a>
 										</td>
 									</tr>
-									<tr
-										class="border-b border-surface-container-low hover:bg-surface-container transition-colors"
-									>
-										<td class="py-md px-md font-semibold">
-											Tháng 05 / 2024
-										</td>
-										<td class="py-md px-md">1.310 khách</td>
-										<td class="py-md px-md">82.1%</td>
-										<td class="py-md px-md">
-											1.890.000.000đ
-										</td>
-										<td class="py-md px-md">
-											310.000.000đ
-										</td>
-										<td
-											class="py-md px-md font-semibold text-primary"
-										>
-											2.200.000.000đ
-										</td>
-										<td class="py-md px-md text-right">
-											<button
-												class="px-md py-xs rounded-lg bg-surface-container-high text-on-surface hover:bg-primary hover:text-on-primary transition-all text-caption font-semibold"
-												onclick="
-													alert(
-														'Đang tải xuống báo cáo Tháng 05/2024...',
-													)
-												"
-											>
-												Tải PDF
-											</button>
-										</td>
-									</tr>
-									<tr
-										class="border-b border-surface-container-low hover:bg-surface-container transition-colors"
-									>
-										<td class="py-md px-md font-semibold">
-											Tháng 04 / 2024
-										</td>
-										<td class="py-md px-md">1.150 khách</td>
-										<td class="py-md px-md">76.5%</td>
-										<td class="py-md px-md">
-											1.620.000.000đ
-										</td>
-										<td class="py-md px-md">
-											280.000.000đ
-										</td>
-										<td
-											class="py-md px-md font-semibold text-primary"
-										>
-											1.900.000.000đ
-										</td>
-										<td class="py-md px-md text-right">
-											<button
-												class="px-md py-xs rounded-lg bg-surface-container-high text-on-surface hover:bg-primary hover:text-on-primary transition-all text-caption font-semibold"
-												onclick="
-													alert(
-														'Đang tải xuống báo cáo Tháng 04/2024...',
-													)
-												"
-											>
-												Tải PDF
-											</button>
-										</td>
-									</tr>
-									<tr
-										class="hover:bg-surface-container transition-colors"
-									>
-										<td class="py-md px-md font-semibold">
-											Quý I / 2024 (Tổng kết)
-										</td>
-										<td class="py-md px-md">3.850 khách</td>
-										<td class="py-md px-md">79.8%</td>
-										<td class="py-md px-md">
-											5.400.000.000đ
-										</td>
-										<td class="py-md px-md">
-											920.000.000đ
-										</td>
-										<td
-											class="py-md px-md font-semibold text-primary"
-										>
-											6.320.000.000đ
-										</td>
-										<td class="py-md px-md text-right">
-											<button
-												class="px-md py-xs rounded-lg bg-surface-container-high text-on-surface hover:bg-primary hover:text-on-primary transition-all text-caption font-semibold"
-												onclick="
-													alert(
-														'Đang tải xuống báo cáo Quý I/2024...',
-													)
-												"
-											>
-												Tải PDF
-											</button>
-										</td>
-									</tr>
+									{% endfor %}
 								</tbody>
 							</table>
 						</div>

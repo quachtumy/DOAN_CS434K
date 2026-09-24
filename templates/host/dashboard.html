@@ -174,58 +174,54 @@
 				class="flex-1 px-md flex flex-col gap-xs"
 				data-active-classes="bg-primary-container text-on-primary-container font-semibold"
 			>
+				<!-- ACTIVE TAB: Dùng màu xám nhẹ đồng bộ giao diện Sidebar -->
 				<a
-					class="flex items-center px-md py-sm rounded-xl text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-all"
-					data-path="bang-dieu-khien"
-					href="#"
+					class="flex items-center px-md py-sm rounded-xl bg-surface-container-high text-on-surface font-semibold transition-all"
+					href="{{ url_for('host.dashboard') }}"
 					><span class="material-symbols-outlined mr-md"
 						>dashboard</span
 					>Bảng điều khiển</a
-				><a
+				>
+				<a
 					class="flex items-center px-md py-sm rounded-xl text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-all"
-					data-path="thong-tin-co-so"
-					href="#"
+					href="{{ url_for('host.accommodation_info') }}"
 					><span class="material-symbols-outlined mr-md"
 						>apartment</span
 					>Thông tin cơ sở</a
-				><a
+				>
+				<a
 					class="flex items-center px-md py-sm rounded-xl text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-all"
-					data-path="quan-ly-phong"
-					href="#"
+					href="{{ url_for('host.rooms_management') }}"
 					><span class="material-symbols-outlined mr-md"
 						>meeting_room</span
 					>Quản lý phòng</a
-				><a
+				>
+				<a
 					class="flex items-center px-md py-sm rounded-xl text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-all"
-					data-path="don-dat-phong"
-					href="#"
+					href="{{ url_for('host.bookings_management') }}"
 					><span class="material-symbols-outlined mr-md"
 						>book_online</span
 					>Đơn đặt phòng</a
 				><a
 					class="flex items-center px-md py-sm rounded-xl text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-all"
-					data-path="danh-gia"
-					href="#"
+					href="{{ url_for('host.reviews') }}"
 					><span class="material-symbols-outlined mr-md">star</span
 					>Đánh giá</a
 				><a
 					class="flex items-center px-md py-sm rounded-xl text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-all"
-					data-path="thong-ke-bao-cao"
-					href="#"
+					href="{{ url_for('host.analytics') }}"
 					><span class="material-symbols-outlined mr-md"
 						>bar_chart</span
 					>Thống kê &amp; Báo cáo</a
 				><a
 					class="flex items-center px-md py-sm rounded-xl text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-all"
-					data-path="thong-bao"
-					href="#"
+					href="{{ url_for('host.notifications') }}"
 					><span class="material-symbols-outlined mr-md"
 						>notifications</span
 					>Thông báo</a
 				><a
 					class="flex items-center px-md py-sm rounded-xl text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-all"
-					data-path="tai-khoan-ca-nhan"
-					href="#"
+					href="{{ url_for('host.profile') }}"
 					><span class="material-symbols-outlined mr-md"
 						>account_circle</span
 					>Tài khoản cá nhân</a
@@ -239,8 +235,10 @@
 				<div class="flex items-center gap-md text-on-surface-variant">
 					<span class="material-symbols-outlined">search</span
 					><input
+						id="globalSearch"
+						onkeyup="searchGlobalBookings()"
 						class="bg-transparent border-none outline-none text-on-surface placeholder:text-outline text-body-md w-64"
-						placeholder="Tìm kiếm nhanh..."
+						placeholder="Tìm theo tên khách hoặc mã đơn..."
 						type="text"
 					/>
 				</div>
@@ -256,6 +254,25 @@
 				</div>
 			</header>
 			<main class="relative pt-20 bg-surface min-h-screen p-xl">
+				<!-- Flash messages -->
+				{% with messages = get_flashed_messages(with_categories=true) %}
+				{% if messages %} {% for category, message in messages %}
+				<div
+					id="flash-msg"
+					class="mb-md p-md rounded-lg text-on-primary bg-primary flex items-center justify-between shadow"
+				>
+					<span>{{ message }}</span>
+					<span
+						class="material-symbols-outlined cursor-pointer"
+						onclick="
+							document.getElementById('flash-msg').style.display =
+								'none'
+						"
+						>close</span
+					>
+				</div>
+				{% endfor %} {% endif %} {% endwith %}
+
 				<div class="flex flex-col w-full gap-xl">
 					<!-- Top Welcome & Status Bar -->
 					<div
@@ -268,13 +285,13 @@
 									>5 Sao Luxury</span
 								>
 								<span class="text-caption text-outline"
-									>ID: HCM-MTLD-01</span
+									>Quản lý: {{ stats.host_name }}</span
 								>
 							</div>
 							<h1
 								class="font-headline-lg text-headline-lg text-on-surface"
 							>
-								Mường Thanh Luxury Đà Nẵng
+								{{ stats.acc_name }}
 							</h1>
 							<p class="text-body-md text-on-surface-variant">
 								Xin chào Quản lý, hệ thống đang hoạt động ổn
@@ -289,10 +306,13 @@
 									class="w-3 h-3 rounded-full bg-emerald-500 animate-pulse"
 								></div>
 								<span class="text-label-md text-on-surface"
-									>Trạng thái: Hoạt động ổn định (99.9%)</span
+									>Trạng thái: {{ 'Đã duyệt' if
+									stats.acc_status == 'Approved' else 'Chờ
+									duyệt' }} (99.9%)</span
 								>
 							</div>
 							<button
+								onclick="openAddBookingModal()"
 								class="bg-primary text-on-primary px-lg py-sm rounded-full text-label-md hover:bg-primary-container transition-all flex items-center gap-sm shadow-sm"
 							>
 								<span
@@ -331,7 +351,9 @@
 								<div
 									class="text-headline-lg text-on-surface font-headline-lg"
 								>
-									1.482.500.000đ
+									{{
+									"{:,.0f}".format(stats.revenue).replace(',',
+									'.') }}đ
 								</div>
 								<div
 									class="flex items-center gap-xs mt-xs text-caption text-emerald-600 font-semibold"
@@ -340,7 +362,7 @@
 										class="material-symbols-outlined text-[16px]"
 										>trending_up</span
 									>
-									<span>+12.4% so với tháng trước</span>
+									<span>Trực tiếp từ khách lưu trú</span>
 								</div>
 							</div>
 						</div>
@@ -368,7 +390,7 @@
 								<div
 									class="text-headline-lg text-on-surface font-headline-lg"
 								>
-									148
+									{{ stats.bookings }}
 								</div>
 								<div
 									class="flex items-center gap-xs mt-xs text-caption text-emerald-600 font-semibold"
@@ -377,7 +399,7 @@
 										class="material-symbols-outlined text-[16px]"
 										>trending_up</span
 									>
-									<span>+8 đơn hôm nay</span>
+									<span>Lượt khách tiềm năng</span>
 								</div>
 							</div>
 						</div>
@@ -405,7 +427,7 @@
 								<div
 									class="text-headline-lg text-on-surface font-headline-lg"
 								>
-									88.2%
+									{{ stats.occupancy }}%
 								</div>
 								<div
 									class="flex items-center gap-xs mt-xs text-caption text-emerald-600 font-semibold"
@@ -414,7 +436,7 @@
 										class="material-symbols-outlined text-[16px]"
 										>trending_up</span
 									>
-									<span>+4.1% cuối tuần này</span>
+									<span>Duy trì ổn định</span>
 								</div>
 							</div>
 						</div>
@@ -446,12 +468,15 @@
 								<div
 									class="text-headline-lg text-on-surface font-headline-lg"
 								>
-									4.9 / 5.0
+									{{ stats.avg_rating }} / 5.0
 								</div>
 								<div
 									class="flex items-center gap-xs mt-xs text-caption text-on-surface-variant"
 								>
-									<span>Dựa trên 1.280 đánh giá</span>
+									<span
+										>Dựa trên {{ stats.total_reviews }} đánh
+										giá</span
+									>
 								</div>
 							</div>
 						</div>
@@ -662,10 +687,13 @@
 							<div
 								class="flex items-center justify-between text-caption text-on-surface-variant pt-2"
 							>
-								<span>Tổng lượng đặt phòng: 312 phòng</span>
+								<span
+									>Tổng lượng đặt phòng: {{ stats.bookings }}
+									phòng</span
+								>
 								<a
 									class="text-primary hover:underline font-semibold flex items-center gap-xs"
-									href="#"
+									href="{{ url_for('host.analytics') }}"
 									>Xem báo cáo chi tiết
 									<span
 										class="material-symbols-outlined text-[14px]"
@@ -707,7 +735,7 @@
 									<div
 										class="font-headline-md text-headline-md"
 									>
-										Mỹ Khê, Đà Nẵng
+										{{ stats.acc_name }}
 									</div>
 								</div>
 							</div>
@@ -716,10 +744,10 @@
 									class="flex justify-between items-center text-body-md"
 								>
 									<span class="text-on-surface-variant"
-										>Deluxe Ocean View</span
+										>Tỷ lệ sử dụng phòng trống</span
 									>
 									<span class="font-semibold text-on-surface"
-										>120 / 135 phòng</span
+										>{{ stats.occupancy }}%</span
 									>
 								</div>
 								<div
@@ -727,17 +755,17 @@
 								>
 									<div
 										class="bg-primary h-full rounded-full"
-										style="width: 88%"
+										style="width: {{ stats.occupancy }}%"
 									></div>
 								</div>
 								<div
 									class="flex justify-between items-center text-body-md mt-sm"
 								>
 									<span class="text-on-surface-variant"
-										>Executive Suite</span
+										>Tỷ lệ tương tác khách hàng</span
 									>
 									<span class="font-semibold text-on-surface"
-										>45 / 50 phòng</span
+										>90%</span
 									>
 								</div>
 								<div
@@ -770,16 +798,36 @@
 								</p>
 							</div>
 							<div class="flex items-center gap-sm">
-								<button
-									class="bg-surface-container hover:bg-surface-container-high px-md py-sm rounded-xl text-label-md text-on-surface transition-all flex items-center gap-sm"
-								>
+								<div class="relative">
+									<select
+										id="statusFilterSelect"
+										onchange="filterTable()"
+										class="bg-surface-container hover:bg-surface-container-high px-md py-sm rounded-xl text-label-md text-on-surface transition-all flex items-center gap-sm outline-none cursor-pointer appearance-none pr-8"
+									>
+										<option value="all">
+											Lọc trạng thái (Tất cả)
+										</option>
+										<option value="Pending">
+											Chờ xác nhận
+										</option>
+										<option value="Confirmed">
+											Đã xác nhận
+										</option>
+										<option value="Completed">
+											Đã hoàn thành
+										</option>
+										<option value="Cancelled">
+											Đã hủy
+										</option>
+									</select>
 									<span
-										class="material-symbols-outlined text-[18px]"
+										class="material-symbols-outlined text-[18px] absolute right-3 top-1/2 -translate-y-1/2 pointer-events-none"
 										>filter_list</span
 									>
-									Lọc trạng thái
-								</button>
+								</div>
+
 								<button
+									onclick="window.location.href='{{ url_for('host.export_dashboard_bookings') }}'"
 									class="bg-surface-container hover:bg-surface-container-high px-md py-sm rounded-xl text-label-md text-on-surface transition-all flex items-center gap-sm"
 								>
 									<span
@@ -791,7 +839,7 @@
 							</div>
 						</div>
 						<!-- Table -->
-						<div class="w-full overflow-x-auto">
+						<div class="w-full overflow-x-auto min-h-[400px]">
 							<table class="w-full text-left border-collapse">
 								<thead>
 									<tr
@@ -824,14 +872,17 @@
 								</thead>
 								<tbody
 									class="text-body-md text-on-surface divide-y divide-surface-container/50"
+									id="bookingTableBody"
 								>
+									{% for b in bookings %}
 									<tr
-										class="hover:bg-surface-container-low transition-all"
+										class="booking-row hover:bg-surface-container-low transition-all"
+										data-status="{{ b.status }}"
 									>
 										<td
 											class="py-md px-md font-semibold text-primary"
 										>
-											#BK-98214
+											#BK-{{ b.id }}
 										</td>
 										<td
 											class="py-md px-md flex items-center gap-sm"
@@ -839,203 +890,59 @@
 											<div
 												class="w-8 h-8 rounded-full bg-primary/10 text-primary flex items-center justify-center font-semibold text-caption"
 											>
-												NA
+												{{ b.guest_initials }}
 											</div>
 											<div>
 												<div class="font-semibold">
-													Nguyễn Anh Tuấn
+													{{ b.guest_name }}
 												</div>
 												<div
 													class="text-caption text-outline"
 												>
-													tuan.na@corporate.vn
+													{{ b.guest_phone }}
 												</div>
 											</div>
 										</td>
 										<td class="py-md px-md">
-											Executive Suite (2 đêm)
+											{{ b.room_name }} ({{ b.nights }}
+											đêm)
 										</td>
 										<td
 											class="py-md px-md text-caption text-on-surface-variant"
 										>
-											24/10/2023 - 26/10/2023
+											{{ b.check_in }} - {{ b.check_out }}
 										</td>
 										<td class="py-md px-md font-semibold">
-											8.500.000đ
+											{{
+											"{:,.0f}".format(b.total_price).replace(',',
+											'.') }}đ
 										</td>
 										<td class="py-md px-md">
+											{% if b.status == 'Confirmed' %}
 											<span
 												class="px-2.5 py-1 rounded-full text-caption font-semibold bg-emerald-100 text-emerald-800"
 												>Đã xác nhận</span
 											>
-										</td>
-										<td class="py-md px-md text-right">
-											<button
-												class="p-2 hover:bg-surface-container rounded-lg text-on-surface-variant transition-all"
-											>
-												<span
-													class="material-symbols-outlined text-[18px]"
-													>visibility</span
-												>
-											</button>
-										</td>
-									</tr>
-									<tr
-										class="hover:bg-surface-container-low transition-all"
-									>
-										<td
-											class="py-md px-md font-semibold text-primary"
-										>
-											#BK-98213
-										</td>
-										<td
-											class="py-md px-md flex items-center gap-sm"
-										>
-											<div
-												class="w-8 h-8 rounded-full bg-secondary/10 text-secondary flex items-center justify-center font-semibold text-caption"
-											>
-												TH
-											</div>
-											<div>
-												<div class="font-semibold">
-													Trần Hoàng Long
-												</div>
-												<div
-													class="text-caption text-outline"
-												>
-													long.th@gmail.com
-												</div>
-											</div>
-										</td>
-										<td class="py-md px-md">
-											Deluxe Ocean View (1 đêm)
-										</td>
-										<td
-											class="py-md px-md text-caption text-on-surface-variant"
-										>
-											25/10/2023 - 26/10/2023
-										</td>
-										<td class="py-md px-md font-semibold">
-											3.200.000đ
-										</td>
-										<td class="py-md px-md">
+											{% elif b.status == 'Pending' %}
 											<span
 												class="px-2.5 py-1 rounded-full text-caption font-semibold bg-amber-100 text-amber-800"
-												>Chờ nhận phòng</span
+												>Chờ xác nhận</span
 											>
-										</td>
-										<td class="py-md px-md text-right">
-											<button
-												class="p-2 hover:bg-surface-container rounded-lg text-on-surface-variant transition-all"
-											>
-												<span
-													class="material-symbols-outlined text-[18px]"
-													>visibility</span
-												>
-											</button>
-										</td>
-									</tr>
-									<tr
-										class="hover:bg-surface-container-low transition-all"
-									>
-										<td
-											class="py-md px-md font-semibold text-primary"
-										>
-											#BK-98212
-										</td>
-										<td
-											class="py-md px-md flex items-center gap-sm"
-										>
-											<div
-												class="w-8 h-8 rounded-full bg-primary/10 text-primary flex items-center justify-center font-semibold text-caption"
-											>
-												PL
-											</div>
-											<div>
-												<div class="font-semibold">
-													Pham Linh Chi
-												</div>
-												<div
-													class="text-caption text-outline"
-												>
-													chi.pl@outlook.com
-												</div>
-											</div>
-										</td>
-										<td class="py-md px-md">
-											Presidential Suite (3 đêm)
-										</td>
-										<td
-											class="py-md px-md text-caption text-on-surface-variant"
-										>
-											28/10/2023 - 31/10/2023
-										</td>
-										<td class="py-md px-md font-semibold">
-											45.000.000đ
-										</td>
-										<td class="py-md px-md">
-											<span
-												class="px-2.5 py-1 rounded-full text-caption font-semibold bg-emerald-100 text-emerald-800"
-												>Đã xác nhận</span
-											>
-										</td>
-										<td class="py-md px-md text-right">
-											<button
-												class="p-2 hover:bg-surface-container rounded-lg text-on-surface-variant transition-all"
-											>
-												<span
-													class="material-symbols-outlined text-[18px]"
-													>visibility</span
-												>
-											</button>
-										</td>
-									</tr>
-									<tr
-										class="hover:bg-surface-container-low transition-all"
-									>
-										<td
-											class="py-md px-md font-semibold text-primary"
-										>
-											#BK-98211
-										</td>
-										<td
-											class="py-md px-md flex items-center gap-sm"
-										>
-											<div
-												class="w-8 h-8 rounded-full bg-secondary/10 text-secondary flex items-center justify-center font-semibold text-caption"
-											>
-												MH
-											</div>
-											<div>
-												<div class="font-semibold">
-													Michael Henderson
-												</div>
-												<div
-													class="text-caption text-outline"
-												>
-													m.henderson@global.com
-												</div>
-											</div>
-										</td>
-										<td class="py-md px-md">
-											Deluxe City View (2 đêm)
-										</td>
-										<td
-											class="py-md px-md text-caption text-on-surface-variant"
-										>
-											22/10/2023 - 24/10/2023
-										</td>
-										<td class="py-md px-md font-semibold">
-											5.800.000đ
-										</td>
-										<td class="py-md px-md">
+											{% elif b.status == 'Completed' %}
 											<span
 												class="px-2.5 py-1 rounded-full text-caption font-semibold bg-surface-container text-on-surface-variant"
 												>Đã hoàn thành</span
 											>
+											{% else %}
+											<span
+												class="px-2.5 py-1 rounded-full text-caption font-semibold bg-red-100 text-red-800"
+												>Đã hủy</span
+											>
+											{% endif %}
 										</td>
 										<td class="py-md px-md text-right">
 											<button
+												onclick="window.location.href=`{{ url_for('host.bookings_management') }}`"
 												class="p-2 hover:bg-surface-container rounded-lg text-on-surface-variant transition-all"
 											>
 												<span
@@ -1045,46 +952,283 @@
 											</button>
 										</td>
 									</tr>
+									{% endfor %}
 								</tbody>
 							</table>
 						</div>
 						<div
 							class="flex items-center justify-between pt-2 border-t border-surface-container"
 						>
-							<span class="text-caption text-on-surface-variant"
-								>Hiển thị 4 trong tổng số 148 đơn đặt
-								phòng</span
+							<span
+								class="text-caption text-on-surface-variant"
+								id="page-info"
+								>Hiển thị...</span
 							>
-							<div class="flex items-center gap-sm">
-								<button
-									class="px-md py-sm bg-surface-container rounded-xl text-label-md text-on-surface disabled:opacity-50"
-									disabled=""
-								>
-									Trước
-								</button>
-								<button
-									class="px-md py-sm bg-primary text-on-primary rounded-xl text-label-md"
-								>
-									1
-								</button>
-								<button
-									class="px-md py-sm bg-surface-container hover:bg-surface-container-high rounded-xl text-label-md text-on-surface"
-								>
-									2
-								</button>
-								<button
-									class="px-md py-sm bg-surface-container hover:bg-surface-container-high rounded-xl text-label-md text-on-surface"
-								>
-									3
-								</button>
-								<button
-									class="px-md py-sm bg-surface-container hover:bg-surface-container-high rounded-xl text-label-md text-on-surface"
-								>
-									Sau
-								</button>
+							<div
+								class="flex items-center gap-sm"
+								id="pagination-buttons"
+							>
+								<!-- JS Auto Generation -->
 							</div>
 						</div>
 					</div>
+
+					<!-- MODAL TẠO ĐƠN THỦ CÔNG (Được ẩn đi) -->
+					<div
+						class="fixed inset-0 z-50 bg-inverse-surface/40 backdrop-blur-sm hidden flex items-center justify-center p-md"
+						id="bookingModal"
+					>
+						<div
+							class="bg-surface-container-lowest rounded-xl shadow-2xl w-full max-w-2xl p-xl relative max-h-[90vh] overflow-y-auto"
+						>
+							<div
+								class="flex items-center justify-between mb-lg sticky top-0 bg-surface-container-lowest z-10 py-xs border-b border-surface-container-high"
+							>
+								<h3
+									class="font-headline-md text-headline-md text-on-surface"
+								>
+									Tạo Đơn Mới Thủ Công
+								</h3>
+								<button
+									type="button"
+									class="p-sm rounded-lg hover:bg-surface-container text-on-surface-variant"
+									onclick="closeBookingModal()"
+								>
+									<span class="material-symbols-outlined"
+										>close</span
+									>
+								</button>
+							</div>
+
+							<form
+								method="POST"
+								action="{{ url_for('host.dashboard') }}"
+								class="flex flex-col gap-md mt-sm"
+							>
+								<input
+									type="hidden"
+									name="action"
+									value="add_booking"
+								/>
+								<div
+									class="grid grid-cols-1 md:grid-cols-2 gap-md"
+								>
+									<div>
+										<label
+											class="block font-label-md text-on-surface mb-xs"
+											>Tên khách hàng
+											<span class="text-error"
+												>*</span
+											></label
+										>
+										<input
+											name="guest_name"
+											class="w-full bg-surface-container-lowest border border-outline rounded-xl px-md py-md text-on-surface focus:border-primary outline-none"
+											placeholder="Nguyễn Văn A"
+											required
+											type="text"
+										/>
+									</div>
+									<div>
+										<label
+											class="block font-label-md text-on-surface mb-xs"
+											>Số điện thoại
+											<span class="text-error"
+												>*</span
+											></label
+										>
+										<input
+											name="guest_phone"
+											class="w-full bg-surface-container-lowest border border-outline rounded-xl px-md py-md text-on-surface focus:border-primary outline-none"
+											placeholder="0912345678"
+											required
+											type="text"
+										/>
+									</div>
+									<div>
+										<label
+											class="block font-label-md text-on-surface mb-xs"
+											>Ngày nhận phòng
+											<span class="text-error"
+												>*</span
+											></label
+										>
+										<input
+											name="check_in_date"
+											class="w-full bg-surface-container-lowest border border-outline rounded-xl px-md py-md text-on-surface focus:border-primary outline-none"
+											required
+											type="date"
+										/>
+									</div>
+									<div>
+										<label
+											class="block font-label-md text-on-surface mb-xs"
+											>Ngày trả phòng
+											<span class="text-error"
+												>*</span
+											></label
+										>
+										<input
+											name="check_out_date"
+											class="w-full bg-surface-container-lowest border border-outline rounded-xl px-md py-md text-on-surface focus:border-primary outline-none"
+											required
+											type="date"
+										/>
+									</div>
+								</div>
+
+								<div>
+									<label
+										class="block font-label-md text-on-surface mb-xs"
+										>Chọn phòng
+										<span class="text-error">*</span></label
+									>
+									<select
+										name="room_id"
+										class="w-full bg-surface-container-lowest border border-outline rounded-xl px-md py-md text-on-surface focus:border-primary outline-none"
+										required
+									>
+										{% for r in available_rooms %}
+										<option value="{{ r.room_id }}">
+											{{ r.room_name }} ({{ r.room_type
+											}}) - {{
+											"{:,.0f}".format(r.price_per_night).replace(',',
+											'.') }}đ/đêm
+										</option>
+										{% endfor %}
+									</select>
+								</div>
+
+								<div>
+									<label
+										class="block font-label-md text-on-surface mb-xs"
+										>Tổng số tiền thanh toán (VNĐ)</label
+									>
+									<input
+										name="total_price"
+										class="w-full bg-surface-container-lowest border border-outline rounded-xl px-md py-md text-on-surface focus:border-primary outline-none"
+										placeholder="VD: 5000000"
+										type="number"
+									/>
+								</div>
+
+								<div
+									class="flex items-center justify-end gap-md mt-lg sticky bottom-0 bg-surface-container-lowest py-sm border-t border-surface-container-high"
+								>
+									<button
+										type="button"
+										class="px-lg py-md rounded-full bg-surface-container text-on-surface-variant font-label-md hover:bg-surface-container-high transition-all"
+										onclick="closeBookingModal()"
+									>
+										Hủy
+									</button>
+									<button
+										type="submit"
+										class="px-lg py-md rounded-full bg-secondary text-on-secondary font-label-md hover:bg-secondary-container transition-all"
+									>
+										Lưu đơn đặt phòng
+									</button>
+								</div>
+							</form>
+						</div>
+					</div>
+
+					<!-- THUẬT TOÁN JAVASCRIPT: LỌC, TÌM KIẾM, PHÂN TRANG -->
+					<script>
+						function openAddBookingModal() {
+							document
+								.getElementById('bookingModal')
+								.classList.remove('hidden');
+						}
+						function closeBookingModal() {
+							document
+								.getElementById('bookingModal')
+								.classList.add('hidden');
+						}
+
+						let currentPage = 1;
+						const itemsPerPage = 4;
+						let currentStatusFilter = 'all';
+						let searchQuery = '';
+
+						function renderTable() {
+							let rows = Array.from(
+								document.querySelectorAll('.booking-row'),
+							);
+
+							rows = rows.filter((row) => {
+								const status = row.getAttribute('data-status');
+								const text = row.textContent.toLowerCase();
+								const matchStatus =
+									currentStatusFilter === 'all' ||
+									status === currentStatusFilter;
+								const matchSearch = text.includes(searchQuery);
+								return matchStatus && matchSearch;
+							});
+
+							const totalPages =
+								Math.ceil(rows.length / itemsPerPage) || 1;
+							if (currentPage > totalPages)
+								currentPage = totalPages;
+
+							const start = (currentPage - 1) * itemsPerPage;
+							const end = start + itemsPerPage;
+
+							document
+								.querySelectorAll('.booking-row')
+								.forEach((r) => (r.style.display = 'none'));
+							rows.slice(start, end).forEach(
+								(r) => (r.style.display = ''),
+							);
+
+							const showStart = rows.length > 0 ? start + 1 : 0;
+							const showEnd = Math.min(end, rows.length);
+							document.getElementById('page-info').textContent =
+								`Hiển thị ${showStart}-${showEnd} trong tổng số ${rows.length} đơn đặt phòng`;
+
+							const paginationContainer =
+								document.getElementById('pagination-buttons');
+							paginationContainer.innerHTML = '';
+
+							paginationContainer.innerHTML += `<button onclick="changePage(${currentPage - 1})" class="px-md py-sm bg-surface-container rounded-xl text-label-md text-on-surface hover:bg-surface-container-high transition-all disabled:opacity-50" ${currentPage === 1 ? 'disabled' : ''}>Trước</button>`;
+
+							for (let i = 1; i <= totalPages; i++) {
+								if (i === currentPage) {
+									paginationContainer.innerHTML += `<button class="px-md py-sm bg-primary text-on-primary rounded-xl text-label-md">${i}</button>`;
+								} else {
+									paginationContainer.innerHTML += `<button onclick="changePage(${i})" class="px-md py-sm bg-surface-container hover:bg-surface-container-high rounded-xl text-label-md text-on-surface transition-all">${i}</button>`;
+								}
+							}
+
+							paginationContainer.innerHTML += `<button onclick="changePage(${currentPage + 1})" class="px-md py-sm bg-surface-container rounded-xl text-label-md text-on-surface hover:bg-surface-container-high transition-all disabled:opacity-50" ${currentPage === totalPages ? 'disabled' : ''}>Sau</button>`;
+						}
+
+						function changePage(page) {
+							currentPage = page;
+							renderTable();
+						}
+
+						function searchGlobalBookings() {
+							searchQuery = document
+								.getElementById('globalSearch')
+								.value.toLowerCase();
+							currentPage = 1;
+							renderTable();
+						}
+
+						function filterTable() {
+							currentStatusFilter =
+								document.getElementById(
+									'statusFilterSelect',
+								).value;
+							currentPage = 1;
+							renderTable();
+						}
+
+						document.addEventListener('DOMContentLoaded', () =>
+							renderTable(),
+						);
+					</script>
 				</div>
 			</main>
 		</div>
