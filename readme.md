@@ -15,7 +15,7 @@ Xây dựng Website hỗ trợ tìm kiếm địa điểm du lịch và đặt p
       |Password | FBWIjbpQrQBmrCTBJbUXFZUIEzFMRMHW |
       |Default Schema | railway |
     - B4: OK để connect
-    - **Lưu ý: Hạn chế sửa đổi dữ liệu trong DB, nếu sửa gì phải thông báo**
+    - **Lưu ý: Chỉ được sửa đổi cấu trúc dữ liệu trong DB khi cần dữ liệu để tương thích với giao diện, nếu sửa gì phải thông báo, còn nếu không thì hạn chế sửa**
     - **Đây là DB đã được host, vậy nên các máy cùng kết nối và dùng chung 1 DB**
 
 2. **Cấu trúc source code**
