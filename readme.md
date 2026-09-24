@@ -19,6 +19,8 @@ Xây dựng Website hỗ trợ tìm kiếm địa điểm du lịch và đặt p
     - **Đây là DB đã được host, vậy nên các máy cùng kết nối và dùng chung 1 DB**
 
 2. **Cấu trúc source code**
+    - Chức năng đăng nhập đăng ký xử lý sau
+    - Hardcode ID của Customer, Host hay Admin để xử lý các chức năng đã
 
 ```
 ├── routes - Xử lý logic
