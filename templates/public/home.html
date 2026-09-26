@@ -1,757 +1,572 @@
 <!doctype html>
 <html lang="en" style="">
-	<head>
-		<meta charset="utf-8" />
-		<meta content="width=device-width, initial-scale=1.0" name="viewport" />
-		<style>
-			@layer base {
-				html,
-				body {
-					margin: 0;
-					padding: 0;
-				}
-				body {
-					overscroll-behavior: none;
-				}
-				main > :first-child {
-					margin-top: 0 !important;
-				}
-				main > :last-child {
-					margin-bottom: 0 !important;
-				}
+
+<head>
+	<meta charset="utf-8" />
+	<meta content="width=device-width, initial-scale=1.0" name="viewport" />
+	<style>
+		@layer base {
+
+			html,
+			body {
+				margin: 0;
+				padding: 0;
 			}
-			::-webkit-scrollbar {
-				display: none;
+
+			body {
+				overscroll-behavior: none;
 			}
-			/* Căn chỉnh lại phông chữ cho lịch */
-			.flatpickr-calendar {
-				font-family: 'Inter', sans-serif !important;
+
+			main> :first-child {
+				margin-top: 0 !important;
 			}
-		</style>
-		<script src="https://cdn.tailwindcss.com"></script>
-		<script id="tailwind-config">
-			tailwind.config = {
-				darkMode: 'class',
-				theme: {
-					extend: {
-						colors: {
-							'tertiary-fixed': '#d9e3f9',
-							'inverse-surface': '#2d3133',
-							'on-secondary-container': '#663b00',
-							'surface-container-high': '#e6e8eb',
-							'secondary-container': '#fd9d1a',
-							'tertiary-container': '#172131',
-							'inverse-on-surface': '#eef1f4',
-							'surface-bright': '#f7fafc',
-							'on-secondary-fixed-variant': '#683d00',
-							'on-tertiary-container': '#7e889c',
-							'surface-container': '#ebeef1',
-							tertiary: '#020919',
-							error: '#ba1a1a',
-							'surface-container-lowest': '#ffffff',
-							'primary-container': '#002045',
-							'on-primary-fixed-variant': '#2e476e',
-							secondary: '#895100',
-							'surface-container-highest': '#e0e3e5',
-							'error-container': '#ffdad6',
-							'on-secondary-fixed': '#2c1700',
-							'on-tertiary-fixed-variant': '#3d4759',
-							'surface-tint': '#465f87',
-							'on-surface-variant': '#44474e',
-							'on-tertiary': '#ffffff',
-							surface: '#f7fafc',
-							'on-secondary': '#ffffff',
-							'primary-fixed-dim': '#aec7f5',
-							'inverse-primary': '#aec7f5',
-							'on-primary-container': '#7089b3',
-							outline: '#74777f',
-							'surface-variant': '#e0e3e5',
-							background: '#f7fafc',
-							'tertiary-fixed-dim': '#bdc7dc',
-							'primary-fixed': '#d6e3ff',
-							'on-error-container': '#93000a',
-							primary: '#00091b',
-							'on-surface': '#181c1e',
-							'on-tertiary-fixed': '#121c2c',
-							'on-primary': '#ffffff',
-							'on-primary-fixed': '#001b3c',
-							'secondary-fixed-dim': '#ffb86c',
-							'outline-variant': '#c4c6cf',
-							'surface-container-low': '#f1f4f6',
-							'secondary-fixed': '#ffdcbc',
-							'on-background': '#181c1e',
-							'on-error': '#ffffff',
-							'surface-dim': '#d7dadd',
-						},
-						borderRadius: {
-							DEFAULT: '0.125rem',
-							lg: '0.25rem',
-							xl: '0.5rem',
-							full: '0.75rem',
-						},
-						spacing: {
-							md: '16px',
-							'2xl': '48px',
-							xl: '32px',
-							'3xl': '64px',
-							sm: '8px',
-							lg: '24px',
-							xs: '4px',
-							base: '8px',
-						},
-						fontFamily: {
-							'label-md': ['Inter'],
-							'display-lg': ['Montserrat'],
-							'body-md': ['Inter'],
-							'headline-md': ['Montserrat'],
-							caption: ['Inter'],
-							'body-lg': ['Inter'],
-							'headline-lg': ['Montserrat'],
-						},
-						fontSize: {
-							'label-md': [
-								'14px',
-								{
-									lineHeight: '1.2',
-									letterSpacing: '0.01em',
-									fontWeight: '600',
-								},
-							],
-							'display-lg': [
-								'48px',
-								{
-									lineHeight: '1.2',
-									letterSpacing: '-0.02em',
-									fontWeight: '700',
-								},
-							],
-							'body-md': [
-								'16px',
-								{ lineHeight: '1.5', fontWeight: '400' },
-							],
-							'headline-md': [
-								'24px',
-								{ lineHeight: '1.4', fontWeight: '600' },
-							],
-							caption: [
-								'12px',
-								{ lineHeight: '1.4', fontWeight: '400' },
-							],
-							'body-lg': [
-								'18px',
-								{ lineHeight: '1.6', fontWeight: '400' },
-							],
-							'headline-lg': [
-								'32px',
-								{ lineHeight: '1.3', fontWeight: '700' },
-							],
-						},
+
+			main> :last-child {
+				margin-bottom: 0 !important;
+			}
+		}
+
+		::-webkit-scrollbar {
+			display: none;
+		}
+
+		/* Căn chỉnh lại phông chữ cho lịch */
+		.flatpickr-calendar {
+			font-family: 'Inter', sans-serif !important;
+		}
+	</style>
+	<script src="https://cdn.tailwindcss.com"></script>
+	<script id="tailwind-config">
+		tailwind.config = {
+			darkMode: 'class',
+			theme: {
+				extend: {
+					colors: {
+						'tertiary-fixed': '#d9e3f9',
+						'inverse-surface': '#2d3133',
+						'on-secondary-container': '#663b00',
+						'surface-container-high': '#e6e8eb',
+						'secondary-container': '#fd9d1a',
+						'tertiary-container': '#172131',
+						'inverse-on-surface': '#eef1f4',
+						'surface-bright': '#f7fafc',
+						'on-secondary-fixed-variant': '#683d00',
+						'on-tertiary-container': '#7e889c',
+						'surface-container': '#ebeef1',
+						tertiary: '#020919',
+						error: '#ba1a1a',
+						'surface-container-lowest': '#ffffff',
+						'primary-container': '#002045',
+						'on-primary-fixed-variant': '#2e476e',
+						secondary: '#895100',
+						'surface-container-highest': '#e0e3e5',
+						'error-container': '#ffdad6',
+						'on-secondary-fixed': '#2c1700',
+						'on-tertiary-fixed-variant': '#3d4759',
+						'surface-tint': '#465f87',
+						'on-surface-variant': '#44474e',
+						'on-tertiary': '#ffffff',
+						surface: '#f7fafc',
+						'on-secondary': '#ffffff',
+						'primary-fixed-dim': '#aec7f5',
+						'inverse-primary': '#aec7f5',
+						'on-primary-container': '#7089b3',
+						outline: '#74777f',
+						'surface-variant': '#e0e3e5',
+						background: '#f7fafc',
+						'tertiary-fixed-dim': '#bdc7dc',
+						'primary-fixed': '#d6e3ff',
+						'on-error-container': '#93000a',
+						primary: '#00091b',
+						'on-surface': '#181c1e',
+						'on-tertiary-fixed': '#121c2c',
+						'on-primary': '#ffffff',
+						'on-primary-fixed': '#001b3c',
+						'secondary-fixed-dim': '#ffb86c',
+						'outline-variant': '#c4c6cf',
+						'surface-container-low': '#f1f4f6',
+						'secondary-fixed': '#ffdcbc',
+						'on-background': '#181c1e',
+						'on-error': '#ffffff',
+						'surface-dim': '#d7dadd',
+					},
+					borderRadius: {
+						DEFAULT: '0.125rem',
+						lg: '0.25rem',
+						xl: '0.5rem',
+						full: '0.75rem',
+					},
+					spacing: {
+						md: '16px',
+						'2xl': '48px',
+						xl: '32px',
+						'3xl': '64px',
+						sm: '8px',
+						lg: '24px',
+						xs: '4px',
+						base: '8px',
+					},
+					fontFamily: {
+						'label-md': ['Inter'],
+						'display-lg': ['Montserrat'],
+						'body-md': ['Inter'],
+						'headline-md': ['Montserrat'],
+						caption: ['Inter'],
+						'body-lg': ['Inter'],
+						'headline-lg': ['Montserrat'],
+					},
+					fontSize: {
+						'label-md': [
+							'14px',
+							{
+								lineHeight: '1.2',
+								letterSpacing: '0.01em',
+								fontWeight: '600',
+							},
+						],
+						'display-lg': [
+							'48px',
+							{
+								lineHeight: '1.2',
+								letterSpacing: '-0.02em',
+								fontWeight: '700',
+							},
+						],
+						'body-md': [
+							'16px',
+							{ lineHeight: '1.5', fontWeight: '400' },
+						],
+						'headline-md': [
+							'24px',
+							{ lineHeight: '1.4', fontWeight: '600' },
+						],
+						caption: [
+							'12px',
+							{ lineHeight: '1.4', fontWeight: '400' },
+						],
+						'body-lg': [
+							'18px',
+							{ lineHeight: '1.6', fontWeight: '400' },
+						],
+						'headline-lg': [
+							'32px',
+							{ lineHeight: '1.3', fontWeight: '700' },
+						],
 					},
 				},
-			};
-		</script>
-		<link
-			href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&amp;family=Montserrat:wght@600;700&amp;display=swap"
-			rel="stylesheet"
-		/>
-		<link
-			href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0"
-			rel="stylesheet"
-		/>
-		<link
-			href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
-			rel="stylesheet"
-		/>
-		<!-- CSS CHO LỊCH -->
-		<link
-			rel="stylesheet"
-			href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css"
-		/>
-	</head>
-	<body class="bg-surface font-body-md text-on-surface">
-		<header
-			class="fixed top-0 w-full z-50 bg-surface/80 backdrop-blur-xl shadow-[0_1px_8px_rgba(0,0,0,0.04)]"
-		>
-			<div
-				class="h-20 max-w-7xl mx-auto px-lg flex items-center justify-between"
-			>
-				<a
-					class="font-headline-md text-headline-md text-primary font-bold"
-					href="{{ url_for('public.home') }}"
-					>DaNang Travel</a
-				>
-				<nav
-					class="hidden md:flex items-center gap-xl"
-					data-active-classes="bg-primary-container text-on-primary-container font-semibold rounded-lg"
-				>
-					<a
-						class="text-body-md px-md py-sm rounded-t-lg bg-surface-container-high border-b-2 border-primary text-primary font-semibold transition-colors"
-						href="{{ url_for('public.home') }}"
-						>Trang chủ</a
-					>
-					<a
-						class="text-body-md text-on-surface-variant hover:text-on-surface transition-colors"
-						href="{{ url_for('public.search_destinations') }}"
-						>Khám phá địa điểm</a
-					>
-					<a
-						class="text-body-md text-on-surface-variant hover:text-on-surface transition-colors"
-						href="{{ url_for('public.search_rooms') }}"
-						>Tìm kiếm phòng</a
-					>
-				</nav>
-				<div class="flex items-center gap-md">
-					<a
-						class="px-lg py-sm rounded-full border border-outline text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-all text-label-md"
-						href="#"
-						>Đăng nhập</a
-					>
-					<a
-						class="px-lg py-sm rounded-full bg-primary text-on-primary hover:bg-primary-container hover:text-on-primary-container transition-all text-label-md"
-						href="#"
-						>Đăng ký</a
-					>
+			},
+		};
+	</script>
+	<link
+		href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&amp;family=Montserrat:wght@600;700&amp;display=swap"
+		rel="stylesheet" />
+	<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0"
+		rel="stylesheet" />
+	<link
+		href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+		rel="stylesheet" />
+	<!-- CSS CHO LỊCH -->
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css" />
+</head>
+
+<body class="bg-surface font-body-md text-on-surface">
+	<header class="fixed top-0 w-full z-50 bg-surface/80 backdrop-blur-xl shadow-[0_1px_8px_rgba(0,0,0,0.04)]">
+		<div class="h-20 max-w-7xl mx-auto px-lg flex items-center justify-between">
+			<a class="font-headline-md text-headline-md text-primary font-bold"
+				href="{{ url_for('public.home') }}">DaNang Travel</a>
+			<nav class="hidden md:flex items-center gap-xl"
+				data-active-classes="bg-primary-container text-on-primary-container font-semibold rounded-lg">
+				<a class="text-body-md px-md py-sm rounded-t-lg bg-surface-container-high border-b-2 border-primary text-primary font-semibold transition-colors"
+					href="{{ url_for('public.home') }}">Trang chủ</a>
+				<a class="text-body-md text-on-surface-variant hover:text-on-surface transition-colors"
+					href="{{ url_for('public.search_destinations') }}">Khám phá địa điểm</a>
+				<a class="text-body-md text-on-surface-variant hover:text-on-surface transition-colors"
+					href="{{ url_for('public.search_rooms') }}">Tìm kiếm phòng</a>
+			</nav>
+			<div class="flex items-center gap-md">
+				{% if session.get('user_id') %}
+				<!-- Giao diện khi ĐÃ ĐĂNG NHẬP: Hiển thị tên/avatar và nút Đăng xuất -->
+				<div class="flex items-center gap-sm">
+					<span class="material-symbols-outlined text-primary text-[24px]">account_circle</span>
+					<span class="text-body-md font-semibold text-on-surface">Xin chào!</span>
 				</div>
+				<a class="px-lg py-sm rounded-full border border-outline text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-all text-label-md"
+					href="{{ url_for('auth.logout') }}">
+					Đăng xuất
+				</a>
+				{% else %}
+				<!-- Giao diện khi CHƯA ĐĂNG NHẬP -->
+				<a class="px-lg py-sm rounded-full border border-outline text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-all text-label-md"
+					href="{{ url_for('auth.login') }}">
+					Đăng nhập
+				</a>
+				<a class="px-lg py-sm rounded-full bg-primary text-on-primary hover:bg-primary-container hover:text-on-primary-container transition-all text-label-md"
+					href="{{ url_for('auth.register') }}">
+					Đăng ký
+				</a>
+				{% endif %}
 			</div>
-		</header>
+		</div>
+	</header>
 
-		<main class="w-full pt-20 bg-surface min-h-[80vh]">
-			<div class="flex flex-col w-full">
-				<!-- 1. Banner chào mừng với thông điệp & thanh tìm kiếm nhanh -->
-				<section
-					class="relative w-full min-h-[560px] flex items-center justify-center bg-primary text-on-primary overflow-hidden px-lg py-3xl"
-				>
-					<div
-						class="absolute inset-0 opacity-40 bg-cover bg-center"
-						style="
+	<main class="w-full pt-20 bg-surface min-h-[80vh]">
+		<div class="flex flex-col w-full">
+			<!-- 1. Banner chào mừng với thông điệp & thanh tìm kiếm nhanh -->
+			<section
+				class="relative w-full min-h-[560px] flex items-center justify-center bg-primary text-on-primary overflow-hidden px-lg py-3xl">
+				<div class="absolute inset-0 opacity-40 bg-cover bg-center" style="
 							background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDqGRyYLv9ndx853CCg-_O8Zf04Xl3eECOAt4QFqqsi6p-XQ_iwvr6nUa7kQLSnkxUeY1yiWwQY_XvIzQcHpykBEBwiLLYuFK2NtX-spXylghANXyahAps9AQqpF_o-J3xXmN5lkDzsDVLceNiIK1oR8HvhmnP4eCJ5CjgySTmHwIxu5ocRz-TfLVGZNuLa6DaCESu3UtuDERnL4vCswdcgNIkbK1ZIZxlm0njWVxp374gwOeHn3B0m');
-						"
-					></div>
+						"></div>
+				<div class="absolute inset-0 bg-gradient-to-t from-primary via-primary/60 to-transparent"></div>
+				<div class="relative z-10 max-w-5xl w-full mx-auto flex flex-col items-center text-center gap-xl mt-8">
 					<div
-						class="absolute inset-0 bg-gradient-to-t from-primary via-primary/60 to-transparent"
-					></div>
-					<div
-						class="relative z-10 max-w-5xl w-full mx-auto flex flex-col items-center text-center gap-xl mt-8"
-					>
+						class="inline-flex items-center gap-sm px-md py-xs rounded-full bg-surface-container-highest/20 backdrop-blur-md text-primary-fixed text-label-md">
+						<span class="material-symbols-outlined text-base">explore</span>
+						<span class="">Khám phá thành phố đáng sống nhất Việt
+							Nam</span>
+					</div>
+					<h1 class="font-display-lg text-display-lg md:text-5xl tracking-tight text-on-primary max-w-3xl">
+						Hành trình tuyệt vời tại
+						<span class="text-secondary-fixed">Đà Nẵng</span>
+						bắt đầu từ đây
+					</h1>
+					<p class="font-body-lg text-body-lg text-tertiary-fixed max-w-xl">
+						Trải nghiệm không gian nghỉ dưỡng đỉnh cao và những
+						điểm đến biểu tượng với hệ thống đặt phòng thông
+						minh của chúng tôi.
+					</p>
+
+					<!-- Thanh tìm kiếm nhanh BỌC BẰNG THẺ FORM ĐỂ GỬI DỮ LIỆU ĐẾN search_rooms -->
+					<form method="GET" action="{{ url_for('public.search_rooms') }}"
+						class="w-full bg-surface-container-lowest text-on-surface p-lg rounded-xl shadow-xl grid grid-cols-1 md:grid-cols-3 gap-md items-center mt-4">
+						<!-- Đã xóa ô Điểm đến theo yêu cầu, đổi thành md:grid-cols-3 -->
+
+						<!-- Ngày đi / về -->
 						<div
-							class="inline-flex items-center gap-sm px-md py-xs rounded-full bg-surface-container-highest/20 backdrop-blur-md text-primary-fixed text-label-md"
-						>
-							<span class="material-symbols-outlined text-base"
-								>explore</span
-							>
-							<span class=""
-								>Khám phá thành phố đáng sống nhất Việt
-								Nam</span
-							>
+							class="flex flex-col text-left px-md py-sm rounded-lg hover:bg-surface-container transition-colors cursor-pointer relative">
+							<label class="font-label-md text-on-surface-variant flex items-center gap-xs">
+								<span class="material-symbols-outlined text-sm text-primary">calendar_month</span>
+								Ngày đi / về
+							</label>
+							<input type="text" id="date-range-display" placeholder="Chọn ngày..."
+								class="w-full bg-transparent font-body-md text-on-surface outline-none mt-xs cursor-pointer"
+								readonly />
+							<input type="hidden" name="check_in" id="hidden_check_in" />
+							<input type="hidden" name="check_out" id="hidden_check_out" />
 						</div>
-						<h1
-							class="font-display-lg text-display-lg md:text-5xl tracking-tight text-on-primary max-w-3xl"
-						>
-							Hành trình tuyệt vời tại
-							<span class="text-secondary-fixed">Đà Nẵng</span>
-							bắt đầu từ đây
-						</h1>
-						<p
-							class="font-body-lg text-body-lg text-tertiary-fixed max-w-xl"
-						>
-							Trải nghiệm không gian nghỉ dưỡng đỉnh cao và những
-							điểm đến biểu tượng với hệ thống đặt phòng thông
-							minh của chúng tôi.
-						</p>
 
-						<!-- Thanh tìm kiếm nhanh BỌC BẰNG THẺ FORM ĐỂ GỬI DỮ LIỆU ĐẾN search_rooms -->
-						<form
-							method="GET"
-							action="{{ url_for('public.search_rooms') }}"
-							class="w-full bg-surface-container-lowest text-on-surface p-lg rounded-xl shadow-xl grid grid-cols-1 md:grid-cols-3 gap-md items-center mt-4"
-						>
-							<!-- Đã xóa ô Điểm đến theo yêu cầu, đổi thành md:grid-cols-3 -->
+						<!-- Số khách -->
+						<div class="flex flex-col text-left px-md py-sm rounded-lg hover:bg-surface-container transition-colors cursor-pointer relative"
+							id="guest-room-wrapper">
+							<label class="font-label-md text-on-surface-variant flex items-center gap-xs">
+								<span class="material-symbols-outlined text-sm text-primary">group</span>
+								Số khách
+							</label>
+							<input id="guest-display" onclick="toggleGuestMenu()" readonly
+								class="w-full bg-transparent font-body-md text-on-surface outline-none mt-xs cursor-pointer text-ellipsis whitespace-nowrap"
+								type="text" value="2 Người lớn, 0 Trẻ em" />
 
-							<!-- Ngày đi / về -->
-							<div
-								class="flex flex-col text-left px-md py-sm rounded-lg hover:bg-surface-container transition-colors cursor-pointer relative"
-							>
-								<label
-									class="font-label-md text-on-surface-variant flex items-center gap-xs"
-								>
-									<span
-										class="material-symbols-outlined text-sm text-primary"
-										>calendar_month</span
-									>
-									Ngày đi / về
-								</label>
-								<input
-									type="text"
-									id="date-range-display"
-									placeholder="Chọn ngày..."
-									class="w-full bg-transparent font-body-md text-on-surface outline-none mt-xs cursor-pointer"
-									readonly
-								/>
-								<input
-									type="hidden"
-									name="check_in"
-									id="hidden_check_in"
-								/>
-								<input
-									type="hidden"
-									name="check_out"
-									id="hidden_check_out"
-								/>
-							</div>
+							<input type="hidden" name="adults" id="hidden_adults" value="2" />
+							<input type="hidden" name="children" id="hidden_children" value="0" />
 
-							<!-- Số khách -->
-							<div
-								class="flex flex-col text-left px-md py-sm rounded-lg hover:bg-surface-container transition-colors cursor-pointer relative"
-								id="guest-room-wrapper"
-							>
-								<label
-									class="font-label-md text-on-surface-variant flex items-center gap-xs"
-								>
-									<span
-										class="material-symbols-outlined text-sm text-primary"
-										>group</span
-									>
-									Số khách
-								</label>
-								<input
-									id="guest-display"
-									onclick="toggleGuestMenu()"
-									readonly
-									class="w-full bg-transparent font-body-md text-on-surface outline-none mt-xs cursor-pointer text-ellipsis whitespace-nowrap"
-									type="text"
-									value="2 Người lớn, 0 Trẻ em"
-								/>
-
-								<input
-									type="hidden"
-									name="adults"
-									id="hidden_adults"
-									value="2"
-								/>
-								<input
-									type="hidden"
-									name="children"
-									id="hidden_children"
-									value="0"
-								/>
-
-								<div
-									id="guest-menu"
-									class="hidden absolute top-[105%] left-0 w-full min-w-[250px] bg-surface-container-lowest border border-outline-variant rounded-xl shadow-lg p-lg z-50 flex flex-col gap-md"
-								>
-									<div
-										class="flex items-center justify-between"
-									>
-										<span class="font-body-md font-semibold"
-											>Người lớn</span
-										>
-										<div class="flex items-center gap-md">
-											<button
-												type="button"
-												onclick="
+							<div id="guest-menu"
+								class="hidden absolute top-[105%] left-0 w-full min-w-[250px] bg-surface-container-lowest border border-outline-variant rounded-xl shadow-lg p-lg z-50 flex flex-col gap-md">
+								<div class="flex items-center justify-between">
+									<span class="font-body-md font-semibold">Người lớn</span>
+									<div class="flex items-center gap-md">
+										<button type="button" onclick="
 													updateGuestCount(
 														'adults',
 														-1,
 													)
-												"
-												class="w-8 h-8 rounded-full bg-surface-container hover:bg-surface-container-high transition"
-											>
-												-
-											</button>
-											<span id="val-adults">2</span>
-											<button
-												type="button"
-												onclick="
+												" class="w-8 h-8 rounded-full bg-surface-container hover:bg-surface-container-high transition">
+											-
+										</button>
+										<span id="val-adults">2</span>
+										<button type="button" onclick="
 													updateGuestCount(
 														'adults',
 														1,
 													)
-												"
-												class="w-8 h-8 rounded-full bg-surface-container hover:bg-surface-container-high transition"
-											>
-												+
-											</button>
-										</div>
+												" class="w-8 h-8 rounded-full bg-surface-container hover:bg-surface-container-high transition">
+											+
+										</button>
 									</div>
-									<div
-										class="flex items-center justify-between"
-									>
-										<span class="font-body-md font-semibold"
-											>Trẻ em</span
-										>
-										<div class="flex items-center gap-md">
-											<button
-												type="button"
-												onclick="
-													updateGuestCount(
-														'children',
-														-1,
-													)
-												"
-												class="w-8 h-8 rounded-full bg-surface-container hover:bg-surface-container-high transition"
-											>
-												-
-											</button>
-											<span id="val-children">0</span>
-											<button
-												type="button"
-												onclick="
-													updateGuestCount(
-														'children',
-														1,
-													)
-												"
-												class="w-8 h-8 rounded-full bg-surface-container hover:bg-surface-container-high transition"
-											>
-												+
-											</button>
-										</div>
-									</div>
-									<button
-										type="button"
-										onclick="toggleGuestMenu()"
-										class="w-full mt-2 py-sm rounded-lg bg-primary text-on-primary"
-									>
-										Xác nhận
-									</button>
 								</div>
-							</div>
-
-							<!-- Nút tìm kiếm (Chuyển <a> thành <button type="submit"> nhưng giữ nguyên style) -->
-							<div class="flex items-center justify-center">
-								<button
-									type="submit"
-									class="w-full py-md px-lg bg-secondary text-on-secondary hover:bg-secondary-container hover:text-on-secondary-container transition-all rounded-full font-label-md flex items-center justify-center gap-sm shadow-md"
-								>
-									<span class="material-symbols-outlined"
-										>search</span
-									>
-									Tìm kiếm ngay
+								<div class="flex items-center justify-between">
+									<span class="font-body-md font-semibold">Trẻ em</span>
+									<div class="flex items-center gap-md">
+										<button type="button" onclick="
+													updateGuestCount(
+														'children',
+														-1,
+													)
+												" class="w-8 h-8 rounded-full bg-surface-container hover:bg-surface-container-high transition">
+											-
+										</button>
+										<span id="val-children">0</span>
+										<button type="button" onclick="
+													updateGuestCount(
+														'children',
+														1,
+													)
+												" class="w-8 h-8 rounded-full bg-surface-container hover:bg-surface-container-high transition">
+											+
+										</button>
+									</div>
+								</div>
+								<button type="button" onclick="toggleGuestMenu()"
+									class="w-full mt-2 py-sm rounded-lg bg-primary text-on-primary">
+									Xác nhận
 								</button>
 							</div>
-						</form>
-					</div>
-				</section>
+						</div>
 
-				<!-- 2. Khu vực 'Khám phá Đà Nẵng' với vòng lặp dữ liệu từ CSDL -->
-				<section class="max-w-7xl mx-auto px-lg py-3xl w-full">
+						<!-- Nút tìm kiếm (Chuyển <a> thành <button type="submit"> nhưng giữ nguyên style) -->
+						<div class="flex items-center justify-center">
+							<button type="submit"
+								class="w-full py-md px-lg bg-secondary text-on-secondary hover:bg-secondary-container hover:text-on-secondary-container transition-all rounded-full font-label-md flex items-center justify-center gap-sm shadow-md">
+								<span class="material-symbols-outlined">search</span>
+								Tìm kiếm ngay
+							</button>
+						</div>
+					</form>
+				</div>
+			</section>
+
+			<!-- 2. Khu vực 'Khám phá Đà Nẵng' với vòng lặp dữ liệu từ CSDL -->
+			<section class="max-w-7xl mx-auto px-lg py-3xl w-full">
+				<div class="flex flex-col md:flex-row md:items-end justify-between mb-2xl">
+					<div>
+						<span class="text-label-md text-on-surface-variant uppercase tracking-wider">Điểm đến biểu
+							tượng</span>
+						<h2 class="font-headline-lg text-headline-lg text-primary mt-xs">
+							Khám phá Đà Nẵng
+						</h2>
+					</div>
+					<a class="text-label-md text-primary hover:text-primary-container flex items-center gap-xs mt-md md:mt-0 transition-colors"
+						href="{{ url_for('public.search_destinations') }}">
+						Xem tất cả điểm đến
+						<span class="material-symbols-outlined">arrow_forward</span>
+					</a>
+				</div>
+				<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-lg">
+					{% for dest in top_destinations %}
 					<div
-						class="flex flex-col md:flex-row md:items-end justify-between mb-2xl"
-					>
-						<div>
+						class="group bg-surface-container-lowest rounded-xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col">
+						<div class="relative h-64 overflow-hidden bg-surface-container">
+							<!-- Giữ nguyên thuộc tính background-image như giao diện bạn cung cấp -->
+							<div class="absolute inset-0 bg-cover bg-center group-hover:scale-105 transition-transform duration-500"
+								style="background-image: url('{{ dest.main_image }}');"></div>
 							<span
-								class="text-label-md text-on-surface-variant uppercase tracking-wider"
-								>Điểm đến biểu tượng</span
-							>
-							<h2
-								class="font-headline-lg text-headline-lg text-primary mt-xs"
-							>
-								Khám phá Đà Nẵng
+								class="absolute top-md left-md px-md py-xs rounded-full bg-surface/90 backdrop-blur-md text-primary text-caption font-semibold">{{
+								dest.category }}</span>
+						</div>
+						<div class="p-lg flex flex-col flex-grow justify-between">
+							<div>
+								<h3 class="font-headline-md text-headline-md text-on-surface mb-xs">
+									{{ dest.name }}
+								</h3>
+								<p class="font-body-md text-on-surface-variant text-caption line-clamp-2">
+									{{ dest.description | striptags }}
+								</p>
+							</div>
+							<!-- Sửa div thành a để click chuyển trang được, giữ y hệt class -->
+							<a href="{{ url_for('public.destination_detail', id=dest.id) }}"
+								class="mt-lg pt-md flex items-center justify-between text-caption text-primary font-semibold">
+								<span class="">Khám phá ngay</span>
+								<span
+									class="material-symbols-outlined group-hover:translate-x-1 transition-transform">chevron_right</span>
+							</a>
+						</div>
+					</div>
+					{% endfor %}
+				</div>
+			</section>
+
+			<!-- 3. Phần 'Khách sạn nổi bật tại Đà Nẵng' (Vòng lặp CSDL) -->
+			<section class="bg-surface-container-low py-3xl w-full">
+				<div class="max-w-7xl mx-auto px-lg">
+					<div class="flex flex-col md:flex-row md:items-end justify-between mb-2xl">
+						<div>
+							<span class="text-label-md text-on-surface-variant uppercase tracking-wider">Lưu trú cao
+								cấp</span>
+							<h2 class="font-headline-lg text-headline-lg text-primary mt-xs">
+								Khách sạn nổi bật tại Đà Nẵng
 							</h2>
 						</div>
-						<a
-							class="text-label-md text-primary hover:text-primary-container flex items-center gap-xs mt-md md:mt-0 transition-colors"
-							href="{{ url_for('public.search_destinations') }}"
-						>
-							Xem tất cả điểm đến
-							<span class="material-symbols-outlined"
-								>arrow_forward</span
-							>
+						<a class="text-label-md text-primary hover:text-primary-container flex items-center gap-xs mt-md md:mt-0 transition-colors"
+							href="{{ url_for('public.search_rooms') }}">
+							Xem tất cả khách sạn
+							<span class="material-symbols-outlined">arrow_forward</span>
 						</a>
 					</div>
-					<div
-						class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-lg"
-					>
-						{% for dest in top_destinations %}
+					<div class="grid grid-cols-1 lg:grid-cols-3 gap-xl">
+						{% for acc in top_accommodations %}
 						<div
-							class="group bg-surface-container-lowest rounded-xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col"
-						>
-							<div
-								class="relative h-64 overflow-hidden bg-surface-container"
-							>
-								<!-- Giữ nguyên thuộc tính background-image như giao diện bạn cung cấp -->
+							class="bg-surface-container-lowest rounded-xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col">
+							<div class="relative h-72 bg-surface-container">
+								<div class="absolute inset-0 bg-cover bg-center"
+									style="background-image: url('{{ acc.image }}');"></div>
 								<div
-									class="absolute inset-0 bg-cover bg-center group-hover:scale-105 transition-transform duration-500"
-									style="background-image: url('{{ dest.main_image }}');"
-								></div>
-								<span
-									class="absolute top-md left-md px-md py-xs rounded-full bg-surface/90 backdrop-blur-md text-primary text-caption font-semibold"
-									>{{ dest.category }}</span
-								>
+									class="absolute top-md right-md bg-surface/90 backdrop-blur-md px-md py-xs rounded-full flex items-center gap-xs text-primary text-label-md">
+									<span class="material-symbols-outlined text-sm" style="
+												font-variation-settings: 'FILL'
+													1;
+											">star</span>
+									<span class="">4.9 Đánh giá</span>
+								</div>
 							</div>
-							<div
-								class="p-lg flex flex-col flex-grow justify-between"
-							>
+							<div class="p-lg flex flex-col flex-grow justify-between">
 								<div>
-									<h3
-										class="font-headline-md text-headline-md text-on-surface mb-xs"
-									>
-										{{ dest.name }}
+									<div class="flex items-center justify-between mb-xs">
+										<span class="text-caption text-on-surface-variant uppercase font-semibold">{{
+											acc.area }}</span>
+										<span class="text-caption text-secondary font-semibold">Khách sạn 5 Sao</span>
+									</div>
+									<h3 class="font-headline-md text-headline-md text-on-surface mb-sm">
+										{{ acc.name }}
 									</h3>
-									<p
-										class="font-body-md text-on-surface-variant text-caption line-clamp-2"
-									>
-										{{ dest.description | striptags }}
+									<p class="font-body-md text-on-surface-variant text-caption line-clamp-2 mb-lg">
+										{{ acc.description }}
 									</p>
 								</div>
-								<!-- Sửa div thành a để click chuyển trang được, giữ y hệt class -->
-								<a
-									href="{{ url_for('public.destination_detail', id=dest.id) }}"
-									class="mt-lg pt-md flex items-center justify-between text-caption text-primary font-semibold"
-								>
-									<span class="">Khám phá ngay</span>
-									<span
-										class="material-symbols-outlined group-hover:translate-x-1 transition-transform"
-										>chevron_right</span
-									>
-								</a>
+								<div class="pt-md flex items-center justify-between border-t border-surface-variant/20">
+									<div>
+										<span class="text-caption text-on-surface-variant">Giá từ</span>
+										<p class="font-headline-md text-primary">
+											<!-- Hiển thị giá từ DB, định dạng có dấu phẩy -->
+											{{
+											"{:,.0f}".format(acc.min_price).replace(',',
+											'.') if acc.min_price else "Đang
+											cập nhật" }} ₫
+											<span class="text-caption font-normal text-on-surface-variant">/ đêm</span>
+										</p>
+									</div>
+									<!-- Chuyển hướng tới trang tìm phòng và lọc theo tên khách sạn này -->
+									<a class="px-lg py-sm rounded-full bg-primary text-on-primary hover:bg-primary-container hover:text-on-primary-container transition-all text-label-md"
+										href="{{ url_for('public.room_detail', id=acc.room_id) if acc.room_id else '#' }}">
+										Xem chi tiết
+									</a>
+								</div>
 							</div>
 						</div>
 						{% endfor %}
 					</div>
-				</section>
+				</div>
+			</section>
 
-				<!-- 3. Phần 'Khách sạn nổi bật tại Đà Nẵng' (Vòng lặp CSDL) -->
-				<section class="bg-surface-container-low py-3xl w-full">
-					<div class="max-w-7xl mx-auto px-lg">
-						<div
-							class="flex flex-col md:flex-row md:items-end justify-between mb-2xl"
-						>
-							<div>
-								<span
-									class="text-label-md text-on-surface-variant uppercase tracking-wider"
-									>Lưu trú cao cấp</span
-								>
-								<h2
-									class="font-headline-lg text-headline-lg text-primary mt-xs"
-								>
-									Khách sạn nổi bật tại Đà Nẵng
-								</h2>
-							</div>
-							<a
-								class="text-label-md text-primary hover:text-primary-container flex items-center gap-xs mt-md md:mt-0 transition-colors"
-								href="{{ url_for('public.search_rooms') }}"
-							>
-								Xem tất cả khách sạn
-								<span class="material-symbols-outlined"
-									>arrow_forward</span
-								>
-							</a>
-						</div>
-						<div class="grid grid-cols-1 lg:grid-cols-3 gap-xl">
-							{% for acc in top_accommodations %}
-							<div
-								class="bg-surface-container-lowest rounded-xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col"
-							>
-								<div class="relative h-72 bg-surface-container">
-									<div
-										class="absolute inset-0 bg-cover bg-center"
-										style="background-image: url('{{ acc.image }}');"
-									></div>
-									<div
-										class="absolute top-md right-md bg-surface/90 backdrop-blur-md px-md py-xs rounded-full flex items-center gap-xs text-primary text-label-md"
-									>
-										<span
-											class="material-symbols-outlined text-sm"
-											style="
-												font-variation-settings: 'FILL'
-													1;
-											"
-											>star</span
-										>
-										<span class="">4.9 Đánh giá</span>
-									</div>
-								</div>
-								<div
-									class="p-lg flex flex-col flex-grow justify-between"
-								>
-									<div>
-										<div
-											class="flex items-center justify-between mb-xs"
-										>
-											<span
-												class="text-caption text-on-surface-variant uppercase font-semibold"
-												>{{ acc.area }}</span
-											>
-											<span
-												class="text-caption text-secondary font-semibold"
-												>Khách sạn 5 Sao</span
-											>
-										</div>
-										<h3
-											class="font-headline-md text-headline-md text-on-surface mb-sm"
-										>
-											{{ acc.name }}
-										</h3>
-										<p
-											class="font-body-md text-on-surface-variant text-caption line-clamp-2 mb-lg"
-										>
-											{{ acc.description }}
-										</p>
-									</div>
-									<div
-										class="pt-md flex items-center justify-between border-t border-surface-variant/20"
-									>
-										<div>
-											<span
-												class="text-caption text-on-surface-variant"
-												>Giá từ</span
-											>
-											<p
-												class="font-headline-md text-primary"
-											>
-												<!-- Hiển thị giá từ DB, định dạng có dấu phẩy -->
-												{{
-												"{:,.0f}".format(acc.min_price).replace(',',
-												'.') if acc.min_price else "Đang
-												cập nhật" }} ₫
-												<span
-													class="text-caption font-normal text-on-surface-variant"
-													>/ đêm</span
-												>
-											</p>
-										</div>
-										<!-- Chuyển hướng tới trang tìm phòng và lọc theo tên khách sạn này -->
-										<a
-											class="px-lg py-sm rounded-full bg-primary text-on-primary hover:bg-primary-container hover:text-on-primary-container transition-all text-label-md"
-											href="{{ url_for('public.room_detail', id=acc.room_id) if acc.room_id else '#' }}"
-										>
-											Xem chi tiết
-										</a>
-									</div>
-								</div>
-							</div>
-							{% endfor %}
-						</div>
-					</div>
-				</section>
-
-				<!-- 4. Call-to-action kêu gọi đăng ký -->
-				<section class="max-w-7xl mx-auto px-lg py-3xl w-full">
+			<!-- 4. Call-to-action kêu gọi đăng ký -->
+			<section class="max-w-7xl mx-auto px-lg py-3xl w-full">
+				<div
+					class="bg-primary-container text-on-primary-container rounded-2xl p-2xl md:p-3xl relative overflow-hidden flex flex-col md:flex-row items-center justify-between gap-xl">
 					<div
-						class="bg-primary-container text-on-primary-container rounded-2xl p-2xl md:p-3xl relative overflow-hidden flex flex-col md:flex-row items-center justify-between gap-xl"
-					>
-						<div
-							class="absolute -right-20 -bottom-20 w-96 h-96 bg-secondary/10 rounded-full blur-3xl pointer-events-none"
-						></div>
-						<div class="relative z-10 max-w-xl">
-							<span
-								class="text-label-md text-secondary-fixed uppercase tracking-wider mb-sm block"
-								>Đồng hành cùng Đà Nẵng Stay</span
-							>
-							<h2
-								class="font-headline-lg text-headline-lg text-on-primary mb-md"
-							>
-								Nhận ưu đãi độc quyền lên đến 30% cho chuyến đi
-								của bạn
-							</h2>
-							<p
-								class="font-body-lg text-body-lg text-tertiary-fixed"
-							>
-								Đăng ký tài khoản ngay hôm nay để tích điểm
-								thành viên, nhận mã giảm giá phòng độc quyền và
-								cập nhật thông tin du lịch mới nhất.
-							</p>
-						</div>
-						<div
-							class="relative z-10 flex flex-col sm:flex-row items-center gap-md w-full md:w-auto"
-						>
-							<a
-								class="w-full sm:w-auto px-xl py-md rounded-full bg-secondary text-on-secondary hover:bg-secondary-container hover:text-on-secondary-container transition-all text-label-md text-center shadow-lg"
-								href="#"
-								>Đăng ký tài khoản</a
-							>
-							<a
-								class="w-full sm:w-auto px-xl py-md rounded-full bg-surface/10 hover:bg-surface/20 text-on-primary transition-all text-label-md text-center backdrop-blur-md"
-								href="{{ url_for('public.search_destinations') }}"
-								>Khám phá thêm</a
-							>
-						</div>
+						class="absolute -right-20 -bottom-20 w-96 h-96 bg-secondary/10 rounded-full blur-3xl pointer-events-none">
 					</div>
-				</section>
-			</div>
-		</main>
+					<div class="relative z-10 max-w-xl">
+						<span class="text-label-md text-secondary-fixed uppercase tracking-wider mb-sm block">Đồng hành
+							cùng Đà Nẵng Stay</span>
+						<h2 class="font-headline-lg text-headline-lg text-on-primary mb-md">
+							Nhận ưu đãi độc quyền lên đến 30% cho chuyến đi
+							của bạn
+						</h2>
+						<p class="font-body-lg text-body-lg text-tertiary-fixed">
+							Đăng ký tài khoản ngay hôm nay để tích điểm
+							thành viên, nhận mã giảm giá phòng độc quyền và
+							cập nhật thông tin du lịch mới nhất.
+						</p>
+					</div>
+					<div class="relative z-10 flex flex-col sm:flex-row items-center gap-md w-full md:w-auto">
+						<a class="w-full sm:w-auto px-xl py-md rounded-full bg-secondary text-on-secondary hover:bg-secondary-container hover:text-on-secondary-container transition-all text-label-md text-center shadow-lg"
+							href="#">Đăng ký tài khoản</a>
+						<a class="w-full sm:w-auto px-xl py-md rounded-full bg-surface/10 hover:bg-surface/20 text-on-primary transition-all text-label-md text-center backdrop-blur-md"
+							href="{{ url_for('public.search_destinations') }}">Khám phá thêm</a>
+					</div>
+				</div>
+			</section>
+		</div>
+	</main>
 
-		<footer class="w-full bg-surface-container-low py-2xl">
-			<div
-				class="max-w-7xl mx-auto px-lg flex flex-col md:flex-row items-center justify-between gap-md text-on-surface-variant text-caption"
-			>
-				<p class="">
-					© 2026 DaNang Travel. Bản quyền thuộc về chúng tôi.
-				</p>
-				<p class="">
-					Hỗ trợ liên hệ: support@danangtravel.vn | Hotline: 1900 1234
-				</p>
-			</div>
-		</footer>
+	<footer class="w-full bg-surface-container-low py-2xl">
+		<div
+			class="max-w-7xl mx-auto px-lg flex flex-col md:flex-row items-center justify-between gap-md text-on-surface-variant text-caption">
+			<p class="">
+				© 2026 DaNang Travel. Bản quyền thuộc về chúng tôi.
+			</p>
+			<p class="">
+				Hỗ trợ liên hệ: support@danangtravel.vn | Hotline: 1900 1234
+			</p>
+		</div>
+	</footer>
 
-		<!-- SCRIPT FLAT PICKR VÀ XỬ LÝ SỐ KHÁCH -->
-		<script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
-		<script src="https://npmcdn.com/flatpickr/dist/l10n/vn.js"></script>
-		<script>
-			// Khởi tạo Lịch chọn ngày
-			flatpickr('#date-range-display', {
-				mode: 'range',
-				dateFormat: 'd/m/Y',
-				minDate: 'today',
-				locale: 'vn',
-				onChange: function (selectedDates) {
-					if (selectedDates.length === 2) {
-						let formatToBackend = (d) =>
-							d.getFullYear() +
-							'-' +
-							String(d.getMonth() + 1).padStart(2, '0') +
-							'-' +
-							String(d.getDate()).padStart(2, '0');
-						document.getElementById('hidden_check_in').value =
-							formatToBackend(selectedDates[0]);
-						document.getElementById('hidden_check_out').value =
-							formatToBackend(selectedDates[1]);
-					} else {
-						document.getElementById('hidden_check_in').value = '';
-						document.getElementById('hidden_check_out').value = '';
-					}
-				},
-			});
+	<!-- SCRIPT FLAT PICKR VÀ XỬ LÝ SỐ KHÁCH -->
+	<script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+	<script src="https://npmcdn.com/flatpickr/dist/l10n/vn.js"></script>
+	<script>
+		// Khởi tạo Lịch chọn ngày
+		flatpickr('#date-range-display', {
+			mode: 'range',
+			dateFormat: 'd/m/Y',
+			minDate: 'today',
+			locale: 'vn',
+			onChange: function (selectedDates) {
+				if (selectedDates.length === 2) {
+					let formatToBackend = (d) =>
+						d.getFullYear() +
+						'-' +
+						String(d.getMonth() + 1).padStart(2, '0') +
+						'-' +
+						String(d.getDate()).padStart(2, '0');
+					document.getElementById('hidden_check_in').value =
+						formatToBackend(selectedDates[0]);
+					document.getElementById('hidden_check_out').value =
+						formatToBackend(selectedDates[1]);
+				} else {
+					document.getElementById('hidden_check_in').value = '';
+					document.getElementById('hidden_check_out').value = '';
+				}
+			},
+		});
 
-			// Xử lý Popup Chọn Khách
-			let guestData = { adults: 2, children: 0 };
-			function toggleGuestMenu() {
+		// Xử lý Popup Chọn Khách
+		let guestData = { adults: 2, children: 0 };
+		function toggleGuestMenu() {
+			document
+				.getElementById('guest-menu')
+				.classList.toggle('hidden');
+		}
+
+		function updateGuestCount(type, change) {
+			let newVal = guestData[type] + change;
+			if (type === 'adults' && newVal < 1) newVal = 1;
+			if (type === 'children' && newVal < 0) newVal = 0;
+
+			guestData[type] = newVal;
+			document.getElementById(`val-${type}`).innerText = newVal;
+
+			let text =
+				`${guestData.adults} Người lớn, ` +
+				(guestData.children > 0
+					? `${guestData.children} Trẻ em`
+					: `0 Trẻ em`);
+			document.getElementById('guest-display').value = text;
+
+			document.getElementById('hidden_adults').value =
+				guestData.adults;
+			document.getElementById('hidden_children').value =
+				guestData.children;
+		}
+
+		// Đóng menu chọn khách khi click ra ngoài
+		document.addEventListener('click', function (event) {
+			const wrapper = document.getElementById('guest-room-wrapper');
+			if (wrapper && !wrapper.contains(event.target)) {
 				document
 					.getElementById('guest-menu')
-					.classList.toggle('hidden');
+					.classList.add('hidden');
 			}
+		});
+	</script>
+</body>
 
-			function updateGuestCount(type, change) {
-				let newVal = guestData[type] + change;
-				if (type === 'adults' && newVal < 1) newVal = 1;
-				if (type === 'children' && newVal < 0) newVal = 0;
-
-				guestData[type] = newVal;
-				document.getElementById(`val-${type}`).innerText = newVal;
-
-				let text =
-					`${guestData.adults} Người lớn, ` +
-					(guestData.children > 0
-						? `${guestData.children} Trẻ em`
-						: `0 Trẻ em`);
-				document.getElementById('guest-display').value = text;
-
-				document.getElementById('hidden_adults').value =
-					guestData.adults;
-				document.getElementById('hidden_children').value =
-					guestData.children;
-			}
-
-			// Đóng menu chọn khách khi click ra ngoài
-			document.addEventListener('click', function (event) {
-				const wrapper = document.getElementById('guest-room-wrapper');
-				if (wrapper && !wrapper.contains(event.target)) {
-					document
-						.getElementById('guest-menu')
-						.classList.add('hidden');
-				}
-			});
-		</script>
-	</body>
 </html>

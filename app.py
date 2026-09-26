@@ -8,6 +8,7 @@ from routes.public_routes import public_bp
 # from routes.customer_routes import customer_bp
 from routes.host_routes import host_bp
 from routes.admin_routes import admin_bp
+from routes.auth_routes import auth_bp
 
 
 def create_app(config_name='default'):
@@ -27,6 +28,7 @@ def create_app(config_name='default'):
     # app.register_blueprint(customer_bp)
     app.register_blueprint(host_bp)   # Xử lý các link bắt đầu bằng /host/ (ví dụ: /host/accommodation-info)
     app.register_blueprint(admin_bp)
+    app.register_blueprint(auth_bp)
     
     # Route điều hướng trang chủ tạm thời
     @app.route('/')
