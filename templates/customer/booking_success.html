@@ -1,0 +1,300 @@
+<!doctype html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>Đặt phòng thành công - DaNang Travel</title>
+
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Montserrat:wght@500;600;700&family=Material+Symbols+Outlined"
+      rel="stylesheet"
+    />
+
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              primary: "#002045",
+              "primary-container": "#1a365d",
+              secondary: "#895100",
+              "secondary-container": "#fd9d1a",
+              surface: "#f7fafc",
+              "surface-container": "#ebeef0",
+              "surface-container-low": "#f1f4f6",
+              "surface-container-high": "#e5e9eb",
+              "on-surface": "#181c1e",
+              "on-surface-variant": "#43474e",
+              outline: "#74777f",
+              "outline-variant": "#c4c6cf",
+            },
+            fontFamily: {
+              montserrat: ["Montserrat", "sans-serif"],
+              inter: ["Inter", "sans-serif"],
+            },
+          },
+        },
+      };
+    </script>
+  </head>
+
+  <body class="bg-surface text-on-surface font-inter min-h-screen">
+    <!-- HEADER -->
+    <header class="w-full bg-primary text-white">
+      <div
+        class="max-w-7xl mx-auto px-lg py-md flex items-center justify-between"
+      >
+        <!-- Logo -->
+        <a
+          href="/"
+          class="flex items-center gap-md font-montserrat font-bold text-xl"
+        >
+          <span
+            class="flex items-center justify-center w-9 h-9 rounded-lg bg-secondary-container text-primary font-bold"
+          >
+            D
+          </span>
+
+          <span>DaNang Travel</span>
+        </a>
+
+        <!-- Navigation -->
+        <nav class="hidden md:flex items-center gap-4">
+          <a
+            href="/"
+            class="px-md py-sm rounded-lg hover:bg-primary-container transition-colors text-sm font-medium"
+          >
+            Trang chủ
+          </a>
+
+          <a
+            href="/search-destinations"
+            class="px-md py-sm rounded-lg hover:bg-primary-container transition-colors text-sm font-medium"
+          >
+            Khám phá &amp; Tìm kiếm
+          </a>
+
+          <a
+            href="/search-rooms"
+            class="px-md py-sm rounded-lg hover:bg-primary-container transition-colors text-sm font-medium"
+          >
+            Tìm kiếm phòng
+          </a>
+        </nav>
+
+        <!-- Account -->
+        <span class="material-symbols-outlined text-[28px]">
+          account_circle
+        </span>
+      </div>
+    </header>
+
+    <!-- MAIN -->
+    <main class="w-full py-12 px-4">
+      <div class="max-w-4xl mx-auto">
+        <!-- BREADCRUMB -->
+        <div
+          class="flex items-center gap-sm text-sm text-on-surface-variant mb-8"
+        >
+          <a href="/" class="hover:text-primary transition-colors">
+            Trang chủ
+          </a>
+
+          <span class="material-symbols-outlined text-[16px]">
+            chevron_right
+          </span>
+
+          <span class="text-on-surface font-medium">
+            Đặt phòng thành công
+          </span>
+        </div>
+
+        <!-- SUCCESS MESSAGE -->
+        <section class="bg-white rounded-2xl shadow-sm overflow-hidden">
+          <!-- Success header -->
+          <div
+            class="px-6 md:px-10 py-10 text-center border-b border-outline-variant/40"
+          >
+            <div
+              class="mx-auto mb-5 w-16 h-16 rounded-full bg-green-100 flex items-center justify-center"
+            >
+              <span
+                class="material-symbols-outlined text-green-600 text-[36px]"
+              >
+                check_circle
+              </span>
+            </div>
+
+            <p
+              class="text-sm font-semibold tracking-wider text-secondary uppercase mb-2"
+            >
+              XÁC NHẬN ĐẶT PHÒNG
+            </p>
+
+            <h1
+              class="font-montserrat text-3xl md:text-4xl font-bold text-primary mb-3"
+            >
+              Đặt phòng thành công
+            </h1>
+
+            <p class="text-on-surface-variant">
+              Đơn đặt phòng của bạn đã được ghi nhận. Vui lòng chờ chủ cơ sở xác
+              nhận.
+            </p>
+          </div>
+
+          <!-- Booking information -->
+          <div class="p-6 md:p-10">
+            <!-- Booking ID -->
+            <div
+              class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 p-5 rounded-xl bg-surface-container-low mb-8"
+            >
+              <div>
+                <p class="text-sm text-on-surface-variant mb-1">Mã đặt phòng</p>
+
+                <p class="font-montserrat text-xl font-bold text-primary">
+                  #{{ booking_id }}
+                </p>
+              </div>
+
+              <div
+                class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-secondary-container text-white text-sm font-semibold w-fit"
+              >
+                <span class="material-symbols-outlined text-[18px]">
+                  schedule
+                </span>
+                Chờ xác nhận
+              </div>
+            </div>
+
+            <!-- Room -->
+            <div class="mb-8">
+              <p class="text-sm text-on-surface-variant mb-2">Phòng đã đặt</p>
+
+              <h2 class="font-montserrat text-2xl font-bold text-primary">
+                {{ room.room_name }}
+              </h2>
+            </div>
+
+            <!-- Stay information -->
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-8">
+              <div class="p-5 rounded-xl bg-surface-container-low">
+                <div class="flex items-center gap-3 mb-3">
+                  <span class="material-symbols-outlined text-primary">
+                    login
+                  </span>
+
+                  <p class="text-sm text-on-surface-variant">Ngày nhận phòng</p>
+                </div>
+
+                <p class="font-semibold text-lg">{{ check_in_date }}</p>
+              </div>
+
+              <div class="p-5 rounded-xl bg-surface-container-low">
+                <div class="flex items-center gap-3 mb-3">
+                  <span class="material-symbols-outlined text-primary">
+                    logout
+                  </span>
+
+                  <p class="text-sm text-on-surface-variant">Ngày trả phòng</p>
+                </div>
+
+                <p class="font-semibold text-lg">{{ check_out_date }}</p>
+              </div>
+
+              <div class="p-5 rounded-xl bg-surface-container-low">
+                <div class="flex items-center gap-3 mb-3">
+                  <span class="material-symbols-outlined text-primary">
+                    nights_stay
+                  </span>
+
+                  <p class="text-sm text-on-surface-variant">Số đêm</p>
+                </div>
+
+                <p class="font-semibold text-lg">{{ number_of_nights }} đêm</p>
+              </div>
+
+              <div class="p-5 rounded-xl bg-surface-container-low">
+                <div class="flex items-center gap-3 mb-3">
+                  <span class="material-symbols-outlined text-primary">
+                    payments
+                  </span>
+
+                  <p class="text-sm text-on-surface-variant">Tổng tiền</p>
+                </div>
+
+                <p class="font-montserrat font-bold text-xl text-primary">
+                  {{ "{:,.0f}".format(total_price) }} VNĐ
+                </p>
+              </div>
+            </div>
+
+            <!-- Guest information -->
+            <div class="border-t border-outline-variant/40 pt-8 mb-8">
+              <h3 class="font-montserrat text-xl font-bold text-primary mb-5">
+                Thông tin khách
+              </h3>
+
+              <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div>
+                  <p class="text-sm text-on-surface-variant mb-1">Tên khách</p>
+
+                  <p class="font-medium">{{ guest_name }}</p>
+                </div>
+
+                <div>
+                  <p class="text-sm text-on-surface-variant mb-1">
+                    Số điện thoại
+                  </p>
+
+                  <p class="font-medium">{{ guest_phone }}</p>
+                </div>
+              </div>
+            </div>
+
+            <!-- Note -->
+            <div class="p-5 rounded-xl bg-primary text-white mb-8">
+              <div class="flex items-start gap-3">
+                <span
+                  class="material-symbols-outlined text-secondary-container"
+                >
+                  info
+                </span>
+
+                <div>
+                  <p class="font-semibold mb-1">Thông tin đơn đặt phòng</p>
+
+                  <p class="text-sm text-white/80 leading-relaxed">
+                    Đơn đặt phòng của bạn đang ở trạng thái
+                    <strong class="text-white">Chờ xác nhận</strong>. Chủ cơ sở
+                    sẽ tiếp nhận và xử lý đơn đặt phòng.
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <!-- Actions -->
+            <div class="flex flex-col sm:flex-row gap-3">
+              <a
+                href="/search-rooms"
+                class="flex-1 py-3 px-6 rounded-full bg-secondary-container text-white text-center font-semibold hover:opacity-90 transition-all"
+              >
+                Tìm phòng khác
+              </a>
+
+              <a
+                href="/"
+                class="flex-1 py-3 px-6 rounded-full border border-outline text-primary text-center font-semibold hover:bg-surface-container transition-all"
+              >
+                Về trang chủ
+              </a>
+            </div>
+          </div>
+        </section>
+      </div>
+    </main>
+  </body>
+</html>
