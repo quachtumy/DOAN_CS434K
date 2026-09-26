@@ -1,7 +1,8 @@
-from flask import Blueprint, request, render_template
+from flask import Blueprint, request, render_template, redirect, url_for
 from sqlalchemy import text
 
 from database import db
+from flask import session
 
 
 customer_bp = Blueprint('customer', __name__)
@@ -9,6 +10,9 @@ customer_bp = Blueprint('customer', __name__)
 
 @customer_bp.route('/booking', methods=['GET', 'POST'])
 def booking():
+    if 'user_id' not in session:
+        return redirect(url_for('auth.login'))
+
     room_id = request.args.get('room_id')
 
     if not room_id:
@@ -65,7 +69,7 @@ def booking():
             room.price_per_night * number_of_nights
         )
         
-        customer_id = 3
+        customer_id = session.get('user_id')
 
         insert_query = """
             INSERT INTO Bookings (
