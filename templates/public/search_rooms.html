@@ -228,7 +228,7 @@
                                     <span class="whitespace-nowrap hidden lg:inline">Tìm</span>
                                 </button>
                             </div>
-                        </form>
+                        </form>                     
                     </div>
                 </section>
                 
@@ -255,7 +255,7 @@
                             {% for room in rooms %}
                             <div class="room-card bg-surface-container-lowest rounded-xl shadow-[0_4px_20px_rgba(26,54,93,0.05)] p-lg flex flex-col lg:flex-row gap-lg hover:shadow-[0_8px_30px_rgba(26,54,93,0.08)] transition-all" 
                                  data-price="{{ room.price_per_night }}" 
-                                 data-rating="{{ range(40, 50) | random / 10 }}" 
+                                 data-rating="{{ room.rating_score or 0 }}" 
                                  data-popularity="{{ loop.index }}">
                                 <div class="relative w-full lg:w-[360px] h-[240px] rounded-lg overflow-hidden shrink-0">
                                     <img class="w-full h-full object-cover" 
@@ -276,8 +276,21 @@
                                             </div>
                                             <div class="flex items-center gap-xs bg-tertiary-fixed px-sm py-xs rounded-lg shrink-0">
                                                 <span class="material-symbols-outlined text-primary text-sm" style="font-variation-settings: 'FILL' 1;">star</span>
-                                                <span class="font-label-md text-label-md text-primary rating-display">4.9</span>
-                                                <span class="font-caption text-caption text-on-surface-variant">(128)</span>
+                                                {% if room.rating_score %}
+                                                    <span class="font-label-md text-label-md text-primary rating-display">
+                                                        {{ room.rating_score }}
+                                                    </span>
+                                                {% else %}
+                                                    <span class="font-caption text-caption text-on-surface-variant">
+                                                        Chưa có đánh giá
+                                                    </span>
+                                                {% endif %}
+
+                                                {% if room.review_count %}
+                                                    <span class="font-caption text-caption text-on-surface-variant">
+                                                        ({{ room.review_count }})
+                                                    </span>
+                                                {% endif %}
                                             </div>
                                         </div>
                                         <p class="font-body-md text-body-md text-on-surface-variant line-clamp-2">
@@ -399,12 +412,12 @@
             }
             
             // 4. XỬ LÝ SẮP XẾP DANH SÁCH PHÒNG TRỰC TIẾP
-            document.addEventListener("DOMContentLoaded", function() {
+            /* document.addEventListener("DOMContentLoaded", function() {
                 // Khởi tạo hiển thị rating ảo cho đẹp mắt
                 document.querySelectorAll('.room-card').forEach(card => {
                     card.querySelector('.rating-display').innerText = card.dataset.rating;
                 });
-            });
+            }); */
 
             function sortRooms(criteria) {
                 // Đổi màu nút Active

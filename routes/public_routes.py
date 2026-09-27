@@ -192,6 +192,9 @@ def search_rooms():
     keyword = request.args.get('keyword', '').strip()       
     price_range = request.args.get('price_range', '').strip() 
     
+    check_in = request.args.get('check_in', '').strip()
+    check_out = request.args.get('check_out', '').strip()
+        
     # Bắt tham số Khách từ thẻ <input type="hidden"> (Mặc định 2 người lớn, 0 trẻ em)
     try:
         adults = int(request.args.get('adults', 2))
@@ -200,13 +203,14 @@ def search_rooms():
         adults = 2
         children = 0
         
-    total_guests = adults + children # Tổng số người
+    total_guests = adults + children # Tổng số người  
     
     # 2. Xây dựng câu truy vấn cơ bản
     query = """
-        SELECT r.*, a.name AS accommodation_name, a.address AS accommodation_address, a.images AS accommodation_images
+        SELECT r.*, a.name AS accommodation_name, a.address AS accommodation_address, a.images AS accommodation_images, rd.rating_score, rd.review_count
         FROM Rooms r
         JOIN Accommodations a ON r.accommodation_id = a.accommodation_id
+        LEFT JOIN RoomDetails rd ON r.room_id = rd.room_id
         WHERE r.status = 'Available'
     """
     params = {}
@@ -252,6 +256,13 @@ def search_rooms():
         if not first_image or first_image.strip() == '':
             first_image = 'https://images.unsplash.com/photo-1566665797739-1674de7a421a?q=80&w=800'
 
+        # Xử lý tiện nghi
+        amenities = (
+            row.amenities.split(',')
+            if row.amenities
+            else []
+        )
+        
         rooms_list.append({
             'room_id': row.room_id,
             'room_name': row.room_name,
@@ -261,7 +272,11 @@ def search_rooms():
             'amenities': row.amenities.split(',') if row.amenities else [],
             'accommodation_name': row.accommodation_name,
             'accommodation_address': row.accommodation_address,
-            'images': first_image # Truyền thẳng 1 link ảnh duy nhất ra ngoài HTML
+            'images': first_image, # Truyền thẳng 1 link ảnh duy nhất ra ngoài HTML
+            
+            # Thông tin đánh giá từ RoomDetails
+            'rating_score': row.rating_score,
+            'review_count': row.review_count
         })
 
     return render_template(
@@ -269,7 +284,11 @@ def search_rooms():
         rooms=rooms_list,
         total_rooms=len(rooms_list),
         keyword=keyword,
-        price_range=price_range
+        price_range=price_range,
+        check_in=check_in,
+        check_out=check_out,
+        adults=adults,
+        children=children
     )
 
 # Chi tiết phòng - Quách Tú Mỹ
@@ -300,6 +319,45 @@ def room_detail():
     # Lấy original_price từ DB, nếu không có thì lấy giá hiện tại nhân 1.3
     db_original_price = getattr(row, 'original_price', None)
     final_original_price = float(db_original_price) if db_original_price else (base_price * 1.3)
+    
+    # LẤY DANH SÁCH ĐÁNH GIÁ CỦA CƠ SỞ LƯU TRÚ
+    reviews_query = """
+        SELECT
+            rv.review_id,
+            rv.customer_id,
+            rv.rating,
+            rv.comment,
+            rv.images,
+            rv.created_at,
+            rv.host_reply,
+            rv.reply_created_at,
+            u.full_name AS customer_name
+        FROM Reviews rv
+        LEFT JOIN Users u
+            ON rv.customer_id = u.user_id
+        WHERE rv.accommodation_id = :accommodation_id
+        ORDER BY rv.created_at DESC
+    """
+
+    reviews_result = db.session.execute(
+        text(reviews_query),
+        {'accommodation_id': row.accommodation_id}
+    ).fetchall()
+
+    reviews_list = []
+
+    for review in reviews_result:
+        reviews_list.append({
+            'review_id': review.review_id,
+            'customer_id': review.customer_id,
+            'customer_name': review.customer_name or 'Khách hàng',
+            'rating': review.rating,
+            'comment': review.comment or '',
+            'images': review.images or '',
+            'created_at': review.created_at,
+            'host_reply': review.host_reply or '',
+            'reply_created_at': review.reply_created_at
+        })
 
     room_data = {
         'room_id': row.room_id,
@@ -324,4 +382,4 @@ def room_detail():
         'review_count': getattr(row, 'review_count', 0)
     }
 
-    return render_template('public/room_detail.html', room=room_data)
+    return render_template('public/room_detail.html', room=room_data, reviews=reviews_list)
