@@ -179,17 +179,17 @@
 					<a
 						class="text-body-md text-on-surface-variant hover:text-on-surface transition-colors"
 						data-path="trang-chu"
-						href="#"
+						href="{{ url_for('public.home') }}"
 						>Trang chủ</a
 					><a
 						class="text-body-md text-on-surface-variant hover:text-on-surface transition-colors"
 						data-path="kham-pha-dia-diem"
-						href="#"
+						href="{{ url_for('public.search_destinations') }}"
 						>Khám phá địa điểm</a
 					><a
 						class="text-body-md text-on-surface-variant hover:text-on-surface transition-colors"
 						data-path="tim-kiem-phong"
-						href="#"
+						href="{{ url_for('public.search_rooms') }}"
 						>Tìm kiếm phòng</a
 					>
 				</nav>
@@ -197,7 +197,7 @@
 					<a
 						class="px-lg py-sm rounded-full border border-outline text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-all text-label-md"
 						data-path="dang-nhap"
-						href="#"
+						href="{{ url_for('auth.login') }}"
 						>Đăng nhập</a
 					><a
 						class="px-lg py-sm rounded-full bg-primary text-on-primary hover:bg-primary-container hover:text-on-primary-container transition-all text-label-md"
@@ -235,10 +235,7 @@
 						</p>
 					</div>
 					<!-- Registration Form -->
-					<form
-						class="flex flex-col gap-lg"
-						onsubmit="event.preventDefault()"
-					>
+					<form class="flex flex-col gap-lg" method="POST">
 						<!-- Role Selector Switch/Radio -->
 						<div class="flex flex-col gap-sm">
 							<label class="font-label-md text-on-surface"
@@ -303,6 +300,7 @@
 								<input
 									class="w-full h-12 pl-12 pr-lg rounded-lg bg-surface-container-lowest border border-outline focus:border-primary focus:outline-none font-body-md text-on-surface transition-all"
 									id="fullname"
+									name="fullname"
 									placeholder="Nguyễn Văn A"
 									type="text"
 								/>
@@ -323,6 +321,7 @@
 								<input
 									class="w-full h-12 pl-12 pr-lg rounded-lg bg-surface-container-lowest border border-outline focus:border-primary focus:outline-none font-body-md text-on-surface transition-all"
 									id="email"
+									name="email"
 									placeholder="nguyenvana@example.com"
 									type="email"
 								/>
@@ -343,6 +342,7 @@
 								<input
 									class="w-full h-12 pl-12 pr-lg rounded-lg bg-surface-container-lowest border border-outline focus:border-primary focus:outline-none font-body-md text-on-surface transition-all"
 									id="phone"
+									name="phone"
 									placeholder="0901234567"
 									type="tel"
 								/>
@@ -363,6 +363,7 @@
 								<input
 									class="w-full h-12 pl-12 pr-lg rounded-lg bg-surface-container-lowest border border-outline focus:border-primary focus:outline-none font-body-md text-on-surface transition-all"
 									id="password"
+									name="password"
 									placeholder="Ít nhất 8 ký tự"
 									type="password"
 								/>
@@ -383,6 +384,7 @@
 								<input
 									class="w-full h-12 pl-12 pr-lg rounded-lg bg-surface-container-lowest border border-outline focus:border-primary focus:outline-none font-body-md text-on-surface transition-all"
 									id="confirm-password"
+									name="confirm_password"
 									placeholder="Nhập lại mật khẩu"
 									type="password"
 								/>
@@ -393,6 +395,7 @@
 							<input
 								class="accent-primary w-4 h-4 mt-xs"
 								id="terms"
+								name="terms"
 								type="checkbox"
 							/>
 							<label

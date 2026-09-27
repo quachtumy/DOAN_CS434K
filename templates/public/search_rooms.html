@@ -101,28 +101,37 @@
         <header class="fixed top-0 w-full z-50 bg-surface/80 backdrop-blur-xl shadow-[0_1px_8px_rgba(0,0,0,0.04)]">
             <div class="h-20 max-w-7xl mx-auto px-lg flex items-center justify-between">
                 <a class="font-headline-md text-headline-md text-primary font-bold" href="{{ url_for('public.home') }}">DaNang Travel</a>
+                
+                <!-- HEADER ĐỘNG DỰA VÀO TRẠNG THÁI ĐĂNG NHẬP -->
                 <nav class="hidden md:flex items-center gap-md">
-    <!-- Nút Trang chủ -->
-    <a class="text-body-md px-md py-sm rounded-lg text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-colors" 
-       href="{{ url_for('public.home') }}">
-        Trang chủ
-    </a>
-    
-    <!-- Nút Khám phá -->
-    <a class="text-body-md px-md py-sm rounded-lg text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-colors" 
-       href="{{ url_for('public.search_destinations') }}">
-        Khám phá địa điểm
-    </a>
-    
-    <!-- Nút Tìm kiếm (Đang Active: Nền xám nhạt, bo góc trên, viền dưới màu primary) -->
-    <a class="text-body-md px-md py-sm rounded-t-lg bg-surface-container-high border-b-2 border-primary text-primary font-semibold transition-colors" 
-       href="{{ url_for('public.search_rooms') }}">
-        Tìm kiếm phòng
-    </a>
-</nav>
+                    {% if session.get('role') == 'Customer' %}
+                        <!-- Nếu đã đăng nhập là Khách hàng -->
+                        <a class="text-body-md px-md py-sm rounded-lg text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-colors" href="{{ url_for('customer.home') }}">Trang chủ</a>
+                        <!-- Tab Khám phá & Tìm kiếm luôn ACTIVE trên trang này -->
+                        <a class="text-body-md px-md py-sm rounded-t-lg bg-surface-container-high border-b-2 border-primary text-primary font-semibold transition-colors" href="{{ url_for('public.search_rooms') }}">Khám phá &amp; Tìm kiếm</a>
+                        <a class="text-body-md px-md py-sm rounded-lg text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-colors" href="{{ url_for('customer.wishlist') }}">Danh sách yêu thích</a>
+                        <a class="text-body-md px-md py-sm rounded-lg text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-colors" href="{{ url_for('customer.booking_history') }}">Đơn đặt phòng</a>
+                        <a class="text-body-md px-md py-sm rounded-lg text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-colors" href="{{ url_for('customer.notifications') }}">Thông báo</a>
+                    {% else %}
+                        <!-- Nếu chưa đăng nhập (Khách vãng lai) -->
+                        <a class="text-body-md px-md py-sm rounded-lg text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-colors" href="{{ url_for('public.home') }}">Trang chủ</a>
+                        <a class="text-body-md px-md py-sm rounded-lg text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-colors" href="{{ url_for('public.search_destinations') }}">Khám phá địa điểm</a>
+                        <!-- Tab Tìm kiếm phòng luôn ACTIVE trên trang này -->
+                        <a class="text-body-md px-md py-sm rounded-t-lg bg-surface-container-high border-b-2 border-primary text-primary font-semibold transition-colors" href="{{ url_for('public.search_rooms') }}">Tìm kiếm phòng</a>
+                    {% endif %}
+                </nav>
+
                 <div class="flex items-center gap-md">
-                    <a class="px-lg py-sm rounded-full border border-outline text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-all text-label-md" href="#">Đăng nhập</a>
-                    <a class="px-lg py-sm rounded-full bg-primary text-on-primary hover:bg-primary-container hover:text-on-primary-container transition-all text-label-md" href="#">Đăng ký</a>
+                    {% if session.get('user_id') %}
+                        <!-- Đã đăng nhập: Nút Profile -->
+                        <a href="{{ url_for('customer.profile') if session.get('role') == 'Customer' else url_for('host.dashboard') }}" class="w-10 h-10 rounded-full bg-primary flex items-center justify-center hover:bg-primary-container transition-colors" title="Trang cá nhân">
+                            <span class="material-symbols-outlined text-on-primary text-[20px]">person</span>
+                        </a>
+                    {% else %}
+                        <!-- Chưa đăng nhập: Nút Login/Register -->
+                        <a class="px-lg py-sm rounded-full border border-outline text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-all text-label-md" href="{{ url_for('auth.login') }}">Đăng nhập</a>
+                        <a class="px-lg py-sm rounded-full bg-primary text-on-primary hover:bg-primary-container hover:text-on-primary-container transition-all text-label-md" href="{{ url_for('auth.register') }}">Đăng ký</a>
+                    {% endif %}
                 </div>
             </div>
         </header>
@@ -315,9 +324,9 @@
                                         </div>
                                         <!-- CHUYỂN HƯỚNG ĐẾN TRANG CHI TIẾT PHÒNG -->
                                         <a href="{{ url_for('public.room_detail', id=room.room_id) }}" class="px-xl py-sm rounded-full bg-secondary text-on-secondary hover:bg-secondary-container hover:text-on-secondary-container transition-all font-label-md text-label-md flex items-center gap-sm">
-    Xem phòng &amp; Đặt ngay
-    <span class="material-symbols-outlined text-sm">arrow_forward</span>
-</a>
+                                            Xem phòng &amp; Đặt ngay
+                                            <span class="material-symbols-outlined text-sm">arrow_forward</span>
+                                        </a>
                                     </div>
                                 </div>
                             </div>
@@ -411,14 +420,6 @@
                 document.getElementById('hidden_price_range').value = (min || max) ? `${min || '0'} - ${max || '999999999'}` : '';
             }
             
-            // 4. XỬ LÝ SẮP XẾP DANH SÁCH PHÒNG TRỰC TIẾP
-            /* document.addEventListener("DOMContentLoaded", function() {
-                // Khởi tạo hiển thị rating ảo cho đẹp mắt
-                document.querySelectorAll('.room-card').forEach(card => {
-                    card.querySelector('.rating-display').innerText = card.dataset.rating;
-                });
-            }); */
-
             function sortRooms(criteria) {
                 // Đổi màu nút Active
                 document.querySelectorAll('.sort-btn').forEach(btn => {

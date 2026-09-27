@@ -179,17 +179,17 @@
 					<a
 						class="text-body-md text-on-surface-variant hover:text-on-surface transition-colors"
 						data-path="trang-chu"
-						href="#"
+						href="{{ url_for('public.home') }}"
 						>Trang chủ</a
 					><a
 						class="text-body-md text-on-surface-variant hover:text-on-surface transition-colors"
 						data-path="kham-pha-dia-diem"
-						href="#"
+						href="{{ url_for('public.search_destinations') }}"
 						>Khám phá địa điểm</a
 					><a
 						class="text-body-md text-on-surface-variant hover:text-on-surface transition-colors"
 						data-path="tim-kiem-phong"
-						href="#"
+						href="{{ url_for('public.search_rooms') }}"
 						>Tìm kiếm phòng</a
 					>
 				</nav>
@@ -202,7 +202,7 @@
 					><a
 						class="px-lg py-sm rounded-full bg-primary text-on-primary hover:bg-primary-container hover:text-on-primary-container transition-all text-label-md"
 						data-path="dang-ky"
-						href="#"
+						href="{{ url_for('auth.register') }}"
 						>Đăng ký</a
 					>
 				</div>
@@ -237,19 +237,19 @@
 							trình DaNang Travel của bạn
 						</p>
 					</div>
-					<form
-						class="flex flex-col gap-lg"
-						onsubmit="event.preventDefault()"
-					>
+					<!-- Đã sửa form: bỏ onsubmit, thêm method="POST" -->
+					<form class="flex flex-col gap-lg" method="POST">
 						<div class="flex flex-col gap-sm">
 							<label
 								class="font-label-md text-on-surface"
 								for="emailOrPhone"
 								>Email hoặc số điện thoại</label
 							>
+							<!-- Thêm name="emailOrPhone" -->
 							<input
 								class="w-full h-12 px-lg rounded-lg bg-surface-container-lowest text-on-surface border border-outline focus:border-primary focus:outline-none transition-colors font-body-md"
 								id="emailOrPhone"
+								name="emailOrPhone"
 								placeholder="Ví dụ: name@example.com"
 								required=""
 								type="text"
@@ -269,9 +269,11 @@
 								>
 							</div>
 							<div class="relative flex items-center">
+								<!-- Thêm name="password" -->
 								<input
 									class="w-full h-12 px-lg pr-12 rounded-lg bg-surface-container-lowest text-on-surface border border-outline focus:border-primary focus:outline-none transition-colors font-body-md"
 									id="password"
+									name="password"
 									placeholder="Nhập mật khẩu của bạn"
 									required=""
 									type="password"
@@ -293,9 +295,11 @@
 							<label
 								class="flex items-center gap-sm cursor-pointer select-none"
 							>
+								<!-- Thêm name="remember" -->
 								<input
 									class="w-4 h-4 rounded border-outline text-primary focus:ring-0 accent-primary"
 									id="remember"
+									name="remember"
 									type="checkbox"
 								/>
 								<span
@@ -313,58 +317,6 @@
 								>arrow_forward</span
 							>
 						</button>
-						<div class="relative flex py-sm items-center">
-							<div
-								class="flex-grow border-t border-outline-variant"
-							></div>
-							<span
-								class="flex-shrink mx-4 font-caption text-on-surface-variant uppercase tracking-wider"
-								>Hoặc tiếp tục với</span
-							>
-							<div
-								class="flex-grow border-t border-outline-variant"
-							></div>
-						</div>
-						<div class="grid grid-cols-2 gap-md">
-							<button
-								class="flex items-center justify-center gap-sm h-12 rounded-full bg-surface-container hover:bg-surface-container-high transition-all text-on-surface font-label-md border border-outline-variant"
-								type="button"
-							>
-								<svg class="w-5 h-5" viewBox="0 0 24 24">
-									<path
-										d="M23.745 12.27c0-.7-.06-1.4-.19-2.07H12v4.51h6.6c-.29 1.52-1.14 2.82-2.4 3.68v3.05h3.88c2.27-2.09 3.66-5.17 3.66-9.17z"
-										fill="#4285F4"
-									></path>
-									<path
-										d="M12 24c3.24 0 5.95-1.08 7.93-2.91l-3.88-3.05c-1.08.72-2.45 1.16-4.05 1.16-3.12 0-5.77-2.1-6.72-4.93H1.2v3.15C3.18 21.32 7.24 24 12 24z"
-										fill="#34A853"
-									></path>
-									<path
-										d="M5.28 14.27c-.25-.72-.38-1.49-.38-2.27s.13-1.55.38-2.27V6.58H1.2C.44 8.12 0 9.87 0 11.7c0 1.83.44 3.58 1.2 5.12l4.08-2.55z"
-										fill="#FBBC05"
-									></path>
-									<path
-										d="M12 4.75c1.76 0 3.34.61 4.59 1.8l3.43-3.43C17.95 1.19 15.24 0 12 0 7.24 0 3.18 2.68 1.2 6.58l4.08 3.15c.95-2.83 3.6-4.98 6.72-4.98z"
-										fill="#EA4335"
-									></path>
-								</svg>
-								<span class="">Google</span>
-							</button>
-							<button
-								class="flex items-center justify-center gap-sm h-12 rounded-full bg-surface-container hover:bg-surface-container-high transition-all text-on-surface font-label-md border border-outline-variant"
-								type="button"
-							>
-								<svg
-									class="w-5 h-5 fill-current"
-									viewBox="0 0 24 24"
-								>
-									<path
-										d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.81-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M15.83 5.03c.66-.82 1.11-1.95.99-3.09-.96.04-2.12.64-2.79 1.45-.61.71-1.14 1.87-1 2.99 1.08.08 2.15-.53 2.8-1.35z"
-									></path>
-								</svg>
-								<span class="">Apple</span>
-							</button>
-						</div>
 					</form>
 					<div class="mt-xl text-center">
 						<p class="font-body-md text-on-surface-variant text-sm">
@@ -405,5 +357,12 @@
 				</p>
 			</div>
 		</footer>
+
+		<!-- Script hiện thông báo lỗi bằng Alert của trình duyệt (Không làm đổi UI) -->
+		{% with messages = get_flashed_messages() %} {% if messages %}
+		<script>
+			alert('{{ messages[0] }}');
+		</script>
+		{% endif %} {% endwith %}
 	</body>
 </html>
