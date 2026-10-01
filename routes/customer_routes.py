@@ -309,7 +309,10 @@ def booking_history():
             b.total_price,
             r.room_name,
             a.name AS acc_name,
-            a.accommodation_id
+            a.accommodation_id,
+            EXISTS (
+                SELECT 1 FROM Reviews rv WHERE rv.booking_id = b.booking_id
+            ) AS has_review
         FROM Bookings b
         JOIN Rooms r 
             ON b.room_id = r.room_id
@@ -421,7 +424,9 @@ def review(booking_id):
 
     # Lấy thông tin đơn đặt phòng và cơ sở lưu trú
     query = """
-        SELECT b.booking_id, b.status, a.accommodation_id, a.name as acc_name, r.room_name
+         SELECT b.booking_id, b.status, b.check_in_date, b.check_out_date,
+             b.total_price, a.accommodation_id, a.name AS acc_name,
+             a.images, r.room_name
         FROM Bookings b
         JOIN Rooms r ON b.room_id = r.room_id
         JOIN Accommodations a ON r.accommodation_id = a.accommodation_id
@@ -435,22 +440,62 @@ def review(booking_id):
         flash("Đơn đặt không tồn tại hoặc bạn không có quyền đánh giá.", "error")
         return redirect(url_for("customer.booking_history"))
 
+    if (booking_info.status or "").casefold() != "completed":
+        flash("Bạn chỉ có thể đánh giá sau khi đơn đặt phòng hoàn thành.", "error")
+        return redirect(url_for("customer.booking_history"))
+
+    existing_review = db.session.execute(
+        text("SELECT review_id FROM Reviews WHERE booking_id = :bid"),
+        {"bid": booking_id},
+    ).fetchone()
+    if existing_review:
+        flash("Đơn đặt phòng này đã được đánh giá.", "error")
+        return redirect(url_for("customer.booking_history"))
+
     if request.method == "POST":
-        rating = request.form.get("rating", type=int)
-        comment = request.form.get("comment", "").strip()
+        rating = request.form.get("overall_rating", type=int)
+        comment = request.form.get("feedback", "").strip()
+        aspect_names = {
+            "cleanliness": "Sạch sẽ",
+            "service": "Dịch vụ",
+            "location": "Vị trí",
+            "value": "Giá trị",
+        }
+        aspect_ratings = {
+            name: request.form.get(name, default=0, type=int)
+            for name in aspect_names
+        }
 
         if not rating or rating < 1 or rating > 5:
-            flash("Vui lòng chọn số sao đánh giá hợp lệ (1 - 5 sao).", "error")
+            flash("Vui lòng chọn số sao đánh giá chung từ 1 đến 5.", "error")
             return render_template("customer/review_form.html", booking=booking_info)
 
-        # Lưu đánh giá vào bảng Reviews
+        if any(score < 0 or score > 5 for score in aspect_ratings.values()):
+            flash("Điểm đánh giá từng tiêu chí không hợp lệ.", "error")
+            return render_template("customer/review_form.html", booking=booking_info)
+
+        if len(comment) < 20 or len(comment) > 2000:
+            flash("Nhận xét cần có từ 20 đến 2.000 ký tự.", "error")
+            return render_template("customer/review_form.html", booking=booking_info)
+
+        selected_aspects = [
+            f"{aspect_names[name]}: {score}/5"
+            for name, score in aspect_ratings.items()
+            if score
+        ]
+        if selected_aspects:
+            comment += "\n\nĐánh giá chi tiết: " + " | ".join(selected_aspects)
+
         insert_review_query = """
-            INSERT INTO Reviews (customer_id, accommodation_id, rating, comment, created_at)
-            VALUES (:uid, :acc_id, :rating, :comment, NOW())
+            INSERT INTO Reviews (
+                booking_id, customer_id, accommodation_id, rating, comment, created_at
+            )
+            VALUES (:bid, :uid, :acc_id, :rating, :comment, NOW())
         """
         db.session.execute(
             text(insert_review_query),
             {
+                "bid": booking_id,
                 "uid": user_id,
                 "acc_id": booking_info.accommodation_id,
                 "rating": rating,

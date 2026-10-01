@@ -373,6 +373,16 @@
 								Hủy đặt phòng
 							</button>
 							{% endif %}
+							{% if b.status == 'Completed' %}
+								{% if b.has_review %}
+								<span class="px-4 py-2.5 text-label-md text-on-surface-variant">Đã đánh giá</span>
+								{% else %}
+								<a href="{{ url_for('customer.review', booking_id=b.booking_id) }}"
+									class="px-4 py-2.5 rounded-lg bg-secondary-container text-on-secondary-container text-label-md">
+									Đánh giá dịch vụ
+								</a>
+								{% endif %}
+							{% endif %}
 
 
 						</div>

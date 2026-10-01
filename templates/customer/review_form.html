@@ -236,12 +236,18 @@
 								class="material-symbols-outlined text-[20px] text-secondary"
 								>verified</span
 							>
-							<span
-								>Đã xác thực kỳ nghỉ • Grandvrio Ocean Resort Da
-								Nang</span
-							>
+							<span>Đánh giá cho đơn đặt phòng đã hoàn thành</span>
 						</div>
 					</div>
+					{% with messages = get_flashed_messages(with_categories=true) %}
+						{% if messages %}
+							<div class="mb-6 flex flex-col gap-2" role="alert" aria-live="polite">
+								{% for category, message in messages %}
+									<div class="rounded-lg border px-4 py-3 {{ 'border-error text-on-error-container bg-error-container' if category == 'error' else 'border-outline-variant text-on-surface bg-surface-container-low' }}">{{ message }}</div>
+								{% endfor %}
+							</div>
+						{% endif %}
+					{% endwith %}
 					<div
 						class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start"
 					>
@@ -253,16 +259,14 @@
 								<div
 									class="w-full h-48 rounded-lg bg-cover bg-center overflow-hidden relative"
 									data-alt="A luxurious modern oceanfront resort in Da Nang with pristine infinity pools overlooking the turquoise East Sea, elegant tropical landscaping, warm golden hour lighting, architectural corporate refinement."
-									style="
-										background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuCqoiLbDXyWB0TiZYUBIq7Feh_hedPOIuUg8feL0qtnBpQyvx49ZX6l91YcHoRsOt7zKfXrD_l3BJvI4qKXxDhbWJlmLqapelesXTBSfrkyGe6SsYjZPIqqlXjeX8XzabgYVJTxGExmXe_-AX4l05GL9Og2-RtBgdQKQc4_fqX0m_h9pSIOyvtWLYlOC-TRQ55TAo614YQrGUPIYekj7ReFw96FpntI2EyVS0JwDoN-6GUws8_k0rOB');
-									"
+									style="background-image: url('{{ booking.images.split('|')[0] if booking.images else 'https://images.unsplash.com/photo-1566073771259-6a8506099945?q=80&w=800' }}')"
 								>
 									<div
 										class="absolute inset-0 bg-gradient-to-t from-primary/60 via-transparent to-transparent flex items-end p-md"
 									>
 										<span
 											class="text-on-primary text-label-md font-semibold"
-											>Grandvrio Ocean Resort</span
+											>{{ booking.acc_name }}</span
 										>
 									</div>
 								</div>
@@ -273,7 +277,7 @@
 										<span>Thời gian lưu trú</span>
 										<span
 											class="font-semibold text-on-surface"
-											>12/10/2024 - 15/10/2024</span
+											>{{ booking.check_in_date }} - {{ booking.check_out_date }}</span
 										>
 									</div>
 									<div
@@ -282,7 +286,7 @@
 										<span>Mã đặt phòng</span>
 										<span
 											class="font-semibold text-on-surface"
-											>DN-884920</span
+											>DNS-{{ booking.booking_id }}</span
 										>
 									</div>
 								</div>
@@ -314,6 +318,8 @@
 							<form
 								class="bg-surface-container-lowest rounded-xl p-lg lg:p-2xl shadow-sm flex flex-col gap-2xl"
 								id="reviewForm"
+								action="{{ url_for('customer.review', booking_id=booking.booking_id) }}"
+								method="post"
 							>
 								<!-- Overall Rating -->
 								<div class="flex flex-col gap-md">
@@ -812,12 +818,15 @@
 										class="bg-surface-container-lowest text-on-surface rounded-lg p-md outline-none focus:ring-2 focus:ring-primary transition-all resize-y placeholder:text-outline"
 										id="feedbackComment"
 										name="feedback"
+										required
+										minlength="20"
+										maxlength="2000"
 										placeholder="Hãy chia sẻ những điểm bạn hài lòng hoặc cần cải thiện tại khách sạn..."
 										rows="5"
 									></textarea>
 									<span
 										class="text-caption text-on-surface-variant text-right"
-										>Tối thiểu 20 ký tự</span
+										>Từ 20 đến 2.000 ký tự</span
 									>
 								</div>
 								<!-- Photo Upload Simulation -->
@@ -861,37 +870,6 @@
 						</div>
 					</div>
 				</section>
-				<!-- Success Modal State (Hidden by default) -->
-				<div
-					class="fixed inset-0 bg-primary/40 backdrop-blur-sm z-50 flex items-center justify-center hidden opacity-0 transition-opacity duration-300"
-					id="successModal"
-				>
-					<div
-						class="bg-surface-container-lowest rounded-xl p-2xl max-w-md w-full mx-4 shadow-xl flex flex-col items-center text-center gap-lg transform scale-95 transition-transform duration-300"
-						id="successModalContent"
-					>
-						<div
-							class="w-16 h-16 rounded-full bg-secondary-fixed flex items-center justify-center text-secondary"
-						>
-							<span class="material-symbols-outlined text-[36px]"
-								>check_circle</span
-							>
-						</div>
-						<h3 class="text-headline-md text-on-surface font-bold">
-							Cảm ơn đánh giá của bạn!
-						</h3>
-						<p class="text-body-md text-on-surface-variant">
-							Phản hồi của bạn đã được ghi nhận và giúp nâng cao
-							chất lượng dịch vụ tại hệ thống Đà Nẵng Stay.
-						</p>
-						<button
-							class="bg-primary text-on-primary font-bold px-xl py-sm rounded-full w-full hover:bg-primary-container transition-colors"
-							id="closeModalBtn"
-						>
-							Hoàn tất
-						</button>
-					</div>
-				</div>
 				<script>
 					// Overall star rating logic
 					const overallStars = document.querySelectorAll(
@@ -968,60 +946,16 @@
 						});
 					});
 
-					// Form submission & modal toggle
 					const reviewForm = document.getElementById('reviewForm');
-					const successModal =
-						document.getElementById('successModal');
-					const successModalContent = document.getElementById(
-						'successModalContent',
-					);
-					const closeModalBtn =
-						document.getElementById('closeModalBtn');
+					reviewForm.addEventListener('submit', (event) => {
+						if (Number(overallRatingInput.value) < 1) {
+							event.preventDefault();
+							overallRatingText.textContent = 'Vui lòng chọn số sao';
+							overallStars[0].focus();
+							return;
+						}
 
-					reviewForm.addEventListener('submit', (e) => {
-						e.preventDefault();
-						successModal.classList.remove('hidden');
-						setTimeout(() => {
-							successModal.classList.remove('opacity-0');
-							successModalContent.classList.remove('scale-95');
-							successModalContent.classList.add('scale-100');
-						}, 10);
-					});
-
-					closeModalBtn.addEventListener('click', () => {
-						successModal.classList.add('opacity-0');
-						successModalContent.classList.remove('scale-100');
-						successModalContent.classList.add('scale-95');
-						setTimeout(() => {
-							successModal.classList.add('hidden');
-							reviewForm.reset();
-							// Reset stars visual
-							overallStars.forEach((s) => {
-								s.querySelector(
-									'span',
-								).style.fontVariationSettings = "'FILL' 0";
-								s.classList.remove('text-secondary-fixed-dim');
-								s.classList.add('text-outline-variant');
-							});
-							overallRatingText.textContent = 'Chọn số sao';
-							aspectGroups.forEach((group) => {
-								const target =
-									group.getAttribute('data-target');
-								group.parentElement.querySelector(
-									'.aspect-score',
-								).textContent = '0/5';
-								group
-									.querySelectorAll('.aspect-star')
-									.forEach((s) => {
-										s.querySelector(
-											'span',
-										).style.fontVariationSettings =
-											"'FILL' 0";
-										s.classList.remove('text-secondary');
-										s.classList.add('text-outline-variant');
-									});
-							});
-						}, 300);
+						reviewForm.querySelector('[type="submit"]').disabled = true;
 					});
 				</script>
 			</div>
